@@ -1,0 +1,119 @@
+.main {
+    width: 100%;
+    height: 100%;
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-div {
+    top: 0;
+    left: 0;
+    width: 35%;
+    height: 80%;
+    background-color: #FCF9F9;
+    border-radius: 20px;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+    /* background-color: grey; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logo {
+    font-family: 'Sansita', sans-serif;
+    color: #5A5A5A;
+    width: 100%;
+    height: 20%;
+    /* background-color: red; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 128px;
+    text-shadow: 0px 7px 0px #FFCF24;
+    font-style: italic;
+    margin-bottom: 80px;
+    margin-top: 30px;
+}
+
+.inputs {
+    width: 50%;
+    height: 50%;
+    /* background-color: aqua; */
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+}
+
+.box-info {
+    width: 100%;
+    height: 50%;
+    white-space: nowrap;
+    outline: none;
+    resize: none;
+    margin: 0;
+    border: 2px solid #D0D0D0;
+    border-radius: 4px;
+    font-size: large;
+    font-family: 'Poppins', sans-serif;
+    color: #818181;
+    padding: 3%;
+    box-sizing: border-box;
+    padding-left: 10px;
+}
+
+.text {
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 0;
+    color: #525252;
+    font-weight: bold;
+}
+
+.login {
+    width: 100%;
+    height: 30%;
+    margin-top: 20px;
+    background-color: #FFCF24;
+    border: none;
+    font-size: large;
+    color: #956004;
+    letter-spacing: 5px;
+    font-weight: bolder;
+    font-family: 'Poppins', sans-serif;
+    padding: 3%;
+    box-sizing: border-box;
+}
+
+.register {
+    width: 100%;
+    height: 20%;
+    margin-top: 20px;
+    border: 2px solid #956004;
+    color: #956004;
+    font-weight: bolder;
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: 5px;
+    font-size: large;
+    padding: 3%;
+    box-sizing: border-box;
+}
+
+.line{
+    width: 100%;
+    height: 100px;
+    border-bottom: 1px solid #D0D0D0;
+}
