@@ -1,0 +1,124 @@
+.main {
+    width: 100%;
+    height: 100%;
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.register-div{
+    width: 70%;
+    height: 85%;
+    background-color: #FCF9F9;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.3);
+}
+
+.image{
+    width: 100%;
+    height: 40%;
+    /* background-color: black; */
+}
+
+.form{
+    width: 100%;
+    height: 60%;
+    /* background-color: blue; */
+}
+
+.left-side{
+    width: 50%;
+    height: 100%;
+    /* background-color: chartreuse; */
+    float: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.left-side-content{
+    width: 50%;
+    height: 100%;
+    /* background-color: #525252; */
+}
+
+.right-side{
+    width: 50%;
+    height: 100%;
+    /* background-color: red; */
+    float: right;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.right-side-content{
+    width: 50%;
+    height: 100%;
+}
+
+.box-info {
+    width: 100%;
+    height: 10%;
+    white-space: nowrap;
+    outline: none;
+    resize: none;
+    margin: 0;
+    border: 2px solid #D0D0D0;
+    border-radius: 4px;
+    font-size: large;
+    font-family: 'Poppins', sans-serif;
+    color: #818181;
+    padding: 3%;
+    box-sizing: border-box;
+    padding-left: 10px;
+}
+
+.text {
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 0;
+    color: #525252;
+    font-weight: bold;
+}
+
+#segment-select{
+    width: 100%;
+    height: 12%;
+    outline: none;
+    margin: 0;
+    border: 2px solid #D0D0D0;
+    border-radius: 4px;
+    font-size: large;
+    font-family: 'Poppins', sans-serif;
+    color: #818181;
+    padding: 3%;
+    box-sizing: border-box;
+    padding-left: 10px;
+}
+
+.register-btn{
+    width: 100%;
+    height: 14%;
+    margin-top: 20px;
+    background-color: #FFCF24;
+    border: none;
+    font-size: large;
+    color: #956004;
+    letter-spacing: 5px;
+    font-weight: bolder;
+    font-family: 'Poppins', sans-serif;
+    padding: 3%;
+    box-sizing: border-box;
+}
