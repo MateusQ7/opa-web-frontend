@@ -121,4 +121,5 @@
     font-family: 'Poppins', sans-serif;
     padding: 3%;
     box-sizing: border-box;
+    cursor: pointer;
 }
