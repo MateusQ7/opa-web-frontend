@@ -1,13 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UserRegisterComponent } from './user-register.component';
+import { AppRoutingModule } from '../app-routing.module';
 
 
 
 @NgModule({
   declarations: [UserRegisterComponent],
   imports: [
-    CommonModule
+    CommonModule,
+    AppRoutingModule
   ],
   exports: [UserRegisterComponent]
 })
