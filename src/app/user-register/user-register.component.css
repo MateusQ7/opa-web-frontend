@@ -28,6 +28,50 @@
     width: 100%;
     height: 40%;
     /* background-color: black; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.img-main{
+    width: 25%;
+    height: 100%;
+    /* background-color: purple; */
+    border-radius: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#img{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 50px;
+}
+
+.input-img{
+    display: inline-block;
+    background-color: #FFFFFF;
+    border-radius: 1px solid #FFCF24;
+    cursor: pointer;
+}
+
+.btn{
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type="file"]{
+    
 }
 
 .form{
