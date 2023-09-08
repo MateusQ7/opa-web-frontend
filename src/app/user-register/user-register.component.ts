@@ -18,7 +18,45 @@ export class UserRegisterComponent implements OnInit{
   
   ngOnInit(): void {
     this.form = this.fb.group({
-      name: ['', Validators.required]
+      name: [{
+        value:'', 
+        disabled: false
+      },[
+        Validators.required,
+      ]],
+      password: [{
+        value:'', 
+        disabled: false
+      },[
+        Validators.required,
+        Validators.minLength(6)
+      ]],
+      password_confirm: [{
+        value:'', 
+        disabled: false
+      },[
+        Validators.required,
+        Validators.minLength(6)
+      ]],
+      email: [{
+        value: '',
+        disabled: false,
+      }, [
+        Validators.email,
+        Validators.required,
+      ]],
+      enterprise: [{
+        value: '',
+        disabled: false,
+      }, [
+        Validators.required,
+      ]],
+      cnpj: [{
+        value: '',
+        disabled: false,
+      }, [
+        Validators.required,
+      ]]
     })
   }
 
