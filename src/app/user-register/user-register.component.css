@@ -176,16 +176,16 @@
 
 .register-btn{
     width: 100%;
-    height: 13%;
-    margin-top: 20px;
+    height: 18%;
+    margin-top: 37px;
     background-color: #FFCF24;
     border: none;
     font-size: large;
     color: #956004;
-    letter-spacing: 5px;
+    letter-spacing: 4px;
     font-weight: bolder;
     font-family: 'Poppins', sans-serif;
-    padding: 3%;
+    padding: 4%;
     box-sizing: border-box;
     cursor: pointer;
 }
