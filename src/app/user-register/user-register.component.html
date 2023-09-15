@@ -1,15 +1,16 @@
 <div class="main" style="background-image: url('../../assets/images/Opa!-Web.svg')">
     <div class="register-div">
-        <div class="image">
-            <div class="img-main">
-                <img id="img" src="../../assets/images/Image-Register.svg" class="img-perfil">
-                <div class="file">
-                    <input type="file" id="fileInput" class="input-img" style="display: none;">
-                    <label for="fileInput" class="image-button">+</label>
+        <div class="first-page" *ngIf="this.first; else secondPage">
+            <div class="image">
+                <div class="img-main">
+                    <img id="img" src="../../assets/images/Image-Register.svg" class="img-perfil">
+                    <div class="file">
+                        <input type="file" id="fileInput" class="input-img" style="display: none;">
+                        <label for="fileInput" class="image-button">+</label>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="form">
+            <div class="form">
             <form [formGroup]="form">
                 <div class="left-side">
                     <div class="left-side-content">
@@ -36,10 +37,17 @@
                         <option value="Bar">Bar</option>
                         <option value="Buffet">Buffet</option>
                         </select>
-                        <button class="register-btn" routerLink="/login">CADASTRAR</button>
+                        <button class="register-btn" (click)="this.calabocapedrocaio()">PRÓCIMO</button>
                     </div>
                 </div>
             </form>
         </div>
     </div>
 </div>
+
+<ng-template #secondPage>
+    <div class="second-page">
+        <button class="back" (click)="this.calabocapedrocaio()"> X</button>
+        <form></form>
+    </div>
+</ng-template>
