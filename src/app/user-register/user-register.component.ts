@@ -10,10 +10,12 @@ import { Router } from '@angular/router';
 export class UserRegisterComponent implements OnInit{
 
   public form!: FormGroup;
+  public second_form!: FormGroup;
+  public first:Boolean = true;
 
   constructor(
     private router: Router,
-    private fb:FormBuilder
+    private fb:FormBuilder,
   ){}
   
   ngOnInit(): void {
@@ -58,7 +60,17 @@ export class UserRegisterComponent implements OnInit{
         Validators.required,
       ]]
     })
+
+    this.second_form = this.fb.group({
+      street:[],
+      street_number:[],
+      neighborhood:[],
+      cep:[],
+      phone:[]
+    })
   }
 
-  
+  calabocapedrocaio(){
+    this.first = !this.first
+  }
 }
