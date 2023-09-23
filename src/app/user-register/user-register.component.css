@@ -227,5 +227,6 @@
 .message-error{
     color: red;
     font-family: 'Poppins', sans-serif;
-    font-weight: bold
+    font-weight: bold;
+    font-size: 12px;
 }
