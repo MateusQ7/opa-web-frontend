@@ -106,6 +106,8 @@ export class UserRegisterComponent implements OnInit{
         disabled: false,
       }, [
         Validators.required,
+        Validators.minLength(11),
+        Validators.maxLength(11),
       ]],
     })
 
