@@ -26,6 +26,13 @@ export class UserRegisterComponent implements OnInit{
       },[
         Validators.required,
       ]],
+      email: [{
+        value: '',
+        disabled: false,
+      }, [
+        Validators.email,
+        Validators.required,
+      ]],
       password: [{
         value:'', 
         disabled: false
@@ -40,37 +47,72 @@ export class UserRegisterComponent implements OnInit{
         Validators.required,
         Validators.minLength(6)
       ]],
-      email: [{
-        value: '',
-        disabled: false,
-      }, [
-        Validators.email,
-        Validators.required,
-      ]],
-      enterprise: [{
+      gender: [{
         value: '',
         disabled: false,
       }, [
         Validators.required,
       ]],
-      cnpj: [{
+      cpf: [{
         value: '',
         disabled: false,
       }, [
         Validators.required,
-      ]]
+      ]],
+      birthDate: [{
+        value: '',
+        disabled: false,
+      }, [
+        Validators.required,
+      ]],
+      street: [{
+        value: '',
+        disabled: false,
+      }, [
+        Validators.required,
+      ]],
+      streetNumber: [{
+        value: '',
+        disabled: false,
+      }, [
+        Validators.required,
+      ]],
+      complement: [{
+        value: '',
+        disabled: false,
+      }, [
+        Validators.required,
+      ]],
+      city: [{
+        value: '',
+        disabled: false,
+      }, [
+        Validators.required,
+      ]],
+      state: [{
+        value: '',
+        disabled: false,
+      }, [
+        Validators.required,
+      ]],
+      cep: [{
+        value: '',
+        disabled: false,
+      }, [
+        Validators.required,
+      ]],
+      phoneNumber: [{
+        value: '',
+        disabled: false,
+      }, [
+        Validators.required,
+      ]],
     })
 
-    this.second_form = this.fb.group({
-      street:[],
-      street_number:[],
-      neighborhood:[],
-      cep:[],
-      phone:[]
-    })
+    
   }
 
-  calabocapedrocaio(){
-    this.first = !this.first
+  submit(){
+    console.log("Enviou o formulário");
   }
 }
