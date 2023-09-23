@@ -19,19 +19,25 @@
                             Este campo é obrigatório!
                         </div>
                         <p class="text">Email:</p>
-                        <input type="text" formControlName="email" class="box-info" placeholder="Insira seu email"/>
-                        <div class="message-error" *ngIf="form.get('email')?.errors?.['required'] && form.get('name')?.touched">
+                        <input type="email" formControlName="email" class="box-info" placeholder="Insira seu email"/>
+                        <div class="message-error" *ngIf="form.get('email')?.errors?.['required'] && form.get('email')?.touched">
                             Este campo é obrigatório!
                         </div>
                         <p class="text">Senha:</p>
                         <input type="password" formControlName="password" class="box-info" placeholder="Insira sua senha"/>
-                        <div class="message-error" *ngIf="form.get('password')?.errors?.['minlength'] && form.get('name')?.touched">
+                        <div class="message-error" *ngIf="form.get('name')?.errors?.['required'] && form.get('password')?.touched">
+                            Este campo é obrigatório!
+                        </div>
+                        <div class="message-error" *ngIf="form.get('password')?.errors?.['minlength'] && form.get('password')?.touched">
                             Precisa de no mínimo 6 caracteres!
                         </div>
                         <p class="text">Confirme sua senha:</p>
                         <input type="password" formControlName="password_confirm" class="box-info" placeholder="Confirme sua senha"/>
-                        <div class="message-error" *ngIf="form.get('password_confirm')?.errors?.['minlength'] && form.get('name')?.touched">
+                        <div class="message-error" *ngIf="form.get('password_confirm')?.errors?.['required'] && form.get('password_confirm')?.touched">
                             Este campo é obrigatório!
+                        </div>
+                        <div class="message-error" *ngIf="form.get('password_confirm')?.errors?.['minlength'] && form.get('password_confirm')?.touched">
+                            Precisa de no mínimo 6 caracteres!
                         </div>
                         <p class="text">Gênero:</p>
                         <select name="gender" id="gender-select" formControlName="gender">
@@ -42,17 +48,17 @@
                             <option value="Outros">Outros</option>
                             <option value="nao_declarado">Prefiro não informar</option>
                         </select>
-                        <div class="message-error" *ngIf="form.get('gender')?.errors && form.get('name')?.touched">
+                        <div class="message-error" *ngIf="form.get('gender')?.errors && form.get('gender')?.touched">
                             Este campo é obrigatório!
                         </div>
                         <p class="text">CPF:</p>
                         <input type="text" formControlName="cpf" class="box-info" placeholder="Digite seu CPF"/>
-                        <div class="message-error" *ngIf="form.get('cpf')?.errors && form.get('name')?.touched">
+                        <div class="message-error" *ngIf="form.get('cpf')?.errors && form.get('cpf')?.touched">
                             Este campo é obrigatório!
                         </div>
                         <p class="text">Data de nascimento:</p>
                         <input type="date" formControlName="birthDate" class="box-info"/>
-                        <div class="message-error" *ngIf="form.get('birthDate')?.errors && form.get('name')?.touched">
+                        <div class="message-error" *ngIf="form.get('birthDate')?.errors && form.get('birthDate')?.touched">
                             Este campo é obrigatório!
                         </div>
                     </div>
@@ -61,37 +67,37 @@
                     <div class="right-side-content">
                         <p class="text">Rua:</p>
                         <input type="text" formControlName="street" class="box-info" placeholder="Insira o sua rua"/>
-                        <div class="message-error" *ngIf="form.get('street')?.errors && form.get('name')?.touched">
+                        <div class="message-error" *ngIf="form.get('street')?.errors && form.get('street')?.touched">
                             Este campo é obrigatório!
                         </div>
                         <p class="text">Número:</p>
                         <input type="text" formControlName="streetNumber" class="box-info" placeholder="Insira o número"/>
-                        <div class="message-error" *ngIf="form.get('streetNumber')?.errors && form.get('name')?.touched">
+                        <div class="message-error" *ngIf="form.get('streetNumber')?.errors && form.get('streetNumber')?.touched">
                             Este campo é obrigatório!
                         </div>
                         <p class="text">Complemento:</p>
                         <input type="text" formControlName="complement" class="box-info" placeholder="Insira o complemento" font-family="Poppins" />
-                        <div class="message-error" *ngIf="form.get('complement')?.errors && form.get('name')?.touched">
+                        <div class="message-error" *ngIf="form.get('complement')?.errors && form.get('complement')?.touched">
                             Este campo é obrigatório!
                         </div>
                         <p class="text">Cidade:</p>
                         <input type="text" formControlName="city" class="box-info" placeholder="Insira a cidade" font-family="Poppins"/>
-                        <div class="message-error" *ngIf="form.get('city')?.errors && form.get('name')?.touched">
+                        <div class="message-error" *ngIf="form.get('city')?.errors && form.get('city')?.touched">
                             Este campo é obrigatório!
                         </div>
                         <p class="text">Estado:</p>
                         <input type="text" formControlName="state" class="box-info" placeholder="Insira o estado" font-family="Poppins"/>
-                        <div class="message-error" *ngIf="form.get('state')?.errors && form.get('name')?.touched">
+                        <div class="message-error" *ngIf="form.get('state')?.errors && form.get('state')?.touched">
                             Este campo é obrigatório!
                         </div>
                         <p class="text">CEP:</p>
                         <input type="text" formControlName="cep" class="box-info" placeholder="Insira o cep" font-family="Poppins"/>
-                        <div class="message-error" *ngIf="form.get('cep')?.errors && form.get('name')?.touched">
+                        <div class="message-error" *ngIf="form.get('cep')?.errors && form.get('cep')?.touched">
                             Este campo é obrigatório!
                         </div>
                         <p class="text">Telefone:</p>
-                        <input type="number" formControlName="phoneNumber" class="box-info" placeholder="Insira o telefone" font-family="Poppins"/>
-                        <div class="message-error" *ngIf="form.get('phoneNumber')?.errors && form.get('name')?.touched">
+                        <input type="tel" formControlName="phoneNumber" class="box-info" placeholder="Insira o telefone" font-family="Poppins"/>
+                        <div class="message-error" *ngIf="form.get('phoneNumber')?.errors?.['required'] && form.get('phoneNumber')?.touched">
                             Este campo é obrigatório!
                         </div>
                     </div>
