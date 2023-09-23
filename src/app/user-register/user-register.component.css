@@ -1,6 +1,7 @@
 .main {
     width: 100%;
-    height: 100%;
+    height: auto;
+    max-height: none;
     background-size: 100% auto;
     background-repeat: no-repeat;
     position: relative;
@@ -17,7 +18,12 @@
     background-color: #FCF9F9;
     border-radius: 20px;
     box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.3);
-    margin-bottom: 100px;
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
 }
 
 .first-page{
@@ -39,7 +45,7 @@
 
 .image{
     width: 100%;
-    height: 100%;
+    height: auto;
     display: flex;
     justify-content: center;
     /* align-items: center; */
@@ -51,7 +57,7 @@
     border-radius: 90%;
     display: flex;
     align-items: center;
-    padding-top: 50px;
+    padding-top: 40px;
     font-weight: bold;
     position: relative;   
 }
@@ -108,12 +114,12 @@
 
 .form{
     width: 100%;
-    height: 100vh;
+    height: auto;
 }
 
 .left-side{
     width: 50%;
-    height: 100%;
+    height: auto;
     float: left;
     display: flex;
     flex-direction: column;
@@ -128,7 +134,7 @@
 
 .right-side{
     width: 50%;
-    height: 100%;
+    height: auto;
     float: right;
     display: flex;
     flex-direction: column;
@@ -180,9 +186,20 @@
     padding-left: 10px;
 }
 
-.register-btn{
+.button-submit{
     width: 100%;
-    height: 18%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* margin-right: 50%; */
+    margin-bottom: 20px;
+}
+
+.register-btn{
+    width: 25%;
+    height: 5%;
     margin-top: 37px;
     background-color: #FFCF24;
     border: none;
@@ -191,7 +208,7 @@
     letter-spacing: 4px;
     font-weight: bolder;
     font-family: 'Poppins', sans-serif;
-    padding: 4%;
+    padding: 1.1%;
     box-sizing: border-box;
     cursor: pointer;
 }
@@ -207,3 +224,8 @@
     background-color: red;
 }
 
+.message-error{
+    color: red;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold
+}
