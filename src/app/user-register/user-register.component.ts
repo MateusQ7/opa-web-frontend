@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators, AbstractControl, ValidatorFn, ValidationErrors } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FormError } from '../shared/types/formError';
+import { CepService } from '../cep/cep.service';
 
 @Component({
   selector: 'app-user-register',
@@ -10,12 +11,18 @@ import { FormError } from '../shared/types/formError';
 })
 export class UserRegisterComponent implements OnInit{
 
+  cep: string = '';
+  logradouro: string = '';
+  cidade: string = '';
+  estado: string = '';
+
   public form!: FormGroup;
   public second_form!: FormGroup;
 
   constructor(
     private router: Router,
     private fb:FormBuilder,
+    private cepService: CepService,
   ){}
   
   ngOnInit(): void {
@@ -216,6 +223,27 @@ export class UserRegisterComponent implements OnInit{
     }
 
     return errorMessages[control]
+  }
+
+  buscarCep() {
+    // Remove espaços em branco e caracteres não numéricos do CEP
+    const cep = this.cep.replace(/\D/g, '');
+
+    if (cep.length === 8) {
+      this.cepService.buscarCep(cep).subscribe(
+        (data: any) => {
+          console.log('Dados do CEP:', data);
+          this.logradouro = data.logradouro;
+          this.cidade = data.localidade;
+          this.estado = data.uf;
+          // Faça a validação do CEP e as ações desejadas aqui
+        },
+        (error: any) => {
+          console.error('Erro ao buscar CEP:', error);
+          // Trate os erros, por exemplo, exiba uma mensagem de erro ao usuário
+        }
+      );
+    }
   }
   
 }
