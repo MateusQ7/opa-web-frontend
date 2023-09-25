@@ -150,6 +150,10 @@ export class UserRegisterComponent implements OnInit, PopUp {
         Validators.maxLength(11),
       ]],
     })
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1b9ee61 (fix: Eclui funções inutilizadas e adiona novas)
   }
 
   async submit() {
