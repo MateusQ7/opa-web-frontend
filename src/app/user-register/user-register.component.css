@@ -1,6 +1,7 @@
 .main {
     width: 100%;
-    height: 100%;
+    height: auto;
+    max-height: none;
     background-size: 100% auto;
     background-repeat: no-repeat;
     position: relative;
@@ -12,16 +13,27 @@
 
 .register-div{
     width: 70%;
-    height: 85%;
+    height: auto;
+    margin-top: 100px;
     background-color: #FCF9F9;
-    top: 0;
-    left: 0;
+    border-radius: 20px;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.3);
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.first-page{
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     border-radius: 20px;
-    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.3);
 }
 
 .image-perfil{
@@ -33,21 +45,21 @@
 
 .image{
     width: 100%;
-    height: 40%;
+    height: auto;
     display: flex;
     justify-content: center;
-    align-items: center;
+    /* align-items: center; */
 }
 
 .img-main{
     width: 25%;
-    height: 100%;
+    height: 20vh;
     border-radius: 90%;
     display: flex;
     align-items: center;
-    padding-top: 50px;
+    padding-top: 40px;
     font-weight: bold;
-    position: relative;     
+    position: relative;   
 }
 
 #img{
@@ -78,14 +90,14 @@
     height: 50px;
     background-size: cover;
     background-repeat: no-repeat;
-    padding-top: 200px;
-    padding-right: 100px;
+    padding-top: 50px;
+    padding-right: 10px;
 }
 
 .file{
     position: absolute;
-    padding-top: 80%;
-    padding-left: 70%;
+    padding-top: 56%;
+    padding-left: 65%;
 }
  
 
@@ -102,12 +114,12 @@
 
 .form{
     width: 100%;
-    height: 60%;
+    height: auto;
 }
 
 .left-side{
     width: 50%;
-    height: 100%;
+    height: auto;
     float: left;
     display: flex;
     flex-direction: column;
@@ -122,7 +134,7 @@
 
 .right-side{
     width: 50%;
-    height: 100%;
+    height: auto;
     float: right;
     display: flex;
     flex-direction: column;
@@ -159,7 +171,7 @@
     font-weight: bold;
 }
 
-#segment-select{
+#gender-select{
     width: 100%;
     height: 12%;
     outline: none;
@@ -174,18 +186,47 @@
     padding-left: 10px;
 }
 
-.register-btn{
+.button-submit{
     width: 100%;
-    height: 13%;
-    margin-top: 20px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* margin-right: 50%; */
+    margin-bottom: 20px;
+}
+
+.register-btn{
+    width: 25%;
+    height: 5%;
+    margin-top: 37px;
     background-color: #FFCF24;
     border: none;
     font-size: large;
     color: #956004;
-    letter-spacing: 5px;
+    letter-spacing: 4px;
     font-weight: bolder;
     font-family: 'Poppins', sans-serif;
-    padding: 3%;
+    padding: 1.1%;
     box-sizing: border-box;
     cursor: pointer;
+}
+
+.second-page{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    background-color: red;
+}
+
+.message-error{
+    color: red;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    font-size: 12px;
 }
