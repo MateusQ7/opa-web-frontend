@@ -8,10 +8,14 @@ import { UserRegisterComponent } from './user-register/user-register.component';
 import { UserRegisterModule } from './user-register/user-register.module';
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { HomeComponent } from './home/home.component';
+import { TopbarComponent } from './shared/topbar/topbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    HomeComponent,
+    TopbarComponent,
   ],
   imports: [
     BrowserModule,
