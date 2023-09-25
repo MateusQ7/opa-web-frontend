@@ -16,6 +16,11 @@ import { PopUp } from '../shared/popup/popUp.interface';
 })
 export class UserRegisterComponent implements OnInit, PopUp {
 
+  cep: string = '';
+  logradouro: string = '';
+  cidade: string = '';
+  estado: string = '';
+
   public form!: FormGroup;
   public second_form!: FormGroup;
   public popUpShow: boolean = false;
