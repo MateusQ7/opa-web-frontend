@@ -15,6 +15,7 @@ export class UserRegisterComponent implements OnInit{
   street: string = '';
   city: string = '';
   state: string = '';
+  neighborhood: string = ''; 
 
   public form!: FormGroup;
   public second_form!: FormGroup;
@@ -33,6 +34,12 @@ export class UserRegisterComponent implements OnInit{
   ngOnInit(): void {
     this.form = this.fb.group({
       name: [{
+        value:'', 
+        disabled: false
+      },[
+        Validators.required,
+      ]],
+      user: [{
         value:'', 
         disabled: false
       },[
@@ -105,11 +112,20 @@ export class UserRegisterComponent implements OnInit{
       }, [
         Validators.required,
       ]],
+      neighborhood: [{
+        value: '',
+        disabled: false,
+      }, [
+        Validators.required,
+      ]],
       cep: [{
         value: '',
         disabled: false,
       }, [
         Validators.required,
+        Validators.pattern(/[0-9]{5}\-?[0-9]{3}/),
+        Validators.minLength(8),
+        Validators.maxLength(8),
       ]],
       phoneNumber: [{
         value: '',
@@ -148,15 +164,23 @@ export class UserRegisterComponent implements OnInit{
   searchForCep() {
     // Remove espaços em branco e caracteres não numéricos do CEP
     const cep = this.cep.replace(/\D/g, '');
-
+  
     if (cep.length === 8) {
       this.cepService.searchForCep(cep).subscribe(
         (data: any) => {
-          this.street = data.logradouro;
-          this.city = data.localidade;
-          this.state = data.uf;
-          console.log('Dados do CEP:', data);
-          // Faça a validação do CEP e as ações desejadas aqui
+          if (data.logradouro) {
+            this.street = data.logradouro;
+            this.city = data.localidade;
+            this.state = data.uf;
+            this.neighborhood = data.bairro;
+            console.log('Dados do CEP:', data);
+            // O CEP é válido, redefina a variável de erro para o campo "cep"
+            this.form.controls['cep'].setErrors(null);
+          } else {
+            console.error('CEP não encontrado ou inválido');
+            // Trate o caso de CEP inválido ou não encontrado, definindo a variável de erro para o campo "cep"
+            this.form.controls['cep'].setErrors({ 'cepInvalido': true });
+          }
         },
         (error: any) => {
           console.error('Erro ao buscar CEP:', error);
@@ -165,5 +189,6 @@ export class UserRegisterComponent implements OnInit{
       );
     }
   }
+  
   
 }
