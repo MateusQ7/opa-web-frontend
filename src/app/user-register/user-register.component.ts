@@ -173,11 +173,9 @@ export class UserRegisterComponent implements OnInit{
             this.city = data.localidade;
             this.state = data.uf;
             this.neighborhood = data.bairro;
-            console.log('Dados do CEP:', data);
             // O CEP é válido, redefina a variável de erro para o campo "cep"
             this.form.controls['cep'].setErrors(null);
           } else {
-            console.error('CEP não encontrado ou inválido');
             // Trate o caso de CEP inválido ou não encontrado, definindo a variável de erro para o campo "cep"
             this.form.controls['cep'].setErrors({ 'cepInvalido': true });
           }
