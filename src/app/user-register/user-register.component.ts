@@ -20,6 +20,7 @@ export class UserRegisterComponent implements OnInit, PopUp {
   street: string = '';
   city: string = '';
   state: string = '';
+  neighborhood: string = '';
 
   public form!: FormGroup;
   public second_form!: FormGroup;
@@ -53,6 +54,12 @@ export class UserRegisterComponent implements OnInit, PopUp {
         value: '',
         disabled: false
       }, [
+        Validators.required,
+      ]],
+      user: [{
+        value:'',
+        disabled: false
+      },[
         Validators.required,
       ]],
       user: [{
@@ -131,6 +138,9 @@ export class UserRegisterComponent implements OnInit, PopUp {
         disabled: false,
       }, [
         Validators.required,
+        Validators.pattern(/[0-9]{5}\-?[0-9]{3}/),
+        Validators.minLength(8),
+        Validators.maxLength(8),
       ]],
       cep: [{
         value: '',
