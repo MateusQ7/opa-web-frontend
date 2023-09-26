@@ -4,20 +4,22 @@ import { CommonModule } from '@angular/common';
 import { HomeRoutingModule } from './home-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { StorageComponent } from './storage/storage.component';
-import { FinancialComponent } from './financial/financial.component';
 import { MenuComponent } from './menu/menu.component';
+import { TopbarModule } from '../shared/topbar/topbar.module';
+import { EmployeesComponent } from './employees/employees.component';
 
 
 @NgModule({
   declarations: [
     DashboardComponent,
     StorageComponent,
-    FinancialComponent,
-    MenuComponent
+    MenuComponent,
+    EmployeesComponent
   ],
   imports: [
     CommonModule,
-    HomeRoutingModule
+    HomeRoutingModule,
+    TopbarModule
   ]
 })
 export class HomeModule { }

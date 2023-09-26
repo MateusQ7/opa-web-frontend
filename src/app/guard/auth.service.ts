@@ -7,6 +7,10 @@ export class AuthService {
 
   userLogged:Boolean = true;
   userToken!:string;
+  userData = {
+    name:`caralhopedrocaio`,
+    role:`nerd`
+  }
 
   constructor() { }
 

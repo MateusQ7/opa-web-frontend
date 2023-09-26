@@ -10,12 +10,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { TopbarComponent } from './shared/topbar/topbar.component';
+import { ProfilebuttonComponent } from './shared/profilebutton/profilebutton.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     TopbarComponent,
+    ProfilebuttonComponent,
   ],
   imports: [
     BrowserModule,
