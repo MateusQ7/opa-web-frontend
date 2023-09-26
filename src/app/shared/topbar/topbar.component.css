@@ -1,0 +1,236 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;500');
+*{
+  font-family: Rubik;
+  font-weight: 300;
+}
+
+
+.bar{
+  width: 100%;
+  height: 100%;
+}
+
+.topbar{
+  width: 100%;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.top-content{
+  width: 98%;
+  height: 90%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.opa-logo{
+  width: 13%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.opa-button{
+  height: 95%;
+  width: 95%;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.opa-button:hover {
+  height: 100%;
+  width: 100%;
+}
+
+.logo{
+  width: 100%;
+  height: 100%;
+}
+
+.restaurant-name{
+  width: 45%;
+  height: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.restaurant-name p{
+  width: 100%;
+  height: 60%;
+  font-size: 150%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  text-shadow: 1px;
+  color: #8a8888;
+
+}
+
+.profile-button{
+  width: 15%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-button:hover .button-content{
+  width: 82%;
+  height: 82%;
+  transition: 0.15s;
+}
+
+.button-content{
+  width: 80%;
+  height: 80%;
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.text-side{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: end;
+  align-items: flex-end;
+  flex-direction: column;
+}
+
+.photo-side{
+  width: 23%;
+  height: 100%;
+  background-color: #ffcf24;
+  border-radius: 99999999px;
+}
+
+.user-name{
+  width: 73%;
+  height: 55%;
+}
+
+.user-name p{
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  font-weight:800;
+  color: #3f3f3f;
+}
+
+.user-role{
+  width: 40%;
+  height: 45%;
+}
+
+.user-role p{
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+.bottombar{
+  width: 100%;
+  height: 50%;
+  background-color: #ffcf24;
+  border-top: 2px solid #908f8f;
+  border-bottom: 2px solid #956004;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.area{
+  height: 90%;
+  width: 15%;
+
+}
+
+.area p{
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 150%;
+  font-weight: 500;
+  color: #ffffff;
+}
+
+.buttons{
+  width: 45%;
+  height: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* background-color: blue; */
+}
+
+.order-button{
+  height: 90%;
+  width: 15%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.options-button{
+  height: 90%;
+  width: 20%;
+  background-color: transparent;
+  border:none;
+  font-weight: 300;
+  color: white;
+  font-size: 120%;
+  cursor: pointer;
+}
+
+.options-button:hover{
+  font-weight: 500;
+  font-size: 123%;
+}
+
+.o-button{
+  width: 70%;
+  height: 80%;
+  border: none;
+  background-color: #F8E49E;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.o-button:hover{
+  width: 72%;
+  height: 82%;
+  border: 1px solid #956004;
+  transition: 0.1s;
+}
+
+.o-button:hover p{
+  font-size: 135%;
+  color:#956004;
+  transition: 0.1s;
+}
+
+.o-button p{
+  margin: 0;
+  font-size: 130%;
+  font-weight: 500;
+  color: #6E6E6B;
+}
