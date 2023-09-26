@@ -66,22 +66,22 @@
                 <div class="right-side">
                     <div class="right-side-content">
                         <p class="text">CEP:</p>
-                        <input type="text" [(ngModel)]="cep" (input)="buscarCep()" formControlName="cep" class="box-info" placeholder="Insira o cep" font-family="Poppins"/>
+                        <input type="text" [(ngModel)]="cep" (input)="searchForCep()" formControlName="cep" class="box-info" placeholder="Insira o cep" font-family="Poppins"/>
                         <div class="message-error" *ngIf="form.get('cep')?.errors && form.get('cep')?.touched">
                             Este campo é obrigatório!
                         </div>
                         <p class="text">Estado:</p>
-                        <input type="text" [(ngModel)]="estado"  formControlName="state" class="box-info" placeholder="Insira o estado" font-family="Poppins"/>
+                        <input type="text" [(ngModel)]="state"  formControlName="state" class="box-info" placeholder="Insira o estado" font-family="Poppins"/>
                         <div class="message-error" *ngIf="form.get('state')?.errors && form.get('state')?.touched">
                             Este campo é obrigatório!
                         </div>
                         <p class="text">Cidade:</p>
-                        <input type="text" [(ngModel)]="cidade"  formControlName="city" class="box-info" placeholder="Insira a cidade" font-family="Poppins"/>
+                        <input type="text" [(ngModel)]="city"  formControlName="city" class="box-info" placeholder="Insira a cidade" font-family="Poppins"/>
                         <div class="message-error" *ngIf="form.get('city')?.errors && form.get('city')?.touched">
                             Este campo é obrigatório!
                         </div>
                         <p class="text">Rua:</p>
-                        <input type="text" [(ngModel)]="logradouro"  formControlName="street" class="box-info" placeholder="Insira o sua rua"/>
+                        <input type="text" [(ngModel)]="street"  formControlName="street" class="box-info" placeholder="Insira o sua rua"/>
                         <div class="message-error" *ngIf="form.get('street')?.errors && form.get('street')?.touched">
                             Este campo é obrigatório!
                         </div>

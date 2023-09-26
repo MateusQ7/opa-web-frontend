@@ -12,9 +12,9 @@ import { CepService } from '../cep/cep.service';
 export class UserRegisterComponent implements OnInit{
 
   cep: string = '';
-  logradouro: string = '';
-  cidade: string = '';
-  estado: string = '';
+  street: string = '';
+  city: string = '';
+  state: string = '';
 
   public form!: FormGroup;
   public second_form!: FormGroup;
@@ -225,17 +225,17 @@ export class UserRegisterComponent implements OnInit{
     return errorMessages[control]
   }
 
-  buscarCep() {
+  searchForCep() {
     // Remove espaços em branco e caracteres não numéricos do CEP
     const cep = this.cep.replace(/\D/g, '');
 
     if (cep.length === 8) {
-      this.cepService.buscarCep(cep).subscribe(
+      this.cepService.searchForCep(cep).subscribe(
         (data: any) => {
+          this.street = data.logradouro;
+          this.city = data.localidade;
+          this.state = data.uf;
           console.log('Dados do CEP:', data);
-          this.logradouro = data.logradouro;
-          this.cidade = data.localidade;
-          this.estado = data.uf;
           // Faça a validação do CEP e as ações desejadas aqui
         },
         (error: any) => {
