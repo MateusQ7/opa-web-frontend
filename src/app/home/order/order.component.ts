@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { AuthService } from 'src/app/guard/auth.service';
 
 @Component({
-  selector: 'app-employees',
-  templateUrl: './employees.component.html',
-  styleUrls: ['./employees.component.css']
+  selector: 'app-order',
+  templateUrl: './order.component.html',
+  styleUrls: ['./order.component.css']
 })
-export class EmployeesComponent {
+export class OrderComponent {
 
   constructor(
     public auth:AuthService

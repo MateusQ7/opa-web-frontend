@@ -2,13 +2,13 @@
   <div class="topbar">
     <div class="top-content">
       <div class="opa-logo">
-        <button class="opa-button">
+        <button class="opa-button" routerLink="/home">
           <img class="logo" src="/assets/images/opaBigger.svg" alt="">
         </button>
       </div>
       <div class="restaurant-name">
         <p>
-          {{ restaurantName }}
+          {{ this.auth.userData.restaurantName }}
         </p>
       </div>
       <div class="profile-button">
@@ -35,12 +35,12 @@
       <p>Área Gerente</p>
     </div>
     <div class="buttons">
-      <button class="options-button" *ngFor="let button of buttons">
+      <button class="options-button" *ngFor="let button of buttons" routerLink="/home/{{ button.route }}">
         {{ button.name }}
       </button>
     </div>
     <div class="order-button">
-      <button class="o-button">
+      <button class="o-button" routerLink="/home/order">
          <p>
           Pedidos
          </p>

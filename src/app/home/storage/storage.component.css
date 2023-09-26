@@ -1,0 +1,81 @@
+*{
+  margin: 0;
+  font-family: Rubik;
+}
+
+.whole{
+  width: 100%;
+  height: 100%;
+  background-color: aqua;
+}
+
+.yellow{
+  width: 100%;
+  height: 15%;
+  background-color: #F5EED2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.content{
+  width: 95%;
+  height: 80%;
+  display: flex;
+  align-items: center;
+}
+
+.icon{
+  height: 95%;
+  width: 6%;
+}
+
+.icon img{
+  width: 100%;
+  height: 100%;
+}
+
+.text{
+  height: 100%;
+  width: 50%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.restaurant-name{
+  height: 50%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.restaurant-name p{
+  width: 95%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  font-size: 120%;
+  color: #8b8b8b;
+  font-weight: 300;
+}
+
+
+.route-name{
+  height: 45%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.route-name p{
+  width: 93%;
+  height: 90%;
+  display: flex;
+  align-items: center;
+  font-size: 140%;
+  color: #505050;
+  font-weight: 800;
+}
