@@ -20,9 +20,9 @@ export class CepService {
         // Mapeie os dados para a interface CepData
         return {
           cep: data.cep,
-          street: data.logradouro,
-          neighborhood: data.bairro,
-          city: data.localidade,
+          logradouro: data.logradouro,
+          bairro: data.bairro,
+          localidade: data.localidade,
           uf: data.uf,
         } as CepData;
       })
