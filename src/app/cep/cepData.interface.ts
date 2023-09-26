@@ -1,7 +1,7 @@
 export interface CepData {
-    bairro: string;
+    neighborhood: string;
     cep: string;
-    localidade: string;
-    logradouro: string;
+    city: string;
+    street: string;
     uf: string;
   }

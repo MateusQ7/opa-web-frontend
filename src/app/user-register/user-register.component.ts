@@ -161,18 +161,21 @@ export class UserRegisterComponent implements OnInit{
     }
   }
 
+  regexCep = /\D/g;
+  cepLenght = 8;
+
   searchForCep() {
     // Remove espaços em branco e caracteres não numéricos do CEP
-    const cep = this.cep.replace(/\D/g, '');
+    const cep = this.cep.replace(this.regexCep, '');
   
-    if (cep.length === 8) {
+    if (cep.length === this.cepLenght) {
       this.cepService.searchForCep(cep).subscribe(
         (data: any) => {
-          if (data.logradouro) {
-            this.street = data.logradouro;
-            this.city = data.localidade;
+          if (data.street) {
+            this.street = data.street;
+            this.city = data.city;
             this.state = data.uf;
-            this.neighborhood = data.bairro;
+            this.neighborhood = data.neighborhood;
             // O CEP é válido, redefina a variável de erro para o campo "cep"
             this.form.controls['cep'].setErrors(null);
           } else {
