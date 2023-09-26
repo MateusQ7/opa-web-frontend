@@ -14,30 +14,28 @@
                 <div class="left-side">
                     <div class="left-side-content">
                         <p class="text">Nome Completo:</p>
-                        <input type="text" formControlName="name" class="box-info" placeholder="Insira seu nome" font-family="Poppins" />
-                        <div class="message-error" *ngIf="form.get('name')?.errors?.['required'] && form.get('name')?.touched">
-                            Este campo é obrigatório!
+                        <input type="text" formControlName="name" class="box-info" placeholder="Insira seu nome" font-family="Poppins" ngModel required minlength="2"/>
+                        <div *ngIf="form.controls['name']?.invalid && form.controls['name']?.touched || form.controls['name']?.dirty">
+                            <span class="message-error" *ngIf="form.controls['name']?.errors?.['required']">Este campo é obrigatório</span>
+                            <span class="message-error" *ngIf="form.controls['name']?.errors?.['minlength']">Este campo deve ter, no mínimo, dois caracteres</span>
                         </div>
                         <p class="text">Email:</p>
-                        <input type="email" formControlName="email" class="box-info" placeholder="Insira seu email"/>
-                        <div class="message-error" *ngIf="form.get('email')?.errors?.['required'] && form.get('email')?.errors?.['email'] && form.get('email')?.touched">
-                            Este campo é obrigatório!
+                        <input type="email" formControlName="email" class="box-info" placeholder="Insira seu email" ngModel required pattern="^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$"/>
+                        <div *ngIf="form.controls['email']?.invalid && form.controls['email']?.touched || form.controls['email']?.dirty">
+                            <span class="message-error" *ngIf="form.get('email')?.errors?.['required']">Este campo é obrigatório!</span>
+                            <span class="message-error" *ngIf="form.get('email')?.errors?.['pattern']">Ex: exemplo@exemplo.com</span>
                         </div>
                         <p class="text">Senha:</p>
-                        <input type="password" formControlName="password" class="box-info" placeholder="Insira sua senha"/>
-                        <div class="message-error" *ngIf="form.get('password')?.errors?.['required'] && form.get('password')?.touched">
-                            Este campo é obrigatório!
-                        </div>
-                        <div class="message-error" *ngIf="form.get('password')?.errors?.['checkPasswordLength']">
-                            Precisa de no mínimo 6 caracteres!
+                        <input type="password" formControlName="password" class="box-info" placeholder="Insira sua senha" ngModel required minlength="6"/>
+                        <div *ngIf="form.controls['password']?.invalid && form.controls['password']?.touched || form.controls['password']?.dirty">
+                            <span class="message-error" *ngIf="form.get('password')?.errors?.['required']">Este campo é obrigatório!</span>
+                            <span class="message-error" *ngIf="form.get('password')?.errors?.['minlength']">Precisa de no mínimo 6 caracteres!</span>
                         </div>
                         <p class="text">Confirme sua senha:</p>
-                        <input type="password" formControlName="password_confirm" class="box-info" placeholder="Confirme sua senha"/>
-                        <div class="message-error" *ngIf="form.get('password_confirm')?.errors?.['required'] && form.get('password_confirm')?.touched">
-                            Este campo é obrigatório!
-                        </div>
-                        <div class="message-error" *ngIf="form.get('password_confirm')?.errors?.['minlength'] && form.get('password_confirm')?.touched">
-                            Precisa de no mínimo 6 caracteres!
+                        <input type="password" formControlName="password_confirm" class="box-info" placeholder="Confirme sua senha" required (ngModelChange)="matchPassword()"/>
+                        <div *ngIf="form.controls['password_confirm']?.invalid && form.controls['password_confirm']?.touched || form.controls['password_confirm']?.dirty">
+                            <span class="message-error" *ngIf="form.get('password_confirm')?.errors?.['required']">Este campo é obrigatório!</span>
+                            <span class="message-error" *ngIf="erroSenha == true">As senhas não coincidem</span>
                         </div>
                         <p class="text">Gênero:</p>
                         <select name="gender" id="gender-select" formControlName="gender">
@@ -48,13 +46,14 @@
                             <option value="Outros">Outros</option>
                             <option value="nao_declarado">Prefiro não informar</option>
                         </select>
-                        <div class="message-error" *ngIf="form.get('gender')?.errors && form.get('gender')?.touched">
-                            Este campo é obrigatório!
+                        <div *ngIf="form.controls['gender']?.invalid && form.controls['gender']?.touched || form.controls['gender']?.dirty">
+                            <span class="message-error" *ngIf="form.get('gender')?.errors?.['required']">Este campo é obrigatório!</span>
                         </div>
                         <p class="text">CPF:</p>
-                        <input type="text" formControlName="cpf" class="box-info" placeholder="Digite seu CPF"/>
-                        <div class="message-error" *ngIf="form.get('cpf')?.errors && form.get('cpf')?.touched">
-                            Este campo é obrigatório!
+                        <input type="text" formControlName="cpf" class="box-info" placeholder="Digite seu CPF" ngModel required pattern="[0-9]{3}\.?[0-9]{3}\.?[0-9]{3}\-?[0-9]{2}"/>
+                        <div *ngIf="form.controls['cpf']?.invalid && form.controls['cpf']?.touched || form.controls['cpf']?.dirty">
+                            <span class="message-error" *ngIf="form.get('cpf')?.errors?.['required']">Este campo é obrigatório!</span>
+                            <span class="message-error" *ngIf="form.get('cpf')?.errors?.['pattern']">Ex: 000.000.000-00</span>
                         </div>
                         <p class="text">Data de nascimento:</p>
                         <input type="date" formControlName="birthDate" class="box-info"/>
@@ -96,14 +95,15 @@
                             Este campo é obrigatório!
                         </div>
                         <p class="text">Telefone:</p>
-                        <input type="tel" formControlName="phoneNumber" class="box-info" placeholder="Insira o telefone" font-family="Poppins"/>
-                        <div class="message-error" *ngIf="form.get('phoneNumber')?.errors?.['required'] && form.get('phoneNumber')?.touched">
-                            Este campo é obrigatório!
+                        <input type="tel" formControlName="phoneNumber" class="box-info" placeholder="Insira o telefone" font-family="Poppins" ngModel required pattern="(\(?\d{2}\)?\s?)(\d{5}\-?\d{4})"/>
+                        <div *ngIf="form.controls['phoneNumber']?.invalid && form.controls['phoneNumber']?.touched || form.controls['phoneNumber']?.dirty">
+                            <span class="message-error" *ngIf="form.get('phoneNumber')?.errors?.['required']">Este campo é obrigatório!</span>
+                            <span class="message-error" *ngIf="form.get('phoneNumber')?.errors?.['pattern']">Ex: (85)98888-9999</span>
                         </div>
                     </div>
                 </div>
                 <div class="button-submit">
-                    <button class="register-btn" routerLink="/login" (click)="submit()" [disabled]="!form.valid">CADASTRAR</button>
+                    <button class="register-btn" (click)="submit()" routerLink="/login" [disabled]="!form.valid">CADASTRAR</button>
                 </div>
             </form>
         </div>
