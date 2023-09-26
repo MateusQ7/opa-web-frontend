@@ -7,6 +7,8 @@ import { StorageComponent } from './storage/storage.component';
 import { MenuComponent } from './menu/menu.component';
 import { TopbarModule } from '../shared/topbar/topbar.module';
 import { EmployeesComponent } from './employees/employees.component';
+import { OrderComponent } from './order/order.component';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -14,12 +16,14 @@ import { EmployeesComponent } from './employees/employees.component';
     DashboardComponent,
     StorageComponent,
     MenuComponent,
-    EmployeesComponent
+    EmployeesComponent,
+    OrderComponent
   ],
   imports: [
     CommonModule,
     HomeRoutingModule,
-    TopbarModule
+    TopbarModule,
+    RouterModule
   ]
 })
 export class HomeModule { }

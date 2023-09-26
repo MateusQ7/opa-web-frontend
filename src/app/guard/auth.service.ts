@@ -9,7 +9,8 @@ export class AuthService {
   userToken!:string;
   userData = {
     name:`caralhopedrocaio`,
-    role:`nerd`
+    role:`nerd`,
+    restaurantName:'Restaurante ABC'
   }
 
   constructor() { }

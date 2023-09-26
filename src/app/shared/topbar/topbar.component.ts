@@ -9,8 +9,6 @@ import { Buttons } from './buttons';
 })
 export class TopbarComponent {
 
-  public restaurantName?:string = 'Restaurante ABC';
-
   public buttons:Buttons[]=[
     {
     name:'Dashboard',

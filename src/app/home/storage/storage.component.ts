@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from 'src/app/guard/auth.service';
 
 @Component({
   selector: 'app-storage',
@@ -7,4 +8,7 @@ import { Component } from '@angular/core';
 })
 export class StorageComponent {
 
+  constructor(
+    public auth:AuthService
+  ){}
 }
