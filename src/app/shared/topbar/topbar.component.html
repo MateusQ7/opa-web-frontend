@@ -1,0 +1,50 @@
+<div class="bar">
+  <div class="topbar">
+    <div class="top-content">
+      <div class="opa-logo">
+        <button class="opa-button">
+          <img class="logo" src="/assets/images/opaBigger.svg" alt="">
+        </button>
+      </div>
+      <div class="restaurant-name">
+        <p>
+          {{ restaurantName }}
+        </p>
+      </div>
+      <div class="profile-button">
+        <div class="button-content">
+          <div class="text-side">
+            <div class="user-name">
+              <p>{{ this.auth.userData.name }}</p>
+            </div>
+            <div class="user-role">
+              <p>
+                {{ this.auth.userData.role }}
+              </p>
+            </div>
+            <div class="photo-side">
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="bottombar">
+    <div class="area">
+      <p>Área Gerente</p>
+    </div>
+    <div class="buttons">
+      <button class="options-button" *ngFor="let button of buttons">
+        {{ button.name }}
+      </button>
+    </div>
+    <div class="order-button">
+      <button class="o-button">
+         <p>
+          Pedidos
+         </p>
+      </button>
+    </div>
+  </div>
+</div>
