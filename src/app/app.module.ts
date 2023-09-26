@@ -11,6 +11,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { TopbarComponent } from './shared/topbar/topbar.component';
 import { ProfilebuttonComponent } from './shared/profilebutton/profilebutton.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { ProfilebuttonComponent } from './shared/profilebutton/profilebutton.com
     UserRegisterModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
