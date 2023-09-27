@@ -8,6 +8,7 @@ import { AuthService } from 'src/app/guard/auth.service';
 })
 export class DashboardComponent {
 
+  string = 'Dashboard';
 
   constructor(
     public auth:AuthService

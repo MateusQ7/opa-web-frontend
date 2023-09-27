@@ -1,12 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { EmployeesComponent } from './employees.component';
+import { YellowlineModule } from 'src/app/shared/yellowline/yellowline.module';
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    EmployeesComponent
+  ],
+  exports:
+  [EmployeesComponent
+  ],
   imports: [
-    CommonModule
+    CommonModule,
+    YellowlineModule
   ]
 })
 export class EmployeesModule { }
