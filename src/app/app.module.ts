@@ -8,10 +8,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HomeModule } from './home/home.module';
 import { TopbarModule } from './shared/topbar/topbar.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -21,11 +22,9 @@ import { TopbarModule } from './shared/topbar/topbar.module';
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    TopbarModule
-
-
+    TopbarModule,
+    HttpClientModule
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

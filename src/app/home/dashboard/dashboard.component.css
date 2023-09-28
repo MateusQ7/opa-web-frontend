@@ -1,11 +1,115 @@
-.component{
+.whole{
   width: 100%;
   height: 100%;
-  background-color: red;
 }
 
 .yellow-line{
   width: 100%;
-  height: 15%;
+  height: 10%;
   background-color: black;
+}
+
+.component{
+  width: 100%;
+  height: 90%;
+  /* background-color: green; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: auto;
+}
+
+.component::-webkit-scrollbar {
+  width: 6px;
+}
+
+.component::-webkit-scrollbar-thumb {
+  background-color: #e4d0ad;
+  border-radius: 20px;
+}
+
+.component::-webkit-scrollbar-track {
+  background-color: #ffffff; /* Cor do fundo da barra de rolagem */
+}
+
+.filterbutton{
+  min-width: 95%;
+  min-height: 10vh;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.filter{
+  width: 15%;
+  height: 8vh;
+  border-radius: 15px;
+  border: none;
+  background-color: #ffcf24;
+}
+
+.filter:hover{
+  border: 1px solid #956004;
+  transition: 0.1s;
+  color:#835404
+}
+
+.filter p{
+  font-size: 130%;
+  font-family: Rubik;
+  font-weight: 500;
+  color:#956004
+}
+
+.filter:hover p {
+  color:#835404;
+  font-size: 132%;
+  transition:0.1s;
+}
+
+.first-graph-box{
+  min-width: 95%;
+  min-height: 60vh;
+  border: 1px solid #AFAEAE;
+  border-radius: 15px;
+}
+
+.topbar{
+  width: 100%;
+  height: 6%;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  background-color: #EFEFEF;
+  border-bottom: 1px solid #AFAEAE;
+  display: flex;
+}
+
+.topbar-icon{
+  height: 100%;
+  width: 3%;
+  border-top-left-radius : 15px;
+  border-right: 1px solid #AFAEAE;
+}
+
+.topbar-text{
+  height: 100%;
+  width: 97%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.topbar-text p {
+  width: 98%;
+  font: 100%;
+  font-family: Rubik;
+  font-weight: 800;
+  color:#505050;
+}
+
+.second-graph-box{
+  min-width: 95%;
+  min-height: 60vh;
+  background-color: blue;
 }

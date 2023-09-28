@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators, AbstractControl, ValidatorFn, ValidationErrors } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FormError } from '../shared/types/formError';
+import { UserRegisterService } from './user-register.service';
+import { FormattedForm } from './formatted-form';
+import { CepService } from '../services/cep/cep.service';
 
 @Component({
   selector: 'app-user-register',
@@ -12,16 +15,32 @@ export class UserRegisterComponent implements OnInit{
 
   public form!: FormGroup;
   public second_form!: FormGroup;
+  public popUpShow:boolean = false;
+  public cep: string = '';
+  public street: string = '';
+  public city: string = '';
+  public state: string = '';
+  public neighborhood: string = '';
+  regexCep = /\D/g;
+  cepLenght = 8;
 
   constructor(
     private router: Router,
     private fb:FormBuilder,
+    private cepService: CepService,
+    public userRegisterService:UserRegisterService
   ){}
-  
+
   ngOnInit(): void {
     this.form = this.fb.group({
       name: [{
-        value:'', 
+        value:'',
+        disabled: false
+      },[
+        Validators.required,
+      ]],
+      user: [{
+        value:'',
         disabled: false
       },[
         Validators.required,
@@ -34,14 +53,14 @@ export class UserRegisterComponent implements OnInit{
         Validators.required,
       ]],
       password: [{
-        value:'', 
+        value:'',
         disabled: false
       },[
         Validators.required,
         this.checkPasswordLength('password', 'incorrect_length')
       ]],
       password_confirm: [{
-        value:'', 
+        value:'',
         disabled: false
       },[
         Validators.required,
@@ -95,11 +114,20 @@ export class UserRegisterComponent implements OnInit{
       }, [
         Validators.required,
       ]],
+      neighborhood: [{
+        value: '',
+        disabled: false,
+      }, [
+        Validators.required,
+      ]],
       cep: [{
         value: '',
         disabled: false,
       }, [
         Validators.required,
+        Validators.pattern(/[0-9]{5}\-?[0-9]{3}/),
+        Validators.minLength(8),
+        Validators.maxLength(8),
       ]],
       phoneNumber: [{
         value: '',
@@ -111,11 +139,32 @@ export class UserRegisterComponent implements OnInit{
       ]],
     })
 
-    
+
   }
 
   submit(){
-    console.log("Enviou o formulário");
+    console.log(this.form.value.name)
+    if(this.form.valid){
+      const formattedForm:FormattedForm={
+        name:this.form.value.name,
+        birthDate:this.form.value.birthDate,
+        cep:this.form.value.cep,
+        city:this.form.value.city,
+        complement:this.form.value.complement,
+        cpf:this.form.value.cpf,
+        email:this.form.value.email,
+        gender:this.form.value.gender,
+        neighborhood:this.form.value.neighborhood,
+        password:this.form.value.password,
+        phoneNumber:this.form.value.phoneNumber,
+        state:this.form.value.state,
+        street:this.form.value.street,
+        streetNumber:this.form.value.streetNumber,
+        username:this.form.value.user
+      };
+      this.userRegisterService.submitForm(formattedForm);
+    }
+    this.showPopUp();
   }
 
   onScroll(event: Event) {
@@ -124,6 +173,33 @@ export class UserRegisterComponent implements OnInit{
     const rightPanel = leftPanel.nextElementSibling as HTMLElement;
     rightPanel.style.transform = `translateY(${-scrollTop}px)`;
   }
+
+  searchForCep() {
+    // Remove espaços em branco e caracteres não numéricos do CEP
+    const cep = this.cep.replace(this.regexCep, '');
+
+    if (cep.length === this.cepLenght) {
+      this.cepService.searchForCep(cep).subscribe(
+        (data: any) => {
+          if (data.street) {
+            this.street = data.street;
+            this.city = data.city;
+            this.state = data.uf;
+            this.neighborhood = data.neighborhood;
+            // O CEP é válido, redefina a variável de erro para o campo "cep"
+            this.form.controls['cep'].setErrors(null);
+          } else {
+            // Trate o caso de CEP inválido ou não encontrado, definindo a variável de erro para o campo "cep"
+            this.form.controls['cep'].setErrors({ 'cepInvalido': true });
+          }
+        },
+        (error: any) => {
+          console.error('Erro ao buscar CEP:', error);
+          // Trate os erros, por exemplo, exiba uma mensagem de erro ao usuário
+        }
+      );
+    }
+  };
 
   checkPasswordLength(passwordInput: string, errorKey: string): ValidatorFn {
     return (control: AbstractControl): { [key: string]: unknown } => {
@@ -183,7 +259,7 @@ export class UserRegisterComponent implements OnInit{
 
     return result;
   }
-  
+
   getHumanMessage(error: string, key: string): string {
     const input = this.getFormattedControlName(key)
     const errorMessages: { [key: string]: string } = {
@@ -217,5 +293,9 @@ export class UserRegisterComponent implements OnInit{
 
     return errorMessages[control]
   }
-  
+
+  showPopUp(){
+    this.popUpShow = !this.popUpShow
+  }
+
 }
