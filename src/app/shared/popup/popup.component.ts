@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Output } from '@angular/core';
-import { ListOfMessages } from './list-of-messages';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { BackReponse } from 'src/app/user-register/backReponse.interface';
+import { outputAst } from '@angular/compiler';
 
 @Component({
   selector: 'opa-popup',
@@ -10,19 +11,19 @@ export class PopupComponent {
 
   @Output() okButton:EventEmitter<boolean> = new EventEmitter<boolean>
 
-  public listOfMessages:ListOfMessages[]=[
-    {
-      message:'deu a porra memo'
-    },
-    {
-      message:'deu a porra memo'
-    },
-    {
-      message:'deu a porra memo'
-    },
-  ]
+  @Output() goToLogin:EventEmitter<any> = new EventEmitter<any>
+
+  @Input() public listOfMessages:BackReponse[] = []
 
   emit(){
     this.okButton.emit(false);
+
+    this.listOfMessages.forEach(element => {
+      if(element.status === 200){
+        this.goToLogin.emit(true);
+      }
+    });
+
+    this.listOfMessages.length = 0;
   }
 }

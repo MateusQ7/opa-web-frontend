@@ -13,16 +13,17 @@ export class UserRegisterService {
     private configService:ConfigService
   ) { }
 
-  submitForm(form:FormattedForm){
-    this.httpClient.post(`${this.configService.apiUrl}/opa-person`,
-      {
-        form
-      }
-    )
-    .subscribe(
-      (e:any)=>{
-        console.log(e.message);
-      }
-    );
+  async submitForm(form:FormattedForm): Promise<any>{
+    // this.httpClient.post(`${this.configService.apiUrl}/opa-person`,form)
+    // .subscribe(
+    //   (e:any)=>{
+    //     return e;
+    //   }
+    // );
+    // DADOS MOCKADOS
+    return {
+      status:200,
+      message:'raleumofi'
+    }
   };
 }

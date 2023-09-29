@@ -5,6 +5,7 @@ import { FormError } from '../shared/types/formError';
 import { UserRegisterService } from './user-register.service';
 import { FormattedForm } from './formatted-form';
 import { CepService } from '../services/cep/cep.service';
+import { BackReponse } from './backReponse.interface';
 
 @Component({
   selector: 'app-user-register',
@@ -21,8 +22,9 @@ export class UserRegisterComponent implements OnInit{
   public city: string = '';
   public state: string = '';
   public neighborhood: string = '';
-  regexCep = /\D/g;
-  cepLenght = 8;
+  public regexCep = /\D/g;
+  public cepLenght = 8;
+  public popUpMessage:BackReponse[]=[]
 
   constructor(
     private router: Router,
@@ -34,52 +36,52 @@ export class UserRegisterComponent implements OnInit{
   ngOnInit(): void {
     this.form = this.fb.group({
       name: [{
-        value:'',
+        value:'carlos',
         disabled: false
       },[
         Validators.required,
       ]],
-      user: [{
-        value:'',
+      username: [{
+        value:'carloso',
         disabled: false
       },[
         Validators.required,
       ]],
       email: [{
-        value: '',
+        value: 'caue.ms01@gmail.com',
         disabled: false,
       }, [
         Validators.email,
         Validators.required,
       ]],
       password: [{
-        value:'',
+        value:'12345678',
         disabled: false
       },[
         Validators.required,
         this.checkPasswordLength('password', 'incorrect_length')
       ]],
       password_confirm: [{
-        value:'',
+        value:'12345678',
         disabled: false
       },[
         Validators.required,
         this.mismatchedFields('password', 'mismatched_password')
       ]],
       gender: [{
-        value: '',
+        value: 1,
         disabled: false,
       }, [
         Validators.required,
       ]],
       cpf: [{
-        value: '',
+        value: '08370373364',
         disabled: false,
       }, [
         Validators.required,
       ]],
       birthDate: [{
-        value: '',
+        value: '2002-01-06',
         disabled: false,
       }, [
         Validators.required,
@@ -91,13 +93,13 @@ export class UserRegisterComponent implements OnInit{
         Validators.required,
       ]],
       streetNumber: [{
-        value: '',
+        value: '55',
         disabled: false,
       }, [
         Validators.required,
       ]],
       complement: [{
-        value: '',
+        value: '102',
         disabled: false,
       }, [
         Validators.required,
@@ -130,7 +132,7 @@ export class UserRegisterComponent implements OnInit{
         Validators.maxLength(8),
       ]],
       phoneNumber: [{
-        value: '',
+        value: '95988110169',
         disabled: false,
       }, [
         Validators.required,
@@ -142,8 +144,7 @@ export class UserRegisterComponent implements OnInit{
 
   }
 
-  submit(){
-    console.log(this.form.value.name)
+  async submit(){
     if(this.form.valid){
       const formattedForm:FormattedForm={
         name:this.form.value.name,
@@ -160,11 +161,18 @@ export class UserRegisterComponent implements OnInit{
         state:this.form.value.state,
         street:this.form.value.street,
         streetNumber:this.form.value.streetNumber,
-        username:this.form.value.user
+        username:this.form.value.username
       };
-      this.userRegisterService.submitForm(formattedForm);
-    }
+      this.addMessageToPopUp(await this.userRegisterService.submitForm(formattedForm))
+      this.showPopUp()
+      return;
+    };
+    this,this.addMessageToPopUp({
+      status:404,
+      message:'Formulário inválido'
+    });
     this.showPopUp();
+    return;
   }
 
   onScroll(event: Event) {
@@ -295,7 +303,14 @@ export class UserRegisterComponent implements OnInit{
   }
 
   showPopUp(){
-    this.popUpShow = !this.popUpShow
+    this.popUpShow = !this.popUpShow;
+  };
+
+  addMessageToPopUp(message:BackReponse){
+    this.popUpMessage.push(message);
   }
 
+  goToLogin(){
+    this.router.navigate(['/login'])
+  }
 }

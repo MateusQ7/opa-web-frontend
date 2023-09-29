@@ -1,5 +1,5 @@
 <div class="popup" *ngIf="this.popUpShow">
-  <opa-popup (okButton)="this.showPopUp()"></opa-popup>
+  <opa-popup (okButton)="this.showPopUp()" (goToLogin)="this.goToLogin()" [listOfMessages]="this.popUpMessage"></opa-popup>
 </div>
 <div class="main" style="background-image: url('../../assets/images/Opa!-Web.svg')">
   <div class="register-div">
@@ -26,7 +26,7 @@
           </div>
           <div class="capsule">
             <p class="text">Usuário:</p>
-            <input type="text" formControlName="user" class="box-info" placeholder="Insira seu usuário" font-family="Poppins" ngModel required minlength="2"/>
+            <input type="text" formControlName="username" class="box-info" placeholder="Insira seu usuário" font-family="Poppins" required minlength="2"/>
             <div class="error-area">
               <div *ngIf="form.controls['user']?.invalid && form.controls['user']?.touched || form.controls['user']?.dirty">
                 <span class="message-error" *ngIf="form.controls['user']?.errors?.['required']">Este campo é obrigatório</span>
