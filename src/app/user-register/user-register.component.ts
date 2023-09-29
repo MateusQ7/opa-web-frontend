@@ -37,33 +37,33 @@ export class UserRegisterComponent implements OnInit,PopUp{
   ngOnInit(): void {
     this.form = this.fb.group({
       name: [{
-        value:'carlos',
+        value:'',
         disabled: false
       },[
         Validators.required,
       ]],
       username: [{
-        value:'carloso',
+        value:'',
         disabled: false
       },[
         Validators.required,
       ]],
       email: [{
-        value: 'caue.ms01@gmail.com',
+        value: '',
         disabled: false,
       }, [
         Validators.email,
         Validators.required,
       ]],
       password: [{
-        value:'12345678',
+        value:'',
         disabled: false
       },[
         Validators.required,
         this.checkPasswordLength('password', 'incorrect_length')
       ]],
       password_confirm: [{
-        value:'12345678',
+        value:'',
         disabled: false
       },[
         Validators.required,
@@ -76,13 +76,13 @@ export class UserRegisterComponent implements OnInit,PopUp{
         Validators.required,
       ]],
       cpf: [{
-        value: '08370373364',
+        value: '',
         disabled: false,
       }, [
         Validators.required,
       ]],
       birthDate: [{
-        value: '2002-01-06',
+        value: '',
         disabled: false,
       }, [
         Validators.required,
@@ -94,13 +94,13 @@ export class UserRegisterComponent implements OnInit,PopUp{
         Validators.required,
       ]],
       streetNumber: [{
-        value: '55',
+        value: '',
         disabled: false,
       }, [
         Validators.required,
       ]],
       complement: [{
-        value: '102',
+        value: '',
         disabled: false,
       }, [
         Validators.required,
@@ -133,7 +133,7 @@ export class UserRegisterComponent implements OnInit,PopUp{
         Validators.maxLength(8),
       ]],
       phoneNumber: [{
-        value: '95988110169',
+        value: '',
         disabled: false,
       }, [
         Validators.required,
@@ -164,7 +164,25 @@ export class UserRegisterComponent implements OnInit,PopUp{
         streetNumber:this.form.value.streetNumber,
         username:this.form.value.username
       };
-      this.addMessageToPopUp(await this.userRegisterService.submitForm(formattedForm))
+      this.userRegisterService.submitForm(formattedForm).subscribe(
+        (res) => {
+          const backResponse: BackReponse = {
+            status: res.status,
+            message: res.message,
+            data:res.data
+          }
+
+          this.addMessageToPopUp(backResponse);
+        },
+        (error) => {
+          const backResponse: BackReponse = {
+            status: error.status,
+            message: error.message
+          }
+
+          this.addMessageToPopUp(backResponse);
+        }
+      )
       this.showPopUp()
       return;
     };

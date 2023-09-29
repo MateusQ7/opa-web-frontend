@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoginService } from './login.service';
 import { BackReponse } from '../user-register/backReponse.interface';
 import { PopUp } from '../shared/popup/popUp.interface';
+import { Router } from '@angular/router';
+import { AuthService } from "../services/auth/auth.service";
 
 @Component({
   selector: 'app-login',
@@ -17,12 +19,14 @@ export class LoginComponent implements OnInit,PopUp {
 
   constructor(
     private formBuilder:FormBuilder,
-    private loginService:LoginService
+    private loginService:LoginService,
+    private router:Router,
+    private auth:AuthService
     ){}
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
-      email: [{
+      username: [{
         value:'',
         disabled: false
       },[
@@ -40,7 +44,14 @@ export class LoginComponent implements OnInit,PopUp {
   async submit(){
     // falta logar o usuário no auth service,guardar token,conferir o form
     if(this.form.valid){
-      this.loginService.submitForm(this.form.value)
+      this.loginService.submitForm(this.form.value).subscribe(
+        (e)=>{
+          if(e.data){
+            this.auth.logUser(e.data.token)
+            this.router.navigate(['/home/'])
+          }
+        }
+      )
       return;
     };
 

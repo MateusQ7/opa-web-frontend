@@ -19,7 +19,9 @@ export class PopupComponent {
     this.okButton.emit(false);
 
     this.listOfMessages.forEach(element => {
-      if(element.status === 200){
+      console.log(element)
+      if(element.data){
+
         this.goToLogin.emit(true);
       }
     });

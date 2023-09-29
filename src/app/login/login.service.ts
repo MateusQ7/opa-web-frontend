@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { ConfigService } from '../services/config/config.service';
 import { BackReponse } from '../user-register/backReponse.interface';
 import { AuthService } from '../services/auth/auth.service';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -15,14 +16,8 @@ export class LoginService {
     private auth:AuthService
   ) { }
 
-  async submitForm(form:any):Promise<any>{
-    this.httpClient.post(`${this.config.apiUrl}/auth/login`,form)
-    .subscribe(
-      (e:any)=>{
-        if(e.status === 200){
-          this.auth.logUser(e.token)
-        }
-      }
-    )
+  submitForm(form:any):Observable<any>{
+    return this.httpClient.post(`${this.config.apiUrl}/auth/login`,form)
+
   }
 }
