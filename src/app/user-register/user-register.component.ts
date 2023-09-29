@@ -6,13 +6,14 @@ import { UserRegisterService } from './user-register.service';
 import { FormattedForm } from './formatted-form';
 import { CepService } from '../services/cep/cep.service';
 import { BackReponse } from './backReponse.interface';
+import { PopUp } from '../shared/popup/popUp.interface';
 
 @Component({
   selector: 'app-user-register',
   templateUrl: './user-register.component.html',
   styleUrls: ['./user-register.component.css']
 })
-export class UserRegisterComponent implements OnInit{
+export class UserRegisterComponent implements OnInit,PopUp{
 
   public form!: FormGroup;
   public second_form!: FormGroup;
@@ -306,7 +307,7 @@ export class UserRegisterComponent implements OnInit{
     this.popUpShow = !this.popUpShow;
   };
 
-  addMessageToPopUp(message:BackReponse){
+  addMessageToPopUp(message:BackReponse):void{
     this.popUpMessage.push(message);
   }
 

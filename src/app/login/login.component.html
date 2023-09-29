@@ -1,16 +1,28 @@
+<div *ngIf="this.popUpShow">
+  <opa-popup (okButton)="this.showPopUp()" [listOfMessages]="this.popUpMessage">
+  </opa-popup>
+</div>
 <div class="main" style="background-image: url('../../assets/images/Opa!-Web.svg')">
-    <div class="login-div">
-        <div class="container">
-            <h1 class="logo">Opa!</h1>
-            <div class="inputs">
-                <p class="text">E-mail:</p>
-                <input type="email" name="email" class="box-info" placeholder="Insira seu e-mail" font-family="Poppins"/>
-                <p class="text">Senha:</p>
-                <input type="password" name="password" class="box-info" placeholder="Insira sua senha"/>
-                <input type="button"  class="login" value="LOGIN"/>
-                <div class="line"></div>
-                <button class="register" routerLink="/register">CRIAR CONTA</button>
-            </div>
+  <div class="login-div">
+    <div class="container">
+      <div class="logo">
+        <p> Opa! </p>
+      </div>
+      <form class="inputs" [formGroup]="this.form">
+        <div class="log-container">
+          <p class="text">E-mail:</p>
+          <input formControlName="email" type="email" name="email" class="box-info" placeholder="Insira seu e-mail" font-family="Poppins"/>
         </div>
+        <div class="log-container">
+          <p class="text">Senha:</p>
+          <input formControlName="password" type="password" name="password" class="box-info" placeholder="Insira sua senha"/>
+        </div>
+      </form>
+      <div class="buttons">
+          <input type="button" class="login" (click)="submit()" value="LOGIN"/>
+          <hr class="line">
+          <button class="register" routerLink="/register">CRIAR CONTA</button>
+      </div>
     </div>
+  </div>
 </div>

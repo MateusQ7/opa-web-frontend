@@ -5,8 +5,8 @@ import { Injectable } from '@angular/core';
 })
 export class AuthService {
 
-  userLogged:Boolean = true;
-  userToken!:string;
+  userLogged:Boolean = false;
+  userToken?:string;
   userData = {
     name:`caralhopedrocaio`,
     role:`nerd`,
@@ -15,14 +15,15 @@ export class AuthService {
 
   constructor() { }
 
-  canActivate(){
-
-  }
-
   checkUserLogged():boolean{
     if(this.userLogged){
       return true;
     }
     return false
+  };
+
+  logUser(token:string):void{
+    this.userToken = token;
+    this.userLogged = true
   }
 }

@@ -1,4 +1,4 @@
-<div class="popup" *ngIf="this.popUpShow">
+<div *ngIf="this.popUpShow">
   <opa-popup (okButton)="this.showPopUp()" (goToLogin)="this.goToLogin()" [listOfMessages]="this.popUpMessage"></opa-popup>
 </div>
 <div class="main" style="background-image: url('../../assets/images/Opa!-Web.svg')">
