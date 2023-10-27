@@ -9,18 +9,17 @@ import { outputAst } from '@angular/compiler';
 })
 export class PopupComponent {
 
-  @Output() okButton:EventEmitter<boolean> = new EventEmitter<boolean>
+  @Output() okButton: EventEmitter<boolean> = new EventEmitter<boolean>
 
-  @Output() goToLogin:EventEmitter<any> = new EventEmitter<any>
+  @Output() goToLogin: EventEmitter<any> = new EventEmitter<any>
 
-  @Input() public listOfMessages:BackReponse[] = []
+  @Input() public listOfMessages: BackReponse[] = []
 
-  emit(){
+  emit() {
     this.okButton.emit(false);
 
     this.listOfMessages.forEach(element => {
-      console.log(element)
-      if(element.data){
+      if (element.data) {
 
         this.goToLogin.emit(true);
       }

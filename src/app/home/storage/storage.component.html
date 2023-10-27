@@ -1,5 +1,14 @@
+<app-create-update-stock-item [showModal]="showModal" (openModal)="openModal()"
+  (closeModal)="closeModal()"></app-create-update-stock-item>
 <div class="component">
   <div class="yellow-line">
     <opa-yline routeNameToBeUsed="Estoque" iconPath="/assets/images/storage.svg"></opa-yline>
+  </div>
+  <div class="header">
+    <button (click)="openModal()" class="add-product">
+      <p>
+        Adicionar Produto
+      </p>
+    </button>
   </div>
 </div>

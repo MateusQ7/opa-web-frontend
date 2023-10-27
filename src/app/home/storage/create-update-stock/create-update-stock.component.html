@@ -1,0 +1,55 @@
+<div *ngIf="showModal" class="container">
+  <form class="form" [formGroup]="form">
+    <input formControlName="productName" type="string" name="product" class="box-info" placeholder="Insira o nome"
+      font-family="Poppins">
+    <input formControlName="productPrice" type="number" name="price" class="box-info" placeholder="Insira o preço"
+      font-family="Poppins">
+    <div class="product-list">
+      <div class="product-list-header">
+        <select (change)="addProduct($event)">
+          <option *ngFor="let product of stockProducts" [value]="stringify(product)">
+            {{
+            product.productDescription
+            }}</option>
+        </select>
+      </div>
+      <table class="selected-products-table">
+        <thead class="table-head">
+          <tr>
+            <th>Descrição</th>
+            <th>Unidade de Medida</th>
+            <th>Porção</th>
+            <th>Quantidade</th>
+          </tr>
+        </thead>
+        <tbody class="table-body" formArrayName="stockProductsForm">
+          <div *ngFor="let itemForm of stockProductsForm.controls; let i=index;">
+            <tr [formGroup]="itemForm">
+              <td>{{ itemForm.get("stockProductName").value }}</td>
+              <td>
+                <select formControlName="measurementUnit" (disable)="itemForm.get('isPortion').value">
+                  <option *ngFor="let unit of measurementUnits" [ngValue]="unit">{{ unit }}</option>
+                </select>
+              </td>
+              <td>
+                <input formControlName="isPortion" (change)="handleItemIsPortion(itemForm)" type="checkbox">
+              </td>
+              <td>
+                <input formControlName="quantity" (input)="handleItemQuantity(itemForm, $event)" type="number">
+              </td>
+            </tr>
+          </div>
+        </tbody>
+      </table>
+    </div>
+    <div class="button-container">
+      <button (click)="saveProduct()">
+        <p>Salvar</p>
+      </button>
+      <button (click)="handleCloseModal()">
+        <p>Cancelar</p>
+      </button>
+    </div>
+
+  </form>
+</div>

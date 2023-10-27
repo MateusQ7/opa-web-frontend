@@ -1,4 +1,4 @@
-import {  NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { HomeRoutingModule } from './home-routing.module';
@@ -29,7 +29,6 @@ import { StorageModule } from './storage/storage.module';
     MenuModule,
     OrderModule,
     StorageModule
-
   ],
 })
 export class HomeModule { }

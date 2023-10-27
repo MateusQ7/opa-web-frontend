@@ -1,11 +1,32 @@
-.component{
+.component {
   width: 100%;
   height: 100%;
-  background-color: red;
+  background-color: white;
 }
 
-.yellow-line{
+.yellow-line {
   width: 100%;
   height: 10%;
   background-color: black;
+}
+
+.header {
+  width: 100%;
+  padding: 2%;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.add-product {
+  text-align: center;
+  display: 30%;
+  background-color: #ffcf24;
+  color: #956004;
+  padding-bottom: 1%;
+  padding-inline: 2%;
+  box-sizing: border-box;
+  border: none;
+  border-radius: 3%;
+  cursor: pointer;
 }

@@ -9,6 +9,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HomeModule } from './home/home.module';
 import { TopbarModule } from './shared/topbar/topbar.module';
 import { HttpClientModule } from '@angular/common/http';
+import { AppInitializationService } from './services/initialization/initialization.service';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { HttpClientModule } from '@angular/common/http';
     TopbarModule,
     HttpClientModule
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  providers: [AppInitializationService]
 })
 export class AppModule { }
