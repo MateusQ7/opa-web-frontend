@@ -13,11 +13,11 @@ import { PopUp } from '../shared/popup/popUp.interface';
   templateUrl: './user-register.component.html',
   styleUrls: ['./user-register.component.css']
 })
-export class UserRegisterComponent implements OnInit,PopUp{
+export class UserRegisterComponent implements OnInit, PopUp {
 
   public form!: FormGroup;
   public second_form!: FormGroup;
-  public popUpShow:boolean = false;
+  public popUpShow: boolean = false;
   public cep: string = '';
   public street: string = '';
   public city: string = '';
@@ -25,27 +25,27 @@ export class UserRegisterComponent implements OnInit,PopUp{
   public neighborhood: string = '';
   public regexCep = /\D/g;
   public cepLenght = 8;
-  public popUpMessage:BackReponse[]=[]
+  public popUpMessage: BackReponse[] = []
 
   constructor(
     private router: Router,
-    private fb:FormBuilder,
+    private fb: FormBuilder,
     private cepService: CepService,
-    public userRegisterService:UserRegisterService
-  ){}
+    public userRegisterService: UserRegisterService
+  ) { }
 
   ngOnInit(): void {
     this.form = this.fb.group({
       name: [{
-        value:'',
+        value: '',
         disabled: false
-      },[
+      }, [
         Validators.required,
       ]],
       username: [{
-        value:'',
+        value: '',
         disabled: false
-      },[
+      }, [
         Validators.required,
       ]],
       email: [{
@@ -56,16 +56,16 @@ export class UserRegisterComponent implements OnInit,PopUp{
         Validators.required,
       ]],
       password: [{
-        value:'',
+        value: '',
         disabled: false
-      },[
+      }, [
         Validators.required,
         this.checkPasswordLength('password', 'incorrect_length')
       ]],
       password_confirm: [{
-        value:'',
+        value: '',
         disabled: false
-      },[
+      }, [
         Validators.required,
         this.mismatchedFields('password', 'mismatched_password')
       ]],
@@ -102,9 +102,7 @@ export class UserRegisterComponent implements OnInit,PopUp{
       complement: [{
         value: '',
         disabled: false,
-      }, [
-        Validators.required,
-      ]],
+      }],
       city: [{
         value: '',
         disabled: false,
@@ -145,31 +143,31 @@ export class UserRegisterComponent implements OnInit,PopUp{
 
   }
 
-  async submit(){
-    if(this.form.valid){
-      const formattedForm:FormattedForm={
-        name:this.form.value.name,
-        birthDate:this.form.value.birthDate,
-        cep:this.form.value.cep,
-        city:this.form.value.city,
-        complement:this.form.value.complement,
-        cpf:this.form.value.cpf,
-        email:this.form.value.email,
-        gender:this.form.value.gender,
-        neighborhood:this.form.value.neighborhood,
-        password:this.form.value.password,
-        phoneNumber:this.form.value.phoneNumber,
-        state:this.form.value.state,
-        street:this.form.value.street,
-        streetNumber:this.form.value.streetNumber,
-        username:this.form.value.username
+  async submit() {
+    if (this.form.valid) {
+      const formattedForm: FormattedForm = {
+        name: this.form.value.name,
+        birthDate: this.form.value.birthDate,
+        cep: this.form.value.cep,
+        city: this.form.value.city,
+        complement: this.form.value.complement,
+        cpf: this.form.value.cpf,
+        email: this.form.value.email,
+        gender: this.form.value.gender,
+        neighborhood: this.form.value.neighborhood,
+        password: this.form.value.password,
+        phoneNumber: this.form.value.phoneNumber,
+        state: this.form.value.state,
+        street: this.form.value.street,
+        streetNumber: this.form.value.streetNumber,
+        username: this.form.value.username
       };
       this.userRegisterService.submitForm(formattedForm).subscribe(
         (res) => {
           const backResponse: BackReponse = {
             status: res.status,
             message: res.message,
-            data:res.data
+            data: res.data
           }
 
           this.addMessageToPopUp(backResponse);
@@ -186,9 +184,9 @@ export class UserRegisterComponent implements OnInit,PopUp{
       this.showPopUp()
       return;
     };
-    this,this.addMessageToPopUp({
-      status:404,
-      message:'Formulário inválido'
+    this, this.addMessageToPopUp({
+      status: 404,
+      message: 'Formulário inválido'
     });
     this.showPopUp();
     return;
@@ -321,15 +319,15 @@ export class UserRegisterComponent implements OnInit,PopUp{
     return errorMessages[control]
   }
 
-  showPopUp(){
+  showPopUp() {
     this.popUpShow = !this.popUpShow;
   };
 
-  addMessageToPopUp(message:BackReponse):void{
+  addMessageToPopUp(message: BackReponse): void {
     this.popUpMessage.push(message);
   }
 
-  goToLogin(){
+  goToLogin() {
     this.router.navigate(['/login'])
   }
 }

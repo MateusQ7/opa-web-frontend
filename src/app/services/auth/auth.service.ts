@@ -5,25 +5,30 @@ import { Injectable } from '@angular/core';
 })
 export class AuthService {
 
-  userLogged:Boolean = false;
-  userToken?:string;
+  userLogged: Boolean = false;
+  userToken?: string;
   userData = {
-    name:`caralhopedrocaio`,
-    role:`nerd`,
-    restaurantName:'Restaurante ABC'
+    name: "",
+    role: ``,
+    restaurantName: 'Restaurante ABC'
   }
 
   constructor() { }
 
-  checkUserLogged():boolean{
-    if(this.userLogged){
+  checkUserLogged(): boolean {
+    if (this.userLogged) {
       return true;
     }
     return false
   };
 
-  logUser(token:string):void{
+  logUser(token: string): void {
     this.userToken = token;
     this.userLogged = true
+    localStorage.setItem("token", token)
+  }
+
+  getToken(): string | null {
+    return localStorage.getItem("token")
   }
 }
