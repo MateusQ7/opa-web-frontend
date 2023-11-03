@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AuthService } from 'src/app/guard/auth.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-storage',
@@ -7,8 +7,21 @@ import { AuthService } from 'src/app/guard/auth.service';
   styleUrls: ['./storage.component.css']
 })
 export class StorageComponent {
+  showModal = true;
+
+  openModal() {
+    this.showModal = true;
+  }
+
+  closeModal() {
+    this.showModal = false;
+  }
+
+  public handleShowModal() {
+    this.showModal = !this.showModal
+  }
 
   constructor(
-    public auth:AuthService
-  ){}
+    public auth: AuthService
+  ) { }
 }

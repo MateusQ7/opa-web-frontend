@@ -1,0 +1,24 @@
+<div class="whole">
+  <div class="warning">
+    <div class="atention">
+      <p>
+        ATENÇÃO
+      </p>
+    </div>
+    <div class="content">
+      <div class="line" *ngFor="let item of listOfMessages">
+        <p class="ponto">
+          ●
+        </p>
+        <p>
+          {{ item.message }}
+        </p>
+      </div>
+    </div>
+    <div class="button">
+      <button (click)="emit()">
+        ENTENDI!
+      </button>
+    </div>
+  </div>
+</div>

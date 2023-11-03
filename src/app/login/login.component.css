@@ -1,79 +1,85 @@
 .main {
-    width: 100%;
-    height: 100%;
-    background-size: 100% auto;
-    background-repeat: no-repeat;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  width: 100%;
+  height: 100%;
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .login-div {
-    top: 0;
-    left: 0;
-    width: 35%;
-    height: 80%;
-    background-color: #FCF9F9;
-    border-radius: 20px;
-    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.3);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  width: 45%;
+  height: 80%;
+  background-color: #FCF9F9;
+  border-radius: 20px;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .container {
-    width: 100%;
-    height: 100%;
-    /* background-color: grey; */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .logo {
-    font-family: 'Sansita', sans-serif;
-    color: #5A5A5A;
-    width: 100%;
-    height: 20%;
-    /* background-color: red; */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 128px;
-    text-shadow: 0px 7px 0px #FFCF24;
-    font-style: italic;
-    margin-bottom: 80px;
-    margin-top: 30px;
+  margin: 0;
+  width: 100%;
+  height: 25%;
+  display: flex;
+  justify-content: center;
+}
+
+.logo p{
+  margin: 0;
+  width: 80%;
+  height: 60%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Sansita', sans-serif;
+  color: #5A5A5A;
+  font-size: 900%;
+  text-shadow: 0px 7px 0px #FFCF24;
+  font-style: italic;
+  /* background-color: blue; */
 }
 
 .inputs {
-    width: 50%;
-    height: 50%;
-    /* background-color: aqua; */
+    width: 100%;
+    height: 30%;
     display: flex;
-    flex-direction: column;
-    align-items: stretch;
+    align-items: center;
     justify-content: center;
+    flex-direction: column;
+    /* background-color: aqua; */
 }
+
+.log-container{
+  width: 80%;
+  height: 50%;
+  /* background-color: red; */
+}
+
 
 .box-info {
     width: 100%;
     height: 50%;
-    white-space: nowrap;
-    outline: none;
-    resize: none;
     margin: 0;
     border: 2px solid #D0D0D0;
     border-radius: 4px;
     font-size: large;
     font-family: 'Poppins', sans-serif;
     color: #818181;
-    padding: 3%;
     box-sizing: border-box;
-    padding-left: 10px;
+    padding: 3%;
 }
 
 .text {
@@ -83,39 +89,53 @@
     font-weight: bold;
 }
 
+.buttons{
+  width: 100%;
+  height: 35%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  /* background-color: green; */
+}
+
 .login {
-    width: 100%;
+    width: 80%;
     height: 30%;
-    margin-top: 20px;
     background-color: #FFCF24;
     border: none;
-    font-size: large;
+    font-size: 100%;
     color: #956004;
-    letter-spacing: 5px;
+    letter-spacing: 1vh;
     font-weight: bolder;
     font-family: 'Poppins', sans-serif;
-    padding: 3%;
-    box-sizing: border-box;
     cursor: pointer;
+}
+
+.login:hover{
+  border: 1px solid #956004;
+  font-size: 102% ;
 }
 
 .register {
-    width: 100%;
-    height: 20%;
-    margin-top: 20px;
-    border: 2px solid #956004;
-    color: #956004;
-    font-weight: bolder;
-    font-family: 'Poppins', sans-serif;
-    letter-spacing: 5px;
-    font-size: large;
-    padding: 3%;
-    box-sizing: border-box;
-    cursor: pointer;
+  width: 80%;
+  height: 30%;
+  border: 2px solid #956004;
+  color: #956004;
+  font-size: 100%;
+  font-weight: bolder;
+  font-family: 'Poppins', sans-serif;
+  letter-spacing: 1vh;
+  cursor: pointer;
+}
+
+.register:hover{
+  border: 3px solid #956004;
+  font-size: 102%;
 }
 
 .line{
-    width: 100%;
-    height: 100px;
-    border-bottom: 1px solid #D0D0D0;
+  width: 80%;
+  height: 0.01vh;
+  background-color: #d6d6d6;
 }
