@@ -8,12 +8,19 @@ import { CepService } from '../services/cep/cep.service';
 import { BackReponse } from './backReponse.interface';
 import { PopUp } from '../shared/popup/popUp.interface';
 
+
 @Component({
   selector: 'app-user-register',
   templateUrl: './user-register.component.html',
   styleUrls: ['./user-register.component.css']
 })
 export class UserRegisterComponent implements OnInit, PopUp {
+
+  cep: string = '';
+  street: string = '';
+  city: string = '';
+  state: string = '';
+  neighborhood: string = ''; 
 
   public form!: FormGroup;
   public second_form!: FormGroup;
@@ -34,6 +41,7 @@ export class UserRegisterComponent implements OnInit, PopUp {
     public userRegisterService: UserRegisterService
   ) { }
 
+
   ngOnInit(): void {
     this.form = this.fb.group({
       name: [{
@@ -48,6 +56,12 @@ export class UserRegisterComponent implements OnInit, PopUp {
       }, [
         Validators.required,
       ]],
+      user: [{
+        value:'', 
+        disabled: false
+      },[
+        Validators.required,
+      ]],
       email: [{
         value: '',
         disabled: false,
@@ -60,14 +74,12 @@ export class UserRegisterComponent implements OnInit, PopUp {
         disabled: false
       }, [
         Validators.required,
-        this.checkPasswordLength('password', 'incorrect_length')
       ]],
       password_confirm: [{
         value: '',
         disabled: false
       }, [
         Validators.required,
-        this.mismatchedFields('password', 'mismatched_password')
       ]],
       gender: [{
         value: 1,
@@ -121,6 +133,12 @@ export class UserRegisterComponent implements OnInit, PopUp {
       }, [
         Validators.required,
       ]],
+      neighborhood: [{
+        value: '',
+        disabled: false,
+      }, [
+        Validators.required,
+      ]],
       cep: [{
         value: '',
         disabled: false,
@@ -139,8 +157,6 @@ export class UserRegisterComponent implements OnInit, PopUp {
         Validators.maxLength(11),
       ]],
     })
-
-
   }
 
   async submit() {
@@ -243,29 +259,39 @@ export class UserRegisterComponent implements OnInit, PopUp {
       }
 
       return {}
+
     }
   }
 
-  mismatchedFields(passwordInput: string, errorKey: string): ValidatorFn {
-    return (control: AbstractControl): { [key: string]: unknown } => {
-      const parent = control.parent;
-      if (!parent) {
-        return {}
-      }
+  regexCep = /\D/g;
+  cepLenght = 8;
 
-      const otherControl = parent.get(passwordInput)
-      const otherControlValue = otherControl?.value as string
-      const actualControlValue = control.value as string
-      if (otherControlValue !== actualControlValue) {
-        return {
-          [errorKey]: true,
+  searchForCep() {
+    // Remove espaços em branco e caracteres não numéricos do CEP
+    const cep = this.cep.replace(this.regexCep, '');
+  
+    if (cep.length === this.cepLenght) {
+      this.cepService.searchForCep(cep).subscribe(
+        (data: any) => {
+          if (data.street) {
+            this.street = data.street;
+            this.city = data.city;
+            this.state = data.uf;
+            this.neighborhood = data.neighborhood;
+            // O CEP é válido, redefina a variável de erro para o campo "cep"
+            this.form.controls['cep'].setErrors(null);
+          } else {
+            // Trate o caso de CEP inválido ou não encontrado, definindo a variável de erro para o campo "cep"
+            this.form.controls['cep'].setErrors({ 'cepInvalido': true });
+          }
+        },
+        (error: any) => {
+          console.error('Erro ao buscar CEP:', error);
+          // Trate os erros, por exemplo, exiba uma mensagem de erro ao usuário
         }
-      }
-
-      return {}
+      );
     }
   }
-
   getFormValidationErrors(form: FormGroup): FormError[] {
     const result: FormError[] = [];
     Object.keys(form.controls).forEach(key => {
@@ -330,4 +356,5 @@ export class UserRegisterComponent implements OnInit, PopUp {
   goToLogin() {
     this.router.navigate(['/login'])
   }
+
 }
