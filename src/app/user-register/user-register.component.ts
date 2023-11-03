@@ -16,12 +16,6 @@ import { PopUp } from '../shared/popup/popUp.interface';
 })
 export class UserRegisterComponent implements OnInit, PopUp {
 
-  cep: string = '';
-  street: string = '';
-  city: string = '';
-  state: string = '';
-  neighborhood: string = ''; 
-
   public form!: FormGroup;
   public second_form!: FormGroup;
   public popUpShow: boolean = false;
@@ -57,7 +51,7 @@ export class UserRegisterComponent implements OnInit, PopUp {
         Validators.required,
       ]],
       user: [{
-        value:'', 
+        value:'',
         disabled: false
       },[
         Validators.required,
@@ -122,12 +116,6 @@ export class UserRegisterComponent implements OnInit, PopUp {
         Validators.required,
       ]],
       state: [{
-        value: '',
-        disabled: false,
-      }, [
-        Validators.required,
-      ]],
-      neighborhood: [{
         value: '',
         disabled: false,
       }, [
@@ -215,33 +203,6 @@ export class UserRegisterComponent implements OnInit, PopUp {
     rightPanel.style.transform = `translateY(${-scrollTop}px)`;
   }
 
-  searchForCep() {
-    // Remove espaços em branco e caracteres não numéricos do CEP
-    const cep = this.cep.replace(this.regexCep, '');
-
-    if (cep.length === this.cepLenght) {
-      this.cepService.searchForCep(cep).subscribe(
-        (data: any) => {
-          if (data.street) {
-            this.street = data.street;
-            this.city = data.city;
-            this.state = data.uf;
-            this.neighborhood = data.neighborhood;
-            // O CEP é válido, redefina a variável de erro para o campo "cep"
-            this.form.controls['cep'].setErrors(null);
-          } else {
-            // Trate o caso de CEP inválido ou não encontrado, definindo a variável de erro para o campo "cep"
-            this.form.controls['cep'].setErrors({ 'cepInvalido': true });
-          }
-        },
-        (error: any) => {
-          console.error('Erro ao buscar CEP:', error);
-          // Trate os erros, por exemplo, exiba uma mensagem de erro ao usuário
-        }
-      );
-    }
-  };
-
   checkPasswordLength(passwordInput: string, errorKey: string): ValidatorFn {
     return (control: AbstractControl): { [key: string]: unknown } => {
       const parent = control.parent;
@@ -263,13 +224,10 @@ export class UserRegisterComponent implements OnInit, PopUp {
     }
   }
 
-  regexCep = /\D/g;
-  cepLenght = 8;
-
   searchForCep() {
     // Remove espaços em branco e caracteres não numéricos do CEP
     const cep = this.cep.replace(this.regexCep, '');
-  
+
     if (cep.length === this.cepLenght) {
       this.cepService.searchForCep(cep).subscribe(
         (data: any) => {

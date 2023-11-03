@@ -7,19 +7,6 @@ import { AuthService } from 'src/app/services/auth/auth.service';
   styleUrls: ['./storage.component.css']
 })
 export class StorageComponent {
-  showModal = true;
-
-  openModal() {
-    this.showModal = true;
-  }
-
-  closeModal() {
-    this.showModal = false;
-  }
-
-  public handleShowModal() {
-    this.showModal = !this.showModal
-  }
 
   constructor(
     public auth: AuthService

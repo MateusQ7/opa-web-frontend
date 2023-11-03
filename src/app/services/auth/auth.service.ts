@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class AuthService {
 
-  userLogged: Boolean = false;
+  userLogged: Boolean = true;
   userToken?: string;
   userData = {
     name: "",

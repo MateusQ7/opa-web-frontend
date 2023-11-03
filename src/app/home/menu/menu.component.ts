@@ -8,7 +8,21 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 })
 export class MenuComponent {
 
+  showModal = true;
+
   constructor(
     public auth:AuthService
   ){}
+
+  openModal() {
+    this.showModal = true;
+  }
+
+  closeModal() {
+    this.showModal = false;
+  }
+
+  public handleShowModal() {
+    this.showModal = !this.showModal
+  }
 }
