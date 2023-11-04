@@ -1,29 +1,57 @@
 .container {
-  position: block;
+  position: absolute;
   display: block;
   width: 100%;
-  height: 100vh;
-  background-color: black;
-  opacity: 0.5;
+  height: 85%;
+  background-color: rgba(0, 0, 0, 0.5);
+  /* opacity: 0.5; */
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .box-info {
-  width: 70%;
+  width: 100%;
+  height: 4vh;
+  white-space: nowrap;
+  outline: none;
+  margin: 0;
+  border: 1.7px solid black;
+  border-radius: 4px;
+  font-size: large;
+  font-family: 'Poppins', sans-serif;
+  box-sizing: border-box;
+  padding: 1.5%;
+}
+
+.text{
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  color: #525252;
+  font-weight: bold;
+
+}
+
+.container-input{
+  /* background-color: black; */
+  width: 50%;
+  height: 13vh;
 }
 
 .form {
-  width: 40%;
+  width: 60%;
   background-color: white;
   border-radius: 14px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   padding: 2%;
   box-sizing: border-box;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+  background-color: #fff1c0;
+  font-weight: bold;
+  margin: 0;
 }
 
 .product-list {
@@ -34,11 +62,16 @@
 .product-list-header {
   width: 100%;
   height: 10%;
-  background-color: #ffcf24;
   display: flex;
   justify-content: space-between;
-  padding: 1%;
+  padding-top: 2%;
+  padding-bottom: 2%;
   box-sizing: border-box;
+}
+
+.product-list-select{
+  width: 100%;
+  height: 4vh;
 }
 
 .product-list-header div {
@@ -52,8 +85,31 @@
   border-top-right-radius: 14px;
 }
 
-button {
+.button-save {
   cursor: pointer;
+  width: 20%;
+  height: 10%;
+  border-radius: 14px;
+  margin-right: 7px;
+  font-weight: bolder;
+  font-family: 'Poppins', sans-serif;
+  font-size: 100%;
+  color: #525252;
+  border: none;
+  background-color: #FFCF24;
+}
+
+.button-cancel {
+  cursor: pointer;
+  width: 20%;
+  height: 10%;
+  border-radius: 14px;
+  margin-left: 7px;
+  font-weight: bolder;
+  font-family: 'Poppins', sans-serif;
+  font-size: 100%;
+  color: #525252;
+  border: none;
 }
 
 .selected-products-table {
@@ -70,6 +126,7 @@ button {
   background-color: rgb(235, 235, 235);
   padding: 1%;
   box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
 }
 
 .table-body tr {
@@ -81,6 +138,7 @@ button {
 
 .table-head th {
   width: 50%;
+  color: #525252;
 }
 
 .table-body td {
@@ -88,9 +146,13 @@ button {
 }
 
 .button-container {
+  padding-top: 3%;
   width: 100%;
-  display: flex;
+  height: 100%;
   justify-content: flex-end;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 select {
