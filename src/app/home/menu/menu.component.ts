@@ -8,7 +8,7 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 })
 export class MenuComponent {
 
-  showModal = true;
+  showModal = false;
 
   constructor(
     public auth:AuthService

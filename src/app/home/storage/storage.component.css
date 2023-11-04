@@ -1,32 +1,175 @@
 .component {
   width: 100%;
   height: 100%;
-  background-color: white;
 }
 
 .yellow-line {
   width: 100%;
   height: 10%;
-  background-color: black;
 }
 
-.header {
+.storage{
   width: 100%;
-  padding: 2%;
-  box-sizing: border-box;
-  display: flex;
-  justify-content: flex-end;
+  height: 90%;
 }
 
-.add-product {
-  text-align: center;
-  display: 30%;
+.storage-header{
+  width: 100%;
+  height: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.storage-header-content{
+  width: 95%;
+  height: 100%;
+  display: flex;
+  justify-content: end;
+  align-items: end;
+}
+
+.storage-header-content button{
+  width: 15%;
+  height: 90%;
   background-color: #ffcf24;
-  color: #956004;
-  padding-bottom: 1%;
-  padding-inline: 2%;
-  box-sizing: border-box;
   border: none;
-  border-radius: 3%;
+  border-radius: 15px;
+  color: #956004;
+  font-size: 2vh;
+  font-family: Rubik;
+  font-weight: 500;
+}
+
+.storage-header-content button:hover {
+  border: 1px solid #956004;
+  font-size: 2.2vh;
+  transition: 0.2s;
   cursor: pointer;
+}
+
+.box-space{
+  width: 100%;
+  height: 90%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.left-box{
+  width: 30%;
+  height: 90%;
+  border-radius: 10px;
+  border: 1px solid #DDDDDD;
+}
+
+.right-box{
+  width: 50%;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+}
+
+.right-box-header{
+  height: 5%;
+  width: 100%;
+  font-size: 2vh;
+  font-family: Rubik;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.right-box-header p{
+  height: 100%;
+  width: 90%;
+  font-size: 2vh;
+  font-family: Rubik;
+}
+
+.right-box-content{
+  height: 95%;
+  width: 100%;
+}
+
+.right-box-loop-space{
+  width: 100%;
+  height: 8vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 15px;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+}
+
+.right-box-product-image{
+  width: 8%;
+  height: 100%;
+}
+
+.right-box-product-image img{
+  width: 100%;
+  height: 100%;
+  border-radius: 9999999px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+.right-box-product-name{
+  width: 72%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.right-box-product-name p{
+  margin: 0;
+  padding: 0;
+  width: 90%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  font-size: 2vh;
+  font-family: Rubik;
+  font-weight: 100;
+}
+
+.right-box-product-quantity{
+  width: 10%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.right-box-product-quantity p{
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  font-size: 2vh;
+  font-family: Rubik;
+  font-weight: 100;
+}
+
+.right-box-product-unit{
+  width: 10%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.right-box-product-unit p{
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  font-size: 2vh;
+  font-family: Rubik;
+  font-weight: 100;
 }

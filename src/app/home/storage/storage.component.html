@@ -1,8 +1,50 @@
-
+<div class="popUp" *ngIf="this.popUp">
+  <opa-storage-popup (close)="this.showPopUp()"></opa-storage-popup>
+</div>
 <div class="component">
   <div class="yellow-line">
     <opa-yline routeNameToBeUsed="Estoque" iconPath="/assets/images/storage.svg"></opa-yline>
   </div>
-  <div class="header">
+  <div class="storage">
+    <div class="storage-header">
+      <div class="storage-header-content">
+        <button (click)="this.showPopUp()">
+          Cadastrar Ingrediente
+        </button>
+      </div>
+    </div>
+    <div class="box-space">
+      <div class="left-box">
+
+      </div>
+      <div class="right-box">
+        <div class="right-box-header">
+          <p> Produtos </p>
+        </div>
+        <div class="right-box-content">
+          <div class="right-box-loop-space">
+            <div class="right-box-product-image">
+              <img src="assets/images/ingredients.svg" alt="">
+            </div>
+            <div class="right-box-product-name">
+              <p>
+                QUEIJINHOOOO
+              </p>
+            </div>
+            <div class="right-box-product-quantity">
+              <p>
+                15
+              </p>
+            </div>
+            <div class="right-box-product-unit">
+              <p>
+                KG
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
   </div>
 </div>
