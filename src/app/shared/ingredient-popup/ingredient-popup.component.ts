@@ -44,7 +44,7 @@ export class IngredientPopupComponent {
           Validators.maxLength(4)
         ]
         ],
-        qt:['',
+        qt:[0,
           Validators.required
         ]
       })
@@ -131,6 +131,8 @@ export class IngredientPopupComponent {
 
   deleteAll(){
     this.ingredientsToPaginate.length = 0;
+    this.ingredientList.length = 0;
+    this.allCheckboxChecked = false;
   }
 
   deleteIngredient(index:number){

@@ -21,6 +21,7 @@
               <option value="G">G</option>
               <option value="kG">kG</option>
               <option value="mL">mL</option>
+              <option value="L">L</option>
             </select>
           </div>
           <div class="container-content-toggle">
@@ -33,7 +34,7 @@
           </div>
           <div class="container-content-cell">
             <p>Insira a quantidade</p>
-            <input type="text" formControlName="qt">
+            <input type="number" formControlName="qt">
           </div>
           <div class="container-content-addbutton">
             <button (click)="submit()">
@@ -106,7 +107,7 @@
     <div class="container-footer">
       <div class="container-footer-buttons">
         <div class="container-footer-close-button">
-          <button>
+          <button (click)="closePopUp()">
             Fechar
           </button>
         </div>
