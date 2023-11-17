@@ -108,8 +108,40 @@
   color:#505050;
 }
 
+.invoicingDashboard{
+  display: flex;
+  width: 100%;
+  height: 94%;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  
+
+}
+
 .second-graph-box{
   min-width: 95%;
   min-height: 60vh;
-  background-color: blue;
+  
+  display: flex;
+}
+
+.top5products{
+  flex: 1; 
+  margin: 10px;
+  border: 1px solid #AFAEAE;
+  border-radius: 15px;
+}
+
+.byage{
+  flex: 1; 
+  margin: 10px;
+  border: 1px solid #AFAEAE;
+  border-radius: 15px;
+}
+
+.byregion{
+  flex: 1; 
+  margin: 10px;
+  border: 1px solid #AFAEAE;
+  border-radius: 15px;
 }

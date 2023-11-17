@@ -11,9 +11,10 @@ import { TopbarModule } from './shared/topbar/topbar.module';
 import { HttpClientModule } from '@angular/common/http';
 import { AppInitializationService } from './services/initialization/initialization.service';
 
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
