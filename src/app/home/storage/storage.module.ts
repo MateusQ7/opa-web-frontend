@@ -5,12 +5,11 @@ import { YellowlineModule } from 'src/app/shared/yellowline/yellowline.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { StockService } from '../../services/stock/stock.service';
-import { StoragePopupComponent } from './storage-popup/storage-popup.component';
+import { IngredientPopupModule } from 'src/app/shared/ingredient-popup/ingredient-popup.module';
 
 @NgModule({
   declarations: [
     StorageComponent,
-    StoragePopupComponent,
   ],
   exports: [
     StorageComponent,
@@ -22,6 +21,7 @@ import { StoragePopupComponent } from './storage-popup/storage-popup.component';
     NgSelectModule,
     FormsModule,
     NgSelectModule,
+    IngredientPopupModule
   ],
   providers: [StockService]
 })

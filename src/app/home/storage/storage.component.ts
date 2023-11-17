@@ -8,7 +8,7 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 })
 export class StorageComponent {
 
-  popUp = true;
+  popUp = false;
 
   constructor(
     public auth: AuthService

@@ -1,0 +1,581 @@
+.popUp{
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 85%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 1s;
+}
+
+.container{
+  width: 70%;
+  height: 80%;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  display: flex;
+  flex-direction: column;
+}
+
+.container-header{
+  width: 100%;
+  height: 15%;
+  border-bottom: 1px solid #cccccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container-header p {
+  width: 93%;
+  height: 100%;
+  margin: 0;
+  font-family: Poppins;
+  font-size: 4vh;
+  display: flex;
+  align-items: center;
+  font-weight: 800;
+  color: #505050;
+}
+
+.container-header button{
+  height: 50%;
+  width: 4%;
+  background-color:transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.container-header button:hover img{
+  filter: invert(84%) sepia(60%) saturate(1379%) hue-rotate(335deg) brightness(102%) contrast(101%);
+}
+
+.container-mid-content{
+  width: 100%;
+  height: 70%;
+  display: flex;
+  align-items: center;
+}
+
+.container-left{
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container-content-left{
+  width: 100%;
+  height: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.container-content-toggle{
+  width: 90%;
+  height: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container-content-toggle p{
+  width: 90%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  font-family: Poppins;
+  font-size: 1.5vh;
+  letter-spacing: 0.7px;
+}
+
+.container-content-toggle .round-checkbox{
+  appearance: none;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  border: 3px solid #ffcf24;
+  background-color: #fff;
+  cursor: pointer;
+  outline: none;
+  transition: background-color 0.1s, border-color 0.1s;
+}
+
+.container-content-toggle .round-checkbox:checked{
+  background-color: #ffcf24;
+  border: 5px solid #956004;
+}
+
+.container-content-cell{
+  width: 90%;
+  height: 20%;
+}
+
+.container-content-cell p {
+  width: 100%;
+  height: 30%;
+  margin: 0;
+  font-family: Poppins;
+  font-weight: 700;
+  color: #525252;
+  letter-spacing: 0.7px;
+}
+
+.container-content-cell input {
+  font-size: 1.9vh;
+  width: 100%;
+  height: 50%;
+  margin: 0;
+  padding:0;
+  border: 1px solid #CED4DA;
+  border-radius: 4px ;
+  outline: none;
+  transition: border-color 0.3s;
+  box-sizing: border-box;
+  padding: 3%;
+  font-family: 'Poppins', sans-serif;
+  color: #818181;
+  letter-spacing: 0.5px;
+  font-weight: 300;
+}
+
+.container-content-cell input:focus {
+  border-color: #956004;
+}
+
+.container-content-select{
+  width: 90%;
+  height: 20%;
+}
+
+.container-content-select p {
+  width: 100%;
+  height: 30%;
+  margin: 0;
+  font-family: Poppins;
+  font-weight: 700;
+  color: #525252;
+}
+
+.container-content-select select{
+  width: 100%;
+  height: 50%;
+  text-align: center;
+  font-size: 2vh;
+  font-family: Poppins;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  outline: none;
+  color:#525252;
+}
+
+.container-content-select select:focus{
+  border-color: #956004;
+}
+
+.container-content-addbutton{
+  width: 100%;
+  height: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container-content-addbutton button{
+  width: 5%;
+  height: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #FFCF24;
+  background-color: #FFC107;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.container-content-addbutton button:hover{
+  width: 6%;
+  height: 91%;
+  transition: 0.1s;
+  border: 2px solid #956004;
+}
+
+.container-content-addbutton img{
+  width: 100%;
+  height: 100%;
+}
+
+.container-content-division{
+ width: 1px;
+ height: 85%;
+ background-color: #cccccc;
+ margin-top: 3%;
+}
+
+.container-right{
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.container-content-right{
+  width: 95%;
+  height: 100%;
+  /* background-color: blue; */
+}
+
+.container-content-right-header{
+  width: 100%;
+  height: 10%;
+  display: flex;
+  border-bottom: 1.5px solid #212529;
+}
+
+.header-checkbox{
+  height: 100%;
+  width: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header-checkbox .ingredient-checkbox{
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border: 1px solid #cccccc;
+  background-color: #ffffff;
+  border-radius: 4px;
+}
+
+.header-checkbox .ingredient-checkbox:checked{
+  background-image: url('/assets/images/checkbox-marked.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: none;
+}
+
+.header-ingredient-text{
+  height: 100%;
+  width: 60%;
+  display: flex;
+  justify-content: center;
+}
+
+.header-ingredient-text p{
+  margin: 0;
+  width: 90%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  font-family: Poppins;
+  font-size: 2vh;
+  font-weight: 500;
+}
+
+.header-un-text{
+  height: 100%;
+  width: 10%;
+}
+
+.header-un-text p{
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Poppins;
+  font-size: 2vh;
+  font-weight: 500;
+}
+
+.header-qt-text{
+  height: 100%;
+  width: 10%;
+}
+
+.header-qt-text p{
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Poppins;
+  font-size: 2vh;
+  font-weight: 500;
+}
+
+.header-trashicon{
+  height: 100%;
+  width: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header-trashicon button{
+  width: 60%;
+  height: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.header-trashicon img {
+  width: 100%;
+  height: 100%;
+}
+
+.header-trashicon button:hover img{
+  filter: invert(18%) sepia(90%) saturate(4668%) hue-rotate(355deg) brightness(93%) contrast(98%);
+}
+
+.container-content-right-loop-space{
+  width: 100%;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+}
+
+.loop-cell{
+  width: 100%;
+  height: 10%;
+  display: flex;
+  border-bottom: 1.5px solid #CCCCCC;
+  margin: 0;
+}
+
+.loop-cell-checkbox{
+  height: 100%;
+  width: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loop-cell-checkbox .loop-cell-ingredient-checkbox{
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border: 1px solid #cccccc;
+  background-color: #ffffff;
+  border-radius: 4px;
+}
+
+.loop-cell-checkbox .loop-cell-ingredient-checkbox:checked{
+  background-image: url('/assets/images/checkbox-marked.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: none;
+}
+
+.loop-cell-ingredient-text{
+  height: 100%;
+  width: 60%;
+  display: flex;
+  justify-content: center;
+}
+
+.loop-cell-ingredient-text p{
+  margin: 0;
+  width: 90%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  font-family: Poppins;
+  font-size: 1.9vh;
+  font-weight: 300;
+}
+
+.loop-cell-un-text{
+  height: 100%;
+  width: 10%;
+}
+
+.loop-cell-un-text p{
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Poppins;
+  font-size: 2vh;
+  font-weight: 300;
+}
+
+.loop-cell-qt-text{
+  height: 100%;
+  width: 10%;
+}
+
+.loop-cell-qt-text p{
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Poppins;
+  font-size: 2vh;
+  font-weight: 300;
+}
+
+.loop-cell-trashicon{
+  height: 100%;
+  width: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loop-cell-trashicon button{
+  width: 60%;
+  height: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.loop-cell-trashicon img {
+  width: 100%;
+  height: 100%;
+}
+
+.loop-cell-trashicon button:hover img{
+  filter: invert(18%) sepia(90%) saturate(4668%) hue-rotate(355deg) brightness(93%) contrast(98%);
+}
+
+.container-content-right-pagination{
+  width: 100%;
+  height: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container-content-right-pagination p{
+  width: 5%;
+  height: 100%;
+  font-family: Poppins;
+  font-size: 2vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container-content-right-pagination button{
+  width: 10%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.container-content-right-pagination button:hover img{
+  width: 55%;
+  height: 55%;
+  transition: 0.1s;
+  filter: invert(29%) sepia(94%) saturate(1169%) hue-rotate(23deg) brightness(97%) contrast(97%);
+}
+
+.container-content-right-pagination img{
+  width: 50%;
+  height: 50%;
+}
+
+.container-footer{
+  width: 100%;
+  height: 15%;
+  border-top: 1px solid #cccccc ;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.container-footer-buttons{
+  width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container-footer-close-button{
+  width: 35%;
+  height: 70%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container-footer-close-button button{
+  width: 80%;
+  height: 90%;
+  background-color: transparent;
+  border: 1px solid #956004;
+  border-radius: 5px;
+  font-size: 2vh;
+  font-family: Poppins;
+  font-weight: 400;
+  color: #956004;
+  letter-spacing: 0.7px;
+}
+
+.container-footer-close-button button:hover{
+  width: 82%;
+  height: 95%;
+  border: 2px solid #956004;
+  font-size: 2.1vh;
+  font-weight: 600;
+  transition: 0.1s;
+}
+
+.container-footer-submit-button{
+  width: 35%;
+  height: 70%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container-footer-submit-button button{
+  width: 80%;
+  height: 90%;
+  background-color: #ffcf24;
+  border: 1px solid #956004;
+  border-radius: 5px;
+  font-size: 2vh;
+  font-family: Poppins;
+  font-weight: 400;
+  color: #956004;
+  letter-spacing: 0.7px;
+}
+
+.container-footer-submit-button button:hover{
+  width: 82%;
+  height: 95%;
+  border: 2px solid #956004;
+  font-size: 2.1vh;
+  font-weight: 600;
+  transition: 0.1s;
+}

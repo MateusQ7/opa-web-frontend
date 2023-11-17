@@ -43,8 +43,8 @@
 
 .storage-header-content button:hover {
   border: 1px solid #956004;
-  font-size: 2.2vh;
-  transition: 0.2s;
+  font-size: 2.1vh;
+  transition: 0.1s;
   cursor: pointer;
 }
 
