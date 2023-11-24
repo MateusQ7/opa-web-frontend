@@ -1,5 +1,4 @@
 <div class="popUp">
-
   <div class="container">
     <div class="container-header">
       <p>Adicionar Ingredientes</p>
@@ -37,7 +36,7 @@
             <input type="number" formControlName="qt">
           </div>
           <div class="container-content-addbutton">
-            <button (click)="submit()">
+            <button (click)="submitIngredient()">
               <img src="/assets/images/addbuttonmodal.svg" alt="">
             </button>
           </div>
@@ -112,7 +111,7 @@
           </button>
         </div>
         <div class="container-footer-submit-button">
-          <button>
+          <button (click)="submitForm()">
             Salvar
           </button>
         </div>

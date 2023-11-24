@@ -1,5 +1,123 @@
+<div class="launch-order-modal" *ngIf="this.launchOrderModal">
+  <opa-launch-order-modal></opa-launch-order-modal>
+</div>
+<div class="order-modal" *ngIf="this.orderModal">
+  <opa-order-modal></opa-order-modal>
+</div>
 <div class="component">
   <div class="yellow-line">
     <opa-yline routeNameToBeUsed="Pedidos" iconPath="/assets/images/order.svg"></opa-yline>
+  </div>
+  <div class="container">
+    <div class="container-header">
+      <button>
+        Lançar pedido
+      </button>
+      <button>
+        Filtrar
+      </button>
+    </div>
+    <div class="container-content">
+      <div class="container-content-left">
+        <div class="container-content-left-header">
+          <p>
+            Fila de Pedidos
+          </p>
+        </div>
+        <div class="container-content-left-loop-space">
+          <div #loopCell class="loop-cell" (click)="expandOrder(loopCell,deepInfo)" *ngFor="let order of inProgressOrderList">
+            <div class="loop-cell-info-bar">
+              <div class="loop-cell-img">
+                <img src="assets/images/ingredients.svg" alt="">
+              </div>
+              <div class="loop-cell-text">
+                <p> {{ order.name }}</p>
+              </div>
+              <div class="loop-cell-division"></div>
+              <div class="loop-cell-tableNumber">
+                <p> MESA {{ order.table }}</p>
+              </div>
+              <div class="loop-cell-division"></div>
+              <div class="loop-cell-qt">
+                <p> {{ order.quantity }}x </p>
+              </div>
+            </div>
+            <div #deepInfo class="loop-cell-deep-info" >
+              <div class="order-status">
+                <div class="order-status-text">
+                  <p>status do pedido:</p>
+                </div>
+                <div class="order-status-colored">
+                  <p *ngIf="this.order.status == 1" class="status-inprogress">em andamento</p>
+                  <p *ngIf="this.order.status == 2" class="status-delivered">entregue</p>
+                  <p *ngIf="this.order.status == 3" class="status-canceled">cancelado</p>
+                </div>
+              </div>
+              <div class="order-table">
+                <p class="order-table-text">mesa:</p>
+                <p class="order-table-number">{{ order.table }}</p>
+              </div>
+              <div class="order-clients">
+                <p class="order-clients-text">clientes:</p>
+                <p class="order-clients-names">{{ order.clients }}</p>
+              </div>
+              <div class="order-footer">
+                <div class="order-ordered-time">
+                  <p class="order-ordered-time-text">pedido feito as:</p>
+                  <p class="order-ordered-time-number">{{ order.orderedTime }}</p>
+                </div>
+                <div class="order-responsable-waiter">
+                  <p class="order-responsable-waiter-text">garçom responsável:</p>
+                  <p class="order-responsable-waiter-name">{{ order.responsableWaiter }}</p>
+                </div>
+                <div class="order-delivered-time">
+                  <p class="order-delivered-time-text">pedido entregue as:</p>
+                  <p class="order-delivered-time-number">{{ order.deliveredTime }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container-content-right">
+        <div class="container-content-right-header">
+          <p>
+            Mesas em andamento
+          </p>
+        </div>
+        <div class="container-content-right-loop-space">
+          <div #loopCell class="loop-cell" *ngFor="let table of tablesInProgress">
+            <div class="loop-cell-info-bar">
+              <div class="table-info-table-name" (click)="expandOrder(loopCell,deepInfo)">
+                <p> MESA {{ table.number }}</p>
+              </div>
+              <div class="table-info-responsable-waiter" (click)="expandOrder(loopCell,deepInfo)">
+                <p>{{ table.responsableWaiter }}</p>
+              </div>
+              <div class="table-info-modal-button">
+                <button>
+                  <img src="assets/images/plus.svg" alt="">
+                </button>
+              </div>
+            </div>
+            <div #deepInfo class="loop-cell-deep-table-info" >
+              <div class="deep-loop-cell" *ngFor="let order of table.orders">
+                <div class="deep-loop-cell-order-name">
+                  <p> {{ order.name }} </p>
+                </div>
+                <div class="deep-loop-cell-order-status">
+                  <p *ngIf="this.order.status == 1" class="status-inprogress">em andamento</p>
+                  <p *ngIf="this.order.status == 2" class="status-delivered">entregue</p>
+                  <p *ngIf="this.order.status == 3" class="status-canceled">cancelado</p>
+                </div>
+                <div class="deep-loop-cell-order-quantity">
+                  <p>{{ order.quantity }} x</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

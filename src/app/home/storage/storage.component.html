@@ -1,5 +1,8 @@
 <div class="popUp" *ngIf="this.popUp">
-  <opa-ingredient-popup (close)="this.showPopUp()"></opa-ingredient-popup>
+  <opa-ingredient-popup
+  (close)="this.showPopUp()"
+  [ingredientList]="this.ingredientList"
+  ></opa-ingredient-popup>
 </div>
 <div class="component">
   <div class="yellow-line">

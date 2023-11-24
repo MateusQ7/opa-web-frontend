@@ -9,17 +9,21 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 })
 export class IngredientPopupComponent {
 
-  @Output() close: EventEmitter<boolean> = new EventEmitter<boolean>
+  @Output()
+  close: EventEmitter<boolean> = new EventEmitter<boolean>
+
+  @Output()
+  ingredientEmitter:EventEmitter<IngredientList[]> = new EventEmitter<IngredientList[]>
+
+  ingredientsToPaginate:IngredientList[]=[]
+
+  ingredientList:IngredientList[]=[];
 
   actualPage:number = 1;
 
   pageMaxQnt:number = 1;
 
   numberPerPage = 10;
-
-  ingredientsToPaginate:IngredientList[]=[]
-
-  ingredientList:IngredientList[]=[]
 
   public form:FormGroup;
 
@@ -71,7 +75,7 @@ export class IngredientPopupComponent {
     }
   }
 
-  submit(){
+  submitIngredient(){
     console.log(this.form.value)
     if(this.form.valid){
       const ingredientToList:IngredientList={
@@ -91,6 +95,10 @@ export class IngredientPopupComponent {
       this.ingredientList.push(ingredientToList);
       this.setPagination();
     }
+  }
+
+  submitForm(){
+    this.ingredientEmitter.emit(this.ingredientList);
   }
 
   goToPreviousPage(){
