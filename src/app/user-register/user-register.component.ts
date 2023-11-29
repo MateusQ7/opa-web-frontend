@@ -25,11 +25,6 @@ export class UserRegisterComponent implements OnInit, PopUp {
   public form!: FormGroup;
   public second_form!: FormGroup;
   public popUpShow: boolean = false;
-  public cep: string = '';
-  public street: string = '';
-  public city: string = '';
-  public state: string = '';
-  public neighborhood: string = '';
   public regexCep = /\D/g;
   public cepLenght = 8;
   public popUpMessage: BackReponse[] = []
@@ -54,12 +49,6 @@ export class UserRegisterComponent implements OnInit, PopUp {
         value: '',
         disabled: false
       }, [
-        Validators.required,
-      ]],
-      user: [{
-        value:'',
-        disabled: false
-      },[
         Validators.required,
       ]],
       user: [{
@@ -160,10 +149,6 @@ export class UserRegisterComponent implements OnInit, PopUp {
         Validators.maxLength(11),
       ]],
     })
-<<<<<<< HEAD
-=======
-
->>>>>>> 1b9ee61 (fix: Eclui funções inutilizadas e adiona novas)
   }
 
   async submit() {
