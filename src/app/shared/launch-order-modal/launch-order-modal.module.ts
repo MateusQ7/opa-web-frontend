@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LaunchOrderModalComponent } from './launch-order-modal.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -12,7 +13,9 @@ import { LaunchOrderModalComponent } from './launch-order-modal.component';
     LaunchOrderModalComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class LaunchOrderModalModule { }

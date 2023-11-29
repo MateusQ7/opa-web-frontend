@@ -1,11 +1,11 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth/auth.service';
-import { StockService } from '../../../services/stock/stock.service';
 import { ListItem } from 'ng-multiselect-dropdown/multiselect.model';
 import { CreateProductDto, ProductItemsDto } from '../../dtos/CreateProductDto';
 import { ProductService } from '../../../services/product/product.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { StorageService } from 'src/app/services/storage/storage.service';
 
 @Component({
   selector: 'app-create-update-stock-item',
@@ -32,13 +32,13 @@ export class CreateUpdateProductComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     public auth: AuthService,
-    public stockService: StockService,
+    public storageService: StorageService,
     public productService: ProductService,
   ) {
   }
 
   ngOnInit(): void {
-    this.stockService.searchStockItem("").subscribe(stockDtos => {
+    this.storageService.searchStockItem("").subscribe(stockDtos => {
       this.stockProducts = stockDtos
     })
 

@@ -1,4 +1,4 @@
-.component{
+.whole{
   width: 100%;
   height: 100%;
 }
@@ -7,4 +7,133 @@
   width: 100%;
   height: 10%;
   background-color: black;
+}
+
+.component{
+  width: 100%;
+  height: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.button-header{
+  width: 90%;
+  height: 10%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.menu-loop-space{
+  width: 90%;
+  height: 90%;
+  overflow-y: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.menu-loop-cell{
+  margin-top: 1%;
+  width: 98%;
+  height: 30%;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  border-radius: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.menu-img{
+  height: 100%;
+  width: 15%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.menu-img img{
+  width: auto;
+  height: 80%;
+  border-radius: 5px;
+  /* box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px; */
+}
+
+.menu-info{
+  height: 100%;
+  width: 85%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.menu-name{
+  width: 90%;
+  height: 50%;
+  display: flex;
+  align-items: center;
+  /* background-color: rgb(32, 103, 151); */
+}
+
+.menu-name p{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  /* background-color: red; */
+  color: #000;
+
+  font-family: Poppins;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 150%; /* 27px */
+}
+
+.menu-description{
+  width: 100%;
+  height: 50%;
+  /* background-color: blue; */
+  display: flex;
+}
+
+.menu-description p{
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+
+  font-family: Poppins;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 150%; /* 27px */
+}
+
+.descript-text{
+  width: 80%;
+  height: 100%;
+  /* background-color: green; */
+}
+
+.menu-value{
+  width: 20%;
+  height: 100%;
+}
+
+.menu-value p{
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-family: Poppins;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%; /* 27px */
 }

@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { IngredientList } from './ingredient.interface';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { Ingredient } from './ingredient.interface';
 
 @Component({
   selector: 'opa-ingredient-popup',
@@ -13,11 +13,11 @@ export class IngredientPopupComponent {
   close: EventEmitter<boolean> = new EventEmitter<boolean>
 
   @Output()
-  ingredientEmitter:EventEmitter<IngredientList[]> = new EventEmitter<IngredientList[]>
+  emitIngredient:EventEmitter<Ingredient[]> = new EventEmitter<Ingredient[]>
 
-  ingredientsToPaginate:IngredientList[]=[]
+  ingredientsToPaginate:Ingredient[] = []
 
-  ingredientList:IngredientList[]=[];
+  ingredientList:Ingredient[]=[];
 
   actualPage:number = 1;
 
@@ -55,7 +55,6 @@ export class IngredientPopupComponent {
   }
 
   setPagination(){
-    console.log(`setpagination`)
     this.pageMaxQnt = Math.ceil(this.ingredientList.length/this.numberPerPage)
     const trimStart = (this.actualPage - 1) * this.numberPerPage
     const trimEnd = trimStart + this.numberPerPage
@@ -76,9 +75,8 @@ export class IngredientPopupComponent {
   }
 
   submitIngredient(){
-    console.log(this.form.value)
     if(this.form.valid){
-      const ingredientToList:IngredientList={
+      const ingredientToList:Ingredient={
         checked:false,
         name:this.form.value.name,
         qt:this.form.value.qt,
@@ -98,14 +96,14 @@ export class IngredientPopupComponent {
   }
 
   submitForm(){
-    this.ingredientEmitter.emit(this.ingredientList);
+    this.emitIngredient.emit(this.ingredientList);
+    this.closePopUp();
   }
 
-  goToPreviousPage(){
+  goToPreviousPage():void {
     if (this.actualPage > 1) {
       this.actualPage--;
       this.setPagination();
-      console.log(this.actualPage)
     }
   }
 
@@ -113,7 +111,6 @@ export class IngredientPopupComponent {
     if (this.actualPage < this.pageMaxQnt) {
       this.actualPage++;;
       this.setPagination();
-      console.log(this.actualPage)
     }
   }
 
@@ -152,7 +149,6 @@ export class IngredientPopupComponent {
 
   closePopUp() {
     this.close.emit(false);
-    console.log('and WE OCUPPYYYYYYYY')
   }
 
 }

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { AuthService } from 'src/app/services/auth/auth.service';
-import { IngredientList } from 'src/app/shared/ingredient-popup/ingredient.interface';
+import { StorageService } from 'src/app/services/storage/storage.service';
+import { Ingredient } from 'src/app/shared/ingredient-popup/ingredient.interface';
 
 @Component({
   selector: 'app-storage',
@@ -12,13 +12,20 @@ export class StorageComponent {
   popUp = false;
 
   //conferir se o storage realmente esta recebendo a lista de ingredientes do ingredient-popup
-  ingredientList:IngredientList[]=[];
+  ingredientList:Ingredient[]=[];
 
   constructor(
-    public auth: AuthService
+    private storageService:StorageService
   ) { }
 
   showPopUp(){
     this.popUp = !this.popUp
+  };
+
+  recieveIngredients(ingredients:Ingredient[]){
+    // this.storageService.submitStorage()
+    ingredients.map((e:Ingredient)=>{
+      this.ingredientList.push(e);
+    })
   }
 }

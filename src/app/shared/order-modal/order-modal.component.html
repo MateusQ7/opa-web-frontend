@@ -1,1 +1,58 @@
-<p>order-modal works!</p>
+<div class="modal">
+  <div class="main-container">
+    <div class="main-container-header">
+      <p class="header-title">Histórico da mesa {{ this.tableDetailed.table.id }} </p>
+      <div class="header-description">
+        <p>Mesa aberta as: <strong>{{ this.tableDetailed.table.openTime }}</strong> </p>
+        <p>Garçom responsável: <strong>{{ this.tableDetailed.table.responsableWaiter }}</strong></p>
+        <p>Token da mesa: <strong>{{ this.tableDetailed.table.token }}</strong></p>
+      </div>
+    </div>
+    <div class="container-content">
+      <div class="table-loop-cell" *ngFor="let order of this.tableDetailed.orders">
+        <div class="table-loop-product-img">
+          <img src="/assets/images/opa-logo-white.svg" alt="">
+        </div>
+        <div class="table-loop-product-descript">
+          <div class="table-loop-product-descript-top">
+            <div class="table-loop-product-order-name">
+              <p class="text">Nome do Produto:</p>
+              <p class="value">{{ order.menuItem.name }}</p>
+            </div>
+            <div class="table-loop-product-order-value">
+              <p class="text">Preço do Produto: </p>
+              <p class="value">{{ order.menuItem.value }}</p>
+            </div>
+            <div class="table-loop-product-order-qt">
+              <p class="text">Quantidade pedida: </p>
+              <p class="value"> {{ order.quantity }}</p>
+            </div>
+          </div>
+          <div class="table-loop-product-descript-bot">
+            <div class="table-loop-product-order-time">
+              <p class="text">Horário do pedido efetuado: </p>
+              <p class="value">{{ order.orderedTime }}</p>
+            </div>
+            <div class="table-loop-product-order-status">
+              <p class="text">Status do pedido:</p>
+              <div class="value">
+                <p *ngIf="this.order.status == 1" class="status-inprogress">em andamento</p>
+                <p *ngIf="this.order.status == 2" class="status-delivered">entregue</p>
+                <p *ngIf="this.order.status == 3" class="status-canceled">cancelado</p>
+              </div>
+            </div>
+            <div class="table-loop-product-order-delivered">
+              <p class="text">Horário de conclusão do pedido:  </p>
+              <p class="value">{{ order.deliveredTime }}</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container-footer">
+      <div class="container-footer-close-button">
+        <button (click)="closeModal()">
+          Fechar
+        </button>
+    </div>
+  </div>
+</div>

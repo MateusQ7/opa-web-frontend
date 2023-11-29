@@ -4,8 +4,8 @@ import { StorageComponent } from './storage.component';
 import { YellowlineModule } from 'src/app/shared/yellowline/yellowline.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
-import { StockService } from '../../services/stock/stock.service';
 import { IngredientPopupModule } from 'src/app/shared/ingredient-popup/ingredient-popup.module';
+import { StorageService } from 'src/app/services/storage/storage.service';
 
 @NgModule({
   declarations: [
@@ -23,6 +23,6 @@ import { IngredientPopupModule } from 'src/app/shared/ingredient-popup/ingredien
     NgSelectModule,
     IngredientPopupModule
   ],
-  providers: [StockService]
+  providers: [StorageService]
 })
 export class StorageModule { }

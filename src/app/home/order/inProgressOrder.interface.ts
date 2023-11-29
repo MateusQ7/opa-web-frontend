@@ -2,12 +2,12 @@ export interface InProgressOrder{
   id:number;
   name:string;
   status:OrderStatus;
-  table:number;
+  tableID:number;
   clients:string[];
   orderedTime:string;
   responsableWaiter:string;
+  quantity:number;
   deliveredTime?:string;
-  quantity?:number;
 }
 
 export enum OrderStatus{

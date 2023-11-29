@@ -1,7 +1,7 @@
 <div class="popUp" *ngIf="this.popUp">
   <opa-ingredient-popup
   (close)="this.showPopUp()"
-  [ingredientList]="this.ingredientList"
+  (emitIngredient)="this.recieveIngredients($event)"
   ></opa-ingredient-popup>
 </div>
 <div class="component">
@@ -25,23 +25,23 @@
           <p> Produtos </p>
         </div>
         <div class="right-box-content">
-          <div class="right-box-loop-space">
-            <div class="right-box-product-image">
+          <div class="right-box-loop-space" *ngFor="let ingredient of ingredientList">
+            <div class="right-box-product-image" >
               <img src="assets/images/ingredients.svg" alt="">
             </div>
             <div class="right-box-product-name">
               <p>
-                QUEIJINHOOOO
+                {{ ingredient.name }}
               </p>
             </div>
             <div class="right-box-product-quantity">
               <p>
-                15
+                {{ ingredient.qt }}
               </p>
             </div>
             <div class="right-box-product-unit">
               <p>
-                KG
+                {{ ingredient.un }}
               </p>
             </div>
           </div>

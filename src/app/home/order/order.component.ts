@@ -1,6 +1,8 @@
 import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { InProgressTables } from './InProgressTables.interface';
+import { OrderService } from 'src/app/services/order/order.service';
+import { Order } from 'src/app/services/order/order.interface';
 
 @Component({
   selector: 'app-order',
@@ -11,46 +13,13 @@ export class OrderComponent {
 
   launchOrderModal = false;
 
-  orderModal = false;
+  orderModal = true;
 
-  inProgressOrderList=[
-    {
-      id:1,
-      name:`catinha de parangolas`,
-      status:1,
-      table:12,
-      clients:[`fernando`,`barreto`,`pc`],
-      orderedTime:`13:09`,
-      responsableWaiter:`renatin`,
-      deliveredTime:`13:20`,
-      quantity:1
-    },
-    {
-      id:1,
-      name:`catinha de parangolas`,
-      status:2,
-      table:12,
-      clients:[`fernando`,`barreto`,`pc`],
-      orderedTime:`13:09`,
-      responsableWaiter:`renatin`,
-      deliveredTime:`13:20`,
-      quantity:1
-    },
-    {
-      id:1,
-      name:`catinha de parangolas`,
-      status:3,
-      table:12,
-      clients:[`fernando`,`barreto`,`pc`],
-      orderedTime:`13:09`,
-      responsableWaiter:`renatin`,
-      deliveredTime:`13:20`,
-      quantity:1
-    },
-  ];
+  inProgressOrderList:Order[]=[]
 
   tablesInProgress:InProgressTables[]=[
     {
+      id:1,
       number:25,
       responsableWaiter:`arnaldin`,
       orders:[
@@ -72,6 +41,7 @@ export class OrderComponent {
       ]
     },
     {
+      id:1,
       number:12,
       responsableWaiter:`felipe da zaga`,
       orders:[
@@ -143,6 +113,7 @@ export class OrderComponent {
       ]
     },
     {
+      id:1,
       number:40,
       responsableWaiter:`jorge amado`,
       orders:[
@@ -166,8 +137,7 @@ export class OrderComponent {
 
   constructor(
     public auth:AuthService,
-    private el: ElementRef,
-    private renderer: Renderer2
+    private orderService:OrderService
   ){}
 
   expandOrder(loopCell:HTMLElement,deepInfo:HTMLElement){
@@ -182,4 +152,20 @@ export class OrderComponent {
       deepInfo.style.display = 'none'
     }
   }
+
+  showLaunchOrderModal(){
+    this.launchOrderModal = !this.launchOrderModal
+  }
+
+  showOrderModal(){
+    this.orderModal = !this.orderModal
+  }
+
+  recieveOrders(orders:Order[]){
+    this.orderService.createOrder(orders);
+    orders.map((e:Order)=>{
+      this.inProgressOrderList.push(e);
+    })
+  }
+
 }

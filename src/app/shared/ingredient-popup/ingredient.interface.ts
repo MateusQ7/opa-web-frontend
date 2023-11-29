@@ -1,4 +1,4 @@
-export interface IngredientList{
+export interface Ingredient{
   checked:boolean
   name:string
   un:string

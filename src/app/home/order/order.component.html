@@ -1,8 +1,8 @@
 <div class="launch-order-modal" *ngIf="this.launchOrderModal">
-  <opa-launch-order-modal></opa-launch-order-modal>
+  <opa-launch-order-modal (emitOrders)="recieveOrders($event);" (close)="this.showLaunchOrderModal()"></opa-launch-order-modal>
 </div>
 <div class="order-modal" *ngIf="this.orderModal">
-  <opa-order-modal></opa-order-modal>
+  <opa-order-modal (close)="this.showOrderModal()" ></opa-order-modal>
 </div>
 <div class="component">
   <div class="yellow-line">
@@ -10,11 +10,8 @@
   </div>
   <div class="container">
     <div class="container-header">
-      <button>
-        Lançar pedido
-      </button>
-      <button>
-        Filtrar
+      <button (click)="this.showLaunchOrderModal()">
+        Lançar pedidos
       </button>
     </div>
     <div class="container-content">
@@ -31,11 +28,11 @@
                 <img src="assets/images/ingredients.svg" alt="">
               </div>
               <div class="loop-cell-text">
-                <p> {{ order.name }}</p>
+                <p> {{ order.menuItem.name }}</p>
               </div>
               <div class="loop-cell-division"></div>
               <div class="loop-cell-tableNumber">
-                <p> MESA {{ order.table }}</p>
+                <p> MESA {{ order.table.id  }}</p>
               </div>
               <div class="loop-cell-division"></div>
               <div class="loop-cell-qt">
@@ -55,7 +52,7 @@
               </div>
               <div class="order-table">
                 <p class="order-table-text">mesa:</p>
-                <p class="order-table-number">{{ order.table }}</p>
+                <p class="order-table-number">{{ order.table.id }}</p>
               </div>
               <div class="order-clients">
                 <p class="order-clients-text">clientes:</p>
@@ -68,7 +65,7 @@
                 </div>
                 <div class="order-responsable-waiter">
                   <p class="order-responsable-waiter-text">garçom responsável:</p>
-                  <p class="order-responsable-waiter-name">{{ order.responsableWaiter }}</p>
+                  <p class="order-responsable-waiter-name">{{ order.table.responsableWaiter }}</p>
                 </div>
                 <div class="order-delivered-time">
                   <p class="order-delivered-time-text">pedido entregue as:</p>
@@ -95,7 +92,7 @@
                 <p>{{ table.responsableWaiter }}</p>
               </div>
               <div class="table-info-modal-button">
-                <button>
+                <button (click)="showOrderModal()">
                   <img src="assets/images/plus.svg" alt="">
                 </button>
               </div>
