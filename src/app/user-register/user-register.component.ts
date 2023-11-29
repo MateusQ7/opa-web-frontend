@@ -152,7 +152,7 @@ export class UserRegisterComponent implements OnInit, PopUp {
   }
 
   async submit() {
-    if (this.form.valid) {
+    // if (this.form.valid) {
       const formattedForm: FormattedForm = {
         name: this.form.value.name,
         birthDate: this.form.value.birthDate,
@@ -191,13 +191,6 @@ export class UserRegisterComponent implements OnInit, PopUp {
       )
       this.showPopUp()
       return;
-    };
-    this, this.addMessageToPopUp({
-      status: 404,
-      message: 'Formulário inválido'
-    });
-    this.showPopUp();
-    return;
   }
 
   onScroll(event: Event) {
