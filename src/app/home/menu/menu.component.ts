@@ -16,7 +16,26 @@ export class MenuComponent implements OnInit{
 
   loading = false;
 
-  menuList:Menu[]=[]
+  menuList:Menu[]=[
+    // {
+    //   id: 2,
+    //   name: "Queijinho",
+    //   price: 10,
+    //   description: "Caue lindim papai"
+    // },
+    // {
+    //   id: 3,
+    //   name: "Presuntinho",
+    //   price: 10,
+    //   description: "Caue lindim papai"
+    // },
+    // {
+    //   id: 4,
+    //   name: "Fava",
+    //   price: 20,
+    //   description: "Caue lindim papai"
+    // }
+  ]
 
   constructor(
     public auth:AuthService,
@@ -28,7 +47,7 @@ export class MenuComponent implements OnInit{
   }
 
   async getData(){
-    this.loading = true;
+    // this.loading = true;
     try{
       const data = await firstValueFrom(this.menuService.getMenu());
       data.map((menu: Menu) => {

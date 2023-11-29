@@ -16,20 +16,20 @@
       </button>
     </div>
     <div class="menu-loop-space">
-      <div class="menu-loop-cell">
+      <div class="menu-loop-cell" *ngFor="let menuItem of this.menuList">
         <div class="menu-img">
           <img src="/assets/images/opa-logo-white.svg" alt="">
         </div>
         <div class="menu-info">
           <div class="menu-name">
-            <p>Catinha de Parangola</p>
+            <p>{{ menuItem.name }}</p>
           </div>
           <div class="menu-description">
             <div class="descript-text">
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum non, amet quis ex sequi doloribus beatae ullam quasi magni quo doloremque fuga enim architecto repellendus laudantium pariatur perferendis ipsum. Labore.</p>
+              <p>{{ menuItem.description }}</p>
             </div>
             <div class="menu-value">
-              <p>R$ 10.99</p>
+              <p>R$ {{ menuItem.price }}</p>
             </div>
           </div>
         </div>
