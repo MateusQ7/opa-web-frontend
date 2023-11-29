@@ -47,7 +47,7 @@ export class MenuComponent implements OnInit{
   }
 
   async getData(){
-    // this.loading = true;
+    this.loading = true;
     try{
       const data = await firstValueFrom(this.menuService.getMenu());
       data.map((menu: Menu) => {

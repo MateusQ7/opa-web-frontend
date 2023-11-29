@@ -8,7 +8,6 @@ export interface Order{
   id:number;
   menuItem:Menu;
   customer:Customer[];
-  quantity:number;
   status:OrderStatus;
   table:Table;
   orderedTime?:string;

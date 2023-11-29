@@ -7,8 +7,13 @@ export interface BackendOrder{
   id:number;
   menuItem:Menu[];
   customer:Customer[];
-  status:OrderStatus;
   table:Table;
   orderedTime?:string;
   deliveredTime?:string;
+  status:OrderStatus
+}
+
+export interface MenuInOrder{
+  menuItem:Menu[],
+  status:OrderStatus;
 }

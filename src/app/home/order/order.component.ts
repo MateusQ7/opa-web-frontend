@@ -21,123 +21,7 @@ export class OrderComponent implements OnInit{
 
   inProgressOrderList:Order[]=[]
 
-  inProgressTables:InProgressTables[]=[
-    {
-      id:1,
-      number:25,
-      responsableWaiter:`arnaldin`,
-      orders:[
-        {
-          name:`esfera de lactos`,
-          status:2,
-          quantity:3
-        },
-        {
-          name:`esfera de presunto`,
-          status:3,
-          quantity:31
-        },
-        {
-          name:`esfera de amedoi`,
-          status:1,
-          quantity:2
-        },
-      ]
-    },
-    {
-      id:1,
-      number:12,
-      responsableWaiter:`felipe da zaga`,
-      orders:[
-        {
-          name:`esfera de lactos`,
-          status:2,
-          quantity:3
-        },
-        {
-          name:`esfera de amedoi`,
-          status:1,
-          quantity:2
-        },
-        {
-          name:`esfera de presunto`,
-          status:3,
-          quantity:31
-        },
-        {
-          name:`esfera de presunto`,
-          status:3,
-          quantity:31
-        },
-        {
-          name:`esfera de amedoi`,
-          status:1,
-          quantity:2
-        },
-        {
-          name:`esfera de presunto`,
-          status:3,
-          quantity:31
-        },
-        {
-          name:`esfera de presunto`,
-          status:3,
-          quantity:31
-        },
-        {
-          name:`esfera de amedoi`,
-          status:1,
-          quantity:2
-        },
-        {
-          name:`esfera de presunto`,
-          status:3,
-          quantity:31
-        },
-        {
-          name:`esfera de presunto`,
-          status:3,
-          quantity:31
-        },
-        {
-          name:`esfera de presunto`,
-          status:3,
-          quantity:31
-        },
-        {
-          name:`esfera de presunto`,
-          status:3,
-          quantity:31
-        },
-        {
-          name:`esfera de presunto`,
-          status:3,
-          quantity:31
-        }
-      ]
-    },
-    {
-      id:1,
-      number:40,
-      responsableWaiter:`jorge amado`,
-      orders:[
-        {
-          name:`esfera de presunto`,
-          status:3,
-          quantity:31
-        },
-        {
-          name:`esfera de amedoi`,
-          status:1,
-          quantity:2
-        },{
-          name:`esfera de lactos`,
-          status:2,
-          quantity:3
-        },
-      ]
-    },
-  ];
+  inProgressTables:InProgressTables[]=[];
 
   constructor(
     public auth:AuthService,
@@ -149,29 +33,31 @@ export class OrderComponent implements OnInit{
   }
 
   async getData(){
-    // this.loading = true;
+    this.loading = true;
     try{
       const ordersData = await firstValueFrom(this.orderService.getOrders());
-      // ordersData.map((backendOrder: BackendOrder) => {
-      //     this.inProgressOrderList.push({
-      //       checked:false,
-      //       id:backendOrder.id,
-      //       menuItem:backendOrder.menuItem,
-      //       customer:backendOrder.customer,
-      //       qt:backendOrder.qt,
-      //       un:backendOrder.un
-      //     });
-      //   })
+      ordersData.map((backendOrder: BackendOrder) => {
+          this.inProgressOrderList.push({
+            checked:false,
+            id:backendOrder.id,
+            menuItem:backendOrder.menuItem[0],
+            customer:backendOrder.customer,
+            status:backendOrder.status,
+            table:backendOrder.table,
+            deliveredTime:backendOrder.deliveredTime,
+            orderedTime:backendOrder.orderedTime
+          });
+        })
 
-      // const ordersTable = await firstValueFrom(this.orderService.getTables());
-      // ordersTable.map((inProgressTable:InProgressTables) => {
-      //     this.inProgressTables.push({
-      //       id:inProgressTable.id,
-      //       number:inProgressTable.number,
-      //       orders:inProgressTable.orders,
-      //       responsableWaiter:inProgressTable.responsableWaiter
-      //     });
-      //   })
+      const ordersTable = await firstValueFrom(this.orderService.getTables());
+      ordersTable.map((inProgressTable:InProgressTables) => {
+          this.inProgressTables.push({
+            id:inProgressTable.id,
+            number:inProgressTable.number,
+            orders:inProgressTable.orders,
+            table:inProgressTable.table
+          });
+        })
       this.loading = false;
     }catch(error: any){
       console.log(error);

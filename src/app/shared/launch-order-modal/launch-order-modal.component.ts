@@ -47,7 +47,6 @@ export class LaunchOrderModalComponent implements OnInit{
         name:'power ranger rosa'
         },
       ],
-      quantity:3,
       status:2,
       table:{
         token:`sim`,
@@ -93,7 +92,6 @@ export class LaunchOrderModalComponent implements OnInit{
         name:'power ranger rosa'
         },
       ],
-      quantity:3,
       status:1,
       table:{
         token:`sim`,
@@ -139,7 +137,6 @@ export class LaunchOrderModalComponent implements OnInit{
         name:'power ranger rosa'
         },
       ],
-      quantity:3,
       status:3,
       table:{
         token:`sim`,
@@ -247,7 +244,6 @@ export class LaunchOrderModalComponent implements OnInit{
         checked:false,
         menuItem:menuItem,
         customer:this.form.value.costumer,
-        quantity:this.form.value.qt,
         status:this.form.value.status,
         table:this.form.value.table,
       }
