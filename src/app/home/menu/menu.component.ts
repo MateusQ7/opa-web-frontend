@@ -36,7 +36,7 @@ export class MenuComponent implements OnInit{
             id:menu.id,
             name:menu.name,
             description:menu.description,
-            value:menu.value
+            price:menu.price
           });
         })
       this.loading = false;

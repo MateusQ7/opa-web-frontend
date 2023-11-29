@@ -31,7 +31,7 @@ export class LaunchOrderModalComponent implements OnInit{
         id:4,
         name:'catiaaaaaas',
         description:`aoskdoaks`,
-        value:19.99
+        price:19.99
       },
       customer:[
         {
@@ -77,7 +77,7 @@ export class LaunchOrderModalComponent implements OnInit{
         id:4,
         name:'catinhssssssssssssslas',
         description:`aoskdoaks`,
-        value:19.99
+        price:19.99
       },
       customer:[
         {
@@ -123,7 +123,7 @@ export class LaunchOrderModalComponent implements OnInit{
         id:4,
         name:'catinha de parangolas',
         description:`aoskdoaks`,
-        value:19.99
+        price:19.99
       },
       customer:[
         {
@@ -286,7 +286,7 @@ export class LaunchOrderModalComponent implements OnInit{
         id:1,
         name:'Item não encontrado no menu',
         description:'Item não encontrado no menu',
-        value:0.00
+        price:0.00
       }
     }
   }

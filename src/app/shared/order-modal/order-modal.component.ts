@@ -43,7 +43,7 @@ export class OrderModalComponent {
           id:4,
           name:'catiaaaaaas',
           description:`aoskdoaks`,
-          value:19.99
+          price:19.99
           }
         ],
         customer:[
@@ -71,7 +71,7 @@ export class OrderModalComponent {
           id:4,
           name:'catinhssssssssssssslas',
           description:`aoskdoaks`,
-          value:19.99
+          price:19.99
           }
         ],
         customer:[
