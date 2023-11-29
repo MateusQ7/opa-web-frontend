@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { OrderModalComponent } from './order-modal.component';
+import { LoadingModule } from '../loading/loading.module';
 
 
 
@@ -12,7 +13,8 @@ import { OrderModalComponent } from './order-modal.component';
     OrderModalComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    LoadingModule
   ]
 })
 export class OrderModalModule { }

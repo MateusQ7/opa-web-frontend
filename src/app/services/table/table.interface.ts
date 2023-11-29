@@ -1,7 +1,9 @@
+import { Customer } from "../customer/customer.interface";
+
 export interface Table{
   token:string;
   id:number;
   openTime:string;
-  clients:string[];
+  customer:Customer[];
   responsableWaiter:string;
 }

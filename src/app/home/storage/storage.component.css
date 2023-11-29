@@ -3,6 +3,18 @@
   height: 100%;
 }
 
+.loading-modal{
+  width: 100%;
+  height: 85%;
+  position: absolute;
+  background-color: red;
+}
+
+.loading-modal opa-loading{
+  width: 100%;
+  height: 100%;
+}
+
 .yellow-line {
   width: 100%;
   height: 10%;

@@ -78,6 +78,7 @@ export class IngredientPopupComponent {
     if(this.form.valid){
       const ingredientToList:Ingredient={
         checked:false,
+        id:0,
         name:this.form.value.name,
         qt:this.form.value.qt,
         un:''

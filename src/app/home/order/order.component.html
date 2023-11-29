@@ -1,9 +1,10 @@
 <div class="launch-order-modal" *ngIf="this.launchOrderModal">
-  <opa-launch-order-modal (emitOrders)="recieveOrders($event);" (close)="this.showLaunchOrderModal()"></opa-launch-order-modal>
+  <opa-launch-order-modal (emitOrders)="recieveOrdersFromModal($event);" (close)="this.showLaunchOrderModal()"></opa-launch-order-modal>
 </div>
 <div class="order-modal" *ngIf="this.orderModal">
   <opa-order-modal (close)="this.showOrderModal()" ></opa-order-modal>
 </div>
+<opa-loading *ngIf="this.loading"></opa-loading>
 <div class="component">
   <div class="yellow-line">
     <opa-yline routeNameToBeUsed="Pedidos" iconPath="/assets/images/order.svg"></opa-yline>
@@ -56,7 +57,7 @@
               </div>
               <div class="order-clients">
                 <p class="order-clients-text">clientes:</p>
-                <p class="order-clients-names">{{ order.clients }}</p>
+                <p class="order-clients-names">{{ order.customer.name }}</p>
               </div>
               <div class="order-footer">
                 <div class="order-ordered-time">
@@ -83,7 +84,7 @@
           </p>
         </div>
         <div class="container-content-right-loop-space">
-          <div #loopCell class="loop-cell" *ngFor="let table of tablesInProgress">
+          <div #loopCell class="loop-cell" *ngFor="let table of inProgressTables">
             <div class="loop-cell-info-bar">
               <div class="table-info-table-name" (click)="expandOrder(loopCell,deepInfo)">
                 <p> MESA {{ table.number }}</p>

@@ -8,6 +8,8 @@ import { TableDetailed } from './tableDetailed.interface';
 })
 export class OrderModalComponent {
 
+  loading = false;
+
   @Output()
   close:EventEmitter<Boolean> = new EventEmitter<Boolean>
 
@@ -18,11 +20,20 @@ export class OrderModalComponent {
       id:25,
       openTime:`19:25`,
       responsableWaiter:'jorgin amado',
-      clients:[
-        `ricardo`,
-        `moreno`,
-        `cabeca`
-      ]
+      customer:[
+        {
+        id:1,
+        name:'renatin'
+        },
+        {
+        id:2,
+        name:'oclin'
+        },
+        {
+        id:3,
+        name:'power ranger rosa'
+        },
+      ],
     },
     orders:[
       {
@@ -35,7 +46,7 @@ export class OrderModalComponent {
           value:19.99
           }
         ],
-        clients:[
+        customer:[
           {
           id:1,
           name:'renatin'
@@ -63,7 +74,7 @@ export class OrderModalComponent {
           value:19.99
           }
         ],
-        clients:[
+        customer:[
           {
           id:1,
           name:'renatin'
@@ -81,7 +92,6 @@ export class OrderModalComponent {
       }
     ]
   }
-
 
   closeModal(){
     this.close.emit(false);

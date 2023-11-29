@@ -1,4 +1,7 @@
 <div class="modal">
+  <div class="loading-modal" *ngIf="this.loading">
+    <opa-loading></opa-loading>
+  </div>
   <div class="main-container">
     <div class="main-container-header">
       <p>Lançar pedidos </p>
@@ -29,8 +32,8 @@
               <p>Clientes:</p>
               <select name="" id="" formControlName="client" >
                 <option selected disabled > --Selecione o cliente --</option>
-                <option *ngFor="let client of this.selectedClients">
-                  {{ client }}
+                <option *ngFor="let customer of this.selectedCustomer">
+                  {{ customer.name }}
                 </option>
               </select>
             </div>
@@ -113,7 +116,7 @@
                 <p>{{ order.table.id }}</p>
               </div>
               <div class="order-cell-clients-text">
-                <p>{{ order.clients.length }}</p>
+                <p>{{ order.customer.length }}</p>
               </div>
               <div class="order-cell-value-text">
                 <p>{{ order.menuItem.value * order.quantity}}</p>

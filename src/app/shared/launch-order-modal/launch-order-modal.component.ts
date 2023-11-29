@@ -1,24 +1,27 @@
-import { Component,Output,EventEmitter } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { Component,Output,EventEmitter, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Table } from 'src/app/services/table/table.interface';
 import { TableService } from 'src/app/services/table/table.service';
 import { WaiterService } from 'src/app/services/waiter/waiter.service';
 import { MenuService } from 'src/app/services/menu/menu.service';
 import { Menu } from 'src/app/services/menu/menu.interface';
 import { Order } from 'src/app/services/order/order.interface';
+import { Customer } from 'src/app/services/customer/customer.interface';
 
 @Component({
   selector: 'opa-launch-order-modal',
   templateUrl: './launch-order-modal.component.html',
   styleUrls: ['./launch-order-modal.component.css']
 })
-export class LaunchOrderModalComponent {
+export class LaunchOrderModalComponent implements OnInit{
 
   @Output()
   emitOrders:EventEmitter<Order[]> = new EventEmitter<Order[]>
 
   @Output()
   close: EventEmitter<boolean> = new EventEmitter<boolean>
+
+  loading = false;
 
   orderList:Order[]=[
     {
@@ -30,7 +33,20 @@ export class LaunchOrderModalComponent {
         description:`aoskdoaks`,
         value:19.99
       },
-      clients:['renatin','oclin','power ranger rosa'],
+      customer:[
+        {
+        id:1,
+        name:'renatin'
+        },
+        {
+        id:2,
+        name:'oclin'
+        },
+        {
+        id:3,
+        name:'power ranger rosa'
+        },
+      ],
       quantity:3,
       status:2,
       table:{
@@ -38,11 +54,20 @@ export class LaunchOrderModalComponent {
         id:25,
         openTime:`19:25`,
         responsableWaiter:'jorgin amado',
-        clients:[
-          `ricardo`,
-          `moreno`,
-          `cabeca`
-        ]
+        customer:[
+          {
+          id:1,
+          name:'renatin'
+          },
+          {
+          id:2,
+          name:'oclin'
+          },
+          {
+          id:3,
+          name:'power ranger rosa'
+          },
+        ],
       }
     },
     {
@@ -54,7 +79,20 @@ export class LaunchOrderModalComponent {
         description:`aoskdoaks`,
         value:19.99
       },
-      clients:['renatin','oclin','power ranger rosa'],
+      customer:[
+        {
+        id:1,
+        name:'renatin'
+        },
+        {
+        id:2,
+        name:'oclin'
+        },
+        {
+        id:3,
+        name:'power ranger rosa'
+        },
+      ],
       quantity:3,
       status:1,
       table:{
@@ -62,11 +100,20 @@ export class LaunchOrderModalComponent {
         id:30,
         openTime:`19:25`,
         responsableWaiter:'hernandes',
-        clients:[
-          `carlos`,
-          `adriano`,
-          `cabeca`
-        ]
+        customer:[
+          {
+          id:1,
+          name:'renatin'
+          },
+          {
+          id:2,
+          name:'oclin'
+          },
+          {
+          id:3,
+          name:'power ranger rosa'
+          },
+        ],
       }
     },
     {
@@ -78,7 +125,20 @@ export class LaunchOrderModalComponent {
         description:`aoskdoaks`,
         value:19.99
       },
-      clients:['renatin','oclin','power ranger rosa'],
+      customer:[
+        {
+        id:1,
+        name:'renatin'
+        },
+        {
+        id:2,
+        name:'oclin'
+        },
+        {
+        id:3,
+        name:'power ranger rosa'
+        },
+      ],
       quantity:3,
       status:3,
       table:{
@@ -86,18 +146,27 @@ export class LaunchOrderModalComponent {
         id:40,
         openTime:`19:25`,
         responsableWaiter:'pedro cailow',
-        clients:[
-          `hernandes`,
-          `jorge ombrinho`,
-          `cabeca`
-        ]
+        customer:[
+          {
+          id:1,
+          name:'renatin'
+          },
+          {
+          id:2,
+          name:'oclin'
+          },
+          {
+          id:3,
+          name:'power ranger rosa'
+          },
+        ],
         }
     },
   ]
 
   selectedTable!:Table;
 
-  selectedClients:string[]=[];
+  selectedCustomer:Customer[]=[];
 
   form!:FormGroup
 
@@ -132,6 +201,14 @@ export class LaunchOrderModalComponent {
         Validators.required
       ]
     })
+  }
+
+  ngOnInit(): void {
+    this.getData()
+  }
+
+  getData(){
+
   }
 
   allChecked(){
@@ -169,7 +246,7 @@ export class LaunchOrderModalComponent {
         id:90000,
         checked:false,
         menuItem:menuItem,
-        clients:this.form.value.clients,
+        customer:this.form.value.costumer,
         quantity:this.form.value.qt,
         status:this.form.value.status,
         table:this.form.value.table,
@@ -193,7 +270,7 @@ export class LaunchOrderModalComponent {
     })
     if(table){
       this.selectedTable = table;
-      this.selectedClients = this.selectedTable.clients
+      this.selectedCustomer = this.selectedTable.customer
     }
   }
 

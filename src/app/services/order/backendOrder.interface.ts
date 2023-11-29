@@ -1,14 +1,12 @@
 import { OrderStatus } from "src/app/home/order/inProgressOrder.interface";
-import { Menu } from "src/app/services/menu/menu.interface";
-import { Table } from "../table/table.interface";
 import { Customer } from "../customer/customer.interface";
+import { Menu } from "../menu/menu.interface";
+import { Table } from "../table/table.interface";
 
-export interface Order{
-  checked:boolean;
+export interface BackendOrder{
   id:number;
-  menuItem:Menu;
+  menuItem:Menu[];
   customer:Customer[];
-  quantity:number;
   status:OrderStatus;
   table:Table;
   orderedTime?:string;

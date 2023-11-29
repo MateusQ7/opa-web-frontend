@@ -1,4 +1,5 @@
 import { OrderStatus } from "src/app/home/order/inProgressOrder.interface";
+import { Customer } from "src/app/services/customer/customer.interface";
 import { Menu } from "src/app/services/menu/menu.interface";
 import { Table } from "src/app/services/table/table.interface";
 
@@ -10,13 +11,9 @@ export interface TableDetailed{
 export interface OrderToTableDetailed{
   id:number;
   menuItem:Menu[];
-  clients:Client[];
+  customer:Customer[];
   status:OrderStatus;
   orderedTime?:string;
   deliveredTime?:string;
 }
 
-export interface Client{
-  id:number;
-  name:string;
-}

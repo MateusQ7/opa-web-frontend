@@ -12,33 +12,60 @@ export class TableService {
       id:25,
       openTime:`19:25`,
       responsableWaiter:'jorgin amado',
-      clients:[
-        `ricardo`,
-        `moreno`,
-        `cabeca`
-      ]
+      customer:[
+        {
+        id:1,
+        name:'renatin'
+        },
+        {
+        id:2,
+        name:'oclin'
+        },
+        {
+        id:3,
+        name:'power ranger rosa'
+        },
+      ],
     },
     {
       token:`sim`,
       id:30,
       openTime:`19:25`,
       responsableWaiter:'hernandes',
-      clients:[
-        `carlos`,
-        `adriano`,
-        `cabeca`
-      ]
+      customer:[
+        {
+        id:1,
+        name:'renatin'
+        },
+        {
+        id:2,
+        name:'oclin'
+        },
+        {
+        id:3,
+        name:'power ranger rosa'
+        },
+      ],
     },
     {
       token:`sim`,
       id:40,
       openTime:`19:25`,
       responsableWaiter:'pedro cailow',
-      clients:[
-        `hernandes`,
-        `jorge ombrinho`,
-        `cabeca`
-      ]
+      customer:[
+        {
+        id:1,
+        name:'renatin'
+        },
+        {
+        id:2,
+        name:'oclin'
+        },
+        {
+        id:3,
+        name:'power ranger rosa'
+        },
+      ],
     },
   ]
 

@@ -5,6 +5,7 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 import { StockDto } from '../../home/dtos/Stock.dtos';
 import { Observable } from 'rxjs';
 import { Ingredient } from 'src/app/shared/ingredient-popup/ingredient.interface';
+import { StorageDTO } from './storageDTO.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -17,8 +18,16 @@ export class StorageService {
     private authService:AuthService
   ) { }
 
+  getStorage():Observable<StorageDTO[]>{
+    return this.httpClient.get<StorageDTO[]>(`${this.configService.apiUrl}/stock`,
+    {
+      headers:{
+        authorization:`Bearer ${this.authService.getToken()}`
+      }
+    })
+  };
+
   submitStorage(ingredients:Ingredient[]){
-    // caue: não sei qual é o endpoint do back,sujeito a mudancas,APENAS ESBOCO e tem 2 estoque service ai,um de storage e oto de stock
     return this.httpClient.post(`${this.configService.apiUrl}/stock`,ingredients,
       {
         headers:{

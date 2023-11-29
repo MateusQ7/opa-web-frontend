@@ -1,5 +1,6 @@
 export interface Ingredient{
-  checked:boolean
+  checked:boolean;
+  id:number;
   name:string
   un:string
   qt:number

@@ -1,9 +1,11 @@
+import { Customer } from "src/app/services/customer/customer.interface";
+
 export interface InProgressOrder{
   id:number;
   name:string;
   status:OrderStatus;
   tableID:number;
-  clients:string[];
+  customer:Customer[];
   orderedTime:string;
   responsableWaiter:string;
   quantity:number;

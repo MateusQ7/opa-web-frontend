@@ -1,4 +1,7 @@
 <div class="modal">
+  <div class="loading-modal" *ngIf="this.loading">
+    <opa-loading></opa-loading>
+  </div>
   <div class="main-container">
     <div class="main-container-header">
       <p class="header-title">Histórico da mesa {{ this.tableDetailed.table.id }} </p>

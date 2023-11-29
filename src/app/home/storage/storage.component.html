@@ -4,6 +4,9 @@
   (emitIngredient)="this.recieveIngredients($event)"
   ></opa-ingredient-popup>
 </div>
+<div class="loading-modal" *ngIf="this.loading">
+  <opa-loading></opa-loading>
+</div>
 <div class="component">
   <div class="yellow-line">
     <opa-yline routeNameToBeUsed="Estoque" iconPath="/assets/images/storage.svg"></opa-yline>
