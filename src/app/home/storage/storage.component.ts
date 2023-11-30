@@ -15,7 +15,7 @@ export class StorageComponent implements OnInit{
   popUp = false;
 
   loading= false;
-  //conferir se o storage realmente esta recebendo a lista de ingredientes do ingredient-popup
+
   ingredientList:Ingredient[]=[];
 
   constructor(

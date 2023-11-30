@@ -38,6 +38,25 @@
   align-items: center;
 }
 
+.button-header button{
+  width: 15%;
+  height: 90%;
+  background-color: #ffcf24;
+  border: none;
+  border-radius: 15px;
+  color: #956004;
+  font-size: 2vh;
+  font-family: Rubik;
+  font-weight: 500;
+}
+
+.button-header button:hover {
+  border: 1px solid #956004;
+  font-size: 2.1vh;
+  transition: 0.1s;
+  cursor: pointer;
+}
+
 .menu-loop-space{
   width: 90%;
   height: 90%;

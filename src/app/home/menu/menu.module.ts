@@ -2,15 +2,14 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MenuComponent } from './menu.component';
 import { YellowlineModule } from 'src/app/shared/yellowline/yellowline.module';
-import { CreateUpdateProductComponent } from './create-update-stock/create-update-stock.component';
 import { LoadingModule } from 'src/app/shared/loading/loading.module';
+import { CreateProductModalModule } from 'src/app/shared/create-product-modal/create-product-modal.module';
 
 
 
 @NgModule({
   declarations: [
     MenuComponent,
-    CreateUpdateProductComponent,
   ],
   exports: [
     MenuComponent
@@ -18,7 +17,8 @@ import { LoadingModule } from 'src/app/shared/loading/loading.module';
   imports: [
     CommonModule,
     YellowlineModule,
-    LoadingModule
+    LoadingModule,
+    CreateProductModalModule
   ]
 })
 export class MenuModule { }

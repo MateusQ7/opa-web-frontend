@@ -1,18 +1,19 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { ListItem } from 'ng-multiselect-dropdown/multiselect.model';
-import { CreateProductDto, ProductItemsDto } from '../../dtos/CreateProductDto';
-import { ProductService } from '../../../services/product/product.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { StorageService } from 'src/app/services/storage/storage.service';
+import { ProductService } from 'src/app/services/product/product.service';
+import { CreateProductDto } from 'src/app/home/dtos/CreateProductDto';
 
 @Component({
-  selector: 'app-create-update-stock-item',
-  templateUrl: './create-update-stock.component.html',
-  styleUrls: ['./create-update-stock.component.css']
+  selector: 'opa-create-product-modal',
+  templateUrl: './create-product-modal.component.html',
+  styleUrls: ['./create-product-modal.component.css']
 })
-export class CreateUpdateProductComponent implements OnInit {
+export class CreateProductModalComponent {
+
 
   @Input() showModal: boolean = false;
   @Output() openModal = new EventEmitter<void>();
@@ -23,7 +24,7 @@ export class CreateUpdateProductComponent implements OnInit {
     'KG', 'UN', 'G'
   ]
 
-  public form!: FormGroup;
+  public modalForm!: FormGroup;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -34,17 +35,19 @@ export class CreateUpdateProductComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.form = this.formBuilder.group({
-      productName: new FormControl({ disabled: false, value: '' }),
-      productPrice: new FormControl({ disabled: false, value: 0.00 }),
-      stockProductsForm: this.formBuilder.array([]),
+    this.modalForm = this.formBuilder.group({
+      productName:['',
+        Validators.required
+      ],
+      productPrice:[0,
+      Validators.required
+    ],
+      stockProductsForm: this.formBuilder.array([ ]),
     });
-
 
     this.storageService.searchStockItem("").subscribe(stockDtos => {
       this.stockProducts = stockDtos
     });
-
 
     // this.form.get('stockProductName')?.valueChanges.subscribe(value => {
     // this.stockService.searchStockItem(value).subscribe(stockDtos => {
@@ -54,7 +57,7 @@ export class CreateUpdateProductComponent implements OnInit {
   }
 
   get stockProductsForm() {
-    return this.form.controls["stockProductsForm"] as FormArray;
+    return this.modalForm.controls["stockProductsForm"] as FormArray;
   }
 
   private newItemForm(item: any): FormGroup {
@@ -65,6 +68,7 @@ export class CreateUpdateProductComponent implements OnInit {
       isPortion: new FormControl({ disabled: false, value: false }),
       quantity: new FormControl({ disabled: false, value: item.quantity })
     })
+
     newForm.get("isPortion")?.valueChanges.subscribe((isPortion) => {
       if (isPortion) {
         newForm.get("measurementUnit")?.disable()
@@ -101,10 +105,10 @@ export class CreateUpdateProductComponent implements OnInit {
   }
 
   public saveProduct() {
-    console.log(this.form.getRawValue());
+    console.log(this.modalForm.value);
     const product = {
-      productName: this.form.get("productName")?.value,
-      productPrice: this.form.get("productPrice")?.value,
+      productName: this.modalForm.get("productName")?.value,
+      productPrice: this.modalForm.get("productPrice")?.value,
       productItems: this.stockProductsForm.getRawValue(),
     } as CreateProductDto
 

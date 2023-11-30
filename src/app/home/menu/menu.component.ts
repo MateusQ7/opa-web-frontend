@@ -16,26 +16,7 @@ export class MenuComponent implements OnInit{
 
   loading = false;
 
-  menuList:Menu[]=[
-    // {
-    //   id: 2,
-    //   name: "Queijinho",
-    //   price: 10,
-    //   description: "Caue lindim papai"
-    // },
-    // {
-    //   id: 3,
-    //   name: "Presuntinho",
-    //   price: 10,
-    //   description: "Caue lindim papai"
-    // },
-    // {
-    //   id: 4,
-    //   name: "Fava",
-    //   price: 20,
-    //   description: "Caue lindim papai"
-    // }
-  ]
+  menuList:Menu[]=[]
 
   constructor(
     public auth:AuthService,
@@ -63,6 +44,7 @@ export class MenuComponent implements OnInit{
       console.log(error);
     }
   }
+
   openModal() {
     this.showModal = true;
   }
