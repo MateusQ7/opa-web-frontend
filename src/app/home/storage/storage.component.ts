@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 import { StorageService } from 'src/app/services/storage/storage.service';
 import { StorageDTO } from 'src/app/services/storage/storageDTO.interface';
+import { StorageToBack } from 'src/app/services/storage/storageToBack.interface';
 import { Ingredient } from 'src/app/shared/ingredient-popup/ingredient.interface';
 
 @Component({
@@ -51,7 +52,7 @@ export class StorageComponent implements OnInit{
 
   async recieveIngredients(ingredients:Ingredient[]){
     try{
-      let ingredientsToBack = [];
+      let ingredientsToBack:StorageToBack[] = [];
       ingredients.map((e:Ingredient)=>{
         ingredientsToBack.push(
           {
@@ -61,7 +62,7 @@ export class StorageComponent implements OnInit{
           }
         )
       });
-      this.storageService.submitStorage(ingredients).subscribe(e=>{
+      this.storageService.submitStorage(ingredientsToBack).subscribe(e=>{
         console.log(e)
         ingredients.map((ingredient:Ingredient)=>{
           this.ingredientList.push(ingredient);

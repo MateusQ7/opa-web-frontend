@@ -6,6 +6,7 @@ import { StockDto } from '../../home/dtos/Stock.dtos';
 import { Observable } from 'rxjs';
 import { Ingredient } from 'src/app/shared/ingredient-popup/ingredient.interface';
 import { StorageDTO } from './storageDTO.interface';
+import { StorageToBack } from './storageToBack.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +28,7 @@ export class StorageService {
     })
   };
 
-  submitStorage(ingredients:Ingredient[]){
+  submitStorage(ingredients:StorageToBack[]){
     return this.httpClient.post(`${this.configService.apiUrl}/stock`,ingredients,
       {
         headers:{
