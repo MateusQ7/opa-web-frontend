@@ -40,7 +40,7 @@ export class OrderComponent implements OnInit{
           this.inProgressOrderList.push({
             checked:false,
             id:backendOrder.id,
-            menuItem:backendOrder.menuItem[0],
+            menuItem:backendOrder.menuItem,
             customer:backendOrder.customer,
             status:backendOrder.status,
             table:backendOrder.table,
@@ -53,7 +53,6 @@ export class OrderComponent implements OnInit{
       ordersTable.map((inProgressTable:InProgressTables) => {
           this.inProgressTables.push({
             id:inProgressTable.id,
-            number:inProgressTable.number,
             orders:inProgressTable.orders,
             table:inProgressTable.table
           });

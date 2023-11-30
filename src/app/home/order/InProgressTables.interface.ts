@@ -3,12 +3,12 @@ import { OrderStatus } from "./inProgressOrder.interface";
 
 export interface InProgressTables{
   id:number;
-  number:number;
   orders:SimplifiedOrders[]
   table:Table;
 }
 
 export interface SimplifiedOrders{
+  id:number;
   name:string;
   status:OrderStatus;
   quantity:number;

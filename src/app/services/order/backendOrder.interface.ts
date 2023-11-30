@@ -5,15 +5,11 @@ import { Table } from "../table/table.interface";
 
 export interface BackendOrder{
   id:number;
-  menuItem:Menu[];
+  menuItem:Menu;
   customer:Customer[];
   table:Table;
+  qt:number;
+  status:OrderStatus
   orderedTime?:string;
   deliveredTime?:string;
-  status:OrderStatus
-}
-
-export interface MenuInOrder{
-  menuItem:Menu[],
-  status:OrderStatus;
 }
