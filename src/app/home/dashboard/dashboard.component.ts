@@ -10,6 +10,10 @@ export class DashboardComponent {
 
   string = 'Dashboard';
 
+  billing:string = `18.309,35`
+
+  ticket:string =`1.309,42`
+
   constructor(
     public auth:AuthService
   ){}

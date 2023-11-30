@@ -32,6 +32,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
 }
 
 .opa-button{
@@ -40,11 +41,13 @@
   background-color: transparent;
   border: none;
   cursor: pointer;
+  border-radius: 10px;
 }
 
 .opa-button:hover {
   height: 100%;
   width: 100%;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
 .logo{

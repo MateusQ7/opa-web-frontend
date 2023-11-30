@@ -5,7 +5,7 @@ export interface InProgressOrder{
   name:string;
   status:OrderStatus;
   tableID:number;
-  customer:Customer[];
+  customers:Customer[];
   orderedTime:string;
   responsableWaiter:string;
   quantity:number;

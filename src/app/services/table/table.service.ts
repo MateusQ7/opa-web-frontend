@@ -1,5 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Table } from './table.interface';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { InProgressTables } from 'src/app/home/order/InProgressTables.interface';
+import { ConfigService } from '../config/config.service';
+import { AuthService } from '../auth/auth.service';
+import { TableDetailed } from 'src/app/shared/order-modal/tableDetailed.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -7,67 +13,28 @@ import { Table } from './table.interface';
 export class TableService {
 
   tables:Table[]=[
-    {
-      token:`sim`,
-      id:25,
-      openTime:`19:25`,
-      responsableWaiter:'jorgin amado',
-      customer:[
-        {
-        id:1,
-        name:'renatin'
-        },
-        {
-        id:2,
-        name:'oclin'
-        },
-        {
-        id:3,
-        name:'power ranger rosa'
-        },
-      ],
-    },
-    {
-      token:`sim`,
-      id:30,
-      openTime:`19:25`,
-      responsableWaiter:'hernandes',
-      customer:[
-        {
-        id:1,
-        name:'renatin'
-        },
-        {
-        id:2,
-        name:'oclin'
-        },
-        {
-        id:3,
-        name:'power ranger rosa'
-        },
-      ],
-    },
-    {
-      token:`sim`,
-      id:40,
-      openTime:`19:25`,
-      responsableWaiter:'pedro cailow',
-      customer:[
-        {
-        id:1,
-        name:'renatin'
-        },
-        {
-        id:2,
-        name:'oclin'
-        },
-        {
-        id:3,
-        name:'power ranger rosa'
-        },
-      ],
-    },
+
   ]
 
-  constructor() { }
+  constructor(
+    private httpClient:HttpClient,
+    private configService:ConfigService,
+    private authService:AuthService
+  ) { }
+
+  getTables():Observable<InProgressTables[]>{
+    return this.httpClient.get<InProgressTables[]>(`${this.configService.apiUrl}/tables`,{
+      headers:{
+        authorization:`Bearer ${this.authService.getToken()}`
+      }
+    });
+  }
+
+  getSingleTable(id:number):Observable<TableDetailed>{
+    return this.httpClient.get<TableDetailed>(`${this.configService.apiUrl}/table?id=${id}`,{
+      headers:{
+        authorization:`Bearer ${this.authService.getToken()}`
+      }
+    })
+  }
 }

@@ -10,8 +10,8 @@ export interface TableDetailed{
 
 export interface OrderToTableDetailed{
   id:number;
-  menuItem:Menu[];
-  customer:Customer[];
+  menuItem:Menu;
+  customers:Customer[];
   status:OrderStatus;
   orderedTime?:string;
   deliveredTime?:string;

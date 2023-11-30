@@ -24,141 +24,141 @@ export class LaunchOrderModalComponent implements OnInit{
   loading = false;
 
   orderList:Order[]=[
-    {
-      id:3,
-      checked:false,
-      menuItem:{
-        id:4,
-        name:'catiaaaaaas',
-        description:`aoskdoaks`,
-        price:19.99
-      },
-      customer:[
-        {
-        id:1,
-        name:'renatin'
-        },
-        {
-        id:2,
-        name:'oclin'
-        },
-        {
-        id:3,
-        name:'power ranger rosa'
-        },
-      ],
-      status:2,
-      table:{
-        token:`sim`,
-        id:25,
-        openTime:`19:25`,
-        responsableWaiter:'jorgin amado',
-        customer:[
-          {
-          id:1,
-          name:'renatin'
-          },
-          {
-          id:2,
-          name:'oclin'
-          },
-          {
-          id:3,
-          name:'power ranger rosa'
-          },
-        ],
-      }
-    },
-    {
-      id:1,
-      checked:false,
-      menuItem:{
-        id:4,
-        name:'catinhssssssssssssslas',
-        description:`aoskdoaks`,
-        price:19.99
-      },
-      customer:[
-        {
-        id:1,
-        name:'renatin'
-        },
-        {
-        id:2,
-        name:'oclin'
-        },
-        {
-        id:3,
-        name:'power ranger rosa'
-        },
-      ],
-      status:1,
-      table:{
-        token:`sim`,
-        id:30,
-        openTime:`19:25`,
-        responsableWaiter:'hernandes',
-        customer:[
-          {
-          id:1,
-          name:'renatin'
-          },
-          {
-          id:2,
-          name:'oclin'
-          },
-          {
-          id:3,
-          name:'power ranger rosa'
-          },
-        ],
-      }
-    },
-    {
-      id:2,
-      checked:false,
-      menuItem:{
-        id:4,
-        name:'catinha de parangolas',
-        description:`aoskdoaks`,
-        price:19.99
-      },
-      customer:[
-        {
-        id:1,
-        name:'renatin'
-        },
-        {
-        id:2,
-        name:'oclin'
-        },
-        {
-        id:3,
-        name:'power ranger rosa'
-        },
-      ],
-      status:3,
-      table:{
-        token:`sim`,
-        id:40,
-        openTime:`19:25`,
-        responsableWaiter:'pedro cailow',
-        customer:[
-          {
-          id:1,
-          name:'renatin'
-          },
-          {
-          id:2,
-          name:'oclin'
-          },
-          {
-          id:3,
-          name:'power ranger rosa'
-          },
-        ],
-        }
-    },
+    // {
+    //   id:3,
+    //   checked:false,
+    //   menuItem:{
+    //     id:4,
+    //     name:'catiaaaaaas',
+    //     description:`aoskdoaks`,
+    //     price:19.99
+    //   },
+    //   customer:[
+    //     {
+    //     id:1,
+    //     name:'renatin'
+    //     },
+    //     {
+    //     id:2,
+    //     name:'oclin'
+    //     },
+    //     {
+    //     id:3,
+    //     name:'power ranger rosa'
+    //     },
+    //   ],
+    //   status:2,
+    //   table:{
+    //     token:`sim`,
+    //     id:25,
+    //     openTime:`19:25`,
+    //     responsableWaiter:'jorgin amado',
+    //     customer:[
+    //       {
+    //       id:1,
+    //       name:'renatin'
+    //       },
+    //       {
+    //       id:2,
+    //       name:'oclin'
+    //       },
+    //       {
+    //       id:3,
+    //       name:'power ranger rosa'
+    //       },
+    //     ],
+    //   }
+    // },
+    // {
+    //   id:1,
+    //   checked:false,
+    //   menuItem:{
+    //     id:4,
+    //     name:'catinhssssssssssssslas',
+    //     description:`aoskdoaks`,
+    //     price:19.99
+    //   },
+    //   customer:[
+    //     {
+    //     id:1,
+    //     name:'renatin'
+    //     },
+    //     {
+    //     id:2,
+    //     name:'oclin'
+    //     },
+    //     {
+    //     id:3,
+    //     name:'power ranger rosa'
+    //     },
+    //   ],
+    //   status:1,
+    //   table:{
+    //     token:`sim`,
+    //     id:30,
+    //     openTime:`19:25`,
+    //     responsableWaiter:'hernandes',
+    //     customer:[
+    //       {
+    //       id:1,
+    //       name:'renatin'
+    //       },
+    //       {
+    //       id:2,
+    //       name:'oclin'
+    //       },
+    //       {
+    //       id:3,
+    //       name:'power ranger rosa'
+    //       },
+    //     ],
+    //   }
+    // },
+    // {
+    //   id:2,
+    //   checked:false,
+    //   menuItem:{
+    //     id:4,
+    //     name:'catinha de parangolas',
+    //     description:`aoskdoaks`,
+    //     price:19.99
+    //   },
+    //   customer:[
+    //     {
+    //     id:1,
+    //     name:'renatin'
+    //     },
+    //     {
+    //     id:2,
+    //     name:'oclin'
+    //     },
+    //     {
+    //     id:3,
+    //     name:'power ranger rosa'
+    //     },
+    //   ],
+    //   status:3,
+    //   table:{
+    //     token:`sim`,
+    //     id:40,
+    //     openTime:`19:25`,
+    //     responsableWaiter:'pedro cailow',
+    //     customer:[
+    //       {
+    //       id:1,
+    //       name:'renatin'
+    //       },
+    //       {
+    //       id:2,
+    //       name:'oclin'
+    //       },
+    //       {
+    //       id:3,
+    //       name:'power ranger rosa'
+    //       },
+    //     ],
+    //     }
+    // },
   ]
 
   selectedTable!:Table;
@@ -243,7 +243,7 @@ export class LaunchOrderModalComponent implements OnInit{
         id:90000,
         checked:false,
         menuItem:menuItem,
-        customer:this.form.value.costumer,
+        customers:this.form.value.costumers,
         status:this.form.value.status,
         table:this.form.value.table,
       }
@@ -266,7 +266,7 @@ export class LaunchOrderModalComponent implements OnInit{
     })
     if(table){
       this.selectedTable = table;
-      this.selectedCustomer = this.selectedTable.customer
+      this.selectedCustomer = this.selectedTable.customers
     }
   }
 

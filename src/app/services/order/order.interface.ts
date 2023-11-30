@@ -7,7 +7,7 @@ export interface Order{
   checked:boolean;
   id:number;
   menuItem:Menu;
-  customer:Customer[];
+  customers:Customer[];
   status:OrderStatus;
   table:Table;
   orderedTime?:string;

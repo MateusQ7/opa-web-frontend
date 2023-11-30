@@ -5,6 +5,7 @@ import { OrderService } from 'src/app/services/order/order.service';
 import { Order } from 'src/app/services/order/order.interface';
 import { firstValueFrom } from 'rxjs'
 import { BackendOrder } from 'src/app/services/order/backendOrder.interface';
+import { TableService } from 'src/app/services/table/table.service';
 
 @Component({
   selector: 'app-order',
@@ -25,7 +26,8 @@ export class OrderComponent implements OnInit{
 
   constructor(
     public auth:AuthService,
-    private orderService:OrderService
+    private orderService:OrderService,
+    private tableService:TableService
   ){}
 
   async ngOnInit(){
@@ -41,7 +43,7 @@ export class OrderComponent implements OnInit{
             checked:false,
             id:backendOrder.id,
             menuItem:backendOrder.menuItem,
-            customer:backendOrder.customer,
+            customers:backendOrder.customers,
             status:backendOrder.status,
             table:backendOrder.table,
             deliveredTime:backendOrder.deliveredTime,
@@ -49,12 +51,13 @@ export class OrderComponent implements OnInit{
           });
         })
 
-      const ordersTable = await firstValueFrom(this.orderService.getTables());
+      const ordersTable = await firstValueFrom(this.tableService.getTables());
       ordersTable.map((inProgressTable:InProgressTables) => {
           this.inProgressTables.push({
             id:inProgressTable.id,
             orders:inProgressTable.orders,
-            table:inProgressTable.table
+            table:inProgressTable.table,
+            orderQt:inProgressTable.orderQt
           });
         })
       this.loading = false;
@@ -66,11 +69,9 @@ export class OrderComponent implements OnInit{
     if(loopCell.style.minHeight === '7vh' || loopCell.style.minHeight === ""){
       loopCell.style.minHeight = '22vh'
       deepInfo.style.display = 'flex'
-      console.log('if')
     }
     else{
       loopCell.style.minHeight = '7vh'
-      console.log('else')
       deepInfo.style.display = 'none'
     }
   }

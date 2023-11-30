@@ -6,7 +6,7 @@ import { Table } from "../table/table.interface";
 export interface BackendOrder{
   id:number;
   menuItem:Menu;
-  customer:Customer[];
+  customers:Customer[];
   table:Table;
   qt:number;
   status:OrderStatus
