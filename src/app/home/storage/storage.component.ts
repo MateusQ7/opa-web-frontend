@@ -49,10 +49,28 @@ export class StorageComponent implements OnInit{
     this.popUp = !this.popUp
   };
 
-  recieveIngredients(ingredients:Ingredient[]){
-    // this.storageService.submitStorage()
-    ingredients.map((e:Ingredient)=>{
-      this.ingredientList.push(e);
-    })
+  async recieveIngredients(ingredients:Ingredient[]){
+    try{
+      let ingredientsToBack = [];
+      ingredients.map((e:Ingredient)=>{
+        ingredientsToBack.push(
+          {
+            productDescription:e.name,
+            stockQuantity:e.qt,
+            measurementUnit:e.un
+          }
+        )
+      });
+      this.storageService.submitStorage(ingredients).subscribe(e=>{
+        console.log(e)
+        ingredients.map((ingredient:Ingredient)=>{
+          this.ingredientList.push(ingredient);
+        })
+      })
+
+    }catch(error){
+      console.log(error)
+    }
+
   }
 }
