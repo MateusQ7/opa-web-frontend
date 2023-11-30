@@ -23,11 +23,7 @@ export class CreateUpdateProductComponent implements OnInit {
     'KG', 'UN', 'G'
   ]
 
-  form = this.formBuilder.group({
-    productName: new FormControl({ disabled: false, value: '' }),
-    productPrice: new FormControl({ disabled: false, value: 0.00 }),
-    stockProductsForm: this.formBuilder.array([]),
-  });
+  public form!: FormGroup;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -38,9 +34,17 @@ export class CreateUpdateProductComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.form = this.formBuilder.group({
+      productName: new FormControl({ disabled: false, value: '' }),
+      productPrice: new FormControl({ disabled: false, value: 0.00 }),
+      stockProductsForm: this.formBuilder.array([]),
+    });
+
+
     this.storageService.searchStockItem("").subscribe(stockDtos => {
       this.stockProducts = stockDtos
-    })
+    });
+
 
     // this.form.get('stockProductName')?.valueChanges.subscribe(value => {
     // this.stockService.searchStockItem(value).subscribe(stockDtos => {
@@ -57,7 +61,7 @@ export class CreateUpdateProductComponent implements OnInit {
     const newForm = this.formBuilder.group({
       stockProductId: new FormControl({ disabled: true, value: item.id }),
       measurementUnit: new FormControl({ disabled: false, value: item.measurementUnit }),
-      stockProductName: new FormControl({ disabled: false, value: item.productDescription }),
+      stockProductName: new FormControl({ disabled: false, value: item.name }),
       isPortion: new FormControl({ disabled: false, value: false }),
       quantity: new FormControl({ disabled: false, value: item.quantity })
     })
@@ -97,13 +101,15 @@ export class CreateUpdateProductComponent implements OnInit {
   }
 
   public saveProduct() {
+    console.log(this.form.getRawValue());
     const product = {
       productName: this.form.get("productName")?.value,
       productPrice: this.form.get("productPrice")?.value,
       productItems: this.stockProductsForm.getRawValue(),
     } as CreateProductDto
-    this.productService.createProduct(product).subscribe(value => {
-      this.closeModal.emit()
+
+    this.productService.createProduct([product]).subscribe(value => {
+      console.log(value);
     }, (err: HttpErrorResponse) => {
       console.log(err)
     })

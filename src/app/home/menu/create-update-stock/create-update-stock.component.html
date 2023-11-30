@@ -1,15 +1,15 @@
 <div *ngIf="showModal" class="container">
   <form class="form" [formGroup]="form">
-    <input formControlName="productName" type="string" name="product" class="box-info" placeholder="Insira o nome"
+    <input formControlName="productName" type="string" class="box-info" placeholder="Insira o nome"
       font-family="Poppins">
-    <input formControlName="productPrice" type="number" name="price" class="box-info" placeholder="Insira o preço"
+    <input formControlName="productPrice" type="number" class="box-info" placeholder="Insira o preço"
       font-family="Poppins">
     <div class="product-list">
       <div class="product-list-header">
         <select (change)="addProduct($event)">
           <option *ngFor="let product of stockProducts" [value]="stringify(product)">
             {{
-            product.productDescription
+            product.name
             }}</option>
         </select>
       </div>
@@ -35,7 +35,7 @@
                 <input formControlName="isPortion" (change)="handleItemIsPortion(itemForm)" type="checkbox">
               </td>
               <td>
-                <input formControlName="quantity" (input)="handleItemQuantity(itemForm, $event)" type="number">
+                <input formControlName="quantity" type="number">
               </td>
             </tr>
           </div>
@@ -43,9 +43,9 @@
       </table>
     </div>
     <div class="button-container">
-      <button (click)="saveProduct()">
+      <div class="button-modal-save" (click)="saveProduct()">
         <p>Salvar</p>
-      </button>
+      </div>
       <button (click)="handleCloseModal()">
         <p>Cancelar</p>
       </button>

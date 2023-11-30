@@ -17,7 +17,7 @@ export class ProductService {
     private authService: AuthService,
   ) { }
 
-  createProduct(createProductDto: CreateProductDto): Observable<any> {
+  createProduct(createProductDto: CreateProductDto[]): Observable<any> {
     return this.httpClient.post(`${this.configService.apiUrl}/product`, createProductDto, {
       headers: {
         token: this.authService.getToken() as string,
