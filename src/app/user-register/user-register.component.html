@@ -61,9 +61,19 @@
           </div>
         </div>
         <div class="row">
-          <div clas="col-sm-5"></div>
-          <div clas="col-sm-5"></div>
-          <div clas="col-sm-2"></div>
+          <div class="col-sm-5">
+            <label>Bairro</label>
+            <input type="text" class="input-item" [(ngModel)]="neighborhood" formControlName="neighborhood"
+              placeholder="Insira o bairro" />
+          </div>
+          <div class="col-sm-5">
+            <label>Rua</label>
+            <input type="text" [(ngModel)]="street" formControlName="street" class="box-info"
+              placeholder="Insira o sua rua" />
+          </div>
+          <div class="col-sm-2">
+
+          </div>
         </div>
         <div class="row"></div>
         <!-- cep estado cidade
