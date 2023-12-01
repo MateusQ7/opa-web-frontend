@@ -21,7 +21,7 @@
             </div>
             <div class="order-table">
               <p>Mesa:</p>
-              <select name="" id="" (change)="updateTable($event)" formControlName="table" >
+              <select name="" id="" (change)="updateTable($event)" formControlName="table">
                 <option selected disabled value=""> --Selecione a mesa --</option>
                 <option *ngFor="let table of this.tablesAvailables" value="{{ table.id }}">
                   {{ table.id }}
@@ -30,9 +30,9 @@
             </div>
             <div class="order-clients">
               <p>Clientes:</p>
-              <select name="" id="" formControlName="customers" >
-                <option selected disabled > --Selecione o cliente --</option>
-                <option *ngFor="let customer of this.selectedCustomers">
+              <select name="" id="" formControlName="customers">
+                <option selected disabled> --Selecione o cliente --</option>
+                <option *ngFor="let customer of this.selectedCustomers" value="{{ customer.id }}">
                   {{ customer.name }}
                 </option>
               </select>
@@ -41,7 +41,7 @@
           <div class="topside-division"></div>
           <div class="topside-container-right">
             <div class="order-quantity">
-              <p>Quantidade:</p >
+              <p>Quantidade:</p>
               <input type="text" formControlName="qt">
             </div>
             <!-- <div class="order-responsable-waiter">
@@ -56,7 +56,7 @@
             <div class="order-status">
               <p>Status do pedido: </p>
               <select name="" id="" formControlName="status">
-                <option selected disabled value=""  > --Selecione o status --</option>
+                <option selected disabled value=""> --Selecione o status --</option>
                 <option value="1">Em Andamento</option>
                 <option value="2">Entregue</option>
                 <option value="3">Cancelado</option>
@@ -96,13 +96,13 @@
               <p>Status</p>
             </div>
             <div class="header-trashicon">
-              <button *ngIf="this.allCheckboxChecked"(click)="deleteAll()">
+              <button *ngIf="this.allCheckboxChecked" (click)="deleteAll()">
                 <img src="/assets/images/trash-fill.svg" alt="">
               </button>
             </div>
           </div>
           <div class="loop-space-orders">
-            <div class="order-cell" *ngFor="let order of orderList;let i=index" >
+            <div class="order-cell" *ngFor="let order of orderList;let i=index">
               <div class="order-cell-checkbox">
                 <input type="checkbox" class="order-checkbox" [ngModel]="order.checked" (click)="checkOrder(i)">
               </div>
@@ -119,7 +119,7 @@
                 <p>{{ order.personIds.length }}</p>
               </div>
               <div class="order-cell-value-text">
-                <p>{{ order.menuItem.value * order.quantity}}</p>
+                <p>{{ order.totalValue }}</p>
               </div>
               <div class="order-cell-status">
                 <p *ngIf="this.order.status == 1" class="status-inprogress">em andamento</p>

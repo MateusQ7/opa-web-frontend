@@ -23,8 +23,8 @@ export class OrderService {
     private authService:AuthService
   ) { }
 
-  createOrder(orders:OrderToBackend[]){
-    console.log('aosdok')
+  createOrder(orders:OrderToBackend){
+    // console.log('aosdok')
     return this.httpClient.post(`${this.configService.apiUrl}/order`,orders,{
       headers: {
         token: this.authService.getToken() as string,
@@ -40,7 +40,7 @@ export class OrderService {
     }).pipe(
       tap((dataRecieved: any) => {
         this.backendOrdersInCache = dataRecieved;
-        console.log(this.backendOrdersInCache)
+        // console.log(this.backendOrdersInCache)
       })
     );
     return data

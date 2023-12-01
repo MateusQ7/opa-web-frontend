@@ -7,7 +7,6 @@ import { firstValueFrom } from 'rxjs'
 import { BackendOrder } from 'src/app/services/order/backendOrder.interface';
 import { TableService } from 'src/app/services/table/table.service';
 import { OrderToBackend } from 'src/app/services/order/orderToBackend.interface';
-import { Customer } from 'src/app/services/customer/customer.interface';
 import { LauchOrder } from 'src/app/shared/launch-order-modal/lauchOrder.interface';
 
 @Component({
@@ -87,7 +86,6 @@ export class OrderComponent implements OnInit{
   }
 
   recieveOrdersFromModal(orders:LauchOrder[]){
-    console.log(orders)
     const ordersToBack:OrderToBackend[]=[]
     orders.map((order:LauchOrder)=>{
       ordersToBack.push({
@@ -98,7 +96,7 @@ export class OrderComponent implements OnInit{
         personIds:order.personIds
       })
     })
-    this.orderService.createOrder(ordersToBack).subscribe(
+    this.orderService.createOrder(ordersToBack[0]).subscribe(
       (e:any)=>{
         console.log(e);
       }

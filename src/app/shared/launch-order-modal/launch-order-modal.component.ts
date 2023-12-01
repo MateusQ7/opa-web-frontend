@@ -132,16 +132,16 @@ export class LaunchOrderModalComponent implements OnInit{
   }
 
   submitOrder(){
-    console.log(this.form)
     if(this.form.valid){
       const menuItem = this.findOrderMenu(parseInt(this.form.value.name));
+
       const order:LauchOrder ={
         checked:false,
         menuItem: menuItem,
         status:this.form.value.status,
         tableId:this.form.value.table,
-        personIds:[...this.form.value.costumers],
-        totalValue:Number(this.form.value.qt) * Number(menuItem.price),
+        personIds: [...this.form.value.customers],
+        totalValue: (parseInt(this.form.value.qt) * parseInt(String(menuItem.price))),
         quantity:this.form.value.qt
       }
       this.orderList.push(order);
