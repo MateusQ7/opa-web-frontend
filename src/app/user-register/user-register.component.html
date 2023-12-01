@@ -1,83 +1,24 @@
-<div *ngIf="this.popUpShow">
-  <opa-popup (okButton)="this.showPopUp()" (goToLogin)="this.goToLogin()"
-    [listOfMessages]="this.popUpMessage"></opa-popup>
-</div>
-<div class="main" style="background-image: url('../../assets/images/Opa!-Web.svg')">
-  <div class="register-div">
-    <div class="image">
-      <div class="img-main">
-        <img id="img" src="../../assets/images/Image-Register.svg">
-        <!-- <div class="file">
-              <input type="file" id="fileInput" class="input-img" style="display: none;">
-              <label for="fileInput" class="image-button">+</label>
-          </div> -->
+<div class="row">
+  <form class="col-md-12" [formGroup]="form" #formDir="ngForm">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        Sobre
       </div>
-    </div>
-    <form class="form" [formGroup]="form" #formDir="ngForm">
-      <div class="left-side">
-        <div class="left-side-content">
-          <div class="capsule">
-            <p class="text">Nome Completo:</p>
-            <input type="text" formControlName="name" class="box-info" placeholder="Insira seu nome"
-              font-family="Poppins" />
-            <div class="error-area">
-              <div class="message-error" *ngIf="form.get('name')?.errors?.['required'] && form.get('name')?.touched">
-                Este campo é obrigatório!
-              </div>
-            </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-sm-6">
+            <label>Nome Completo</label>
+            <input type="text" formControlName="name" class="input-item" placeholder="Insira seu nome" />
           </div>
-          <div class="capsule">
-            <p class="text">Usuário:</p>
-            <input type="text" formControlName="username" class="box-info" placeholder="Insira seu usuário"
-              font-family="Poppins" required minlength="2" />
-            <div class="error-area">
-              <div
-                *ngIf="form.controls['user']?.invalid && form.controls['user']?.touched || form.controls['user']?.dirty">
-                <span class="message-error" *ngIf="form.controls['user']?.errors?.['required']">Este campo é
-                  obrigatório</span>
-                <span class="message-error" *ngIf="form.controls['user']?.errors?.['minlength']">Este campo deve ter, no
-                  mínimo, dois caracteres</span>
-              </div>
-            </div>
+          <div class="col-sm-6">
+            <label>CPF</label>
+            <input type="text" formControlName="cpf" class="input-item" placeholder="Digite seu CPF" />
           </div>
-          <div class="capsule">
-            <p class="text">Email:</p>
-            <input type="email" formControlName="email" class="box-info" placeholder="Insira seu email" />
-            <div class="error-area">
-              <div class="message-error"
-                *ngIf="form.get('email')?.errors?.['required'] && form.get('email')?.errors?.['email'] && form.get('email')?.touched">
-                Este campo é obrigatório!
-              </div>
-            </div>
-          </div>
-          <div class="capsule">
-            <p class="text">Senha:</p>
-            <input type="password" formControlName="password" class="box-info" placeholder="Insira sua senha" />
-            <div class="error-area">
-              <div class="message-error"
-                *ngIf="form.get('password')?.errors?.['required'] && form.get('password')?.touched">
-                Este campo é obrigatório!
-              </div>
-            </div>
-          </div>
-          <div class="capsule">
-            <p class="text">Confirme sua senha:</p>
-            <input type="password" formControlName="password_confirm" class="box-info"
-              placeholder="Confirme sua senha" />
-            <div class="error-area">
-              <div class="message-error"
-                *ngIf="form.get('password_confirm')?.errors?.['required'] && form.get('password_confirm')?.touched">
-                Este campo é obrigatório!
-              </div>
-              <div class="message-error"
-                *ngIf="form.get('password_confirm')?.errors?.['minlength'] && form.get('password_confirm')?.touched">
-                Precisa de no mínimo 6 caracteres!
-              </div>
-            </div>
-          </div>
-          <div class="capsule">
-            <p class="text">Gênero:</p>
-            <select class="box-info" name="gender" id="gender-select" formControlName="gender">
+        </div>
+        <div class="row">
+          <div class="col-sm-3">
+            <label>Gênero</label>
+            <select class="input-item" name="gender" id="gender-select" formControlName="gender">
               <option value="0" disabled selected>Gênero:</option>
               <option value="1">Masculino</option>
               <option value="2">Feminino</option>
@@ -85,123 +26,51 @@
               <option value="4">Outros</option>
               <option value="5">Prefiro não informar</option>
             </select>
-            <div class="error-area">
-              <div class="message-error" *ngIf="form.get('gender')?.errors && form.get('gender')?.touched">
-                Este campo é obrigatório!
-              </div>
-            </div>
           </div>
-          <div class="capsule">
-            <p class="text">CPF:</p>
-            <input type="text" formControlName="cpf" class="box-info" placeholder="Digite seu CPF" />
-            <div class="error-area">
-              <div class="message-error" *ngIf="form.get('cpf')?.errors && form.get('cpf')?.touched">
-                Este campo é obrigatório!
-              </div>
-            </div>
+          <div class="col-sm-3">
+            <label>Data de nascimento</label>
+            <input type="date" class="input-item" formControlName="birthDate" />
           </div>
-          <div class="capsule">
-            <p class="text">Data de nascimento:</p>
-            <input type="date" formControlName="birthDate" class="box-info" />
-            <div class="error-area">
-              <div class="message-error" *ngIf="form.get('birthDate')?.errors && form.get('birthDate')?.touched">
-                Este campo é obrigatório!
-              </div>
-            </div>
+          <div class="col-sm-6">
+            <label>Telefone</label>
+            <input type="tel" class="input-item" formControlName="phoneNumber" placeholder="Insira o telefone" />
           </div>
         </div>
       </div>
-      <div class="right-side">
-        <div class="right-side-content">
-          <div class="capsule">
-            <p class="text">CEP:</p>
-            <input type="text" [(ngModel)]="cep" (input)="searchForCep()" formControlName="cep" class="box-info"
-              placeholder="Insira o cep" font-family="Poppins" ngModel required pattern="[0-9]{5}\-?[0-9]{3}" />
-            <div class="error-area">
-              <div *ngIf="form.controls['cep'].invalid && (form.controls['cep'].touched || form.controls['cep'].dirty)">
-                <span class="message-error" *ngIf="form.controls['cep'].errors?.['required']">Este campo é
-                  obrigatório</span>
-                <span class="message-error" *ngIf="form.controls['cep'].errors?.['pattern']">Ex: 00000-000</span>
-                <!-- Verifica se a variável de erro "cepInvalido" está definida -->
-                <span class="message-error" *ngIf="form.controls['cep'].errors?.['cepInvalido']">CEP inválido</span>
-              </div>
-            </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        Endereço
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-sm-4">
+            <label>CEP</label>
+            <input type="text" class="input-item" [(ngModel)]="cep" (input)="searchForCep()" formControlName="cep"
+              placeholder="Insira o cep" ngModel required pattern="[0-9]{5}\-?[0-9]{3}" />
           </div>
-          <div class="capsule">
-            <p class="text">Estado:</p>
-            <input type="text" [(ngModel)]="state" formControlName="state" class="box-info"
-              placeholder="Insira o estado" font-family="Poppins" />
-            <div class="error-area">
-              <div class="message-error" *ngIf="form.get('state')?.errors && form.get('state')?.touched">
-                Este campo é obrigatório!
-              </div>
-            </div>
+          <div class="col-sm-4">
+            <label>Estado</label>
+            <input type="text" class="input-item" [(ngModel)]="state" formControlName="state"
+              placeholder="Insira o estado" />
           </div>
-          <div class="capsule">
-            <p class="text">Cidade:</p>
-            <input type="text" [(ngModel)]="city" formControlName="city" class="box-info" placeholder="Insira a cidade"
-              font-family="Poppins" />
-            <div class="error-area">
-              <div class="message-error" *ngIf="form.get('city')?.errors && form.get('city')?.touched">
-                Este campo é obrigatório!
-              </div>
-            </div>
-          </div>
-          <div class="capsule">
-            <p class="text">Bairro:</p>
-            <input type="text" [(ngModel)]="neighborhood" formControlName="neighborhood" class="box-info"
-              placeholder="Insira o bairro" font-family="Poppins" />
-            <div class="error-area">
-              <div class="message-error" *ngIf="form.get('neighborhood')?.errors && form.get('neighborhood')?.touched">
-                Este campo é obrigatório!
-              </div>
-            </div>
-          </div>
-          <div class="capsule">
-            <p class="text">Rua:</p>
-            <input type="text" [(ngModel)]="street" formControlName="street" class="box-info"
-              placeholder="Insira o sua rua" />
-            <div class="error-area">
-              <div class="message-error" *ngIf="form.get('street')?.errors && form.get('street')?.touched">
-                Este campo é obrigatório!
-              </div>
-            </div>
-          </div>
-          <div class="capsule">
-            <p class="text">Número:</p>
-            <input type="text" formControlName="streetNumber" class="box-info" placeholder="Insira o número" />
-            <div class="error-area">
-              <div class="message-error" *ngIf="form.get('streetNumber')?.errors && form.get('streetNumber')?.touched">
-                Este campo é obrigatório!
-              </div>
-            </div>
-          </div>
-          <div class="capsule">
-            <p class="text">Complemento:</p>
-            <input type="text" formControlName="complement" class="box-info" placeholder="Insira o complemento"
-              font-family="Poppins" />
-            <div class="error-area">
-              <div class="message-error" *ngIf="form.get('complement')?.errors && form.get('complement')?.touched">
-                Este campo é obrigatório!
-              </div>
-            </div>
-          </div>
-          <div class="capsule">
-            <p class="text">Telefone:</p>
-            <input type="tel" formControlName="phoneNumber" class="box-info" placeholder="Insira o telefone"
-              font-family="Poppins" />
-            <div class="error-area">
-              <div class="message-error"
-                *ngIf="form.get('phoneNumber')?.errors?.['required'] && form.get('phoneNumber')?.touched">
-                Este campo é obrigatório!
-              </div>
-            </div>
+          <div class="col-sm-4">
+            <label>Cidade</label>
+            <input type="text" class="input-item" [(ngModel)]="city" formControlName="city"
+              placeholder="Insira a cidade" />
           </div>
         </div>
+        <div class="row">
+          <div clas="col-sm-5"></div>
+          <div clas="col-sm-5"></div>
+          <div clas="col-sm-2"></div>
+        </div>
+        <div class="row"></div>
+        <!-- cep estado cidade
+bairro rua numero
+complemento -->
+
       </div>
-      <div class="button-submit">
-        <button class="register-btn" (click)="submit()">CADASTRAR</button>
-      </div>
-    </form>
-  </div>
+    </div>
+  </form>
 </div>
