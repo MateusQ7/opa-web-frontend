@@ -127,9 +127,6 @@ export class UserRegisterComponent implements OnInit, PopUp {
         disabled: false,
       }, [
         Validators.required,
-        Validators.pattern(/[0-9]{5}\-?[0-9]{3}/),
-        Validators.minLength(8),
-        Validators.maxLength(8),
       ]],
       cep: [{
         value: '',

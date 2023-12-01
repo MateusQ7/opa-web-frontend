@@ -5,12 +5,29 @@
 }
 
 .register-div {
-  background-color: #FCF9F9;
+  background-color: #fff;
   border-radius: 5px;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+  max-width: 60%;
   min-width: 60%;
   padding: 120px 30px 30px;
   position: relative;
+  height: 80%;
+}
+
+.form-content {
+  overflow-y: auto;
+  height: 100%;
+  padding: 10px;
+}
+
+.address-container {
+  display: flex;
+  gap: 20px;
+}
+
+.address-item {
+  flex: 1;
 }
 
 .restaurant-image {
@@ -66,18 +83,6 @@
   background-repeat: no-repeat;
   padding-top: 50px;
   padding-right: 10px;
-}
-
-
-.btn{
-  display: inline-block;
-  padding: 10px 20px;
-  font-size: 20px;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
 }
 
 .form{
@@ -176,11 +181,7 @@
 }
 
 .button-submit{
-  width: 100%;
-  height: 15vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  text-align: end;
 }
 
 .register-btn{
@@ -222,7 +223,7 @@
   box-shadow: 0 1px 1px rgba(0,0,0,.05);
   font-family: 'Roboto', sans-serif;
   font-weight: 500;
-  margin: 30px 0;
+  margin: 10px 0;
   width: 100%;
 }
 
@@ -266,4 +267,61 @@
   border-color: #FFCF24;
   outline: 0;
   box-shadow: inset 0 1px 1px rgba(0,0,0,.15),0 0 8px rgba(149,96,4,.2);
+}
+
+.btn {
+	display: inline-block;
+	margin-bottom: 0;
+	font-weight: normal;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: middle;
+	touch-action: manipulation;
+	cursor: pointer;
+	background-image: none;
+	border: 1px solid transparent;
+	padding: 6px 12px;
+	font-size: 16px;
+	line-height: 1.6;
+	border-radius: 4px;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+  font-family: 'Roboto', sans-serif;
+}
+
+.btn:focus {
+  outline-offset: -2px;
+  text-decoration: none;
+}
+
+.btn:active {
+  outline: 0;
+  box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #FFCF24;
+  border-color: #956004;
+}
+
+.btn-primary:hover {
+  color: #fff;
+  background-color: #eec222;
+  border-color: #8a5904;
+}
+
+.btn-primary:focus {
+  color: #fff;
+  background-color: #eec222;
+  border-color: #8a5904;
+}
+
+.btn-primary:active{
+  color: #fff;
+  background-color: #eec222;
+  border-color: #8a5904;
+  background-image: none;
 }
