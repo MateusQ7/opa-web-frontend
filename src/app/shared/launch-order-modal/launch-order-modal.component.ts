@@ -7,6 +7,8 @@ import { MenuService } from 'src/app/services/menu/menu.service';
 import { Menu } from 'src/app/services/menu/menu.interface';
 import { Order } from 'src/app/services/order/order.interface';
 import { Customer } from 'src/app/services/customer/customer.interface';
+import { firstValueFrom } from 'rxjs';
+import { InProgressTables } from 'src/app/home/order/InProgressTables.interface';
 
 @Component({
   selector: 'opa-launch-order-modal',
@@ -23,147 +25,15 @@ export class LaunchOrderModalComponent implements OnInit{
 
   loading = false;
 
-  orderList:Order[]=[
-    // {
-    //   id:3,
-    //   checked:false,
-    //   menuItem:{
-    //     id:4,
-    //     name:'catiaaaaaas',
-    //     description:`aoskdoaks`,
-    //     price:19.99
-    //   },
-    //   customer:[
-    //     {
-    //     id:1,
-    //     name:'renatin'
-    //     },
-    //     {
-    //     id:2,
-    //     name:'oclin'
-    //     },
-    //     {
-    //     id:3,
-    //     name:'power ranger rosa'
-    //     },
-    //   ],
-    //   status:2,
-    //   table:{
-    //     token:`sim`,
-    //     id:25,
-    //     openTime:`19:25`,
-    //     responsableWaiter:'jorgin amado',
-    //     customer:[
-    //       {
-    //       id:1,
-    //       name:'renatin'
-    //       },
-    //       {
-    //       id:2,
-    //       name:'oclin'
-    //       },
-    //       {
-    //       id:3,
-    //       name:'power ranger rosa'
-    //       },
-    //     ],
-    //   }
-    // },
-    // {
-    //   id:1,
-    //   checked:false,
-    //   menuItem:{
-    //     id:4,
-    //     name:'catinhssssssssssssslas',
-    //     description:`aoskdoaks`,
-    //     price:19.99
-    //   },
-    //   customer:[
-    //     {
-    //     id:1,
-    //     name:'renatin'
-    //     },
-    //     {
-    //     id:2,
-    //     name:'oclin'
-    //     },
-    //     {
-    //     id:3,
-    //     name:'power ranger rosa'
-    //     },
-    //   ],
-    //   status:1,
-    //   table:{
-    //     token:`sim`,
-    //     id:30,
-    //     openTime:`19:25`,
-    //     responsableWaiter:'hernandes',
-    //     customer:[
-    //       {
-    //       id:1,
-    //       name:'renatin'
-    //       },
-    //       {
-    //       id:2,
-    //       name:'oclin'
-    //       },
-    //       {
-    //       id:3,
-    //       name:'power ranger rosa'
-    //       },
-    //     ],
-    //   }
-    // },
-    // {
-    //   id:2,
-    //   checked:false,
-    //   menuItem:{
-    //     id:4,
-    //     name:'catinha de parangolas',
-    //     description:`aoskdoaks`,
-    //     price:19.99
-    //   },
-    //   customer:[
-    //     {
-    //     id:1,
-    //     name:'renatin'
-    //     },
-    //     {
-    //     id:2,
-    //     name:'oclin'
-    //     },
-    //     {
-    //     id:3,
-    //     name:'power ranger rosa'
-    //     },
-    //   ],
-    //   status:3,
-    //   table:{
-    //     token:`sim`,
-    //     id:40,
-    //     openTime:`19:25`,
-    //     responsableWaiter:'pedro cailow',
-    //     customer:[
-    //       {
-    //       id:1,
-    //       name:'renatin'
-    //       },
-    //       {
-    //       id:2,
-    //       name:'oclin'
-    //       },
-    //       {
-    //       id:3,
-    //       name:'power ranger rosa'
-    //       },
-    //     ],
-    //     }
-    // },
-  ]
+  menu:Menu[] = []
+
+  tablesAvailables:InProgressTables[]=[]
+
+  orderList:Order[]=[]
 
   selectedTable!:Table;
 
-  selectedCustomer:Customer[]=[];
+  selectedCustomers:Customer[]=[];
 
   form!:FormGroup
 
@@ -191,9 +61,9 @@ export class LaunchOrderModalComponent implements OnInit{
         Validators.maxLength(4)
       ]
       ],
-      responsableWaiter:['',
-        Validators.required
-      ],
+      // responsableWaiter:['',
+      //   Validators.required
+      // ],
       status:['',
         Validators.required
       ]
@@ -204,8 +74,31 @@ export class LaunchOrderModalComponent implements OnInit{
     this.getData()
   }
 
-  getData(){
-
+  async getData(){
+    this.loading = true;
+    try{
+      const menuData = await firstValueFrom(this.menuService.getMenu());
+      menuData.map((menu: Menu) => {
+          this.menu.push({
+            id:menu.id,
+            name:menu.name,
+            description:menu.description,
+            price:menu.price
+          });
+        })
+      const menuTable = await firstValueFrom(this.tableService.getInProgressTables());
+        menuTable.map((table:InProgressTables)=>{
+          this.tablesAvailables.push({
+            id:table.id,
+            table:table.table,
+            orders:table.orders,
+            orderQt:table.orderQt
+          })
+        })
+        this.loading = false;
+      }catch(error: any){
+        console.log(error);
+      }
   }
 
   allChecked(){
@@ -237,6 +130,7 @@ export class LaunchOrderModalComponent implements OnInit{
   }
 
   submitOrder(){
+    console.log(this.form)
     if(this.form.valid){
       const menuItem = this.findOrderMenu(parseInt(this.form.value.name))
       const order:Order ={
@@ -253,20 +147,19 @@ export class LaunchOrderModalComponent implements OnInit{
 
   closePopUp() {
     this.close.emit(false);
-    console.log('and WE OCUPPYYYYYYYY')
   }
 
   submitForm(){
     this.emitOrders.emit(this.orderList);
   }
 
-  updateTable(){
-    const table = this.tableService.tables.find((e:Table)=>{
+  updateTable(event:any){
+    const table = this.tablesAvailables.find((e:InProgressTables)=>{
       return e.id === parseInt(this.form.value.table);
     })
     if(table){
-      this.selectedTable = table;
-      this.selectedCustomer = this.selectedTable.customers
+      this.selectedTable = table.table
+      this.selectedCustomers = this.selectedTable.customers
     }
   }
 

@@ -14,16 +14,16 @@
               <p>Pedido:</p>
               <select name="" id="" formControlName="name">
                 <option selected disabled value=""> --Selecione o pedido --</option>
-                <option *ngFor="let item of this.menuService.menu" value="{{ item.id }}">
+                <option *ngFor="let item of this.menu" value="{{ item.id }}">
                   {{ item.name }}
                 </option>
               </select>
             </div>
             <div class="order-table">
               <p>Mesa:</p>
-              <select name="" id="" (change)="updateTable()" formControlName="table" >
+              <select name="" id="" (change)="updateTable($event)" formControlName="table" >
                 <option selected disabled value=""> --Selecione a mesa --</option>
-                <option *ngFor="let table of this.tableService.tables" value="{{ table.id }}">
+                <option *ngFor="let table of this.tablesAvailables" value="{{ table.id }}">
                   {{ table.id }}
                 </option>
               </select>
@@ -32,7 +32,7 @@
               <p>Clientes:</p>
               <select name="" id="" formControlName="client" >
                 <option selected disabled > --Selecione o cliente --</option>
-                <option *ngFor="let customer of this.selectedCustomer">
+                <option *ngFor="let customer of this.selectedCustomers">
                   {{ customer.name }}
                 </option>
               </select>
@@ -44,15 +44,15 @@
               <p>Quantidade:</p >
               <input type="text" formControlName="qt">
             </div>
-            <div class="order-responsable-waiter">
+            <!-- <div class="order-responsable-waiter">
               <p>Garçom responsável: </p>
               <select name="" id="" formControlName="responsableWaiter">
                 <option selected disabled value="" > --Selecione o garçom --</option>
-                <option *ngFor="let waiter of this.waiterService.waiters">
-                  {{ waiter.name }}
+                <option *ngFor="let waiter of this.selectedTable.responsableWaiter">
+                  {{ waiter }}
                 </option>
               </select>
-            </div>
+            </div> -->
             <div class="order-status">
               <p>Status do pedido: </p>
               <select name="" id="" formControlName="status">

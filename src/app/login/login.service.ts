@@ -18,6 +18,5 @@ export class LoginService {
 
   submitForm(form:any):Observable<any>{
     return this.httpClient.post(`${this.config.apiUrl}/auth/login`,form)
-
   }
 }

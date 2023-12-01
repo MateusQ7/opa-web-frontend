@@ -6,6 +6,8 @@ import { Order } from 'src/app/services/order/order.interface';
 import { firstValueFrom } from 'rxjs'
 import { BackendOrder } from 'src/app/services/order/backendOrder.interface';
 import { TableService } from 'src/app/services/table/table.service';
+import { OrderToBackend } from 'src/app/services/order/orderToBackend.interface';
+import { Customer } from 'src/app/services/customer/customer.interface';
 
 @Component({
   selector: 'app-order',
@@ -51,7 +53,7 @@ export class OrderComponent implements OnInit{
           });
         })
 
-      const ordersTable = await firstValueFrom(this.tableService.getTables());
+      const ordersTable = await firstValueFrom(this.tableService.getInProgressTables());
       ordersTable.map((inProgressTable:InProgressTables) => {
           this.inProgressTables.push({
             id:inProgressTable.id,
@@ -85,7 +87,24 @@ export class OrderComponent implements OnInit{
   }
 
   recieveOrdersFromModal(orders:Order[]){
-    this.orderService.createOrder(orders);
+    console.log(orders)
+    const ordersToBack:OrderToBackend[]=[]
+    orders.map((order:Order)=>{
+      const ids:number[] = []
+      order.customers.map((customer:Customer)=>{
+        ids.push(customer.id ?? '')
+      })
+
+      ordersToBack.push({
+        tableId: order.table.id,
+        status: order.status,
+        productId: order.menuItem.id,
+        totalValue: order.menuItem.price,
+        personIds:ids
+      })
+      // console.log('chatpgc')
+      this.orderService.createOrder(ordersToBack);
+    })
     orders.map((e:Order)=>{
       this.inProgressOrderList.push(e);
     })
