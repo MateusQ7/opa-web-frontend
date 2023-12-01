@@ -93,7 +93,7 @@ export class OrderComponent implements OnInit{
       ordersToBack.push({
         tableId: order.tableId,
         status: order.status,
-        productId: order.productId,
+        productId: order.menuItem.id,
         totalValue: order.totalValue,
         personIds:order.personIds
       })

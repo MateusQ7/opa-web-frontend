@@ -137,11 +137,12 @@ export class LaunchOrderModalComponent implements OnInit{
       const menuItem = this.findOrderMenu(parseInt(this.form.value.name));
       const order:LauchOrder ={
         checked:false,
-        productId:this.form.value.name,
+        menuItem: menuItem,
         status:this.form.value.status,
         tableId:this.form.value.table,
-        personIds:[this.form.value.costumers,],
-        totalValue:this.form.value.qt * menuItem.price
+        personIds:[this.form.value.costumers],
+        totalValue:this.form.value.qt * menuItem.price,
+        quantity:this.form.value.qt
       }
       this.orderList.push(order);
     }
@@ -166,7 +167,7 @@ export class LaunchOrderModalComponent implements OnInit{
   }
 
   findOrderMenu(id:number):Menu{
-    const menuItem = this.menuService.menu.find((e:Menu)=>{
+    const menuItem = this.menu.find((e:Menu)=>{
       return e.id === parseInt(this.form.value.name);
     })
     if(menuItem){
