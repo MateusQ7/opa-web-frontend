@@ -2,7 +2,7 @@
   <opa-launch-order-modal (emitOrders)="recieveOrdersFromModal($event);" (close)="this.showLaunchOrderModal()"></opa-launch-order-modal>
 </div>
 <div class="order-modal" *ngIf="this.orderModal">
-  <opa-order-modal (close)="this.showOrderModal()" ></opa-order-modal>
+  <opa-order-modal (close)="this.showOrderModal()" [tableID]="this.tableIdToOrderModal"></opa-order-modal>
 </div>
 <div class="loading-modal" *ngIf="this.loading">
   <opa-loading></opa-loading>
@@ -86,7 +86,7 @@
           </p>
         </div>
         <div class="container-content-right-loop-space">
-          <div #loopCell class="loop-cell" *ngFor="let table of inProgressTables">
+          <div #loopCell class="loop-cell" *ngFor="let table of inProgressTables;">
             <div class="loop-cell-info-bar">
               <div class="table-info-table-name" (click)="expandOrder(loopCell,deepInfo)">
                 <p> MESA {{ table.number }}</p>
@@ -95,7 +95,7 @@
                 <p>{{ table.responsableWaiter }}</p>
               </div>
               <div class="table-info-modal-button">
-                <button (click)="showOrderModal()">
+                <button (click)="showOrderModal(table)">
                   <img src="assets/images/plus.svg" alt="">
                 </button>
               </div>

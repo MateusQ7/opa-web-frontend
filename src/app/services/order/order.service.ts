@@ -7,6 +7,7 @@ import { Observable } from 'rxjs'
 import { BackendOrder } from './backendOrder.interface';
 import { OrderToBackend } from './orderToBackend.interface';
 import { tap } from 'rxjs/operators';
+import { firstValueFrom } from 'rxjs'
 
 
 @Injectable({
@@ -16,6 +17,7 @@ export class OrderService {
 
   backendOrdersInCache!:BackendOrder[]
 
+  orders:Order[]=[];
 
   constructor(
     private httpClient:HttpClient,
@@ -33,6 +35,12 @@ export class OrderService {
   }
 
   getOrders():Observable<BackendOrder[]>{
+    // if(this.orders.length = 0 ){
+    //   // from
+    // }
+    // else{
+    //   // first value from
+    // }
     const data = this.httpClient.get<BackendOrder[]>(`${this.configService.apiUrl}/order`,{
       headers:{
         authorization:`Bearer ${this.authService.getToken()}`

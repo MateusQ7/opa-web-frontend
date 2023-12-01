@@ -10,32 +10,7 @@ import { Observable } from 'rxjs';
 })
 export class MenuService {
 
-  menu:Menu[]=[
-    {
-      id:1,
-      description:'lobia',
-      name:'catinha de parangolas',
-      price:19.99
-    },
-    {
-      id:2,
-      description:'p',
-      name:'parmegilaine',
-      price:59.99
-    },
-    {
-      id:4,
-      description:'fisca de eixe',
-      name:'fisca de eixe',
-      price:39.99
-    },
-    {
-      id:3,
-      description:'lobia',
-      name:'gerardo bastos',
-      price:29.99
-    },
-  ]
+  menu:Menu[]=[]
 
   constructor(
     private httpClient:HttpClient,

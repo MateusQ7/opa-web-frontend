@@ -20,6 +20,8 @@ export class OrderComponent implements OnInit{
 
   orderModal = false;
 
+  tableToOrderModal!:InProgressTables;
+
   loading = false;
 
   inProgressOrderList:Order[]=[]
@@ -81,7 +83,8 @@ export class OrderComponent implements OnInit{
     this.launchOrderModal = !this.launchOrderModal
   }
 
-  showOrderModal(){
+  showOrderModal(table:InProgressTables){
+    this.tableToOrderModal = table;
     this.orderModal = !this.orderModal
   }
 
