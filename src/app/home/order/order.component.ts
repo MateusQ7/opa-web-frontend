@@ -38,7 +38,7 @@ export class OrderComponent implements OnInit{
   }
 
   async getData(){
-    // this.loading = true;
+    this.loading = true;
     try{
       const ordersData = await firstValueFrom(this.orderService.getOrders());
       ordersData.map((backendOrder: BackendOrder) => {

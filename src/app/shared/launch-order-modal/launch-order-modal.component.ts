@@ -54,7 +54,7 @@ export class LaunchOrderModalComponent implements OnInit{
       table:['',
         Validators.required
       ],
-      clients:[false,
+      customers:[0,
         Validators.required
       ],
       qt:['',
@@ -77,7 +77,7 @@ export class LaunchOrderModalComponent implements OnInit{
   }
 
   async getData(){
-    // this.loading = true;
+    this.loading = true;
     try{
       const menuData = await firstValueFrom(this.menuService.getMenu());
       menuData.map((menu: Menu) => {
@@ -140,8 +140,8 @@ export class LaunchOrderModalComponent implements OnInit{
         menuItem: menuItem,
         status:this.form.value.status,
         tableId:this.form.value.table,
-        personIds:[this.form.value.costumers],
-        totalValue:this.form.value.qt * menuItem.price,
+        personIds:[...this.form.value.costumers],
+        totalValue:Number(this.form.value.qt) * Number(menuItem.price),
         quantity:this.form.value.qt
       }
       this.orderList.push(order);
