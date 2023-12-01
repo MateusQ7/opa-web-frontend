@@ -1,9 +1,10 @@
 import { OrderStatus } from "src/app/home/order/inProgressOrder.interface";
 
-export interface OrderToBackend{
-  totalValue: number;
-  status: OrderStatus;
+export interface LauchOrder{
+  checked:boolean;
   tableId: number;
   productId: number;
+  totalValue: number;
+  status: OrderStatus;
   personIds: number[];
 }

@@ -4,7 +4,6 @@ import { Table } from "../table/table.interface";
 import { Customer } from "../customer/customer.interface";
 
 export interface Order{
-  checked:boolean;
   id:number;
   menuItem:Menu;
   customers:Customer[];

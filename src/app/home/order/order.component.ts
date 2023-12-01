@@ -8,6 +8,7 @@ import { BackendOrder } from 'src/app/services/order/backendOrder.interface';
 import { TableService } from 'src/app/services/table/table.service';
 import { OrderToBackend } from 'src/app/services/order/orderToBackend.interface';
 import { Customer } from 'src/app/services/customer/customer.interface';
+import { LauchOrder } from 'src/app/shared/launch-order-modal/lauchOrder.interface';
 
 @Component({
   selector: 'app-order',
@@ -37,12 +38,11 @@ export class OrderComponent implements OnInit{
   }
 
   async getData(){
-    this.loading = true;
+    // this.loading = true;
     try{
       const ordersData = await firstValueFrom(this.orderService.getOrders());
       ordersData.map((backendOrder: BackendOrder) => {
           this.inProgressOrderList.push({
-            checked:false,
             id:backendOrder.id,
             menuItem:backendOrder.menuItem,
             customers:backendOrder.customers,
@@ -86,28 +86,24 @@ export class OrderComponent implements OnInit{
     this.orderModal = !this.orderModal
   }
 
-  recieveOrdersFromModal(orders:Order[]){
+  recieveOrdersFromModal(orders:LauchOrder[]){
     console.log(orders)
     const ordersToBack:OrderToBackend[]=[]
-    orders.map((order:Order)=>{
-      const ids:number[] = []
-      order.customers.map((customer:Customer)=>{
-        ids.push(customer.id ?? '')
-      })
-
+    orders.map((order:LauchOrder)=>{
       ordersToBack.push({
-        tableId: order.table.id,
+        tableId: order.tableId,
         status: order.status,
-        productId: order.menuItem.id,
-        totalValue: order.menuItem.price,
-        personIds:ids
+        productId: order.productId,
+        totalValue: order.totalValue,
+        personIds:order.personIds
       })
-      // console.log('chatpgc')
-      this.orderService.createOrder(ordersToBack);
     })
-    orders.map((e:Order)=>{
-      this.inProgressOrderList.push(e);
-    })
+    this.orderService.createOrder(ordersToBack).subscribe(
+      (e:any)=>{
+        console.log(e);
+      }
+    );
+
   }
 
 }

@@ -9,6 +9,8 @@ import { Order } from 'src/app/services/order/order.interface';
 import { Customer } from 'src/app/services/customer/customer.interface';
 import { firstValueFrom } from 'rxjs';
 import { InProgressTables } from 'src/app/home/order/InProgressTables.interface';
+import { OrderToBackend } from 'src/app/services/order/orderToBackend.interface';
+import { LauchOrder } from './lauchOrder.interface';
 
 @Component({
   selector: 'opa-launch-order-modal',
@@ -18,7 +20,7 @@ import { InProgressTables } from 'src/app/home/order/InProgressTables.interface'
 export class LaunchOrderModalComponent implements OnInit{
 
   @Output()
-  emitOrders:EventEmitter<Order[]> = new EventEmitter<Order[]>
+  emitOrders:EventEmitter<LauchOrder[]> = new EventEmitter<LauchOrder[]>
 
   @Output()
   close: EventEmitter<boolean> = new EventEmitter<boolean>
@@ -29,7 +31,7 @@ export class LaunchOrderModalComponent implements OnInit{
 
   tablesAvailables:InProgressTables[]=[]
 
-  orderList:Order[]=[]
+  orderList:LauchOrder[]=[]
 
   selectedTable!:Table;
 
@@ -75,7 +77,7 @@ export class LaunchOrderModalComponent implements OnInit{
   }
 
   async getData(){
-    this.loading = true;
+    // this.loading = true;
     try{
       const menuData = await firstValueFrom(this.menuService.getMenu());
       menuData.map((menu: Menu) => {
@@ -132,14 +134,14 @@ export class LaunchOrderModalComponent implements OnInit{
   submitOrder(){
     console.log(this.form)
     if(this.form.valid){
-      const menuItem = this.findOrderMenu(parseInt(this.form.value.name))
-      const order:Order ={
-        id:90000,
+      const menuItem = this.findOrderMenu(parseInt(this.form.value.name));
+      const order:LauchOrder ={
         checked:false,
-        menuItem:menuItem,
-        customers:this.form.value.costumers,
+        productId:this.form.value.name,
         status:this.form.value.status,
-        table:this.form.value.table,
+        tableId:this.form.value.table,
+        personIds:[this.form.value.costumers,],
+        totalValue:this.form.value.qt * menuItem.price
       }
       this.orderList.push(order);
     }
@@ -172,7 +174,7 @@ export class LaunchOrderModalComponent implements OnInit{
     }
     else{
       return {
-        id:1,
+        id:0,
         name:'Item não encontrado no menu',
         description:'Item não encontrado no menu',
         price:0.00
