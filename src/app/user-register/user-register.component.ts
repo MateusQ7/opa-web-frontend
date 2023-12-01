@@ -16,6 +16,7 @@ import { PopUp } from '../shared/popup/popUp.interface';
 })
 export class UserRegisterComponent implements OnInit, PopUp {
 
+  completedZipCode: boolean = false;
   cep: string = '';
   street: string = '';
   city: string = '';
@@ -24,7 +25,7 @@ export class UserRegisterComponent implements OnInit, PopUp {
 
   public form!: FormGroup;
   public second_form!: FormGroup;
-  public popUpShow: boolean = false;
+  public popUpShow: boolean = true;
   public regexCep = /\D/g;
   public cepLenght = 8;
   public popUpMessage: BackReponse[] = []
@@ -232,13 +233,16 @@ export class UserRegisterComponent implements OnInit, PopUp {
             this.neighborhood = data.neighborhood;
             // O CEP é válido, redefina a variável de erro para o campo "cep"
             this.form.controls['cep'].setErrors(null);
+            this.completedZipCode = true;
           } else {
             // Trate o caso de CEP inválido ou não encontrado, definindo a variável de erro para o campo "cep"
-            this.form.controls['cep'].setErrors({ 'cepInvalido': true });
+            this.form.controls['cep'].setErrors({ 'invalidZipCode': false });
           }
         },
         (error: any) => {
           console.error('Erro ao buscar CEP:', error);
+          this.form.controls['cep'].setErrors({ 'invalidZipCode': true });
+          this.completedZipCode = false;
           // Trate os erros, por exemplo, exiba uma mensagem de erro ao usuário
         }
       );

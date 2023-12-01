@@ -1,7 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
 .main {
   background-size: 100% auto;
   background-repeat: no-repeat;
   height: 100%;
+  font-family: 'Poppins', sans-serif;
 }
 
 .register-div {
@@ -13,6 +16,7 @@
   padding: 120px 30px 30px;
   position: relative;
   height: 80%;
+  font-family: 'Poppins', sans-serif;
 }
 
 .form-content {
@@ -149,6 +153,10 @@
   margin-bottom: 5px;
 }
 
+label{
+  font-family: 'Poppins', sans-serif;
+}
+
 .label-component{
   display: flex;
   gap: 5px
@@ -206,7 +214,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border-radius: 20px;
+  border-radius: 20pxg
 }
 
 .message-error{
@@ -221,7 +229,6 @@
   border-radius: 6px;
   border: 1px solid #ddd;
   box-shadow: 0 1px 1px rgba(0,0,0,.05);
-  font-family: 'Roboto', sans-serif;
   font-weight: 500;
   margin: 10px 0;
   width: 100%;
@@ -264,6 +271,30 @@
 }
 
 .input-item:focus {
+  border-color: #FFCF24;
+  outline: 0;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.15),0 0 8px rgba(149,96,4,.2);
+}
+
+.zip-complete{
+  display: block;
+  width: 100%;
+  height: 39px;
+  padding: 6px 12px;
+  font-size: 16px;
+  line-height: 1.6;
+  color: rgb(165, 165, 165);
+  background-color: rgba(158, 158, 158, 0.396);
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.15);
+  transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  margin: 0;
+  margin-bottom: 15px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.zip-complete:focus{
   border-color: #FFCF24;
   outline: 0;
   box-shadow: inset 0 1px 1px rgba(0,0,0,.15),0 0 8px rgba(149,96,4,.2);

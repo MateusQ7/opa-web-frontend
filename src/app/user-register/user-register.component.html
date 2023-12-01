@@ -177,8 +177,8 @@
                         *Este campo é obrigatório!
                       </div>
                     </div>
-                    <input type="text" [(ngModel)]="neighborhood" formControlName="neighborhood" class="input-item"
-                      placeholder="Insira o bairro" font-family="Poppins" />
+                    <input type="text" [(ngModel)]="neighborhood" formControlName="neighborhood" placeholder="Insira o bairro" font-family="Poppins" 
+                    [readonly]="form.controls['cep'].valid" [ngClass]="{'zip-complete': completedZipCode, 'input-item':!completedZipCode}" />
                   </div>
                 </div>
                 <div class="row">
@@ -191,7 +191,7 @@
                         </div>
                       </div>
                       <input type="text" [(ngModel)]="state" formControlName="state" class="input-item"
-                        placeholder="Insira o estado" font-family="Poppins" />
+                        placeholder="Insira o estado" font-family="Poppins" [readonly]="form.controls['cep'].valid" [ngClass]="{'zip-complete': completedZipCode, 'input-item':!completedZipCode}" />
                     </div>
                   </div>
                   <div class="col-sm-6">
@@ -203,7 +203,7 @@
                         </div>
                       </div>
                       <input type="text" [(ngModel)]="city" formControlName="city" class="input-item"
-                        placeholder="Insira a cidade" font-family="Poppins" />
+                        placeholder="Insira a cidade" font-family="Poppins" [readonly]="form.controls['cep'].valid" [ngClass]="{'zip-complete': completedZipCode, 'input-item':!completedZipCode}" />
                     </div>
                   </div>
                 </div>
@@ -217,7 +217,7 @@
                     </div>
                   </div>
                   <input type="text" [(ngModel)]="street" formControlName="street" class="input-item"
-                    placeholder="Insira o sua rua" />
+                    placeholder="Insira o sua rua" [readonly]="form.controls['cep'].valid" [ngClass]="{'zip-complete': completedZipCode, 'input-item':!completedZipCode}" />
                 </div>
                 <div class="capsule">
                   <div class="label-component">
