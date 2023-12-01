@@ -1,7 +1,7 @@
-<div *ngIf="this.popUpShow">
+<!-- <div *ngIf="this.popUpShow">
   <opa-popup (okButton)="this.showPopUp()" (goToLogin)="this.goToLogin()"
     [listOfMessages]="this.popUpMessage"></opa-popup>
-</div>
+</div> -->
 <div class="main container-fluid" style="background-image: url('../../assets/images/Opa!-Web.svg')">
   <form class="form col-md-12" [formGroup]="form" #formDir="ngForm">
     <div class="register-div">
@@ -177,8 +177,9 @@
                         *Este campo é obrigatório!
                       </div>
                     </div>
-                    <input type="text" [(ngModel)]="neighborhood" formControlName="neighborhood" placeholder="Insira o bairro" font-family="Poppins" 
-                    [readonly]="form.controls['cep'].valid" [ngClass]="{'zip-complete': completedZipCode, 'input-item':!completedZipCode}" />
+                    <input type="text" [(ngModel)]="neighborhood" formControlName="neighborhood"
+                      placeholder="Insira o bairro" font-family="Poppins" [readonly]="form.controls['cep'].valid"
+                      [ngClass]="{'zip-complete': completedZipCode, 'input-item':!completedZipCode}" />
                   </div>
                 </div>
                 <div class="row">
@@ -191,7 +192,8 @@
                         </div>
                       </div>
                       <input type="text" [(ngModel)]="state" formControlName="state" class="input-item"
-                        placeholder="Insira o estado" font-family="Poppins" [readonly]="form.controls['cep'].valid" [ngClass]="{'zip-complete': completedZipCode, 'input-item':!completedZipCode}" />
+                        placeholder="Insira o estado" font-family="Poppins" [readonly]="form.controls['cep'].valid"
+                        [ngClass]="{'zip-complete': completedZipCode, 'input-item':!completedZipCode}" />
                     </div>
                   </div>
                   <div class="col-sm-6">
@@ -203,7 +205,8 @@
                         </div>
                       </div>
                       <input type="text" [(ngModel)]="city" formControlName="city" class="input-item"
-                        placeholder="Insira a cidade" font-family="Poppins" [readonly]="form.controls['cep'].valid" [ngClass]="{'zip-complete': completedZipCode, 'input-item':!completedZipCode}" />
+                        placeholder="Insira a cidade" font-family="Poppins" [readonly]="form.controls['cep'].valid"
+                        [ngClass]="{'zip-complete': completedZipCode, 'input-item':!completedZipCode}" />
                     </div>
                   </div>
                 </div>
@@ -217,7 +220,8 @@
                     </div>
                   </div>
                   <input type="text" [(ngModel)]="street" formControlName="street" class="input-item"
-                    placeholder="Insira o sua rua" [readonly]="form.controls['cep'].valid" [ngClass]="{'zip-complete': completedZipCode, 'input-item':!completedZipCode}" />
+                    placeholder="Insira o sua rua" [readonly]="form.controls['cep'].valid"
+                    [ngClass]="{'zip-complete': completedZipCode, 'input-item':!completedZipCode}" />
                 </div>
                 <div class="capsule">
                   <div class="label-component">
@@ -245,8 +249,27 @@
           </div>
         </div>
         <div class="button-submit">
-          <button type="button" class="btn btn-primary" (click)="submit()">Cadastrar</button>
+          <button type="button" class="btn btn-primary" (click)="submit()" data-bs-toggle="modal"
+            data-bs-target="#exampleModal">Cadastrar</button>
         </div>
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                ...
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </form>
