@@ -219,7 +219,7 @@ label{
 
 .message-error{
   color: rgb(199, 21, 21);
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 12px;
   margin-bottom: 5px;
 }
@@ -319,7 +319,7 @@ label{
 	-moz-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 .btn:focus {
@@ -353,6 +353,31 @@ label{
 .btn-primary:active{
   color: #fff;
   background-color: #eec222;
+  border-color: #8a5904;
+  background-image: none;
+}
+
+.btn-secondary {
+  color: #8a5904;
+  background-color: #fff;
+  border-color: #8a5904;
+}
+
+.btn-secondary:hover {
+  color: #8a5904;
+  background-color: #cecece;
+  border-color: #8a5904;
+}
+
+.btn-secondary:focus {
+  color: #8a5904;
+  background-color: #cecece;
+  border-color: #8a5904;
+}
+
+.btn-secondary:active{
+  color: #8a5904;
+  background-color: #cecece;
   border-color: #8a5904;
   background-image: none;
 }

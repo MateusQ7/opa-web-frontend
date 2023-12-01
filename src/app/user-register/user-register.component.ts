@@ -15,7 +15,9 @@ import { PopUp } from '../shared/popup/popUp.interface';
   styleUrls: ['./user-register.component.css']
 })
 export class UserRegisterComponent implements OnInit, PopUp {
-
+  modalTitle: string = '';
+  modalContent: string = '';
+  okButton: number = 0;
   completedZipCode: boolean = false;
   cep: string = '';
   street: string = '';
@@ -175,16 +177,29 @@ export class UserRegisterComponent implements OnInit, PopUp {
             message: res.message,
             data: res.data
           }
-
-          this.addMessageToPopUp(backResponse);
+          this.modalTitle = 'Sucesso';
+          this.modalContent = 'Usuário cadastrado com sucesso, feche essa mensagem para ser redirecionado para o login.';
+          this.okButton = 200;
         },
         (error) => {
           const backResponse: BackReponse = {
             status: error.status,
             message: error.message
           }
+          this.modalTitle = 'Opa! Parece que algo deu errado';
+          this.okButton = error.status;
 
-          this.addMessageToPopUp(backResponse);
+          switch (backResponse.status) {
+            case 400:
+              this.modalContent = 'Ocorreu um erro ao tentar cadastrar o usuário, verifique os dados e tente novamente.';
+              break;
+            case 500:
+              this.modalContent = 'Ocorreu um erro interno, tente novamente mais tarde.';
+              break;
+            case 403:
+              this.modalContent = 'Você não tem permissão para cadastrar, wtf?';
+              break;
+          }
         }
       )
       this.showPopUp()
@@ -310,7 +325,9 @@ export class UserRegisterComponent implements OnInit, PopUp {
   }
 
   goToLogin() {
-    this.router.navigate(['/login'])
+    if (this.okButton === 200) {
+      this.router.navigate(['/login'])
+    }
   }
 
 }
