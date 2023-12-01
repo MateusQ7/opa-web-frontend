@@ -184,14 +184,14 @@ export class UserRegisterComponent implements OnInit, PopUp {
         (error) => {
           const backResponse: BackReponse = {
             status: error.status,
-            message: error.message
+            message: error.error.message
           }
           this.modalTitle = 'Opa! Parece que algo deu errado';
           this.okButton = error.status;
 
           switch (backResponse.status) {
             case 400:
-              this.modalContent = 'Ocorreu um erro ao tentar cadastrar o usuário, verifique os dados e tente novamente.';
+              this.modalContent = backResponse.message;
               break;
             case 500:
               this.modalContent = 'Ocorreu um erro interno, tente novamente mais tarde.';

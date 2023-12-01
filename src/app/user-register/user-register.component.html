@@ -3,7 +3,7 @@
     <div class="register-div">
       <img class="restaurant-image" id="img" src="../../assets/images/Image-Register.svg">
       <div class="form-content">
-        <div class="testando">
+        <div class="panel-container">
           <div class="panel">
             <div class="panel-heading">
               Sobre
@@ -139,7 +139,7 @@
             </div>
           </div>
         </div>
-        <div class="testando">
+        <div class="panel-container">
           <div class="panel">
             <div class="panel-heading">
               Endereço
@@ -246,13 +246,13 @@
         </div>
         <div class="button-submit">
           <button type="button" class="btn btn-primary" (click)="submit()" data-bs-toggle="modal"
-            data-bs-target="#exampleModal">Cadastrar</button>
+            data-bs-target="#formModal">Cadastrar</button>
         </div>
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="formModal" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">{{ modalTitle }}</h1>
+                <h1 class="modal-title fs-5" id="formModalLabel">{{ modalTitle }}</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
                   (click)="goToLogin()"></button>
               </div>
@@ -262,7 +262,8 @@
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
                   (click)="goToLogin()">Close</button>
-                <button *ngIf="okButton != 200" type="button" class="btn btn-primary">Entendi!</button>
+                <button *ngIf="okButton != 200" type="button" data-bs-dismiss="modal"
+                  class="btn btn-primary">Entendi!</button>
               </div>
             </div>
           </div>
