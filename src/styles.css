@@ -11,6 +11,9 @@
 @import 'opa-styles/opa-colors.css';
 @import 'opa-styles/opa-components.css';
 
+/* Bootstrap */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
 body,
 html {
   margin: 0;

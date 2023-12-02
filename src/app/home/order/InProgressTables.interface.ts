@@ -1,3 +1,4 @@
+import { Customer } from "src/app/services/customer/customer.interface";
 import { Table } from "src/app/services/table/table.interface";
 import { OrderStatus } from "./inProgressOrder.interface";
 

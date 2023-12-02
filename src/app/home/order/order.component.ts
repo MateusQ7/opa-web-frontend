@@ -6,6 +6,8 @@ import { Order } from 'src/app/services/order/order.interface';
 import { firstValueFrom } from 'rxjs'
 import { BackendOrder } from 'src/app/services/order/backendOrder.interface';
 import { TableService } from 'src/app/services/table/table.service';
+import { OrderToBackend } from 'src/app/services/order/orderToBackend.interface';
+import { LauchOrder } from 'src/app/shared/launch-order-modal/lauchOrder.interface';
 
 @Component({
   selector: 'app-order',
@@ -17,6 +19,8 @@ export class OrderComponent implements OnInit{
   launchOrderModal = false;
 
   orderModal = false;
+
+  tableToOrderModal!:InProgressTables;
 
   loading = false;
 
@@ -40,7 +44,6 @@ export class OrderComponent implements OnInit{
       const ordersData = await firstValueFrom(this.orderService.getOrders());
       ordersData.map((backendOrder: BackendOrder) => {
           this.inProgressOrderList.push({
-            checked:false,
             id:backendOrder.id,
             menuItem:backendOrder.menuItem,
             customers:backendOrder.customers,
@@ -51,7 +54,7 @@ export class OrderComponent implements OnInit{
           });
         })
 
-      const ordersTable = await firstValueFrom(this.tableService.getTables());
+      const ordersTable = await firstValueFrom(this.tableService.getInProgressTables());
       ordersTable.map((inProgressTable:InProgressTables) => {
           this.inProgressTables.push({
             id:inProgressTable.id,
@@ -80,15 +83,28 @@ export class OrderComponent implements OnInit{
     this.launchOrderModal = !this.launchOrderModal
   }
 
-  showOrderModal(){
+  showOrderModal(table:InProgressTables){
+    this.tableToOrderModal = table;
     this.orderModal = !this.orderModal
   }
 
-  recieveOrdersFromModal(orders:Order[]){
-    this.orderService.createOrder(orders);
-    orders.map((e:Order)=>{
-      this.inProgressOrderList.push(e);
+  recieveOrdersFromModal(orders:LauchOrder[]){
+    const ordersToBack:OrderToBackend[]=[]
+    orders.map((order:LauchOrder)=>{
+      ordersToBack.push({
+        tableId: order.tableId,
+        status: order.status,
+        productId: order.menuItem.id,
+        totalValue: order.totalValue,
+        personIds:order.personIds
+      })
     })
+    this.orderService.createOrder(ordersToBack[0]).subscribe(
+      (e:any)=>{
+        console.log(e);
+      }
+    );
+
   }
 
 }

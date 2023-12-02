@@ -5,11 +5,19 @@ import { AuthService } from '../auth/auth.service';
 import { ConfigService } from '../config/config.service';
 import { Observable } from 'rxjs'
 import { BackendOrder } from './backendOrder.interface';
+import { OrderToBackend } from './orderToBackend.interface';
+import { tap } from 'rxjs/operators';
+import { firstValueFrom } from 'rxjs'
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class OrderService {
+
+  backendOrdersInCache!:BackendOrder[]
+
+  orders:Order[]=[];
 
   constructor(
     private httpClient:HttpClient,
@@ -17,21 +25,33 @@ export class OrderService {
     private authService:AuthService
   ) { }
 
-  createOrder(orders:Order[]){
-    //mandando quantity pro back falar com o PC pra resolver isso
-    // return this.httpClient.post(`${this.configService.apiUrl}/order`,orders,{
-    //   headers: {
-    //     token: this.authService.getToken() as string,
-    //   }
-    // })
+  createOrder(orders:OrderToBackend){
+    // console.log('aosdok')
+    return this.httpClient.post(`${this.configService.apiUrl}/order`,orders,{
+      headers: {
+        token: this.authService.getToken() as string,
+      }
+    })
   }
 
   getOrders():Observable<BackendOrder[]>{
-    return this.httpClient.get<BackendOrder[]>(`${this.configService.apiUrl}/orders`,{
+    // if(this.orders.length = 0 ){
+    //   // from
+    // }
+    // else{
+    //   // first value from
+    // }
+    const data = this.httpClient.get<BackendOrder[]>(`${this.configService.apiUrl}/order`,{
       headers:{
         authorization:`Bearer ${this.authService.getToken()}`
       }
-    });
+    }).pipe(
+      tap((dataRecieved: any) => {
+        this.backendOrdersInCache = dataRecieved;
+        // console.log(this.backendOrdersInCache)
+      })
+    );
+    return data
   }
 
 

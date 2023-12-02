@@ -22,8 +22,8 @@ export class TableService {
     private authService:AuthService
   ) { }
 
-  getTables():Observable<InProgressTables[]>{
-    return this.httpClient.get<InProgressTables[]>(`${this.configService.apiUrl}/tables`,{
+  getInProgressTables():Observable<InProgressTables[]>{
+    return this.httpClient.get<InProgressTables[]>(`${this.configService.apiUrl}/table`,{
       headers:{
         authorization:`Bearer ${this.authService.getToken()}`
       }
@@ -31,7 +31,7 @@ export class TableService {
   }
 
   getSingleTable(id:number):Observable<TableDetailed>{
-    return this.httpClient.get<TableDetailed>(`${this.configService.apiUrl}/table?id=${id}`,{
+    return this.httpClient.get<TableDetailed>(`${this.configService.apiUrl}/table/${id}`,{
       headers:{
         authorization:`Bearer ${this.authService.getToken()}`
       }
