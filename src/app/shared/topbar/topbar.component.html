@@ -23,4 +23,21 @@
       </div>
     </div>
   </div>
+  <nav class="navbar opa-navbar">
+    <div class="menubar container-fluid">
+      <div class="navbar-header">
+        <p>Área Administrativa</p>
+      </div>
+      <div class="main-menu">
+        <ul class="nav navbar-nav">
+          <li class="active" *ngFor="let button of buttons">
+            <a routerLink="/home/{{ button.route }}">{{ button.name }}</a>
+          </li>
+        </ul>
+      </div>
+      <button class="o-button" routerLink="/home/order">
+        Pedidos
+      </button>
+    </div>
+  </nav>
 </header>
