@@ -1,35 +1,11 @@
-.whole{
-  width: 100%;
-  height: 100%;
-}
-
 .yellow-line{
-  width: 100%;
-  height: 10%;
-  background-color: black;
+
 }
 
 .component{
-  width: 100%;
-  height: 90%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  overflow-y: auto;
+
 }
 
-.component::-webkit-scrollbar {
-  width: 6px;
-}
-
-.component::-webkit-scrollbar-thumb {
-  background-color: #e4d0ad;
-  border-radius: 20px;
-}
-
-.component::-webkit-scrollbar-track {
-  background-color: #ffffff;
-}
 
 .filterbutton{
   min-width: 95%;
