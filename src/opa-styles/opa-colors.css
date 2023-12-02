@@ -1,5 +1,7 @@
 :root {
   /* Opa colors */
+  --primary-color-lighter: #ffe279;
+  --primary-color-light: #ffd745;
   --primary-color: #ffcf24;
   --primary-color-light-darker: #eec222;
   --secondary-color: #956004;
@@ -31,5 +33,6 @@
   --gray-lighter: #F5F5F5;
   --gray-lighter-final: #F5F5F5;
   --gray-medium: #CCCCCC;
+  --gray-medium-dark: #ACACAC;
   --white: #FFFFFF;
 }

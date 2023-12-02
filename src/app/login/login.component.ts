@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { AuthService } from "../services/auth/auth.service";
 import { firstValueFrom } from 'rxjs';
 import * as bootstrap from 'bootstrap';
+import { LoggedUserDto } from '../services/auth/loggedUserDto.interface';
 
 @Component({
   selector: 'app-login',
@@ -48,7 +49,13 @@ export class LoginComponent implements OnInit {
       try {
         const res = await firstValueFrom(this.loginService.submitForm(this.form.value));
         if (res.data) {
-          this.auth.logUser(res.data.token);
+          const loggedUserProfile:LoggedUserDto = {
+            name: this.form.value.username,
+            role: 'Manager',
+            restaurantName: 'Restaurante Teste'
+          };
+
+          this.auth.logUser(res.data.token, loggedUserProfile);
           this.router.navigate(['/home/'])
         }
       }
