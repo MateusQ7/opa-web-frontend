@@ -10,6 +10,7 @@ import { HomeModule } from './home/home.module';
 import { TopbarModule } from './shared/topbar/topbar.module';
 import { HttpClientModule } from '@angular/common/http';
 import { AppInitializationService } from './services/initialization/initialization.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { AppInitializationService } from './services/initialization/initializati
     ReactiveFormsModule,
     FormsModule,
     TopbarModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule
   ],
   bootstrap: [AppComponent],
   providers: [AppInitializationService]

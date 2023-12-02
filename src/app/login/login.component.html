@@ -18,9 +18,8 @@
           </div>
         </form>
         <div class="buttons">
-          <input type="button" class="login" (click)="submit()" value="LOGIN" data-bs-toggle="modal"
-            data-bs-target="#formModal" />
-          <div class="modal fade" id="formModal" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
+          <input type="button" class="login" (click)="submit()" value="LOGIN" />
+          <div class="modal fade" #formModal tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
