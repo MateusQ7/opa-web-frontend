@@ -15,7 +15,10 @@ import { PopUp } from '../shared/popup/popUp.interface';
   styleUrls: ['./user-register.component.css']
 })
 export class UserRegisterComponent implements OnInit, PopUp {
-
+  modalTitle: string = '';
+  modalContent: string = '';
+  okButton: number = 0;
+  completedZipCode: boolean = false;
   cep: string = '';
   street: string = '';
   city: string = '';
@@ -24,7 +27,7 @@ export class UserRegisterComponent implements OnInit, PopUp {
 
   public form!: FormGroup;
   public second_form!: FormGroup;
-  public popUpShow: boolean = false;
+  public popUpShow: boolean = true;
   public regexCep = /\D/g;
   public cepLenght = 8;
   public popUpMessage: BackReponse[] = []
@@ -127,9 +130,6 @@ export class UserRegisterComponent implements OnInit, PopUp {
         disabled: false,
       }, [
         Validators.required,
-        Validators.pattern(/[0-9]{5}\-?[0-9]{3}/),
-        Validators.minLength(8),
-        Validators.maxLength(8),
       ]],
       cep: [{
         value: '',
@@ -177,16 +177,29 @@ export class UserRegisterComponent implements OnInit, PopUp {
             message: res.message,
             data: res.data
           }
-
-          this.addMessageToPopUp(backResponse);
+          this.modalTitle = 'Sucesso';
+          this.modalContent = 'Usuário cadastrado com sucesso, feche essa mensagem para ser redirecionado para o login.';
+          this.okButton = 200;
         },
         (error) => {
           const backResponse: BackReponse = {
             status: error.status,
-            message: error.message
+            message: error.error.message
           }
+          this.modalTitle = 'Opa! Parece que algo deu errado';
+          this.okButton = error.status;
 
-          this.addMessageToPopUp(backResponse);
+          switch (backResponse.status) {
+            case 400:
+              this.modalContent = backResponse.message;
+              break;
+            case 500:
+              this.modalContent = 'Ocorreu um erro interno, tente novamente mais tarde.';
+              break;
+            case 403:
+              this.modalContent = 'Você não tem permissão para cadastrar, wtf?';
+              break;
+          }
         }
       )
       this.showPopUp()
@@ -235,13 +248,16 @@ export class UserRegisterComponent implements OnInit, PopUp {
             this.neighborhood = data.neighborhood;
             // O CEP é válido, redefina a variável de erro para o campo "cep"
             this.form.controls['cep'].setErrors(null);
+            this.completedZipCode = true;
           } else {
             // Trate o caso de CEP inválido ou não encontrado, definindo a variável de erro para o campo "cep"
-            this.form.controls['cep'].setErrors({ 'cepInvalido': true });
+            this.form.controls['cep'].setErrors({ 'invalidZipCode': false });
           }
         },
         (error: any) => {
           console.error('Erro ao buscar CEP:', error);
+          this.form.controls['cep'].setErrors({ 'invalidZipCode': true });
+          this.completedZipCode = false;
           // Trate os erros, por exemplo, exiba uma mensagem de erro ao usuário
         }
       );
@@ -309,7 +325,9 @@ export class UserRegisterComponent implements OnInit, PopUp {
   }
 
   goToLogin() {
-    this.router.navigate(['/login'])
+    if (this.okButton === 200) {
+      this.router.navigate(['/login'])
+    }
   }
 
 }
