@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import '../../opa-styles/opa-components.css';
 
 .main {
   background-size: 100% auto;
@@ -8,7 +9,7 @@
 }
 
 .register-div {
-  background-color: #fff;
+  background-color: var(--white);
   border-radius: 5px;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
   max-width: 60%;
@@ -66,18 +67,6 @@
   background-color: transparent;
 }
 
-.capsule label {
-  color: #956004;
-  display: block;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: bold;
-  line-height: 19px;
-  max-width: 100%;
-  margin-bottom: 5px;
-  font-family: 'Poppins', sans-serif;
-}
-
 .label-component {
   display: flex;
   gap: 5px
@@ -87,182 +76,10 @@
   text-align: end;
 }
 
-.register-btn {
-  width: 25%;
-  height: 60%;
-  background-color: #FFCF24;
-  border: none;
-  font-size: large;
-  color: #956004;
-  font-weight: bolder;
-  font-family: 'Poppins', sans-serif;
-  box-sizing: border-box;
-  cursor: pointer;
-  letter-spacing: 4px;
-  border-radius: 15px;
-}
-
 .message-error {
-  color: rgb(199, 21, 21);
+  color: var(--danger-darker);
   font-family: 'Poppins', sans-serif;
   font-size: 12px;
   margin-bottom: 5px;
 }
 
-.panel {
-  background-color: #fff;
-  border-radius: 6px;
-  border: 1px solid #ddd;
-  box-shadow: 0 1px 1px rgba(0,0,0,.05);
-  font-weight: 500;
-  margin: 10px 0;
-  width: 100%;
-}
-
-.panel-heading {
-  align-items: center;
-  background-color: #FFCF24;
-  color: #956004;
-  display: inline-flex;
-  font-size: 18px;
-  margin: 0 auto;
-  padding: 10px 15px;
-  border-bottom: 1px solid rgba(0,0,0,.05);
-  vertical-align: middle;
-  width: 100%;
-}
-
-.panel-body {
-  overflow: auto;
-  padding: 15px;
-  word-break: break-word;
-}
-
-.input-item {
-  display: block;
-  width: 100%;
-  height: 39px;
-  padding: 6px 12px;
-  font-size: 16px;
-  line-height: 1.6;
-  color: #5b5a5a;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-shadow: inset 0 1px 1px rgba(0,0,0,.15);
-  transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-  margin: 0;
-  margin-bottom: 15px;
-}
-
-.input-item:focus {
-  border-color: #FFCF24;
-  outline: 0;
-  box-shadow: inset 0 1px 1px rgba(0,0,0,.15),0 0 8px rgba(149,96,4,.2);
-}
-
-.zip-complete {
-  display: block;
-  width: 100%;
-  height: 39px;
-  padding: 6px 12px;
-  font-size: 16px;
-  line-height: 1.6;
-  color: rgb(165, 165, 165);
-  background-color: rgba(158, 158, 158, 0.396);
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-shadow: inset 0 1px 1px rgba(0,0,0,.15);
-  transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-  margin: 0;
-  margin-bottom: 15px;
-  font-family: 'Poppins', sans-serif;
-}
-
-.zip-complete:focus {
-  border-color: #FFCF24;
-  outline: 0;
-  box-shadow: inset 0 1px 1px rgba(0,0,0,.15),0 0 8px rgba(149,96,4,.2);
-}
-
-.btn {
-	display: inline-block;
-	margin-bottom: 0;
-	font-weight: normal;
-	text-align: center;
-	white-space: nowrap;
-	vertical-align: middle;
-	touch-action: manipulation;
-	cursor: pointer;
-	background-image: none;
-	border: 1px solid transparent;
-	padding: 6px 12px;
-	font-size: 16px;
-	line-height: 1.6;
-	border-radius: 4px;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-  font-family: 'Poppins', sans-serif;
-}
-
-.btn:focus {
-  outline-offset: -2px;
-  text-decoration: none;
-}
-
-.btn:active {
-  outline: 0;
-  box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
-}
-
-.btn-primary {
-  color: #fff;
-  background-color: #FFCF24;
-  border-color: #956004;
-}
-
-.btn-primary:hover {
-  color: #fff;
-  background-color: #eec222;
-  border-color: #8a5904;
-}
-
-.btn-primary:focus {
-  color: #fff;
-  background-color: #eec222;
-  border-color: #8a5904;
-}
-
-.btn-primary:active {
-  color: #fff;
-  background-color: #eec222;
-  border-color: #8a5904;
-  background-image: none;
-}
-
-.btn-secondary {
-  color: #8a5904;
-  background-color: #fff;
-  border-color: #8a5904;
-}
-
-.btn-secondary:hover {
-  color: #8a5904;
-  background-color: #cecece;
-  border-color: #8a5904;
-}
-
-.btn-secondary:focus {
-  color: #8a5904;
-  background-color: #cecece;
-  border-color: #8a5904;
-}
-
-.btn-secondary:active {
-  color: #8a5904;
-  background-color: #cecece;
-  border-color: #8a5904;
-  background-image: none;
-}

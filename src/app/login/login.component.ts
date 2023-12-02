@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoginService } from './login.service';
-import { BackReponse } from '../user-register/backReponse.interface';
-import { PopUp } from '../shared/popup/popUp.interface';
 import { Router } from '@angular/router';
 import { AuthService } from "../services/auth/auth.service";
 
@@ -11,18 +9,19 @@ import { AuthService } from "../services/auth/auth.service";
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit,PopUp {
+export class LoginComponent implements OnInit {
 
   public form!:FormGroup;
-  public popUpShow:boolean = false;
-  public popUpMessage:BackReponse[]=[]
+  public loginSuccess:boolean = false;
+  public modalTitle:string = '';
+  public modalContent:string = '';
 
   constructor(
     private formBuilder:FormBuilder,
     private loginService:LoginService,
     private router:Router,
     private auth:AuthService
-    ){}
+  ){}
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
@@ -41,9 +40,9 @@ export class LoginComponent implements OnInit,PopUp {
     });
   };
 
-  async submit(){
+  async submit() {
     // falta logar o usuário no auth service,guardar token,conferir o form
-    if(this.form.valid){
+    if (this.form.valid) {
       this.loginService.submitForm(this.form.value).subscribe(
         (e)=>{
           if(e.data){
@@ -51,24 +50,14 @@ export class LoginComponent implements OnInit,PopUp {
             this.router.navigate(['/home/'])
           }
         }
-      )
+      );
+
       return;
     };
 
-    this,this.addMessageToPopUp({
-      status:404,
-      message:'Formulário inválido'
-    });
-    this.showPopUp();
+    this.modalTitle = 'Opa! Parece que ocorreu um erro no no login.'
+    this.modalContent = 'Verifique se os campos estão preenchidos corretamente.'
 
     return;
-  }
-
-  showPopUp(){
-    this.popUpShow = !this.popUpShow
-  }
-
-  addMessageToPopUp(message: BackReponse): void {
-    this.popUpMessage.push(message);
   }
 }

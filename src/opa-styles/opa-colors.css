@@ -1,0 +1,35 @@
+:root {
+  /* Opa colors */
+  --primary-color: #ffcf24;
+  --primary-color-light-darker: #eec222;
+  --secondary-color: #956004;
+  --secondary-color-light-darker: #8a5904;
+
+  /* Info */
+  --info: #7AC2BF;
+  --info-dark: #69BAB7;
+  --info-darker: #57B2AE;
+
+  /* Warning */
+  --warning: #F8C259;
+  --warning-dark: #F7B941;
+  --warning-darker: #F6B028;
+
+  /* Danger */
+  --danger: #F85959;
+  --danger-dark: #F74141;
+  --danger-darker: #F62828;
+
+  /* Grayscale */
+  --black: #000000;
+  --bluish: #8393A7;
+  --gray: #5B5A5A;
+  --gray-dark: #828282;
+  --gray-dark-final: #828282;
+  --gray-darker: #3E3E3E;
+  --gray-light: #E6E5E5;
+  --gray-lighter: #F5F5F5;
+  --gray-lighter-final: #F5F5F5;
+  --gray-medium: #CCCCCC;
+  --white: #FFFFFF;
+}

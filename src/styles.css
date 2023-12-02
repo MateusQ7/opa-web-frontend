@@ -7,11 +7,15 @@
 /* Bootstrap */
 @import '~bootstrap/dist/css/bootstrap.min.css';
 
+/* Opa */
+@import 'opa-styles/opa-colors.css';
+@import 'opa-styles/opa-components.css';
+
 body,
 html {
-    margin: 0;
-    padding: 0;
-    height: 100%;
+  margin: 0;
+  padding: 0;
+  height: 100%;
 }
 
 

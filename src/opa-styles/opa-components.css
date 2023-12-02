@@ -1,0 +1,184 @@
+/* Buttons */
+.btn {
+	display: inline-block;
+	margin-bottom: 0;
+	font-weight: normal;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: middle;
+	touch-action: manipulation;
+	cursor: pointer;
+	background-image: none;
+	border: 1px solid transparent;
+	padding: 6px 12px;
+	font-size: 16px;
+	line-height: 1.6;
+	border-radius: 4px;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+  font-family: 'Poppins', sans-serif;
+}
+
+.btn:focus {
+  outline-offset: -2px;
+  text-decoration: none;
+}
+
+.btn:active {
+  outline: 0;
+  box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
+}
+
+.btn-primary {
+  color: var(--white);
+  background-color: var(--primary-color);
+  border-color: var(--secondary-color);
+}
+
+.btn-primary:hover {
+  color: var(--white);
+  background-color: var(--primary-color-light-darker);
+  border-color: var(--secondary-color-light-darker);
+}
+
+.btn-primary:focus {
+  color: var(--white);
+  background-color: var(--primary-color-light-darker);
+  border-color: var(--secondary-color-light-darker);
+}
+
+.btn-primary:active {
+  color: var(--white);
+  background-color: var(--primary-color-light-darker);
+  border-color: var(--secondary-color-light-darker);
+  background-image: none;
+}
+
+.btn-secondary {
+  color: var(--secondary-color-light-darker);
+  background-color: var(--white);
+  border-color: var(--secondary-color-light-darker);
+}
+
+.btn-secondary:hover {
+  color: var(--secondary-color-light-darker);
+  background-color: var(--gray-medium);
+  border-color: var(--secondary-color-light-darker);
+}
+
+.btn-secondary:focus {
+  color: var(--secondary-color-light-darker);
+  background-color: var(--gray-medium);
+  border-color: var(--secondary-color-light-darker);
+}
+
+.btn-secondary:active {
+  color: var(--secondary-color-light-darker);
+  background-color: var(--gray-medium);
+  border-color: var(--secondary-color-light-darker);
+  background-image: none;
+}
+
+/* Panels */
+.panel {
+  background-color: var(--white);
+  border-radius: 6px;
+  border: 1px solid var(--gray-light);
+  box-shadow: 0 1px 1px rgba(0,0,0,.05);
+  font-weight: 500;
+  margin: 10px 0;
+  width: 100%;
+}
+
+.panel-heading {
+  align-items: center;
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  display: inline-flex;
+  font-size: 18px;
+  margin: 0 auto;
+  padding: 10px 15px;
+  border-bottom: 1px solid rgba(0,0,0,.05);
+  vertical-align: middle;
+  width: 100%;
+}
+
+.panel-body {
+  overflow: auto;
+  padding: 15px;
+  word-break: break-word;
+}
+
+/* Inputs */
+.input-item,
+.input-item-medium,
+.input-item-large {
+  display: block;
+  width: 100%;
+  height: 39px;
+  padding: 6px 12px;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--gray);
+  background-color: var(--white);
+  border: 1px solid var(--gray-light);
+  border-radius: 5px;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.15);
+  transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  margin: 0;
+  margin-bottom: 15px;
+}
+
+.input-item-medium {
+  height: 45px;
+}
+
+.input-item-large {
+  height: 50px;
+}
+
+.input-item-medium:focus,
+.input-item-large:focus,
+.input-item:focus {
+  border-color: var(--primary-color);
+  outline: 0;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.15),0 0 8px rgba(149,96,4,.2);
+}
+
+.zip-complete {
+  display: block;
+  width: 100%;
+  height: 39px;
+  padding: 6px 12px;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--gray-medium);
+  background-color: var(--gray-light);
+  border: 1px solid var(--gray-medium);
+  border-radius: 5px;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.15);
+  transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  margin: 0;
+  margin-bottom: 15px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.zip-complete:focus {
+  border-color: var(--primary-color);
+  outline: 0;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.15),0 0 8px rgba(149,96,4,.2);
+}
+
+label {
+  color: var(--secondary-color);
+  display: block;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: bold;
+  line-height: 19px;
+  max-width: 100%;
+  margin-bottom: 5px;
+  font-family: 'Poppins', sans-serif;
+}
