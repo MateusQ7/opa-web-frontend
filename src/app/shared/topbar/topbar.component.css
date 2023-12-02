@@ -165,7 +165,6 @@
   font-family: 'Roboto', sans-serif;
   font-weight: bold;
   font-size: 18px;
-  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.2);
 }
 
 .o-button:hover {
@@ -229,12 +228,13 @@
   flex-direction: column;
   align-items: start;
   margin: 7px;
-  min-width: 165px;
+  min-width: 110px;
 }
 
 .user-menu-info p {
   margin: 0;
   color: var(--gray);
+  margin-right: 40px;
 }
 
 .user-menu-info span {
@@ -336,13 +336,12 @@
   padding: 0 10px
 }
 
-.navbar-nav li:hover {
+.active {
   background-color: var(--primary-color-light);
   display: flex;
   align-items: center;
   height: 100%;
 }
-
 
 /* .container-fluid::before {
   display: table;

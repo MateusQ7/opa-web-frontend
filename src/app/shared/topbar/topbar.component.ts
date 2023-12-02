@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { Buttons } from './buttons';
+import { filter } from 'rxjs/operators';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'opa-topbar',
@@ -8,26 +10,41 @@ import { Buttons } from './buttons';
   styleUrls: ['./topbar.component.css']
 })
 export class TopbarComponent {
+  public currentRoute: string = '';
 
-  public buttons:Buttons[]=[
+  public buttons:Buttons[] = [
     {
     name:'Dashboard',
-    route:'/dashboard'
+    route:'dashboard'
     },
     {
     name:'Estoque',
-    route:'/storage'
+    route:'storage'
     },
     {
     name:'Funcionários',
-    route:'/employees'
+    route:'employees'
     },
     {
     name:'Cardápio',
-    route:'/menu'
+    route:'menu'
     },
   ]
+
   constructor(
-    public auth:AuthService
-  ){}
+    public auth:AuthService,
+    private route:ActivatedRoute,
+    private router:Router
+  ){
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe(() => {
+      this.updateCurrentRoute();
+    })
+  }
+
+  private updateCurrentRoute() {
+    this.currentRoute = this.route.snapshot.firstChild?.routeConfig?.path || '';
+  }
+
 }

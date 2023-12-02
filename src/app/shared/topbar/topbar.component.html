@@ -30,7 +30,7 @@
       </div>
       <div class="main-menu">
         <ul class="nav navbar-nav">
-          <li class="active" *ngFor="let button of buttons">
+          <li [ngClass]="{'active': this.currentRoute == button.route}" *ngFor="let button of buttons">
             <a routerLink="/home/{{ button.route }}">{{ button.name }}</a>
           </li>
         </ul>
