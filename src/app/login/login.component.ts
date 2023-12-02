@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { LoginService } from './login.service';
+import { LoginService } from '../services/login/login.service';
 import { BackReponse } from '../user-register/backReponse.interface';
 import { PopUp } from '../shared/popup/popUp.interface';
 import { Router } from '@angular/router';
