@@ -1,16 +1,44 @@
-<div class="main" style="background-image: url('../../assets/images/Opa!-Web.svg')">
+<div class="main container-fluid" style="background-image: url('../../assets/images/Opa!-Web.svg')">
+  <div class="col-md-12 login-container">
     <div class="login-div">
-        <div class="container">
-            <h1 class="logo">Opa!</h1>
-            <div class="inputs">
-                <p class="text">E-mail:</p>
-                <input type="email" name="email" class="box-info" placeholder="Insira seu e-mail" font-family="Poppins"/>
-                <p class="text">Senha:</p>
-                <input type="password" name="password" class="box-info" placeholder="Insira sua senha"/>
-                <input type="button"  class="login" value="LOGIN"/>
-                <div class="line"></div>
-                <button class="register" routerLink="/register">CRIAR CONTA</button>
+      <div class="logo">
+        <p> Opa! </p>
+      </div>
+      <div class="operations-container">
+        <form [formGroup]="this.form">
+          <div>
+            <label>Usuário:</label>
+            <input formControlName="username" type="string" name="username" class="input-item-large"
+              placeholder="Insira seu usuário" font-family="Poppins" />
+          </div>
+          <div>
+            <label>Senha:</label>
+            <input formControlName="password" type="password" name="password" class="input-item-large"
+              placeholder="Insira sua senha" />
+          </div>
+        </form>
+        <div class="buttons">
+          <input type="button" class="login" (click)="submit()" value="LOGIN" />
+          <div class="modal fade" #formModal tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="formModalLabel">{{ modalTitle }}</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  {{ modalContent }}
+                </div>
+                <div class="modal-footer">
+                  <button type="button" data-bs-dismiss="modal" class="btn btn-primary">Entendi!</button>
+                </div>
+              </div>
             </div>
+          </div>
+          <hr class="line">
+          <button class="register" routerLink="/register">CRIAR CONTA</button>
         </div>
+      </div>
     </div>
+  </div>
 </div>

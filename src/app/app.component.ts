@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AppInitializationService } from './services/initialization/initialization.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'opaWebFront';
+  title = 'Opa!';
+
+  constructor(private appInitializationService: AppInitializationService) { }
+
+  ngOnInit(): void {
+    this.appInitializationService.initializeApp();
+  }
 }

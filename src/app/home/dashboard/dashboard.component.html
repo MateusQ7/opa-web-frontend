@@ -1,21 +1,76 @@
 <div class="whole">
-  <div class="yellow">
-    <div class="content">
-      <div class="icon">
-        <img src="/assets/images/Cash.svg" alt="">
-      </div>
-      <div class="text">
-        <div class="restaurant-name">
-          <p>
-            {{ this.auth.userData.restaurantName }}
-          </p>
-        </div>
-        <div class="route-name">
-          	<p>
-              Dashboard
-            </p>
-        </div>
+  <div class="yellow-line">
+    <opa-yline routeNameToBeUsed="Dashboard" iconPath="/assets/images/Cash.svg"></opa-yline>
+  </div>
+  <div class="component">
+    <div class="filterbutton">
+      <button class="filter">
+        <p>
+          Filtrar por período ▼
+        </p>
+      </button>
+    </div>
+    <div class="first-graph-box">
+      <div class="topbar">
+        <div class="topbar-icon">
 
+        </div>
+        <div class="topbar-text">
+          <p>Faturamento</p>
+        </div>
+      </div>
+      <div class="first-graph-box-content">
+        <div class="first-graph-left-box">
+          <div class="billing-container">
+            <p>Faturamento</p>
+            <div class="value">
+              <img src="/assets/images/currencygolden.svg" alt="">
+              <p>R$ {{ this.billing }}</p>
+            </div>
+          </div>
+          <div class="billing-container">
+            <p>Ticket Médio</p>
+            <div class="value">
+              <img src="/assets/images/currencygolden.svg" alt="">
+              <p>R$ {{ this.ticket }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="first-graph-right-box">
+
+        </div>
+      </div>
+    </div>
+    <div class="second-graph-box">
+      <div class="top5products">
+        <div class="header">
+          <div class="header-icon">
+
+          </div>
+          <div class="header-text">
+
+          </div>
+        </div>
+      </div>
+      <div class="by-age">
+        <div class="header">
+          <div class="header-icon">
+
+          </div>
+          <div class="header-text">
+
+          </div>
+        </div>
+      </div>
+      <div class="by-region">
+        <div class="header">
+          <div class="header-icon">
+
+          </div>
+          <div class="header-text">
+
+          </div>
+        </div>
       </div>
     </div>
   </div>

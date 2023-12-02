@@ -1,0 +1,255 @@
+.container {
+  height: 85%;
+  width: 100%;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.box-info {
+  width: 70%;
+}
+
+.form {
+  width: 70%;
+  height: 80%;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-header{
+  width: 100%;
+  height: 15%;
+  border-bottom: 1px solid #cccccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-header p {
+  width: 93%;
+  height: 100%;
+  margin: 0;
+  font-family: Poppins;
+  font-size: 4vh;
+  display: flex;
+  align-items: center;
+  font-weight: 800;
+  color: #505050;
+}
+
+.form-input-cells{
+  width: 60%;
+  height: 15%;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-input-cells p {
+  width: 100%;
+  height: 30%;
+  margin: 0;
+  font-family: Poppins;
+  font-weight: 700;
+  color: #525252;
+  letter-spacing: 0.7px;
+}
+
+.form-input-cells input {
+  font-size: 1.9vh;
+  width: 99%;
+  height: 50%;
+  margin: 0;
+  padding: 0;
+  border: 1px solid #CED4DA;
+  border-radius: 4px ;
+  outline: none;
+  transition: border-color 0.3s;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+  color: #818181;
+  letter-spacing: 0.5px;
+  font-weight: 300;
+  appearance: textfield;
+}
+
+.product-list {
+  width: 95%;
+  height: 70%;
+  /* background-color: red; */
+  display: flex;
+  flex-direction: column;
+}
+
+.product-list-header {
+  width: 100%;
+  height: 20%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.product-list-header p{
+  width: 100%;
+  height: 30%;
+  margin: 0;
+  font-family: Poppins;
+  font-weight: 700;
+  color: #525252;
+  letter-spacing: 0.7px;
+}
+
+.product-list-header select{
+  width: 98%;
+  height: 50%;
+  text-align: center;
+  font-size: 2vh;
+  font-family: Poppins;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  outline: none;
+  color:#525252;
+}
+
+
+.product-list-header div {
+  width: 30px;
+  height: 30px;
+  background-color: #ffe587;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top-left-radius: 14px;
+  border-top-right-radius: 14px;
+}
+
+.button-modal-save {
+  cursor: pointer;
+}
+
+.selected-products-table {
+  width: 100%;
+}
+
+.table-head tr {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  text-align: left;
+  border-top-left-radius: 14px;
+  border-top-right-radius: 14px;
+  background-color: rgb(235, 235, 235);
+  padding: 1%;
+  box-sizing: border-box;
+}
+
+.table-body tr {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  text-align: left;
+}
+
+.table-head th {
+  width: 50%;
+}
+
+.table-body td {
+  width: 50%;
+}
+
+.container-footer {
+  width: 100%;
+  height: 15%;
+  border-top: 1px solid #cccccc ;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.container-footer-buttons{
+  width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container-footer-close-button{
+  width: 35%;
+  height: 70%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container-footer-close-button button{
+  width: 80%;
+  height: 90%;
+  background-color: transparent;
+  border: 1px solid #956004;
+  border-radius: 5px;
+  font-size: 2vh;
+  font-family: Poppins;
+  font-weight: 400;
+  color: #956004;
+  letter-spacing: 0.7px;
+}
+
+.container-footer-close-button button:hover{
+  width: 82%;
+  height: 95%;
+  border: 2px solid #956004;
+  font-size: 2.1vh;
+  font-weight: 600;
+  transition: 0.1s;
+}
+
+.container-footer-submit-button{
+  width: 35%;
+  height: 70%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container-footer-submit-button button{
+  width: 80%;
+  height: 90%;
+  background-color: #ffcf24;
+  border: 1px solid #956004;
+  border-radius: 5px;
+  font-size: 2vh;
+  font-family: Poppins;
+  font-weight: 400;
+  color: #956004;
+  letter-spacing: 0.7px;
+}
+
+.container-footer-submit-button button:hover{
+  width: 82%;
+  height: 95%;
+  border: 2px solid #956004;
+  font-size: 2.1vh;
+  font-weight: 600;
+  transition: 0.1s;
+}
+
+select {
+  width: 100%;
+}
+
+@media (max-width:749px) {
+
+  .form {
+    width: 90%;
+  }
+}

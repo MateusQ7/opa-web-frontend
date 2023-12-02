@@ -1,0 +1,366 @@
+.modal{
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loading-modal{
+  width: 75%;
+  height: 90%;
+  border-radius: 5px;
+  position: absolute;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.loading-modal opa-loading{
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+}
+
+.main-container{
+  width: 75%;
+  height: 90%;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-container-header{
+  width: 100%;
+  height: 12%;
+  border-bottom: 1px solid #cccccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.header-title {
+  width: 93%;
+  height: 70%;
+  margin: 0;
+  font-family: Poppins;
+  font-size: 4vh;
+  display: flex;
+  align-items: center;
+  font-weight: 800;
+  color: #505050;
+}
+
+.header-description {
+  width: 80%;
+  height: 20%;
+  margin: 0;
+  font-family: Poppins;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  font-weight: 300;
+  color: #505050;
+}
+
+.header-description strong{
+  font-family: Poppins;
+  font-weight: 500;
+
+}
+
+.container-content{
+  width: 100%;
+  height: 76%;
+  background-color: rgb(241, 241, 241);
+  overflow-y: auto;
+}
+
+.table-loop-cell{
+  width: 100%;
+  height: 20%;
+  display: flex;
+  border-bottom: 1px solid #cccccc;
+}
+
+.table-loop-product-img{
+  width: 15%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.table-loop-product-img img{
+  width: auto;
+  height: 80%;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+.table-loop-product-descript{
+  width: 85%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.table-loop-product-descript-top{
+  width: 100%;
+  height: 50%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.table-loop-product-descript-bot{
+  width: 100%;
+  height: 50%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.table-loop-product-order-name{
+  width: 35%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Poppins;
+  font-weight: 300;
+}
+
+.table-loop-product-order-name .text{
+  width: 40%;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.table-loop-product-order-name .value{
+  width: 60%;
+  height: 50%;
+  display: flex;
+  align-items: center;
+
+}
+
+.table-loop-product-order-value{
+  width: 35%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Poppins;
+  font-weight: 300;
+}
+
+.table-loop-product-order-value .text{
+  width: 40%;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.table-loop-product-order-value .value{
+  width: 60%;
+  height: 50%;
+  display: flex;
+  align-items: center;
+}
+
+.table-loop-product-order-qt{
+  width: 30%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Poppins;
+  font-weight: 300;
+}
+
+.table-loop-product-order-qt .text{
+  width: 60%;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.table-loop-product-order-qt .value{
+  width: 40%;
+  height: 50%;
+  display: flex;
+  align-items: center;
+}
+
+.table-loop-product-order-time{
+  width: 35%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Poppins;
+  font-weight: 300;
+}
+
+.table-loop-product-order-time .text{
+  width: 60%;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.table-loop-product-order-time .value{
+  width: 40%;
+  height: 50%;
+  display: flex;
+  align-items: center;
+}
+
+.table-loop-product-order-status{
+  width: 35%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Poppins;
+  font-weight: 300;
+}
+
+.table-loop-product-order-status .text{
+  width: 40%;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.table-loop-product-order-status .value{
+  width: 60%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.status-inprogress{
+  width: 60%;
+  height: 90%;
+  color: white;
+  font-family: Poppins;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 5px;
+  background-color: rgb(209, 209, 2);
+  display: flex;
+  justify-content: center;
+  align-items: center
+}
+
+.status-delivered{
+  width: 60%;
+  height: 90%;
+  color: white;
+  font-family: Poppins;
+  font-size: 15px;
+  border-radius: 5px;
+  background-color: rgb(2, 209, 106);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+}
+
+.status-canceled{
+  width: 60%;
+  height: 90%;
+  color: white;
+  font-family: Poppins;
+  font-size: 15px;
+  border-radius: 5px;
+  background-color: rgb(209, 2, 2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+}
+
+.table-loop-product-order-delivered{
+  width: 30%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Poppins;
+  font-weight: 300;
+}
+
+.table-loop-product-order-delivered .text{
+  width: 80%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Poppins;
+  font-weight: 300;
+  text-align: center;
+}
+
+.table-loop-product-order-delivered .value{
+  width: 20%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  font-family: Poppins;
+  font-weight: 300;
+}
+
+.container-footer{
+  width: 100%;
+  height: 12%;
+  border-top: 1px solid #cccccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container-footer-close-button{
+  width: 15%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container-footer-close-button button{
+  width: 80%;
+  height: 80%;
+  background-color: transparent;
+  border: 1px solid #956004;
+  border-radius: 5px;
+  font-size: 2vh;
+  font-family: Poppins;
+  font-weight: 400;
+  color: #956004;
+  letter-spacing: 0.7px;
+}
+
+.container-footer-close-button button:hover{
+  width: 82%;
+  height: 82%;
+  border: 2px solid #956004;
+  font-size: 2.1vh;
+  font-weight: 600;
+  transition: 0.1s;
+}

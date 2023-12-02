@@ -1,21 +1,38 @@
+<opa-create-product-modal [showModal]="showModal" (openModal)="openModal()"
+(closeModal)="closeModal()"></opa-create-product-modal>
+<div class="loading-modal" *ngIf="this.loading">
+  <opa-loading ></opa-loading>
+</div>
 <div class="whole">
-  <div class="yellow">
-    <div class="content">
-      <div class="icon">
-
-      </div>
-      <div class="text">
-        <div class="restaurant-name">
-          <p>
-            {{ this.auth.userData.restaurantName }}
-          </p>
+  <div class="yellow-line">
+    <opa-yline routeNameToBeUsed="Cardápio" iconPath="/assets/images/order.svg"></opa-yline>
+  </div>
+  <div class="component">
+    <div class="button-header">
+      <button (click)="openModal()" class="add-product">
+        <p>
+          Adicionar Produto
+        </p>
+      </button>
+    </div>
+    <div class="menu-loop-space">
+      <div class="menu-loop-cell" *ngFor="let menuItem of this.menuList">
+        <div class="menu-img">
+          <img src="/assets/images/opa-logo-white.svg" alt="">
         </div>
-        <div class="route-name">
-          	<p>
-              Menu
-            </p>
+        <div class="menu-info">
+          <div class="menu-name">
+            <p>{{ menuItem.name }}</p>
+          </div>
+          <div class="menu-description">
+            <div class="descript-text">
+              <p>{{ menuItem.description }}</p>
+            </div>
+            <div class="menu-value">
+              <p>R$ {{ menuItem.price }}</p>
+            </div>
+          </div>
         </div>
-
       </div>
     </div>
   </div>

@@ -1,0 +1,154 @@
+<div class="modal">
+  <div class="loading-modal" *ngIf="this.loading">
+    <opa-loading></opa-loading>
+  </div>
+  <div class="main-container">
+    <div class="main-container-header">
+      <p>Lançar pedidos </p>
+    </div>
+    <div class="main-container-content">
+      <form class="topside-container" [formGroup]="this.form">
+        <div class="topside-container-form">
+          <div class="topside-container-left">
+            <div class="order-name">
+              <p>Pedido:</p>
+              <select name="" id="" formControlName="name">
+                <option selected disabled value=""> --Selecione o pedido --</option>
+                <option *ngFor="let item of this.menuService.menu" value="{{ item.id }}">
+                  {{ item.name }}
+                </option>
+              </select>
+            </div>
+            <div class="order-table">
+              <p>Mesa:</p>
+              <select name="" id="" (change)="updateTable()" formControlName="table" >
+                <option selected disabled value=""> --Selecione a mesa --</option>
+                <option *ngFor="let table of this.tableService.tables" value="{{ table.id }}">
+                  {{ table.id }}
+                </option>
+              </select>
+            </div>
+            <div class="order-clients">
+              <p>Clientes:</p>
+              <select name="" id="" formControlName="client" >
+                <option selected disabled > --Selecione o cliente --</option>
+                <option *ngFor="let customer of this.selectedCustomer">
+                  {{ customer.name }}
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="topside-division"></div>
+          <div class="topside-container-right">
+            <div class="order-quantity">
+              <p>Quantidade:</p >
+              <input type="text" formControlName="qt">
+            </div>
+            <div class="order-responsable-waiter">
+              <p>Garçom responsável: </p>
+              <select name="" id="" formControlName="responsableWaiter">
+                <option selected disabled value="" > --Selecione o garçom --</option>
+                <option *ngFor="let waiter of this.waiterService.waiters">
+                  {{ waiter.name }}
+                </option>
+              </select>
+            </div>
+            <div class="order-status">
+              <p>Status do pedido: </p>
+              <select name="" id="" formControlName="status">
+                <option selected disabled value=""  > --Selecione o status --</option>
+                <option value="1">Em Andamento</option>
+                <option value="2">Entregue</option>
+                <option value="3">Cancelado</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="topside-container-bottom">
+          <button (click)="submitOrder()">
+            <img src="/assets/images/addbuttonmodal.svg" alt="">
+          </button>
+        </div>
+      </form>
+      <div class="container-division"></div>
+      <div class="botside-container">
+        <div class="botside-content">
+          <div class="botside-header">
+            <div class="botside-header-checkbox">
+              <input type="checkbox" class="order-checkbox" [ngModel]="this.allCheckboxChecked" (click)="allChecked()">
+            </div>
+            <div class="header-order-text">
+              <p>Pedido</p>
+            </div>
+            <div class="header-qt-text">
+              <p>Quantidade</p>
+            </div>
+            <div class="header-table-text">
+              <p>Mesa</p>
+            </div>
+            <div class="header-clients-text">
+              <p>Clientes</p>
+            </div>
+            <div class="header-value-text">
+              <p>Val. Total</p>
+            </div>
+            <div class="header-status">
+              <p>Status</p>
+            </div>
+            <div class="header-trashicon">
+              <button *ngIf="this.allCheckboxChecked"(click)="deleteAll()">
+                <img src="/assets/images/trash-fill.svg" alt="">
+              </button>
+            </div>
+          </div>
+          <div class="loop-space-orders">
+            <div class="order-cell" *ngFor="let order of orderList;let i=index" >
+              <div class="order-cell-checkbox">
+                <input type="checkbox" class="order-checkbox" [ngModel]="order.checked" (click)="checkOrder(i)">
+              </div>
+              <div class="order-cell-order-text">
+                <p>{{ order.menuItem.name }}</p>
+              </div>
+              <div class="order-cell-qt-text">
+                <p>{{ order.quantity }}</p>
+              </div>
+              <div class="order-cell-table-text">
+                <p>{{ order.table.id }}</p>
+              </div>
+              <div class="order-cell-clients-text">
+                <p>{{ order.customers.length }}</p>
+              </div>
+              <div class="order-cell-value-text">
+                <p>{{ order.menuItem.value * order.quantity}}</p>
+              </div>
+              <div class="order-cell-status">
+                <p *ngIf="this.order.status == 1" class="status-inprogress">em andamento</p>
+                <p *ngIf="this.order.status == 2" class="status-delivered">entregue</p>
+                <p *ngIf="this.order.status == 3" class="status-canceled">cancelado</p>
+              </div>
+              <div class="order-cell-trashicon">
+                <button *ngIf="order.checked" (click)="deleteOrder(i)">
+                  <img src="/assets/images/trash-fill.svg" alt="">
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="main-container-footer">
+      <div class="container-footer-buttons">
+        <div class="container-footer-close-button">
+          <button (click)="closePopUp()">
+            Fechar
+          </button>
+        </div>
+        <div class="container-footer-submit-button">
+          <button (click)="submitForm()">
+            Salvar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

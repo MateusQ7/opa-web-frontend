@@ -2,34 +2,33 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
 import { LoginModule } from './login/login.module';
-import { UserRegisterComponent } from './user-register/user-register.component';
 import { UserRegisterModule } from './user-register/user-register.module';
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { HomeComponent } from './home/home.component';
-import { TopbarComponent } from './shared/topbar/topbar.component';
-import { ProfilebuttonComponent } from './shared/profilebutton/profilebutton.component';
+import { HomeModule } from './home/home.module';
+import { TopbarModule } from './shared/topbar/topbar.module';
 import { HttpClientModule } from '@angular/common/http';
+import { AppInitializationService } from './services/initialization/initialization.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
-    TopbarComponent,
-    ProfilebuttonComponent,
   ],
   imports: [
     BrowserModule,
     LoginModule,
     UserRegisterModule,
+    HomeModule,
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    TopbarModule,
+    HttpClientModule,
+    BrowserAnimationsModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  providers: [AppInitializationService]
 })
 export class AppModule { }
