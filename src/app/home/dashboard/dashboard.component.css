@@ -4,6 +4,7 @@
 .amount-wrapper {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
 }
 
 .model-tile {
@@ -76,7 +77,7 @@
   overflow-x: auto;
 }
 
-.graph-gender {
+.graph-panel {
   align-items: center;
   display: flex;
   height: 380px;

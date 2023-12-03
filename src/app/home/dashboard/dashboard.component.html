@@ -52,7 +52,7 @@
         </div>
       </div>
     </div>
-    <div class="row">
+    <div class="row mb-4">
       <div class="col-md-4">
         <div class="panel panel-icon">
           <div class="panel-heading panel-heading-icon">
@@ -102,9 +102,24 @@
             <div class="title">Faturamento por faixa etária</div>
           </div>
           <div class="panel-body">
-            <div class="graph-gender">
+            <div class="graph-panel">
               <canvas id="graph-gender-member">
                 {{ memberChart }}
+              </canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="panel panel-icon">
+          <div class="panel-heading panel-heading-icon">
+            <i class="fa-solid fa-map"></i>
+            <div class="title">Top 5 bairros</div>
+          </div>
+          <div class="panel-body">
+            <div class="graph-panel">
+              <canvas id="graph-location-member">
+                {{ locationChart }}
               </canvas>
             </div>
           </div>

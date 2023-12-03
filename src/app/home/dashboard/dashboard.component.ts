@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from 'src/app/services/auth/auth.service';
-import Chart, { ChartItem } from 'chart.js/auto'
+import { Chart } from 'chart.js/auto'
 
 @Component({
   selector: 'app-dashboard',
@@ -10,6 +10,7 @@ import Chart, { ChartItem } from 'chart.js/auto'
 export class DashboardComponent {
   public revenueChart: any;
   public memberChart: any;
+  public locationChart: any;
   public perMonthRevenue: number[] = [];
   public perMonthTicket: number[] = [];
 
@@ -27,6 +28,7 @@ export class DashboardComponent {
   ngOnInit(): void {
     this.createRevenueChart();
     this.createMemberChart();
+    this.createLocationChart();
   }
 
   createRevenueChart() {
@@ -78,33 +80,27 @@ export class DashboardComponent {
       data: {
         labels: [
           '0 - 20',
-          '21 - 25',
-          '26 - 30',
-          '31 - 35',
-          '36 - 40',
-          '41 - 45',
-          '46 - 50',
-          '51 - 55',
-          '56 - 60',
-          '61 - 65',
-          '66 - 70',
-          '70+',
+          '21 - 30',
+          '31 - 40',
+          '41 - 50',
+          '51 - 60',
+          '60+'
         ],
         datasets: [
           {
             label: 'Mulher',
-            data: [10, 20, 15, 25, 22, 30, 28, 13, 2, 15, 17, 29],
+            data: [10, 20, 15, 25, 22, 10],
             backgroundColor: '#f1aeb5',
           },
           {
             label: 'Homem',
-            data: [20, 40, 30, 50, 44, 60, 56, 26, 4, 30, 34, 58],
+            data: [20, 40, 30, 50, 44, 10],
             backgroundColor: '#9ec5fe',
 
           },
           {
             label: 'Outros',
-            data: [15, 25, 20, 30, 27, 35, 33, 18, 7, 20, 22, 34],
+            data: [15, 25, 20, 30, 27, 10],
             backgroundColor: '#fff3cd',
           },
         ],
@@ -124,6 +120,22 @@ export class DashboardComponent {
             },
           }
         }
+      }
+    });
+  }
+
+  createLocationChart() {
+    this.memberChart = new Chart('graph-location-member', {
+      type: 'doughnut',
+      data: {
+        labels: ['Messejana', 'Montese', 'Cambeba', 'Pici', 'Quintino Cunha'],
+        datasets: [
+          {
+            label: 'Clientes',
+            data: [10, 13, 7, 3, 18],
+            backgroundColor: ['#f1aeb5', '#9ec5fe', '#fff3cd', '#c3e6cb', '#dfd2f7'],
+          }
+        ],
       }
     });
   }
