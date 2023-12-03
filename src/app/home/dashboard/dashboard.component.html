@@ -20,7 +20,7 @@
                       </h2>
                       <div class="model-tile-body">
                         <i class="fa-solid fa-dollar-sign"></i>
-                        <span> R$ 69,00</span>
+                        <span>R$ {{ revenueValue }}</span>
                       </div>
                     </div>
                   </div>
@@ -32,7 +32,7 @@
                       </h2>
                       <div class="model-tile-body">
                         <i class="fa-solid fa-ticket"></i>
-                        <span> R$ 30,00</span>
+                        <span>R$ {{ ticketValue }}</span>
                       </div>
                     </div>
                   </div>
@@ -69,25 +69,10 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr class="odd">
-                    <th>Catinhas de paranguejo</th>
-                    <td class="text-right">R$ 500,00</td>
-                  </tr>
-                  <tr class="even">
-                    <th>File com fritas fritas</th>
-                    <td class="text-right">R$ 394,12</td>
-                  </tr>
-                  <tr class="odd">
-                    <th>Camarão nacional</th>
-                    <td class="text-right">R$ 293,00</td>
-                  </tr>
-                  <tr class="even">
-                    <th>Fritas frita a sardinha</th>
-                    <td class="text-right">R$ 154,66</td>
-                  </tr>
-                  <tr class="odd">
-                    <th>Filé de peixe</th>
-                    <td class="text-right">R$ 63,00</td>
+                  <tr *ngFor="let item of productList; let i = index" [class.odd]="i % 2 === 0"
+                    [class.even]="i % 2 !== 0">
+                    <th>{{ item.productName }}</th>
+                    <td class="text-right">{{ 'R$ ' + item.totalValue.toFixed(2) }}</td>
                   </tr>
                 </tbody>
               </div>

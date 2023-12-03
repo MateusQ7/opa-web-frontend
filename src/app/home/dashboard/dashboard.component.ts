@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { Chart } from 'chart.js/auto'
-
+import { DashboardService } from 'src/app/services/dashboard/dashboard.service';
+import { firstValueFrom } from 'rxjs';
+import { PayedBills } from 'src/app/services/dashboard/payedBills';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -13,34 +15,57 @@ export class DashboardComponent {
   public locationChart: any;
   public perMonthRevenue: number[] = [];
   public perMonthTicket: number[] = [];
+  public revenueValue!: string;
+  public ticketValue!: string;
+  public productList: any[] = [];
 
   string = 'Dashboard';
 
-  billing:string = `18.309,35`
-
-  ticket:string =`1.309,42`
-
-
   constructor(
-    public auth:AuthService
+    public auth:AuthService,
+    private dashboardService: DashboardService
   ){}
 
-  ngOnInit(): void {
-    this.createRevenueChart();
-    this.createMemberChart();
-    this.createLocationChart();
+  async ngOnInit(): Promise<void> {
+    await this.getData();
   }
 
-  createRevenueChart() {
+  createRevenueChart(data: PayedBills[]) {
+    let info = [
+      { month: 'jan', value: 0, count: 0 },
+      { month: 'fev', value: 0, count: 0 },
+      { month: 'mar', value: 0, count: 0 },
+      { month: 'abr', value: 0, count: 0 },
+      { month: 'mai', value: 0, count: 0 },
+      { month: 'jun', value: 0, count: 0 },
+      { month: 'jul', value: 0, count: 0 },
+      { month: 'ago', value: 0, count: 0 },
+      { month: 'set', value: 0, count: 0 },
+      { month: 'out', value: 0, count: 0 },
+      { month: 'nov', value: 0, count: 0 },
+      { month: 'dez', value: 0, count: 0 },
+    ];
+
+    for (const bill of data) {
+      const month = bill.monthDate;
+      info[month].value += bill.totalValue;
+      info[month].count += 1;
+    }
+
     this.revenueChart = new Chart('graph-target-revenue', {
       type: 'bar',
       data: {
-        labels: ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez'],
+        labels: info.map(row => row.month),
         datasets: [
           {
             label: 'Ticket Médio em R$',
             type: 'line',
-            data: [10, 20, 22, 20, 11, 15, 28, 31, 36, 40, 27, 21],
+            data: info.map((row) => {
+              if (row.count == 0) {
+                return 0;
+              }
+              return row.value / row.count;
+            }),
             fill: false,
             backgroundColor: '#956004',
             borderColor: '#956004',
@@ -51,7 +76,7 @@ export class DashboardComponent {
           {
             label: 'Faturamento em R$',
             type: 'bar',
-            data: [10, 20, 15, 25, 22, 30, 28, 13, 2, 15, 17, 29],
+            data: info.map(row => row.value),
             backgroundColor: '#eec222',
           }
         ],
@@ -139,4 +164,59 @@ export class DashboardComponent {
       }
     });
   }
+
+  createTopProducts(data: PayedBills[]) {
+    let topProducts: any = {};
+    for (const bill of data) {
+      const baseProductName = bill.productName.replace(/\d+$/, '').trim();
+
+      if (!topProducts[baseProductName]) {
+        topProducts[baseProductName] = {
+          productName: baseProductName,
+          totalValue: 0
+        };
+      }
+
+      topProducts[baseProductName].totalValue += bill.totalValue;
+    }
+
+    this.productList = Object.values(topProducts).sort((a: any, b: any) => b.totalValue - a.totalValue).slice(0, 5);
+  }
+
+  async getData() {
+    try {
+      const data = await firstValueFrom(this.dashboardService.getPayedBills());
+      let revenueValue = 0;
+      let bills = 0;
+
+      let topProducts: any = {};
+      for (const bill of data) {
+        bills++;
+        revenueValue += bill.totalValue;
+
+        const baseProductName = bill.productName.replace(/\d+$/, '').trim();
+
+        if (!topProducts[baseProductName]) {
+          topProducts[baseProductName] = {
+            productName: baseProductName,
+            totalValue: 0
+          };
+        }
+
+        topProducts[baseProductName].totalValue += bill.totalValue;
+      }
+
+      const topProductsList = Object.values(topProducts).sort((a: any, b: any) => b.totalValue - a.totalValue).slice(0, 5);
+      console.log(topProductsList);
+      this.createRevenueChart(data);
+      this.createTopProducts(data);
+
+      this.revenueValue = revenueValue.toFixed(2).replace('.', ',');
+      this.ticketValue = (revenueValue / bills).toFixed(2).replace('.', ',');
+
+    } catch(error: any){
+      console.log(error);
+    }
+  }
+
 }

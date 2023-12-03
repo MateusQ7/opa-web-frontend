@@ -75,6 +75,7 @@
   padding-bottom: 50px;
   min-height: .01%;
   overflow-x: auto;
+  height: 410px;
 }
 
 .graph-panel {
