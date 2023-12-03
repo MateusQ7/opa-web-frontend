@@ -1,72 +1,53 @@
 <div class="container-fluid gx-0">
-  <opa-yline routeNameToBeUsed="Dashboard" iconPath="/assets/images/Cash.svg"></opa-yline>
-  <div class="component">
-    <div class="filterbutton">
-      <button class="filter">
-        <p>
-          Filtrar por período ▼
-        </p>
-      </button>
-    </div>
-    <div class="first-graph-box">
-      <div class="topbar">
-        <div class="topbar-icon">
-
-        </div>
-        <div class="topbar-text">
-          <p>Faturamento</p>
-        </div>
-      </div>
-      <div class="first-graph-box-content">
-        <div class="first-graph-left-box">
-          <div class="billing-container">
-            <p>Faturamento</p>
-            <div class="value">
-              <img src="/assets/images/currencygolden.svg" alt="">
-              <p>R$ {{ this.billing }}</p>
+  <opa-yline routeNameToBeUsed="Dashboard financeiro" iconPath="/assets/images/Cash.svg"></opa-yline>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="panel panel-icon">
+          <div class="panel-heading panel-heading-icon">
+            <i class="fa-solid fa-sack-dollar"></i>
+            <div class="title">Faturamento</div>
+          </div>
+          <div class="panel-body">
+            <div class="row amount-wrapper">
+              <div class="col-md-4">
+                <div class="row">
+                  <div class="col-sm-6 col-md-12">
+                    <div class="model-tile">
+                      <h2 class="model-tile-title">
+                        Faturamento Líquido
+                        <i class="fa-solid fa-circle-question"></i>
+                      </h2>
+                      <div class="model-tile-body">
+                        <i class="fa-solid fa-dollar-sign"></i>
+                        <span> R$ 69,00</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-md-12">
+                    <div class="model-tile">
+                      <h2 class="model-tile-title">
+                        Ticket Médio
+                        <i class="fa-solid fa-circle-question"></i>
+                      </h2>
+                      <div class="model-tile-body">
+                        <i class="fa-solid fa-ticket"></i>
+                        <span> R$ 30,00</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-8">
+                <h3 class="text-center graph-title">
+                  <strong>Faturamento líquido por mês e ticket médio acumulado</strong>
+                  <i class="fa-solid fa-circle-question"></i>
+                </h3>
+                <canvas id="graph-target-member">
+                  {{ chart }}
+                </canvas>
+              </div>
             </div>
-          </div>
-          <div class="billing-container">
-            <p>Ticket Médio</p>
-            <div class="value">
-              <img src="/assets/images/currencygolden.svg" alt="">
-              <p>R$ {{ this.ticket }}</p>
-            </div>
-          </div>
-        </div>
-        <div class="first-graph-right-box">
-
-        </div>
-      </div>
-    </div>
-    <div class="second-graph-box">
-      <div class="top5products">
-        <div class="header">
-          <div class="header-icon">
-
-          </div>
-          <div class="header-text">
-
-          </div>
-        </div>
-      </div>
-      <div class="by-age">
-        <div class="header">
-          <div class="header-icon">
-
-          </div>
-          <div class="header-text">
-
-          </div>
-        </div>
-      </div>
-      <div class="by-region">
-        <div class="header">
-          <div class="header-icon">
-
-          </div>
-          <div class="header-text">
-
           </div>
         </div>
       </div>
