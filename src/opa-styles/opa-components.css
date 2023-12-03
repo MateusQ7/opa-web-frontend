@@ -135,7 +135,6 @@
 .panel-body {
   overflow: auto;
   padding: 15px;
-  word-break: break-word;
 }
 
 /* Inputs */
@@ -208,4 +207,87 @@ label {
   max-width: 100%;
   margin-bottom: 5px;
   font-family: 'Poppins', sans-serif;
+}
+
+/* Tabelas */
+.opa-table {
+  display: table;
+  width: 100%;
+  max-width: 100%;
+  background-color: transparent;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.opa-table thead {
+	background: transparent;
+	font-size: 18px;
+}
+
+.opa-table thead tr td,
+.opa-table thead tr th {
+	color: #3e3e3e;
+	font-weight: bold;
+}
+
+.opa-table > caption + thead > tr:first-child > th,
+.opa-table > caption + thead > tr:first-child > td,
+.opa-table > colgroup + thead > tr:first-child > th,
+.opa-table > colgroup + thead > tr:first-child > td,
+.opa-table > thead:first-child > tr:first-child > th,
+.opa-table > thead:first-child > tr:first-child > td {
+	border-top: 0;
+}
+
+.panel .opa-table-report th,
+.panel .opa-table-report td {
+	font-size: 15px;
+	height: 64px;
+	line-height: 19px;
+	padding: 0 12px;
+}
+
+.opa-table-report th,
+.opa-table-report td {
+	border: 0;
+	color: #5b5a5a;
+	padding: 25px 30px;
+}
+
+.opa-table thead tr td,
+.opa-table thead tr th {
+	color: #3e3e3e;
+	font-weight: bold;
+}
+
+.opa-table thead tr td,
+.opa-table thead tr th,
+.opa-table tbody tr td,
+.opa-table tbody tr th {
+	height: 60px;
+	line-height: 1.3;
+	padding: 10px 25px;
+	vertical-align: middle;
+}
+
+.opa-table tbody tr td,
+.opa-table tbody tr th {
+	min-width: 125px;
+	word-break: break-word;
+}
+
+.opa-table.opa-table-report td {
+	text-align: right;
+}
+
+.opa-table-striped > tbody > tr:nth-of-type(2n+1) {
+	background-color: rgba(213,210,210,.1);
+}
+
+th {
+	text-align: left;
+}
+
+.text-right {
+  text-align: right;
 }

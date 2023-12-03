@@ -69,3 +69,16 @@
   cursor: pointer;
   color: var(--gray-dark)
 }
+
+.table-responsive {
+  padding-bottom: 50px;
+  min-height: .01%;
+  overflow-x: auto;
+}
+
+.graph-gender {
+  align-items: center;
+  display: flex;
+  height: 380px;
+  justify-content: center;
+}

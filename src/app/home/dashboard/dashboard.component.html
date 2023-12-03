@@ -1,7 +1,7 @@
 <div class="container-fluid gx-0">
   <opa-yline routeNameToBeUsed="Dashboard financeiro" iconPath="/assets/images/Cash.svg"></opa-yline>
   <div class="container-fluid">
-    <div class="row">
+    <div class="row mb-4">
       <div class="col-md-12">
         <div class="panel panel-icon">
           <div class="panel-heading panel-heading-icon">
@@ -43,10 +43,69 @@
                   <strong>Faturamento líquido por mês e ticket médio acumulado</strong>
                   <i class="fa-solid fa-circle-question"></i>
                 </h3>
-                <canvas id="graph-target-member">
-                  {{ chart }}
+                <canvas id="graph-target-revenue">
+                  {{ revenueChart }}
                 </canvas>
               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="panel panel-icon">
+          <div class="panel-heading panel-heading-icon">
+            <i class="fa-solid fa-trophy"></i>
+            <div class="title">Top 5 produtos mais vendidos</div>
+          </div>
+          <div class="panel-body p-0">
+            <div class="table-responsive">
+              <div class="opa-table-report opa-table opa-table-striped">
+                <thead>
+                  <tr>
+                    <th>Produto</th>
+                    <th class="text-right">Faturamento</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="odd">
+                    <th>Catinhas de paranguejo</th>
+                    <td class="text-right">R$ 500,00</td>
+                  </tr>
+                  <tr class="even">
+                    <th>File com fritas fritas</th>
+                    <td class="text-right">R$ 394,12</td>
+                  </tr>
+                  <tr class="odd">
+                    <th>Camarão nacional</th>
+                    <td class="text-right">R$ 293,00</td>
+                  </tr>
+                  <tr class="even">
+                    <th>Fritas frita a sardinha</th>
+                    <td class="text-right">R$ 154,66</td>
+                  </tr>
+                  <tr class="odd">
+                    <th>Filé de peixe</th>
+                    <td class="text-right">R$ 63,00</td>
+                  </tr>
+                </tbody>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="panel panel-icon">
+          <div class="panel-heading panel-heading-icon">
+            <i class="fa-solid fa-people-group"></i>
+            <div class="title">Faturamento por faixa etária</div>
+          </div>
+          <div class="panel-body">
+            <div class="graph-gender">
+              <canvas id="graph-gender-member">
+                {{ memberChart }}
+              </canvas>
             </div>
           </div>
         </div>
