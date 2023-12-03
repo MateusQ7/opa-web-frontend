@@ -4,6 +4,7 @@ import { Chart } from 'chart.js/auto'
 import { DashboardService } from 'src/app/services/dashboard/dashboard.service';
 import { firstValueFrom } from 'rxjs';
 import { PayedBills } from 'src/app/services/dashboard/payedBills';
+import * as bootstrap from 'bootstrap';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -27,6 +28,11 @@ export class DashboardComponent {
   ){}
 
   async ngOnInit(): Promise<void> {
+    const tooltipTriggetList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    tooltipTriggetList.forEach((tooltipTriggerEl) => {
+      new bootstrap.Tooltip(tooltipTriggerEl)
+    })
+
     await this.getData();
   }
 

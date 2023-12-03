@@ -16,7 +16,8 @@
                     <div class="model-tile">
                       <h2 class="model-tile-title">
                         Faturamento Líquido
-                        <i class="fa-solid fa-circle-question"></i>
+                        <i class="fa-solid fa-circle-question" data-bs-toggle="tooltip" data-bs-placement="top"
+                          data-bs-title="Faturamento líquido é o faturamento bruto menos taxas financeiras e descontos."></i>
                       </h2>
                       <div class="model-tile-body">
                         <i class="fa-solid fa-dollar-sign"></i>
@@ -28,7 +29,8 @@
                     <div class="model-tile">
                       <h2 class="model-tile-title">
                         Ticket Médio
-                        <i class="fa-solid fa-circle-question"></i>
+                        <i class="fa-solid fa-circle-question" data-bs-toggle="tooltip" data-bs-placement="top"
+                          data-bs-title="Média do valor de todas as contas fechadas durante o período."></i>
                       </h2>
                       <div class="model-tile-body">
                         <i class="fa-solid fa-ticket"></i>
@@ -41,7 +43,8 @@
               <div class="col-md-8">
                 <h3 class="text-center graph-title">
                   <strong>Faturamento líquido por mês e ticket médio acumulado</strong>
-                  <i class="fa-solid fa-circle-question"></i>
+                  <i class="fa-solid fa-circle-question" data-bs-toggle="tooltip" data-bs-placement="top"
+                    data-bs-title="Mostra o valor do faturamento líquido e do ticket médio durante cada mês do ano."></i>
                 </h3>
                 <canvas id="graph-target-revenue">
                   {{ revenueChart }}
