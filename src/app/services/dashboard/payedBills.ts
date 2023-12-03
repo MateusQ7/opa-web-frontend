@@ -9,4 +9,5 @@ export interface personInfos {
   id: number;
   neighborhood: string,
   gender: string,
+  birthDate: string,
 }
