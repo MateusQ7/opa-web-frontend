@@ -1,50 +1,43 @@
-<div class="bar">
-  <div class="topbar">
-    <div class="top-content">
-      <div class="opa-logo">
-        <button class="opa-button" routerLink="/home">
-          <img class="logo" src="/assets/images/opaBigger.svg" alt="">
-        </button>
-      </div>
-      <div class="restaurant-name">
-        <p>
-          {{ this.auth.userData.restaurantName }}
-        </p>
-      </div>
-      <div class="profile-button">
-        <div class="button-content">
-          <div class="text-side">
-            <div class="user-name">
-              <p>{{ this.auth.userData.name }}</p>
-            </div>
-            <div class="user-role">
-              <p>
-                {{ this.auth.userData.role }}
-              </p>
-            </div>
-            <div class="photo-side">
-
-            </div>
+<header class="opa-header">
+  <div class="opa-header-top container-fluid">
+    <div class="opa-logo" routerLink="/home"></div>
+    <div class="restaurant-name">
+      <p>{{ this.auth.userData.restaurantName }}</p>
+    </div>
+    <div class="user-menu">
+      <div class="user-menu-info">
+        <p>{{ this.auth.userData.name }}</p>
+        <span>{{ this.auth.userData.role }}</span>
+        <div class="user-menu-image">
+          <div class="dropdown">
+            <button class="dropdown-toggle-opa" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              ▼
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Editar perfil</a></li>
+              <li class="divider"></li>
+              <li><a class="dropdown-item" href="#">Logout</a></li>
+            </ul>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="bottombar">
-    <div class="area">
-      <p>Área Gerente</p>
-    </div>
-    <div class="buttons">
-      <button class="options-button" *ngFor="let button of buttons" routerLink="/home/{{ button.route }}">
-        {{ button.name }}
-      </button>
-    </div>
-    <div class="order-button">
+  <nav class="navbar opa-navbar">
+    <div class="menubar container-fluid">
+      <div class="navbar-header">
+        <p>Área Administrativa</p>
+      </div>
+      <div class="main-menu">
+        <ul class="nav navbar-nav">
+          <li [ngClass]="{'active': this.currentRoute == button.route}" *ngFor="let button of buttons">
+            <a routerLink="/home/{{ button.route }}">{{ button.name }}</a>
+          </li>
+        </ul>
+      </div>
       <button class="o-button" routerLink="/home/order">
-         <p>
-          Pedidos
-         </p>
+        Pedidos
       </button>
     </div>
-  </div>
-</div>
+  </nav>
+</header>

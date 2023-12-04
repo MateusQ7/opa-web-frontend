@@ -1,74 +1,115 @@
-<div class="whole">
-  <div class="yellow-line">
-    <opa-yline routeNameToBeUsed="Dashboard" iconPath="/assets/images/Cash.svg"></opa-yline>
-  </div>
-  <div class="component">
-    <div class="filterbutton">
-      <button class="filter">
-        <p>
-          Filtrar por período ▼
-        </p>
-      </button>
-    </div>
-    <div class="first-graph-box">
-      <div class="topbar">
-        <div class="topbar-icon">
-
-        </div>
-        <div class="topbar-text">
-          <p>Faturamento</p>
-        </div>
-      </div>
-      <div class="first-graph-box-content">
-        <div class="first-graph-left-box">
-          <div class="billing-container">
-            <p>Faturamento</p>
-            <div class="value">
-              <img src="/assets/images/currencygolden.svg" alt="">
-              <p>R$ {{ this.billing }}</p>
+<div class="container-fluid gx-0">
+  <opa-yline routeNameToBeUsed="Dashboard financeiro" iconPath="/assets/images/Cash.svg"></opa-yline>
+  <div class="container-fluid">
+    <div class="row mb-4">
+      <div class="col-md-12">
+        <div class="panel panel-icon">
+          <div class="panel-heading panel-heading-icon">
+            <i class="fa-solid fa-sack-dollar"></i>
+            <div class="title">Faturamento</div>
+          </div>
+          <div class="panel-body">
+            <div class="row amount-wrapper">
+              <div class="col-md-4">
+                <div class="row">
+                  <div class="col-sm-6 col-md-12">
+                    <div class="model-tile">
+                      <h2 class="model-tile-title">
+                        Faturamento Líquido
+                        <i class="fa-solid fa-circle-question" data-bs-toggle="tooltip" data-bs-placement="top"
+                          data-bs-title="Faturamento líquido é o faturamento bruto menos taxas financeiras e descontos."></i>
+                      </h2>
+                      <div class="model-tile-body">
+                        <i class="fa-solid fa-dollar-sign"></i>
+                        <span>R$ {{ revenueValue }}</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-md-12">
+                    <div class="model-tile">
+                      <h2 class="model-tile-title">
+                        Ticket Médio
+                        <i class="fa-solid fa-circle-question" data-bs-toggle="tooltip" data-bs-placement="top"
+                          data-bs-title="Média do valor de todas as contas fechadas durante o período."></i>
+                      </h2>
+                      <div class="model-tile-body">
+                        <i class="fa-solid fa-ticket"></i>
+                        <span>R$ {{ ticketValue }}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-8">
+                <h3 class="text-center graph-title">
+                  <strong>Faturamento líquido por mês e ticket médio acumulado</strong>
+                  <i class="fa-solid fa-circle-question" data-bs-toggle="tooltip" data-bs-placement="top"
+                    data-bs-title="Mostra o valor do faturamento líquido e do ticket médio durante cada mês do ano."></i>
+                </h3>
+                <canvas id="graph-target-revenue">
+                  {{ revenueChart }}
+                </canvas>
+              </div>
             </div>
           </div>
-          <div class="billing-container">
-            <p>Ticket Médio</p>
-            <div class="value">
-              <img src="/assets/images/currencygolden.svg" alt="">
-              <p>R$ {{ this.ticket }}</p>
-            </div>
-          </div>
-        </div>
-        <div class="first-graph-right-box">
-
         </div>
       </div>
     </div>
-    <div class="second-graph-box">
-      <div class="top5products">
-        <div class="header">
-          <div class="header-icon">
-
+    <div class="row mb-4">
+      <div class="col-md-4">
+        <div class="panel panel-icon">
+          <div class="panel-heading panel-heading-icon">
+            <i class="fa-solid fa-trophy"></i>
+            <div class="title">Top 5 produtos mais vendidos</div>
           </div>
-          <div class="header-text">
-
+          <div class="panel-body p-0">
+            <div class="table-responsive">
+              <div class="opa-table-report opa-table opa-table-striped">
+                <thead>
+                  <tr>
+                    <th>Produto</th>
+                    <th class="text-right">Faturamento</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of productList; let i = index" [class.odd]="i % 2 === 0"
+                    [class.even]="i % 2 !== 0">
+                    <th>{{ item.productName }}</th>
+                    <td class="text-right">{{ 'R$ ' + item.totalValue.toFixed(2) }}</td>
+                  </tr>
+                </tbody>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      <div class="by-age">
-        <div class="header">
-          <div class="header-icon">
-
+      <div class="col-md-4">
+        <div class="panel panel-icon">
+          <div class="panel-heading panel-heading-icon">
+            <i class="fa-solid fa-people-group"></i>
+            <div class="title">Faturamento por faixa etária</div>
           </div>
-          <div class="header-text">
-
+          <div class="panel-body">
+            <div class="graph-panel">
+              <canvas id="graph-gender-member">
+                {{ memberChart }}
+              </canvas>
+            </div>
           </div>
         </div>
       </div>
-      <div class="by-region">
-        <div class="header">
-          <div class="header-icon">
-
+      <div class="col-md-4">
+        <div class="panel panel-icon">
+          <div class="panel-heading panel-heading-icon">
+            <i class="fa-solid fa-map"></i>
+            <div class="title">Top 5 bairros</div>
           </div>
-          <div class="header-text">
-
+          <div class="panel-body">
+            <div class="graph-panel">
+              <canvas id="graph-location-member">
+                {{ locationChart }}
+              </canvas>
+            </div>
           </div>
         </div>
       </div>
