@@ -88,7 +88,7 @@ export class OrderComponent implements OnInit{
     this.orderModal = !this.orderModal
   }
 
-  recieveOrdersFromModal(orders:LauchOrder[]){
+  async receiveOrdersFromModal(orders:LauchOrder[]){
     const ordersToBack:OrderToBackend[]=[]
     orders.map((order:LauchOrder)=>{
       ordersToBack.push({
@@ -99,12 +99,17 @@ export class OrderComponent implements OnInit{
         personIds:order.personIds
       })
     })
-    this.orderService.createOrder(ordersToBack[0]).subscribe(
-      (e:any)=>{
-        console.log(e);
-      }
-    );
-
+    try{
+      this.loading = true;
+      this.orderService.createOrder(ordersToBack[0]).subscribe(
+        (e:Order[])=>{
+          console.log()
+        }
+      );
+      this.loading = false;
+    }catch(error){
+      console.log(error);
+    }
   }
 
 }

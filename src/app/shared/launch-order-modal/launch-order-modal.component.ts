@@ -63,9 +63,6 @@ export class LaunchOrderModalComponent implements OnInit{
         Validators.maxLength(4)
       ]
       ],
-      // responsableWaiter:['',
-      //   Validators.required
-      // ],
       status:['',
         Validators.required
       ]
@@ -154,6 +151,7 @@ export class LaunchOrderModalComponent implements OnInit{
 
   submitForm(){
     this.emitOrders.emit(this.orderList);
+    this.closePopUp();
   }
 
   updateTable(event:any){

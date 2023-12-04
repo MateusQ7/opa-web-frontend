@@ -1,5 +1,5 @@
 <div class="launch-order-modal" *ngIf="this.launchOrderModal">
-  <opa-launch-order-modal (emitOrders)="recieveOrdersFromModal($event);" (close)="this.showLaunchOrderModal()"></opa-launch-order-modal>
+  <opa-launch-order-modal (emitOrders)="receiveOrdersFromModal($event);" (close)="this.showLaunchOrderModal()"></opa-launch-order-modal>
 </div>
 <div class="order-modal" *ngIf="this.orderModal">
   <opa-order-modal (close)="this.showOrderModal()" [tableID]="this.tableIdToOrderModal"></opa-order-modal>

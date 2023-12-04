@@ -1,7 +1,7 @@
 <div class="popUp" *ngIf="this.popUp">
   <opa-ingredient-popup
   (close)="this.showPopUp()"
-  (emitIngredient)="this.recieveIngredients($event)"
+  (emitIngredient)="this.receiveIngredients($event)"
   ></opa-ingredient-popup>
 </div>
 <div class="loading-modal" *ngIf="this.loading">
