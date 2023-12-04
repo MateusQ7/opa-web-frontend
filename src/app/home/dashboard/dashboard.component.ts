@@ -31,7 +31,7 @@ export class DashboardComponent {
     const tooltipTriggetList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
     tooltipTriggetList.forEach((tooltipTriggerEl) => {
       new bootstrap.Tooltip(tooltipTriggerEl)
-    })
+    });
 
     await this.getData();
   }
@@ -260,7 +260,7 @@ export class DashboardComponent {
       const data = await firstValueFrom(this.dashboardService.getPayedBills());
       let revenueValue = 0;
       let bills = 0;
-
+      console.log(data);
       for (const bill of data) {
         bills++;
         revenueValue += bill.totalValue;

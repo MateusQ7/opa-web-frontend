@@ -85,34 +85,40 @@
 .panel {
   background-color: var(--white);
   border-radius: 6px;
-  border: 1px solid var(--gray-light);
+  border: 1px solid transparent;
   box-shadow: 0 1px 1px rgba(0,0,0,.05);
   font-weight: 500;
-  margin: 10px 0;
   width: 100%;
 }
 
-.panel,
-.panel-icon {
+.panel.panel-default {
+  margin: 10px 0;
+  border-color: var(--gray-light);
+}
+
+.panel.panel-icon {
   margin: 0;
   border-color: var(--gray-medium);
 }
 
 .panel-heading {
   align-items: center;
-  background-color: var(--primary-color);
-  color: var(--secondary-color);
   display: inline-flex;
   font-size: 18px;
   margin: 0 auto;
-  padding: 10px 15px;
-  border-bottom: 1px solid rgba(0,0,0,.05);
+  border-bottom: 1px solid transparent;
   vertical-align: middle;
   width: 100%;
 }
 
-.panel-heading,
-.panel-heading-icon {
+.panel-heading.panel-heading-default {
+  padding: 10px 15px;
+  border-color: rgba(0,0,0,.05);
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+}
+
+.panel-heading.panel-heading-icon {
   height: 44px;
   padding: 0;
   border-color: var(--gray-medium);
