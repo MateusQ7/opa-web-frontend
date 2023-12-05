@@ -19,7 +19,8 @@
   --warning-darker: #F6B028;
 
   /* Danger */
-  --danger: #F85959;
+  --danger-light: #ffcccc;
+  --danger:  #F85959;;
   --danger-dark: #F74141;
   --danger-darker: #F62828;
 
@@ -32,6 +33,7 @@
   --gray-darker: #3E3E3E;
   --gray-light: #E6E5E5;
   --gray-lighter: #F5F5F5;
+  --gray-extra-lighter: #f8f8f8;
   --gray-lighter-final: #F5F5F5;
   --gray-medium: #CCCCCC;
   --gray-medium-dark: #ACACAC;

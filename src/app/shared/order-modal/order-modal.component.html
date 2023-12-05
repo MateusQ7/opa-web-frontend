@@ -1,61 +1,49 @@
-<div class="modal">
-  <div class="loading-modal" *ngIf="this.loading">
-    <opa-loading></opa-loading>
-  </div>
-  <div class="main-container">
-    <div class="main-container-header">
-      <p class="header-title">Histórico da mesa {{ this.tableDetailed.table.id }} </p>
-      <div class="header-description">
-        <p>Mesa aberta as: <strong>{{ this.tableDetailed.table.openTime }}</strong> </p>
-        <p>Garçom responsável: <strong>{{ this.tableDetailed.table.responsableWaiter }}</strong></p>
-        <p>Token da mesa: <strong>{{ this.tableDetailed.table.token }}</strong></p>
+<ng-template #content>
+  <div class="modal-header opa-modal-header">
+    <div class="opa-modal-header-title">
+      <h4 class="modal-title opa-modal-title" id="modal-basic-title">Histórico da mesa {{ this.tableDetailed.table.id }}
+      </h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="this.closeModal()"></button>
+    </div>
+    <div class="opa-modal-header-info">
+      <div>
+        Mesa aberta às: <strong>{{ this.tableDetailed.table.openTime }}</strong>
+      </div>
+      <div class="order-responsible-container">
+        Garçom responsável: <strong>{{ this.tableDetailed.table.waiter }}</strong>
+        <div class="avatar-container">
+          <i class="fa-solid fa-user-tie"></i>
+        </div>
+      </div>
+      <div>
+        Token da mesa: <strong>{{ this.tableDetailed.table.token }}</strong>
       </div>
     </div>
-    <div class="container-content">
-      <div class="table-loop-cell" *ngFor="let order of this.tableDetailed.orders">
-        <div class="table-loop-product-img">
-          <img src="/assets/images/opa-logo-white.svg" alt="">
+  </div>
+  <div class="modal-body">
+    <div class="detailed-table-order-info info-danger mb-2" *ngFor="let order of this.tableDetailed.orders">
+      <div class="product-photo">
+        <img src="../../../assets/images/default-food-image.jpg" alt="">
+      </div>
+      <div class="product-description">
+        <div>
+          Nome do produto: <strong>{{ order.menuItem.name }}</strong>
         </div>
-        <div class="table-loop-product-descript">
-          <div class="table-loop-product-descript-top">
-            <div class="table-loop-product-order-name">
-              <p class="text">Nome do Produto:</p>
-              <p class="value">{{ order.menuItem.name }}</p>
-            </div>
-            <div class="table-loop-product-order-value">
-              <p class="text">Preço do Produto: </p>
-              <p class="value">{{ order.menuItem.value }}</p>
-            </div>
-            <div class="table-loop-product-order-qt">
-              <p class="text">Quantidade pedida: </p>
-              <p class="value"> {{ order.quantity }}</p>
-            </div>
-          </div>
-          <div class="table-loop-product-descript-bot">
-            <div class="table-loop-product-order-time">
-              <p class="text">Horário do pedido efetuado: </p>
-              <p class="value">{{ order.orderedTime }}</p>
-            </div>
-            <div class="table-loop-product-order-status">
-              <p class="text">Status do pedido:</p>
-              <div class="value">
-                <p *ngIf="this.order.status == 1" class="status-inprogress">em andamento</p>
-                <p *ngIf="this.order.status == 2" class="status-delivered">entregue</p>
-                <p *ngIf="this.order.status == 3" class="status-canceled">cancelado</p>
-              </div>
-            </div>
-            <div class="table-loop-product-order-delivered">
-              <p class="text">Horário de conclusão do pedido:  </p>
-              <p class="value">{{ order.deliveredTime }}</p></div>
-          </div>
+        <div>
+          Preço: <strong> R$ {{ order.menuItem.price }}</strong>
+        </div>
+      </div>
+      <hr class="link-line">
+      <div class="product-delivered-info">
+        <div>
+          Pedido feito às: <strong>{{ order.orderedTime }}</strong>
+        </div>
+        <div>
+          <span *ngIf="order.status == 1" class="badge opa-badge opa-badge-warning">Em andamento</span>
+          <span *ngIf="order.status == 2" class="badge opa-badge opa-badge-success">Entregue</span>
+          <span *ngIf="order.status == 3" class="badge opa-badge opa-badge-danger">Cancelado</span>
         </div>
       </div>
     </div>
-    <div class="container-footer">
-      <div class="container-footer-close-button">
-        <button (click)="closeModal()">
-          Fechar
-        </button>
-    </div>
   </div>
-</div>
+</ng-template>

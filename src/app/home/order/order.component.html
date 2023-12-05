@@ -85,39 +85,46 @@
             Mesas em andamento
           </p>
         </div>
-        <div class="container-content-right-loop-space">
-          <div #loopCell class="loop-cell" *ngFor="let table of inProgressTables;">
-            <div class="loop-cell-info-bar">
-              <div class="table-info-table-name" (click)="expandOrder(loopCell,deepInfo)">
-                <p> MESA {{ table.number }}</p>
-              </div>
-              <div class="table-info-responsable-waiter" (click)="expandOrder(loopCell,deepInfo)">
-                <p>{{ table.responsableWaiter }}</p>
-              </div>
-              <div class="table-info-modal-button">
-                <button (click)="showOrderModal(table)">
-                  <img src="assets/images/plus.svg" alt="">
-                </button>
-              </div>
+      <div class="table-loop-product-descript">
+        <div class="table-loop-product-descript-top">
+          <div class="table-loop-product-order-name">
+            <p class="text">Nome do Produto:</p>
+            <p class="value">{{ order.menuItem.name }}</p>
+          </div>
+          <div class="table-loop-product-order-value">
+            <p class="text">Preço do Produto: </p>
+            <p class="value">{{ order.menuItem.value }}</p>
+          </div>
+          <div class="table-loop-product-order-qt">
+            <p class="text">Quantidade pedida: </p>
+            <p class="value"> {{ order.quantity }}</p>
+          </div>
+        </div>
+        <div class="table-loop-product-descript-bot">
+          <div class="table-loop-product-order-time">
+            <p class="text">Horário do pedido efetuado: </p>
+            <p class="value">{{ order.orderedTime }}</p>
+          </div>
+          <div class="table-loop-product-order-status">
+            <p class="text">Status do pedido:</p>
+            <div class="value">
+              <p *ngIf="this.order.status == 1" class="status-inprogress">em andamento</p>
+              <p *ngIf="this.order.status == 2" class="status-delivered">entregue</p>
+              <p *ngIf="this.order.status == 3" class="status-canceled">cancelado</p>
             </div>
-            <div #deepInfo class="loop-cell-deep-table-info" >
-              <div class="deep-loop-cell" *ngFor="let order of table.orders">
-                <div class="deep-loop-cell-order-name">
-                  <p> {{ order.name }} </p>
-                </div>
-                <div class="deep-loop-cell-order-status">
-                  <p *ngIf="this.order.status == 1" class="status-inprogress">em andamento</p>
-                  <p *ngIf="this.order.status == 2" class="status-delivered">entregue</p>
-                  <p *ngIf="this.order.status == 3" class="status-canceled">cancelado</p>
-                </div>
-                <div class="deep-loop-cell-order-quantity">
-                  <p>R$ {{ order.price }} x</p>
-                </div>
-              </div>
-            </div>
+          </div>
+          <div class="table-loop-product-order-delivered">
+            <p class="text">Horário de conclusão do pedido: </p>
+            <p class="value">{{ order.deliveredTime }}</p>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+  <div class="container-footer">
+    <div class="container-footer-close-button">
+      <button (click)="closeModal()">
+        Fechar
+      </button>
+    </div>
+  </div> -->
