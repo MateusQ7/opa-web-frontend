@@ -1,7 +1,8 @@
 <ng-template #content>
   <div class="modal-header opa-modal-header">
     <div class="opa-modal-header-title">
-      <h4 class="modal-title opa-modal-title" id="modal-basic-title">Histórico da mesa {{ this.tableDetailed.table.id }}</h4>
+      <h4 class="modal-title opa-modal-title" id="modal-basic-title">Histórico da mesa {{ this.tableDetailed.table.id }}
+      </h4>
       <button type="button" class="btn-close" aria-label="Close" (click)="this.closeModal()"></button>
     </div>
     <div class="opa-modal-header-info">
@@ -35,12 +36,12 @@
       <hr class="link-line">
       <div class="product-delivered-info">
         <div>
+          Pedido feito às: <strong>{{ order.orderedTime }}</strong>
+        </div>
+        <div>
           <span *ngIf="order.status == 1" class="badge opa-badge opa-badge-warning">Em andamento</span>
           <span *ngIf="order.status == 2" class="badge opa-badge opa-badge-success">Entregue</span>
           <span *ngIf="order.status == 3" class="badge opa-badge opa-badge-danger">Cancelado</span>
-        </div>
-        <div>
-          Pedido feito às: <strong>{{ order.orderedTime }}</strong>
         </div>
       </div>
     </div>
