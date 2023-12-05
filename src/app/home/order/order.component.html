@@ -8,7 +8,7 @@
             Fila de pedidos
           </div>
           <div class="panel-body panel-body-fix-height">
-            <div ngbAccordion #accordion="ngbAccordion" class="mb-2">
+            <div ngbAccordion #accordion="ngbAccordion" class="mb-2" *ngFor="let order of this.inProgressOrderList">
               <div ngbAccordionItem [collapsed]="true">
                 <div ngbAccordionHeader class="accordion-button custom-header">
                   <div ngbAccordionToggle class="p-0 container-fluid text-start ps-0 opa-accordion-toggle">
@@ -17,15 +17,15 @@
                         <i class="fa-solid fa-bowl-food"></i>
                       </div>
                       <div class="order-title">
-                        Catinhas de paranguejo
+                        {{ order.name }}
                       </div>
                       <div class="vertical-line"></div>
                       <div class="order-table">
-                        Mesa 31
+                        Mesa {{ order.tableID }}
                       </div>
                       <div class="vertical-line"></div>
                       <div class="order-quantity">
-                        11x
+                        {{ order.quantity }}x
                       </div>
                     </div>
                   </div>
@@ -36,32 +36,34 @@
                       <div class="row mb-3">
                         <div class="col-12">
                           status do pedido:
-                          <span class="badge opa-badge-success">Entregue</span>
+                          <span *ngIf="order.status == 1" class="badge opa-badge-warning">Em andamento</span>
+                          <span *ngIf="order.status == 2" class="badge opa-badge-success">Entregue</span>
+                          <span *ngIf="order.status == 3" class="badge opa-badge-danger">Cancelado</span>
                         </div>
                       </div>
                       <div class="row mb-3">
                         <div class="col-12">
-                          mesa: 27
+                          Mesa {{ order.tableID }}
                         </div>
                       </div>
                       <div class="row mb-3">
                         <div class="col-12">
-                          cliente(s): Mateus, Pedro, Caue, Barreto, Dudu
+                          cliente(s): {{ order.customers }}
                         </div>
                       </div>
                       <div class="row align-items-center">
                         <div class="col-4">
-                          pedido feito às <strong>18:54</strong>
+                          pedido feito às <strong>{{ order.orderedTime }}</strong>
                         </div>
                         <div class="col-4 order-responsible-container text-center">
                           responsável:
-                          <strong>Pedro Caio</strong>
+                          <strong>{{ order.responsableWaiter }}</strong>
                           <div class="avatar-container">
                             <i class="fa-solid fa-user-tie"></i>
                           </div>
                         </div>
                         <div class="col-4 text-end">
-                          *pedido entregue às <strong>19:19</strong>
+                          *pedido entregue às <strong *ngIf="order.deliveredTime">{{ order.deliveredTime }}</strong>
                         </div>
                       </div>
                     </ng-template>
@@ -69,7 +71,7 @@
                 </div>
               </div>
             </div>
-            <div ngbAccordion #accordion="ngbAccordion" class="mb-2">
+            <!-- <div ngbAccordion #accordion="ngbAccordion" class="mb-2">
               <div ngbAccordionItem [collapsed]="true">
                 <div ngbAccordionHeader class="accordion-button custom-header">
                   <div ngbAccordionToggle class="p-0 container-fluid text-start ps-0 opa-accordion-toggle">
@@ -90,8 +92,8 @@
                       </div>
                     </div>
                   </div>
-                </div>
-                <div ngbAccordionCollapse>
+                </div> -->
+                <!-- <div ngbAccordionCollapse>
                   <div ngbAccordionBody class="order-info-container">
                     <ng-template>
                       <div class="row mb-3">
@@ -190,7 +192,7 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
