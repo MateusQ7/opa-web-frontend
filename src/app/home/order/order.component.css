@@ -11,7 +11,7 @@
   color: var(--gray);
 }
 
-.order-container {
+.opa-accordion-header-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -21,7 +21,7 @@
   color: var(--gray-darker);
 }
 
-.order-title {
+.opa-accordion-header-title {
   flex: 1;
 }
 
@@ -40,11 +40,11 @@
   text-align: center;
 }
 
-.order-icon {
+.opa-accordion-header-icon {
   flex: 0 0 40px;
 }
 
-.order-icon i {
+.opa-accordion-header-icon i {
   font-size: 26px;
   color: var(--secondary-color);
   margin-right: 20px;

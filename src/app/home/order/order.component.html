@@ -12,11 +12,11 @@
               <div ngbAccordionItem [collapsed]="true">
                 <div ngbAccordionHeader class="accordion-button custom-header">
                   <div ngbAccordionToggle class="p-0 container-fluid text-start ps-0 opa-accordion-toggle">
-                    <div class="order-container">
-                      <div class="order-icon">
+                    <div class="opa-accordion-header-container">
+                      <div class="opa-accordion-header-icon">
                         <i class="fa-solid fa-bowl-food"></i>
                       </div>
-                      <div class="order-title">
+                      <div class="opa-accordion-header-title">
                         {{ order.menuItem.name }}
                       </div>
                       <div class="vertical-line"></div>
@@ -88,14 +88,14 @@
               <div ngbAccordionItem [collapsed]="true">
                 <div ngbAccordionHeader class="accordion-button custom-header">
                   <div ngbAccordionToggle class="p-0 container-fluid text-start ps-0 opa-accordion-toggle">
-                    <div class="order-container">
-                      <div class="order-icon">
+                    <div class="opa-accordion-header-container">
+                      <div class="opa-accordion-header-icon">
                         <i class="fa-solid fa-receipt"></i>
                       </div>
-                      <div class="order-title">
+                      <div class="opa-accordion-header-title">
                         Mesa {{ table.table.id }}
                       </div>
-                      <div class="order-open-modal">
+                      <div class="table-open-modal">
                         Ver mais +
                       </div>
                     </div>
