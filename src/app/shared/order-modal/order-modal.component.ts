@@ -1,8 +1,9 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, inject ,TemplateRef, ViewChild} from '@angular/core';
 import { TableDetailed } from './tableDetailed.interface';
 import { TableService } from 'src/app/services/table/table.service';
 import { firstValueFrom } from 'rxjs';
 import { InProgressTables } from 'src/app/home/order/InProgressTables.interface';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'opa-order-modal',
@@ -11,16 +12,21 @@ import { InProgressTables } from 'src/app/home/order/InProgressTables.interface'
 })
 export class OrderModalComponent implements OnInit{
 
+  @ViewChild('content', { static: true })
+  modalContent!: TemplateRef<any>;
+
   @Input()
   table!:InProgressTables
 
-  loading = false;
+  @Input()
+  tableDetailed!:TableDetailed
 
   @Output()
   close:EventEmitter<Boolean> = new EventEmitter<Boolean>
 
-  @Input()
-  tableDetailed!:TableDetailed
+  modalService = inject(NgbModal)
+
+  loading = false;
 
   constructor(
     private tableService:TableService
@@ -29,6 +35,7 @@ export class OrderModalComponent implements OnInit{
   }
 
   async ngOnInit(): Promise<void> {
+    this.modalService.open(this.modalContent, { size: 'xl' });
     await this.getData();
   }
 
@@ -45,5 +52,6 @@ export class OrderModalComponent implements OnInit{
 
   closeModal(){
     this.close.emit(false);
+    this.modalService.dismissAll()
   }
 }

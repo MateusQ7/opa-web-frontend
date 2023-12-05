@@ -84,7 +84,7 @@
             Mesas em andamento
           </div>
           <div class="panel-body panel-body-fix-height">
-            <div ngbAccordion #accordion="ngbAccordion" class="mb-2" *ngFor="let table of this.inProgressTables">
+            <div ngbAccordion #accordion="ngbAccordion" class="mb-2" *ngFor="let table of this.array">
               <div ngbAccordionItem [collapsed]="true">
                 <div ngbAccordionHeader class="accordion-button custom-header">
                   <div ngbAccordionToggle class="p-0 container-fluid text-start ps-0 opa-accordion-toggle">
@@ -93,9 +93,9 @@
                         <i class="fa-solid fa-receipt"></i>
                       </div>
                       <div class="opa-accordion-header-title">
-                        Mesa {{ table.table.id }}
+                        <!-- Mesa {{ table.table.id }} -->
                       </div>
-                      <div class="table-open-modal" (click)="open(content)">
+                      <div class="table-open-modal" (click)="this.showOrderModal();">
                         Ver mais
                       </div>
                     </div>
@@ -132,52 +132,10 @@
 
 
 <!-- MODAL TA AQUI CAUE -->
-<ng-template #content let-modal>
-  <div class="modal-header opa-modal-header">
-    <div class="opa-modal-header-title">
-      <h4 class="modal-title opa-modal-title" id="modal-basic-title">Histórico da mesa 31</h4>
-      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
-    </div>
-    <div class="opa-modal-header-info">
-      <div>
-        Mesa aberta às: <strong>19:25</strong>
-      </div>
-      <div class="order-responsible-container">
-        Garçom responsável: <strong>Jorgin amado</strong>
-        <div class="avatar-container">
-          <i class="fa-solid fa-user-tie"></i>
-        </div>
-      </div>
-      <div>
-        Token da mesa: <strong>asd1263a</strong>
-      </div>
-    </div>
-  </div>
-  <div class="modal-body">
-    <div class="detailed-table-order-info info-danger mb-2">
-      <div class="product-photo">
-        <img src="../../../assets/images/default-food-image.jpg" alt="">
-      </div>
-      <div class="product-description">
-        <div>
-          Nome do produto: <strong>Catinhas de paranguejo</strong>
-        </div>
-        <div>
-          Preço: <strong>Catinhas de paranguejo</strong>
-        </div>
-      </div>
-      <hr class="link-line">
-      <div class="product-delivered-info">
-        <div>
-          <span class="badge opa-badge opa-badge-danger">Cancelado</span>
-        </div>
-        <div>
-          Pedido feito às: <strong>18:00</strong>
-        </div>
-      </div>
-    </div>
-  </div>
-</ng-template>
+<opa-order-modal
+*ngIf="this.orderModal"
+(close)="this.showOrderModal()"
+></opa-order-modal>
 
 
 <!-- <div class="main-container">

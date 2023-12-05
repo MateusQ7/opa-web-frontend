@@ -10,7 +10,6 @@ import { OrderToBackend } from 'src/app/services/order/orderToBackend.interface'
 import { LauchOrder } from 'src/app/shared/launch-order-modal/lauchOrder.interface';
 import { Customer } from 'src/app/services/customer/customer.interface';
 import { DatePipe } from '@angular/common';
-import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-order',
@@ -18,22 +17,19 @@ import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./order.component.css']
 })
 export class OrderComponent implements OnInit{
-  modalService = inject(NgbModal)
-
-  closeResult = '';
-
-
   launchOrderModal = false;
 
   orderModal = false;
 
-  tableToOrderModal!:InProgressTables;
-
   loading = false;
+
+  tableToOrderModal!:InProgressTables;
 
   inProgressOrderList:Order[]=[]
 
   inProgressTables:InProgressTables[]=[];
+
+  array:any[] =[1]
 
   constructor(
     public auth:AuthService,
@@ -98,7 +94,7 @@ export class OrderComponent implements OnInit{
     this.launchOrderModal = !this.launchOrderModal
   }
 
-  showOrderModal(table:InProgressTables){
+  showOrderModal(table:InProgressTables,){
     this.tableToOrderModal = table;
     this.orderModal = !this.orderModal
   }
@@ -130,9 +126,5 @@ export class OrderComponent implements OnInit{
 
     return formattedDate ? formattedDate : date;
   }
-
-  open(content: TemplateRef<any>) {
-		this.modalService.open(content, { size: 'xl' });
-	}
 
 }
