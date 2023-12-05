@@ -123,4 +123,14 @@ export class OrderComponent implements OnInit{
     }
   }
 
+  getDateFormattedTime(date: string): string {
+    if (date == 'Não entregue') {
+      return date;
+    }
+
+    const formattedDate = this.datePipe.transform(date, 'HH:mm');
+
+    return formattedDate ? formattedDate : date;
+  }
+
 }
