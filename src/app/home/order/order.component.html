@@ -24,8 +24,10 @@
                         Mesa {{ order.table.id }}
                       </div>
                       <div class="vertical-line"></div>
-                      <div class="order-quantity">
-                        {{ order.quantity }}x
+                      <div class="order-status">
+                        <span *ngIf="order.status == 1" class="badge opa-badge-warning">Em andamento</span>
+                        <span *ngIf="order.status == 2" class="badge opa-badge-success">Entregue</span>
+                        <span *ngIf="order.status == 3" class="badge opa-badge-danger">Cancelado</span>
                       </div>
                     </div>
                   </div>
@@ -57,13 +59,15 @@
                         </div>
                         <div class="col-4 order-responsible-container text-center">
                           responsável:
-                          <strong>{{ order.responsableWaiter }}</strong>
+                          <strong>{{ order.table.waiter }}</strong>
                           <div class="avatar-container">
                             <i class="fa-solid fa-user-tie"></i>
                           </div>
                         </div>
                         <div class="col-4 text-end">
-                          *pedido entregue às <strong *ngIf="order.deliveredTime">{{ order.deliveredTime }}</strong>
+                          <p class="m-0" *ngIf="order.deliveredTime != 'Não entregue'">*pedido entregue às<strong
+                              *ngIf="order.deliveredTime">{{ order.deliveredTime
+                              }}</strong></p>
                         </div>
                       </div>
                     </ng-template>
@@ -93,7 +97,7 @@
                     </div>
                   </div>
                 </div> -->
-                <!-- <div ngbAccordionCollapse>
+            <!-- <div ngbAccordionCollapse>
                   <div ngbAccordionBody class="order-info-container">
                     <ng-template>
                       <div class="row mb-3">

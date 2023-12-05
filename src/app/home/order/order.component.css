@@ -30,7 +30,7 @@
   overflow: scroll;
 }
 
-.order-quantity {
+.order-status {
   flex: 0 0 50px;
   text-align: center;
 }

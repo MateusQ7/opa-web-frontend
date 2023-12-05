@@ -9,6 +9,7 @@ import { TableService } from 'src/app/services/table/table.service';
 import { OrderToBackend } from 'src/app/services/order/orderToBackend.interface';
 import { LauchOrder } from 'src/app/shared/launch-order-modal/lauchOrder.interface';
 import { Customer } from 'src/app/services/customer/customer.interface';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-order',
@@ -32,7 +33,8 @@ export class OrderComponent implements OnInit{
   constructor(
     public auth:AuthService,
     private orderService:OrderService,
-    private tableService:TableService
+    private tableService:TableService,
+    private datePipe: DatePipe
   ){}
 
   async ngOnInit(){
@@ -43,8 +45,10 @@ export class OrderComponent implements OnInit{
     this.loading = true;
     try{
       const ordersData = await firstValueFrom(this.orderService.getOrders());
+
       ordersData.map((backendOrder: BackendOrder) => {
         let customers:string[] = []
+
         backendOrder.customers.map((customer:Customer)=>{
           customers.push(customer.name);
         })
@@ -53,10 +57,10 @@ export class OrderComponent implements OnInit{
             menuItem:backendOrder.menuItem,
             status:backendOrder.status,
             table:backendOrder.table,
-            deliveredTime:backendOrder.deliveredTime,
-            orderedTime:backendOrder.orderedTime,
+            deliveredTime: this.getDateFormattedTime(backendOrder.deliveredTime),
+            orderedTime: this.getDateFormattedTime(backendOrder.orderedTime),
             customers:backendOrder.customers,
-            costumersName:customers
+            customersName:customers
           });
         })
 
@@ -110,7 +114,16 @@ export class OrderComponent implements OnInit{
         console.log(e);
       }
     );
+  }
 
+  getDateFormattedTime(date: string): string {
+    if (date == 'Não entregue') {
+      return date;
+    }
+
+    const formattedDate = this.datePipe.transform(date, 'HH:mm');
+
+    return formattedDate ? formattedDate : date;
   }
 
 }

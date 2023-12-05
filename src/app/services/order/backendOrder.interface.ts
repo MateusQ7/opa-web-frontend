@@ -10,6 +10,6 @@ export interface BackendOrder{
   table:Table;
   qt:number;
   status:OrderStatus
-  orderedTime?:string;
-  deliveredTime?:string;
+  orderedTime:string;
+  deliveredTime:string;
 }

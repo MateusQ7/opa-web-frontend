@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { OrderComponent } from './order.component';
 import { YellowlineModule } from 'src/app/shared/yellowline/yellowline.module';
 import { OrderModalModule } from 'src/app/shared/order-modal/order-modal.module';
@@ -21,6 +21,9 @@ import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
     LaunchOrderModalModule,
     LoadingModule,
     NgbAccordionModule
+  ],
+  providers: [
+    DatePipe
   ]
 })
 export class OrderModule { }
