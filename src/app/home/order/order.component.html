@@ -25,9 +25,9 @@
                       </div>
                       <div class="vertical-line"></div>
                       <div class="order-status">
-                        <span *ngIf="order.status == 1" class="badge opa-badge-warning">Em andamento</span>
-                        <span *ngIf="order.status == 2" class="badge opa-badge-success">Entregue</span>
-                        <span *ngIf="order.status == 3" class="badge opa-badge-danger">Cancelado</span>
+                        <span *ngIf="order.status == 1" class="badge opa-badge opa-badge-warning">Em andamento</span>
+                        <span *ngIf="order.status == 2" class="badge opa-badge opa-badge-success">Entregue</span>
+                        <span *ngIf="order.status == 3" class="badge opa-badge opa-badge-danger">Cancelado</span>
                       </div>
                     </div>
                   </div>
@@ -38,14 +38,14 @@
                       <div class="row mb-3">
                         <div class="col-12">
                           status do pedido:
-                          <span *ngIf="order.status == 1" class="badge opa-badge-warning">Em andamento</span>
-                          <span *ngIf="order.status == 2" class="badge opa-badge-success">Entregue</span>
-                          <span *ngIf="order.status == 3" class="badge opa-badge-danger">Cancelado</span>
+                          <span *ngIf="order.status == 1" class="badge opa-badge opa-badge-warning">Em andamento</span>
+                          <span *ngIf="order.status == 2" class="badge opa-badge opa-badge-success">Entregue</span>
+                          <span *ngIf="order.status == 3" class="badge opa-badge opa-badge-danger">Cancelado</span>
                         </div>
                       </div>
                       <div class="row mb-3">
                         <div class="col-12">
-                          Mesa {{ order.table.id }}
+                          Mesa: {{ order.table.id }}
                         </div>
                       </div>
                       <div class="row mb-3">
@@ -75,85 +75,28 @@
                 </div>
               </div>
             </div>
-            <!-- <div ngbAccordion #accordion="ngbAccordion" class="mb-2">
-              <div ngbAccordionItem [collapsed]="true">
-                <div ngbAccordionHeader class="accordion-button custom-header">
-                  <div ngbAccordionToggle class="p-0 container-fluid text-start ps-0 opa-accordion-toggle">
-                    <div class="order-container">
-                      <div class="order-icon">
-                        <i class="fa-solid fa-bowl-food"></i>
-                      </div>
-                      <div class="order-title">
-                        Fritas frita a sardinha
-                      </div>
-                      <div class="vertical-line"></div>
-                      <div class="order-table">
-                        Mesa 31
-                      </div>
-                      <div class="vertical-line"></div>
-                      <div class="order-quantity">
-                        02x
-                      </div>
-                    </div>
-                  </div>
-                </div> -->
-            <!-- <div ngbAccordionCollapse>
-                  <div ngbAccordionBody class="order-info-container">
-                    <ng-template>
-                      <div class="row mb-3">
-                        <div class="col-12">
-                          status do pedido:
-                          <span class="badge opa-badge-warning">Em andamento</span>
-                        </div>
-                      </div>
-                      <div class="row mb-3">
-                        <div class="col-12">
-                          mesa: 27
-                        </div>
-                      </div>
-                      <div class="row mb-3">
-                        <div class="col-12">
-                          cliente(s): Mateus, Pedro, Caue, Barreto, Dudu
-                        </div>
-                      </div>
-                      <div class="row align-items-center">
-                        <div class="col-4">
-                          pedido feito às <strong>18:54</strong>
-                        </div>
-                        <div class="col-4 order-responsible-container text-center">
-                          responsável:
-                          <strong>Pedro Caio</strong>
-                          <div class="avatar-container">
-                            <i class="fa-solid fa-user-tie"></i>
-                          </div>
-                        </div>
-                        <div class="col-4 text-end">
-                          *pedido entregue às <strong>N/E</strong>
-                        </div>
-                      </div>
-                    </ng-template>
-                  </div>
-                </div>
-              </div>
-            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="panel panel-default mb-4">
+          <div class="panel-heading panel-heading-default">
+            Mesas em andamento
+          </div>
+          <div class="panel-body panel-body-fix-height">
             <div ngbAccordion #accordion="ngbAccordion" class="mb-2">
               <div ngbAccordionItem [collapsed]="true">
                 <div ngbAccordionHeader class="accordion-button custom-header">
                   <div ngbAccordionToggle class="p-0 container-fluid text-start ps-0 opa-accordion-toggle">
                     <div class="order-container">
                       <div class="order-icon">
-                        <i class="fa-solid fa-bowl-food"></i>
+                        <i class="fa-solid fa-receipt"></i>
                       </div>
                       <div class="order-title">
-                        Camarão nacional
-                      </div>
-                      <div class="vertical-line"></div>
-                      <div class="order-table">
                         Mesa 31
                       </div>
-                      <div class="vertical-line"></div>
-                      <div class="order-quantity">
-                        01x
+                      <div class="order-open-modal">
+                        Ver mais +
                       </div>
                     </div>
                   </div>
@@ -161,52 +104,29 @@
                 <div ngbAccordionCollapse>
                   <div ngbAccordionBody class="order-info-container">
                     <ng-template>
-                      <div class="row mb-3">
-                        <div class="col-12">
-                          status do pedido:
-                          <span class="badge opa-badge-danger">Cancelado</span>
+                      <div class="table-orders-info mb-2">
+                        <div class="table-order-title">
+                          Catinhas de paranguejo
+                        </div>
+                        <hr class="link-line">
+                        <div class="table-order-status text-end">
+                          <span class="badge opa-badge opa-badge-warning">Em andamento</span>
                         </div>
                       </div>
-                      <div class="row mb-3">
-                        <div class="col-12">
-                          mesa: 27
+                      <div class="table-orders-info">
+                        <div class="table-order-title">
+                          Misto do cauê
                         </div>
-                      </div>
-                      <div class="row mb-3">
-                        <div class="col-12">
-                          cliente(s): Mateus, Pedro, Caue, Barreto, Dudu
-                        </div>
-                      </div>
-                      <div class="row align-items-center">
-                        <div class="col-4">
-                          pedido feito às <strong>18:54</strong>
-                        </div>
-                        <div class="col-4 order-responsible-container text-center">
-                          responsável:
-                          <strong>Pedro Caio</strong>
-                          <div class="avatar-container">
-                            <i class="fa-solid fa-user-tie"></i>
-                          </div>
-                        </div>
-                        <div class="col-4 text-end">
-                          <strong>pedido cancelado</strong>
+                        <hr class="link-line">
+                        <div class="table-order-status text-end">
+                          <span class="badge opa-badge opa-badge-success">Entregue</span>
                         </div>
                       </div>
                     </ng-template>
                   </div>
                 </div>
               </div>
-            </div> -->
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-6">
-        <div class="panel panel-default">
-          <div class="panel-heading panel-heading-default">
-            Mesas em andamento
-          </div>
-          <div class="panel-body">
-            oi
+            </div>
           </div>
         </div>
       </div>
