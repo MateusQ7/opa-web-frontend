@@ -67,7 +67,6 @@ export class OrderComponent implements OnInit{
       const ordersTable = await firstValueFrom(this.tableService.getInProgressTables());
       ordersTable.map((inProgressTable:InProgressTables) => {
           this.inProgressTables.push({
-            id:inProgressTable.id,
             orders:inProgressTable.orders,
             table:inProgressTable.table,
             orderQt:inProgressTable.orderQt

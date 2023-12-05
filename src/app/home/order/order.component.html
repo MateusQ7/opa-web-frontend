@@ -84,7 +84,7 @@
             Mesas em andamento
           </div>
           <div class="panel-body panel-body-fix-height">
-            <div ngbAccordion #accordion="ngbAccordion" class="mb-2">
+            <div ngbAccordion #accordion="ngbAccordion" class="mb-2" *ngFor="let table of this.inProgressTables">
               <div ngbAccordionItem [collapsed]="true">
                 <div ngbAccordionHeader class="accordion-button custom-header">
                   <div ngbAccordionToggle class="p-0 container-fluid text-start ps-0 opa-accordion-toggle">
@@ -93,7 +93,7 @@
                         <i class="fa-solid fa-receipt"></i>
                       </div>
                       <div class="order-title">
-                        Mesa 31
+                        Mesa {{ table.table.id }}
                       </div>
                       <div class="order-open-modal">
                         Ver mais +
@@ -104,22 +104,16 @@
                 <div ngbAccordionCollapse>
                   <div ngbAccordionBody class="order-info-container">
                     <ng-template>
-                      <div class="table-orders-info mb-2">
+                      <div class="table-orders-info mb-2" *ngFor="let order of table.orders">
                         <div class="table-order-title">
-                          Catinhas de paranguejo
+                          {{ order.name }}
                         </div>
                         <hr class="link-line">
                         <div class="table-order-status text-end">
-                          <span class="badge opa-badge opa-badge-warning">Em andamento</span>
-                        </div>
-                      </div>
-                      <div class="table-orders-info">
-                        <div class="table-order-title">
-                          Misto do cauê
-                        </div>
-                        <hr class="link-line">
-                        <div class="table-order-status text-end">
-                          <span class="badge opa-badge opa-badge-success">Entregue</span>
+                          <span *ngIf="order.status == 1" class="badge opa-badge opa-badge-warning">Em andamento</span>
+                          <span *ngIf="order.status == 2" class="badge opa-badge opa-badge-success">Entregue</span>
+                          <span *ngIf="order.status == 3" class="badge opa-badge opa-badge-danger">Cancelado</span>
+
                         </div>
                       </div>
                     </ng-template>
