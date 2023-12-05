@@ -1,9 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output, inject ,TemplateRef, ViewChild} from '@angular/core';
-import { TableDetailed } from './tableDetailed.interface';
+import { OrderToTableDetailed, TableDetailed } from './tableDetailed.interface';
 import { TableService } from 'src/app/services/table/table.service';
 import { firstValueFrom } from 'rxjs';
-import { InProgressTables } from 'src/app/home/order/InProgressTables.interface';
+import { InProgressTables, SimplifiedOrders } from 'src/app/home/order/InProgressTables.interface';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'opa-order-modal',
@@ -29,21 +30,27 @@ export class OrderModalComponent implements OnInit{
   loading = false;
 
   constructor(
-    private tableService:TableService
+    private tableService:TableService,
+    private datePipe:DatePipe
   ){
 
   }
 
   async ngOnInit(): Promise<void> {
-    console.log(this.table);
     this.modalService.open(this.modalContent, { size: 'xl' });
     await this.getData();
+    console.log(this.tableDetailed);
   }
 
   async getData(){
     this.loading = true;
     try{
       const data = await firstValueFrom(this.tableService.getSingleTable(this.table.id));
+      data.table.openTime = this.getDateFormattedTime(data.table.openTime);
+      data.orders.map((order:OrderToTableDetailed)=>{
+        order.orderedTime = this.getDateFormattedTime(order.orderedTime)
+        order.deliveredTime = this.getDateFormattedTime(order.deliveredTime)
+      })
       this.tableDetailed = data;
       this.loading = false;
     }catch(error: any){
@@ -54,5 +61,15 @@ export class OrderModalComponent implements OnInit{
   closeModal(){
     this.close.emit(false);
     this.modalService.dismissAll()
+  }
+
+  getDateFormattedTime(date: string): string {
+    if (date == 'Não entregue') {
+      return date;
+    }
+
+    const formattedDate = this.datePipe.transform(date, 'HH:mm');
+
+    return formattedDate ? formattedDate : date;
   }
 }

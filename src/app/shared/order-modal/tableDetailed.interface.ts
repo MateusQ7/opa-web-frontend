@@ -13,7 +13,7 @@ export interface OrderToTableDetailed{
   menuItem:Menu;
   customers:Customer[];
   status:OrderStatus;
-  orderedTime?:string;
-  deliveredTime?:string;
+  orderedTime:string;
+  deliveredTime:string;
 }
 
