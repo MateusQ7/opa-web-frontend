@@ -6,7 +6,7 @@ export interface Table{
   openTime:string;
   customers:Customer[];
   status:TableStatus;
-  responsableWaiter:string;
+  waiter:string;
 }
 
 export enum TableStatus{

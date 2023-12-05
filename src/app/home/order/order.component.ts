@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, inject } from '@angular/core';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { InProgressTables } from './InProgressTables.interface';
 import { OrderService } from 'src/app/services/order/order.service';
@@ -8,6 +8,8 @@ import { BackendOrder } from 'src/app/services/order/backendOrder.interface';
 import { TableService } from 'src/app/services/table/table.service';
 import { OrderToBackend } from 'src/app/services/order/orderToBackend.interface';
 import { LauchOrder } from 'src/app/shared/launch-order-modal/lauchOrder.interface';
+import { Customer } from 'src/app/services/customer/customer.interface';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-order',
@@ -15,23 +17,25 @@ import { LauchOrder } from 'src/app/shared/launch-order-modal/lauchOrder.interfa
   styleUrls: ['./order.component.css']
 })
 export class OrderComponent implements OnInit{
-
   launchOrderModal = false;
 
   orderModal = false;
 
-  tableToOrderModal!:InProgressTables;
-
   loading = false;
+
+  tableToOrderModal!:InProgressTables;
 
   inProgressOrderList:Order[]=[]
 
   inProgressTables:InProgressTables[]=[];
 
+  array:any[] =[1]
+
   constructor(
     public auth:AuthService,
     private orderService:OrderService,
-    private tableService:TableService
+    private tableService:TableService,
+    private datePipe: DatePipe
   ){}
 
   async ngOnInit(){
@@ -42,15 +46,22 @@ export class OrderComponent implements OnInit{
     this.loading = true;
     try{
       const ordersData = await firstValueFrom(this.orderService.getOrders());
+
       ordersData.map((backendOrder: BackendOrder) => {
+        let customers:string[] = []
+
+        backendOrder.customers.map((customer:Customer)=>{
+          customers.push(customer.name);
+        })
           this.inProgressOrderList.push({
             id:backendOrder.id,
             menuItem:backendOrder.menuItem,
-            customers:backendOrder.customers,
             status:backendOrder.status,
             table:backendOrder.table,
-            deliveredTime:backendOrder.deliveredTime,
-            orderedTime:backendOrder.orderedTime
+            deliveredTime: this.getDateFormattedTime(backendOrder.deliveredTime),
+            orderedTime: this.getDateFormattedTime(backendOrder.orderedTime),
+            customers:backendOrder.customers,
+            customersName:customers
           });
         })
 
@@ -83,7 +94,7 @@ export class OrderComponent implements OnInit{
     this.launchOrderModal = !this.launchOrderModal
   }
 
-  showOrderModal(table:InProgressTables){
+  showOrderModal(table:InProgressTables,){
     this.tableToOrderModal = table;
     this.orderModal = !this.orderModal
   }
@@ -104,7 +115,16 @@ export class OrderComponent implements OnInit{
         console.log(e);
       }
     );
+  }
 
+  getDateFormattedTime(date: string): string {
+    if (date == 'Não entregue') {
+      return date;
+    }
+
+    const formattedDate = this.datePipe.transform(date, 'HH:mm');
+
+    return formattedDate ? formattedDate : date;
   }
 
 }

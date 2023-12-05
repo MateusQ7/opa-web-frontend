@@ -7,7 +7,6 @@ import { Observable } from 'rxjs'
 import { BackendOrder } from './backendOrder.interface';
 import { OrderToBackend } from './orderToBackend.interface';
 import { tap } from 'rxjs/operators';
-import { firstValueFrom } from 'rxjs'
 
 
 @Injectable({

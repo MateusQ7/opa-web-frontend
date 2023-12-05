@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { OrderModalComponent } from './order-modal.component';
 import { LoadingModule } from '../loading/loading.module';
 
@@ -15,6 +15,7 @@ import { LoadingModule } from '../loading/loading.module';
   imports: [
     CommonModule,
     LoadingModule
-  ]
+  ],
+  providers:[DatePipe]
 })
 export class OrderModalModule { }

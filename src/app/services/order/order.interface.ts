@@ -9,6 +9,8 @@ export interface Order{
   customers:Customer[];
   status:OrderStatus;
   table:Table;
-  orderedTime?:string;
-  deliveredTime?:string;
+  orderedTime:string;
+  deliveredTime:string;
+  customersName?:string[];
+  // qt:number;
 }
