@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, inject } from '@angular/core';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { InProgressTables } from './InProgressTables.interface';
 import { OrderService } from 'src/app/services/order/order.service';
@@ -10,6 +10,7 @@ import { OrderToBackend } from 'src/app/services/order/orderToBackend.interface'
 import { LauchOrder } from 'src/app/shared/launch-order-modal/lauchOrder.interface';
 import { Customer } from 'src/app/services/customer/customer.interface';
 import { DatePipe } from '@angular/common';
+import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-order',
@@ -17,6 +18,10 @@ import { DatePipe } from '@angular/common';
   styleUrls: ['./order.component.css']
 })
 export class OrderComponent implements OnInit{
+  modalService = inject(NgbModal)
+
+  closeResult = '';
+
 
   launchOrderModal = false;
 
@@ -125,5 +130,9 @@ export class OrderComponent implements OnInit{
 
     return formattedDate ? formattedDate : date;
   }
+
+  open(content: TemplateRef<any>) {
+		this.modalService.open(content, { size: 'xl' });
+	}
 
 }

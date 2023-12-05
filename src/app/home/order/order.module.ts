@@ -7,6 +7,7 @@ import { LaunchOrderModalModule } from 'src/app/shared/launch-order-modal/launch
 import { LoadingModule } from 'src/app/shared/loading/loading.module';
 import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
 
+
 @NgModule({
   declarations: [
     OrderComponent

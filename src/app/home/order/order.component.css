@@ -56,10 +56,12 @@
   margin: 0 10px;
 }
 
-.order-info-container {
+.opa-accordion-body {
   background-color: var(--gray-extra-lighter);
   font-size: 16px;
   font-weight: lighter;
+  max-height: 200px;
+  overflow-y: auto;
 }
 
 .opa-badge {
@@ -69,7 +71,7 @@
 }
 
 .opa-badge.opa-badge-success {
-  background-color: var(--info-dark);
+  background-color: var(--bs-success);
 }
 
 .opa-badge.opa-badge-warning {
@@ -130,6 +132,81 @@
 .table-order-status {
   flex: 0, 0, auto;
 }
+
+.table-open-modal {
+  cursor: pointer;
+}
+
+.table-open-modal::after {
+  content: "+";
+  color: var(--primary-color-light-darker);
+  font-size: 20px;
+  font-weight: bolder;
+}
+
+.opa-modal-header {
+  display: flex;
+  flex-direction: column;
+  align-items: normal;
+}
+
+.opa-modal-header-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.opa-modal-title {
+  font-size: 32px;
+  font-weight: bold;
+  color: var(--gray-darker);
+}
+
+.opa-modal-header-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  font-weight: lighter;
+  color: var(--gray);
+}
+
+.opa-modal-header-info strong {
+  color: var(--gray-darker);
+}
+
+.detailed-table-order-info {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  border-radius: 10px;
+  border: 2px solid var(--gray-medium);
+  padding: 5px 15px;
+  height: 100px;
+  gap: 20px;
+  font-weight: lighter;
+  color: var(--gray);
+}
+
+.detailed-table-order-info strong {
+  color: var(--gray-darker);
+}
+
+.product-photo img {
+  width: 65px;
+  flex: 0 0 80px;
+  border-radius: 10px;
+}
+
+.product-description {
+  flex: 1;
+}
+
+.product-delivered-info{
+  flex: 0 0 180px;
+}
+
+
+
 
 
 

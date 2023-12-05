@@ -19,7 +19,8 @@
   --warning-darker: #F6B028;
 
   /* Danger */
-  --danger: #F85959;
+  --danger-light: #ffcccc;
+  --danger:  #F85959;;
   --danger-dark: #F74141;
   --danger-darker: #F62828;
 
