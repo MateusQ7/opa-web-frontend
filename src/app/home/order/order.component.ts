@@ -8,6 +8,7 @@ import { BackendOrder } from 'src/app/services/order/backendOrder.interface';
 import { TableService } from 'src/app/services/table/table.service';
 import { OrderToBackend } from 'src/app/services/order/orderToBackend.interface';
 import { LauchOrder } from 'src/app/shared/launch-order-modal/lauchOrder.interface';
+import { Customer } from 'src/app/services/customer/customer.interface';
 
 @Component({
   selector: 'app-order',
@@ -43,14 +44,19 @@ export class OrderComponent implements OnInit{
     try{
       const ordersData = await firstValueFrom(this.orderService.getOrders());
       ordersData.map((backendOrder: BackendOrder) => {
+        let customers:string[] = []
+        backendOrder.customers.map((customer:Customer)=>{
+          customers.push(customer.name);
+        })
           this.inProgressOrderList.push({
             id:backendOrder.id,
             menuItem:backendOrder.menuItem,
-            customers:backendOrder.customers,
             status:backendOrder.status,
             table:backendOrder.table,
             deliveredTime:backendOrder.deliveredTime,
-            orderedTime:backendOrder.orderedTime
+            orderedTime:backendOrder.orderedTime,
+            customers:backendOrder.customers,
+            costumersName:customers
           });
         })
 

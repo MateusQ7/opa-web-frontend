@@ -11,4 +11,6 @@ export interface Order{
   table:Table;
   orderedTime?:string;
   deliveredTime?:string;
+  costumersName?:string[];
+  // qt:number;
 }

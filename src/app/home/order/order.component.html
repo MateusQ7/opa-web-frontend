@@ -17,11 +17,11 @@
                         <i class="fa-solid fa-bowl-food"></i>
                       </div>
                       <div class="order-title">
-                        {{ order.name }}
+                        {{ order.menuItem.name }}
                       </div>
                       <div class="vertical-line"></div>
                       <div class="order-table">
-                        Mesa {{ order.tableID }}
+                        Mesa {{ order.table.id }}
                       </div>
                       <div class="vertical-line"></div>
                       <div class="order-quantity">
@@ -43,12 +43,12 @@
                       </div>
                       <div class="row mb-3">
                         <div class="col-12">
-                          Mesa {{ order.tableID }}
+                          Mesa {{ order.table.id }}
                         </div>
                       </div>
                       <div class="row mb-3">
                         <div class="col-12">
-                          cliente(s): {{ order.customers }}
+                          cliente(s): {{ order.customersName }}
                         </div>
                       </div>
                       <div class="row align-items-center">
