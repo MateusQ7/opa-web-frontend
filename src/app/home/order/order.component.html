@@ -2,7 +2,7 @@
   <opa-yline routeNameToBeUsed="Pedidos" iconPath="/assets/images/order.svg"></opa-yline>
   <div class="container-fluid">
     <div class="text-end">
-      <div class="btn btn-primary">
+      <div class="btn btn-primary" (click)="this.showLaunchOrderModal()">
         Lançar pedido
       </div>
     </div>
@@ -132,9 +132,13 @@
   </div>
 </div>
 
-
-
-
+<div class="launch-order-modal">
+  <opa-launch-order-modal
+  *ngIf="this.launchOrderModal"
+  (emitOrders)="receiveOrdersFromModal($event)"
+  (close)="this.showLaunchOrderModal()"
+  ></opa-launch-order-modal>
+</div>
 
 <!-- MODAL TA AQUI CAUE -->
 <opa-order-modal *ngIf="this.orderModal" [table]="this.tableToOrderModal"

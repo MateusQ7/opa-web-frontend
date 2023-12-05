@@ -168,10 +168,6 @@
                   <div class="capsule">
                     <div class="label-component">
                       <label>Bairro</label>
-                      <div class="message-error"
-                        *ngIf="form.get('neighborhood')?.errors && form.get('neighborhood')?.touched">
-                        *Este campo é obrigatório!
-                      </div>
                     </div>
                     <input type="text" [(ngModel)]="neighborhood" formControlName="neighborhood"
                       placeholder="Insira o bairro" font-family="Poppins" [readonly]="form.controls['cep'].valid"

@@ -11,8 +11,8 @@
 }
 
 .login-div {
-  min-width: 40%;
-  height: 60%;
+  width: 500px;
+  height: 650px;
   background-color: var(--white);
   border-radius: 15px;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
