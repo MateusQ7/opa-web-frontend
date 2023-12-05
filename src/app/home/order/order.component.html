@@ -84,7 +84,7 @@
             Mesas em andamento
           </div>
           <div class="panel-body panel-body-fix-height">
-            <div ngbAccordion #accordion="ngbAccordion" class="mb-2" *ngFor="let table of this.array">
+            <div ngbAccordion #accordion="ngbAccordion" class="mb-2" *ngFor="let table of this.inProgressTables">
               <div ngbAccordionItem [collapsed]="true">
                 <div ngbAccordionHeader class="accordion-button custom-header">
                   <div ngbAccordionToggle class="p-0 container-fluid text-start ps-0 opa-accordion-toggle">
@@ -93,9 +93,9 @@
                         <i class="fa-solid fa-receipt"></i>
                       </div>
                       <div class="opa-accordion-header-title">
-                        <!-- Mesa {{ table.table.id }} -->
+                        Mesa {{ table.table.id }}
                       </div>
-                      <div class="table-open-modal" (click)="this.showOrderModal();">
+                      <div class="table-open-modal" (click)="this.showOrderModal(table);">
                         Ver mais
                       </div>
                     </div>
@@ -134,6 +134,7 @@
 <!-- MODAL TA AQUI CAUE -->
 <opa-order-modal
 *ngIf="this.orderModal"
+[table]="this.tableToOrderModal"
 (close)="this.showOrderModal()"
 ></opa-order-modal>
 

@@ -35,6 +35,7 @@ export class OrderModalComponent implements OnInit{
   }
 
   async ngOnInit(): Promise<void> {
+    console.log(this.table);
     this.modalService.open(this.modalContent, { size: 'xl' });
     await this.getData();
   }
