@@ -12,8 +12,8 @@
   "dependencies": {
     "@angular/animations": "^16.1.0",
     "@angular/common": "^16.1.0",
-    "@angular/compiler": "^16.1.0",
-    "@angular/core": "^16.1.0",
+    "@angular/compiler": "^16.2.12",
+    "@angular/core": "^16.2.12",
     "@angular/forms": "^16.1.0",
     "@angular/platform-browser": "^16.1.0",
     "@angular/platform-browser-dynamic": "^16.1.0",
@@ -22,6 +22,7 @@
     "@ng-select/ng-select": "^11.1.1",
     "@popperjs/core": "^2.11.8",
     "@types/chart.js": "^2.9.41",
+    "@ng-bootstrap/ng-bootstrap": "^15.0.0",
     "bootstrap": "^5.3.2",
     "chart.js": "^4.4.0",
     "ng-multiselect-dropdown": "^1.0.0",
