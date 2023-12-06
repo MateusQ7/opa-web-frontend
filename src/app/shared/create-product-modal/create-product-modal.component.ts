@@ -105,7 +105,6 @@ export class CreateProductModalComponent {
   }
 
   public saveProduct() {
-    console.log(this.modalForm.value);
     const product = {
       productName: this.modalForm.get("productName")?.value,
       productPrice: this.modalForm.get("productPrice")?.value,
@@ -113,7 +112,6 @@ export class CreateProductModalComponent {
     } as CreateProductDto
 
     this.productService.createProduct([product]).subscribe(value => {
-      console.log(value);
     }, (err: HttpErrorResponse) => {
       console.log(err)
     })

@@ -21,10 +21,8 @@ export class AuthService {
 
   checkUserLogged(): boolean {
     if (this.userLogged) {
-      console.log(`ture`)
       return true;
     }
-    console.log(`false`)
     return false
   };
 

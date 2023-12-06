@@ -102,7 +102,6 @@ export class OrderComponent implements OnInit{
 
   async receiveOrdersFromModal(orders:LauchOrder[]){
     const ordersToBack:OrderToBackend[]=[]
-    console.log(orders)
     orders.map((order:LauchOrder)=>{
       ordersToBack.push({
         tableId: order.tableId,
@@ -112,7 +111,6 @@ export class OrderComponent implements OnInit{
         personIds:order.personIds
       })
     })
-    // console.log(ordersToBack); aqui pra cima ja ta bugado aq
     try{
       this.loading = true;
       this.orderService.createOrder(ordersToBack).subscribe(

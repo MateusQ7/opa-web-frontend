@@ -123,7 +123,6 @@ export class DashboardComponent {
     });
 
     data.forEach((data) => {
-      console.log(data)
       const gender = data.personInfos[0].gender;
       const birthDate = new Date(data.personInfos[0].birthDate);
       const age = this.calculateAge(birthDate);
@@ -261,7 +260,6 @@ export class DashboardComponent {
       const data = await firstValueFrom(this.dashboardService.getPayedBills());
       let revenueValue = 0;
       let bills = 0;
-      console.log(data);
       for (const bill of data) {
         bills++;
         revenueValue += bill.totalValue;
