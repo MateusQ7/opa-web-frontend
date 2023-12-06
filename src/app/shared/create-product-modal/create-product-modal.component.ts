@@ -117,6 +117,7 @@ export class CreateProductModalComponent {
     }, (err: HttpErrorResponse) => {
       console.log(err)
     })
+    this.closeModal.emit();
   }
 
 }

@@ -123,6 +123,7 @@ export class DashboardComponent {
     });
 
     data.forEach((data) => {
+      console.log(data)
       const gender = data.personInfos[0].gender;
       const birthDate = new Date(data.personInfos[0].birthDate);
       const age = this.calculateAge(birthDate);

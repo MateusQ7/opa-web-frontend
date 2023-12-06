@@ -24,7 +24,7 @@ export class OrderService {
     private authService:AuthService
   ) { }
 
-  createOrder(orders:OrderToBackend):Observable<Order[]>{
+  createOrder(orders:OrderToBackend[]):Observable<Order[]>{
     return this.httpClient.post<Order[]>(`${this.configService.apiUrl}/order`,orders,{
       headers: {
         token: this.authService.getToken() as string,
@@ -48,6 +48,7 @@ export class OrderService {
       }
     }).pipe(
       tap((dataReceived: any) => {
+        console.log(dataReceived);
         this.backendOrdersInCache = dataReceived;
         console.log(this.backendOrdersInCache)
       })

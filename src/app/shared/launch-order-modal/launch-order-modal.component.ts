@@ -137,7 +137,7 @@ export class LaunchOrderModalComponent implements OnInit{
         menuItem: menuItem,
         status:this.form.value.status,
         tableId:this.form.value.table,
-        personIds: [...this.form.value.customers],
+        personIds: [this.form.value.customers],
         totalValue: (parseInt(this.form.value.qt) * parseInt(String(menuItem.price))),
         quantity:this.form.value.qt
       }

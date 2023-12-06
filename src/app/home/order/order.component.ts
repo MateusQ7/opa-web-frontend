@@ -46,24 +46,25 @@ export class OrderComponent implements OnInit{
     this.loading = true;
     try{
       const ordersData = await firstValueFrom(this.orderService.getOrders());
-
+      this.inProgressOrderList.length=0;
+      this.inProgressTables.length = 0;
       ordersData.map((backendOrder: BackendOrder) => {
         let customers:string[] = []
 
         backendOrder.customers.map((customer:Customer)=>{
           customers.push(customer.name);
-        })
-          this.inProgressOrderList.push({
-            id:backendOrder.id,
-            menuItem:backendOrder.menuItem,
-            status:backendOrder.status,
-            table:backendOrder.table,
-            deliveredTime: this.getDateFormattedTime(backendOrder.deliveredTime),
-            orderedTime: this.getDateFormattedTime(backendOrder.orderedTime),
-            customers:backendOrder.customers,
-            customersName:customers
-          });
-        })
+        });
+        this.inProgressOrderList.push({
+          id:backendOrder.id,
+          menuItem:backendOrder.menuItem,
+          status:backendOrder.status,
+          table:backendOrder.table,
+          deliveredTime: this.getDateFormattedTime(backendOrder.deliveredTime),
+          orderedTime: this.getDateFormattedTime(backendOrder.orderedTime),
+          customers:backendOrder.customers,
+          customersName:customers
+        });
+      })
 
       const ordersTable = await firstValueFrom(this.tableService.getInProgressTables());
       ordersTable.map((inProgressTable:InProgressTables) => {
@@ -101,6 +102,7 @@ export class OrderComponent implements OnInit{
 
   async receiveOrdersFromModal(orders:LauchOrder[]){
     const ordersToBack:OrderToBackend[]=[]
+    console.log(orders)
     orders.map((order:LauchOrder)=>{
       ordersToBack.push({
         tableId: order.tableId,
@@ -110,11 +112,12 @@ export class OrderComponent implements OnInit{
         personIds:order.personIds
       })
     })
+    // console.log(ordersToBack); aqui pra cima ja ta bugado aq
     try{
       this.loading = true;
-      this.orderService.createOrder(ordersToBack[0]).subscribe(
+      this.orderService.createOrder(ordersToBack).subscribe(
         (e:Order[])=>{
-          console.log()
+          this.getData()
         }
       );
       this.loading = false;
