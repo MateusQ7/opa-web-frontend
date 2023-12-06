@@ -34,7 +34,8 @@ export class TopbarComponent {
   constructor(
     public auth:AuthService,
     private route:ActivatedRoute,
-    private router:Router
+    private router:Router,
+    private authService:AuthService
   ){
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
@@ -45,6 +46,10 @@ export class TopbarComponent {
 
   private updateCurrentRoute() {
     this.currentRoute = this.route.snapshot.firstChild?.routeConfig?.path || '';
+  }
+
+  logout(){
+    this.authService.loggout();
   }
 
 }

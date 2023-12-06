@@ -50,7 +50,7 @@ export class StorageComponent implements OnInit{
     this.popUp = !this.popUp
   };
 
-  async recieveIngredients(ingredients:Ingredient[]){
+  async receiveIngredients(ingredients:Ingredient[]){
     try{
       let ingredientsToBack:StorageToBack[] = [];
       ingredients.map((e:Ingredient)=>{

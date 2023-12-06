@@ -132,9 +132,8 @@
   </div>
 </div>
 
-<div class="launch-order-modal">
+<div class="launch-order-modal"*ngIf="this.launchOrderModal">
   <opa-launch-order-modal
-  *ngIf="this.launchOrderModal"
   (emitOrders)="receiveOrdersFromModal($event)"
   (close)="this.showLaunchOrderModal()"
   ></opa-launch-order-modal>

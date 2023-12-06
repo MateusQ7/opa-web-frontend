@@ -63,9 +63,6 @@ export class LaunchOrderModalComponent implements OnInit{
         Validators.maxLength(4)
       ]
       ],
-      // responsableWaiter:['',
-      //   Validators.required
-      // ],
       status:['',
         Validators.required
       ]
@@ -140,7 +137,7 @@ export class LaunchOrderModalComponent implements OnInit{
         menuItem: menuItem,
         status:this.form.value.status,
         tableId:this.form.value.table,
-        personIds: [...this.form.value.customers],
+        personIds: [this.form.value.customers],
         totalValue: (parseInt(this.form.value.qt) * parseInt(String(menuItem.price))),
         quantity:this.form.value.qt
       }
@@ -154,6 +151,7 @@ export class LaunchOrderModalComponent implements OnInit{
 
   submitForm(){
     this.emitOrders.emit(this.orderList);
+    this.closePopUp();
   }
 
   updateTable(event:any){
