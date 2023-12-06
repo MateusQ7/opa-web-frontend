@@ -10,6 +10,6 @@ export class AppInitializationService {
     if (!token) {
       return
     }
-    // this.authService.logUser(token)
+    this.authService.logUser(token)
   }
 }

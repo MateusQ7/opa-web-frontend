@@ -22,10 +22,6 @@ export class TopbarComponent {
     route:'storage'
     },
     {
-    name:'Funcionários',
-    route:'employees'
-    },
-    {
     name:'Cardápio',
     route:'menu'
     },

@@ -63,7 +63,6 @@ export class StorageComponent implements OnInit{
         )
       });
       this.storageService.submitStorage(ingredientsToBack).subscribe(e=>{
-        console.log(e)
         ingredients.map((ingredient:Ingredient)=>{
           this.ingredientList.push(ingredient);
         })

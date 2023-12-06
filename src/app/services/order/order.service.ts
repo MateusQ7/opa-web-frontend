@@ -48,9 +48,7 @@ export class OrderService {
       }
     }).pipe(
       tap((dataReceived: any) => {
-        console.log(dataReceived);
         this.backendOrdersInCache = dataReceived;
-        console.log(this.backendOrdersInCache)
       })
     );
   };
