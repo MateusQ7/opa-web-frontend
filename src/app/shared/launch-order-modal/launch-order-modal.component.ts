@@ -35,23 +35,7 @@ export class LaunchOrderModalComponent implements OnInit{
 
   tablesAvailables:InProgressTables[]=[]
 
-  orderList:LauchOrder[]=[{
-    checked:false,
-    customerList:[{
-      id:1,
-      name:`carlho pedro caio`
-    }],
-    menuItem:{
-      description:`asd`,
-      id:1,
-      name:`asdssssss`,
-      price:10.11
-    },
-    quantity:2,
-    status:2,
-    tableId:10,
-    totalValue:102
-  }]
+  orderList:LauchOrder[]=[]
 
   selectedTable!:Table;
 
@@ -60,18 +44,6 @@ export class LaunchOrderModalComponent implements OnInit{
   form!:FormGroup
 
   allCheckboxChecked:boolean = false;
-
-  selectedClient!: number;
-
-  clients = [
-    { id: 0, name: 'Fulano' },
-    { id: 1, name: 'Cicrano' },
-    { id: 2, name: 'Beltrano' },
-  ];
-
-  products = [];
-
-  tables = [];
 
   orderStatus = [
     { id: 1, name: 'Em andamento' },
@@ -197,13 +169,15 @@ export class LaunchOrderModalComponent implements OnInit{
     this.closePopUp();
   }
 
-  updateTable(event:any){
+  updateTable(event:any) {
     const table = this.tablesAvailables.find((e:InProgressTables)=>{
-      return e.id === parseInt(this.form.value.table);
+      return e.id === event.id;
     })
     if(table){
       this.selectedTable = table.table
+      console.log(this.selectedTable);
       this.selectedCustomers = this.selectedTable.customers
+      console.log(this.selectedTable.customers);
     }
   }
 

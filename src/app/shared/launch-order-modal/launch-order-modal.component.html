@@ -17,8 +17,9 @@
         <div class="orders-form-container">
           <div class="opa-input-group">
             <label>Mesa</label>
-            <ng-select [items]="tablesAvailables" bindLabel="id" bindValue="id" [clearable]="false" formControlName="tableId" (change)="updateTable($event)"
-              placeholder="-- Selecione a mesa --" [clearSearchOnAdd]="true" class="opa-select-2">
+            <ng-select [items]="tablesAvailables" bindLabel="id" bindValue="id" [clearable]="false"
+              formControlName="tableId" (change)="updateTable($event)" placeholder="-- Selecione a mesa --"
+              [clearSearchOnAdd]="true" class="opa-select-2">
               <ng-template ng-option-tmp let-item="item">
                 <span class="">Mesa {{item.id}}</span>
               </ng-template>
@@ -26,17 +27,18 @@
           </div>
           <div class="opa-input-group">
             <label>Status do pedido</label>
-            <ng-select [items]="orderStatus" bindLabel="name" bindValue="id" [clearable]="false" formControlName="status"
-              placeholder="-- Selecione o status --" [clearSearchOnAdd]="true" class="opa-select-2">
+            <ng-select [items]="orderStatus" bindLabel="name" bindValue="id" [clearable]="false"
+              formControlName="status" placeholder="-- Selecione o status --" [clearSearchOnAdd]="true"
+              class="opa-select-2">
             </ng-select>
           </div>
         </div>
         <div class="orders-form-container">
           <div class="opa-input-group">
             <label>Clientes</label>
-            <ng-select [items]="selectedCustomers" bindLabel="name" bindValue="item" placeholder="-- Selecione os clientes --" formControlName="customersList"
-              [hideSelected]="true" [multiple]="true" [closeOnSelect]="false" [clearSearchOnAdd]="true"
-              class="opa-select-2">
+            <ng-select [items]="selectedCustomers" bindLabel="name" bindValue="item"
+              placeholder="-- Selecione os clientes --" formControlName="customersList" [hideSelected]="true"
+              [multiple]="true" [closeOnSelect]="false" [clearSearchOnAdd]="true" class="opa-select-2">
               <ng-template ng-label-tmp let-item="item" let-clear="clear">
                 <div class="opa-value-container">
                   <span class="">{{item.name}}</span>
@@ -47,7 +49,8 @@
           </div>
           <div class="opa-input-group">
             <label>Quantidade</label>
-            <input type="number" (keypress)="numberOnly($event)" min="1" max="9" class="input-item" formControlName="qt">
+            <input type="number" (keypress)="numberOnly($event)" min="1" max="9" class="input-item"
+              formControlName="qt">
           </div>
         </div>
       </div>
@@ -59,8 +62,9 @@
       <table class="opa-table-report opa-table opa-table-striped table-hover">
         <thead>
           <tr>
-            <th >
-              <input type="checkbox" class="order-checkbox" [(ngModel)]="this.allCheckboxChecked" (click)="allChecked()">
+            <th>
+              <input type="checkbox" class="order-checkbox" [(ngModel)]="this.allCheckboxChecked"
+                (click)="allChecked()">
             </th>
             <th scope="col">Pedido</th>
             <th scope="col">Quantidade</th>
