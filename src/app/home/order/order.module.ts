@@ -6,6 +6,7 @@ import { OrderModalModule } from 'src/app/shared/order-modal/order-modal.module'
 import { LaunchOrderModalModule } from 'src/app/shared/launch-order-modal/launch-order-modal.module';
 import { LoadingModule } from 'src/app/shared/loading/loading.module';
 import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 
 @NgModule({
@@ -21,7 +22,7 @@ import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
     OrderModalModule,
     LaunchOrderModalModule,
     LoadingModule,
-    NgbAccordionModule
+    NgbAccordionModule,
   ],
   providers: [
     DatePipe

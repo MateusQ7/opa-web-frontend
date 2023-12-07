@@ -29,31 +29,31 @@ export class OrderComponent implements OnInit{
 
   inProgressTables:InProgressTables[]=[];
 
-  array:any[] =[1]
-
   constructor(
     public auth:AuthService,
     private orderService:OrderService,
     private tableService:TableService,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
   ){}
 
   async ngOnInit(){
     await this.getData();
   }
 
-  async getData(){
+  async getData() {
     this.loading = true;
     try{
       const ordersData = await firstValueFrom(this.orderService.getOrders());
-      this.inProgressOrderList.length=0;
-      this.inProgressTables.length = 0;
+      this.inProgressOrderList = [];
+      this.inProgressTables = [];
+
       ordersData.map((backendOrder: BackendOrder) => {
         let customers:string[] = []
 
         backendOrder.customers.map((customer:Customer)=>{
           customers.push(customer.name);
         });
+
         this.inProgressOrderList.push({
           id:backendOrder.id,
           menuItem:backendOrder.menuItem,
@@ -80,16 +80,6 @@ export class OrderComponent implements OnInit{
       console.log(error);
     }
   }
-  expandOrder(loopCell:HTMLElement,deepInfo:HTMLElement){
-    if(loopCell.style.minHeight === '7vh' || loopCell.style.minHeight === ""){
-      loopCell.style.minHeight = '22vh'
-      deepInfo.style.display = 'flex'
-    }
-    else{
-      loopCell.style.minHeight = '7vh'
-      deepInfo.style.display = 'none'
-    }
-  }
 
   showLaunchOrderModal(){
     this.launchOrderModal = !this.launchOrderModal
@@ -103,13 +93,15 @@ export class OrderComponent implements OnInit{
   async receiveOrdersFromModal(orders:LauchOrder[]){
     const ordersToBack:OrderToBackend[]=[]
     orders.map((order:LauchOrder)=>{
-      ordersToBack.push({
-        tableId: order.tableId,
-        status: order.status,
-        productId: order.menuItem.id,
-        totalValue: order.totalValue,
-        personIds:order.personIds
-      })
+      for (let i = 0; i < order.quantity; i++) {
+        ordersToBack.push({
+          tableId: order.tableId,
+          status: order.status,
+          productId: order.menuItem.id,
+          totalValue: order.totalValue / order.quantity,
+          personIds: order.customersList,
+        });
+      }
     })
     try{
       this.loading = true;
@@ -133,5 +125,4 @@ export class OrderComponent implements OnInit{
 
     return formattedDate ? formattedDate : date;
   }
-
 }

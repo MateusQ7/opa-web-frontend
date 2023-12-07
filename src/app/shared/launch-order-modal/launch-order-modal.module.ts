@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { LaunchOrderModalComponent } from './launch-order-modal.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoadingModule } from '../loading/loading.module';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 
 
@@ -17,7 +18,8 @@ import { LoadingModule } from '../loading/loading.module';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    LoadingModule
+    LoadingModule,
+    NgSelectModule
   ]
 })
 export class LaunchOrderModalModule { }

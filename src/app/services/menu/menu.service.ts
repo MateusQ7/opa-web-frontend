@@ -37,7 +37,7 @@ export class MenuService {
     }).pipe(
       tap((dataReceived: any) => {
         this.backendMenuInCache = dataReceived;
-        console.log(this.backendMenuInCache)
+        // console.log(this.backendMenuInCache)
       })
     );
   }

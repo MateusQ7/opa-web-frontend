@@ -3,12 +3,12 @@ import { Customer } from "src/app/services/customer/customer.interface";
 import { Menu } from "src/app/services/menu/menu.interface";
 import { Table } from "src/app/services/table/table.interface";
 
-export interface TableDetailed{
+export interface TableDetailed {
   table:Table;
-  orders:OrderToTableDetailed[]
+  orders:OrderToTableDetailed[];
 }
 
-export interface OrderToTableDetailed{
+export interface OrderToTableDetailed {
   id:number;
   menuItem:Menu;
   customers:Customer[];

@@ -81,6 +81,36 @@
   background-image: none;
 }
 
+.opa-add-button {
+  background: var(--primary-color);
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  color: var(--white);
+  cursor: pointer;
+}
+
+.opa-add-button:hover {
+  color: var(--white);
+  background-color: var(--primary-color-light-darker);
+  border-color: var(--secondary-color-light-darker);
+}
+
+.opa-add-button:active {
+  color: var(--white);
+  background-color: var(--primary-color-light-darker);
+  border-color: var(--secondary-color-light-darker);
+  background-image: none;
+  outline: 0;
+  box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
+}
+
+.opa-add-button i {
+  font-size: 20px;
+}
+
 /* Panels */
 .panel {
   background-color: var(--white);
@@ -215,6 +245,45 @@ label {
   font-family: 'Poppins', sans-serif;
 }
 
+.ng-select.opa-select-2 ::ng-deep .ng-select-container {
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.15);
+  margin-bottom: 15px;
+  height: 39px;
+  line-height: 1.6;
+  font-size: 16px;
+  transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  border: 1px solid var(--gray-light);
+  border-radius: 5px;
+}
+
+.ng-select.opa-select-2 ::ng-deep .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-marked {
+  background-color: var(--primary-color);
+}
+
+.ng-select.opa-select-2 ::ng-deep .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-selected, .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-selected.ng-option-marked {
+  background-color: var(--primary-color-lighter);
+}
+
+::ng-deep .ng-select.ng-select-focused:not(.ng-select-closed) > .ng-select-container {
+  border-color: var(--primary-color);
+  outline: 0;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.15),0 0 8px rgba(149,96,4,.2);
+}
+
+.opa-value-container {
+  background: var(--primary-color);
+  border-radius: 8px;
+  padding: 1px 8px;
+  display: flex;
+  gap: 2px;
+  align-items: center;
+}
+
+.value-close-button {
+  cursor: pointer;
+}
+
+
 /* Tabelas */
 .opa-table {
   display: table;
@@ -278,12 +347,8 @@ label {
 
 .opa-table tbody tr td,
 .opa-table tbody tr th {
-	min-width: 125px;
+	min-width: 40px;
 	word-break: break-word;
-}
-
-.opa-table.opa-table-report td {
-	text-align: right;
 }
 
 .opa-table-striped > tbody > tr:nth-of-type(2n+1) {
@@ -296,4 +361,23 @@ th {
 
 .text-right {
   text-align: right;
+}
+
+/* Badges */
+.opa-badge {
+  --bs-badge-font-size: 14px;
+  --bs-badge-font-weight: 500;
+  --bs-badge-color: var(--white);
+}
+
+.opa-badge.opa-badge-success {
+  background-color: var(--bs-success);
+}
+
+.opa-badge.opa-badge-warning {
+  background-color: var(--warning-dark);
+}
+
+.opa-badge.opa-badge-danger {
+  background-color: var(--danger-dark);
 }

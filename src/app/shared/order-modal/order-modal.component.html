@@ -10,7 +10,7 @@
         Mesa aberta às: <strong>{{ this.tableDetailed.table.openTime }}</strong>
       </div>
       <div class="order-responsible-container">
-        Garçom responsável: <strong>{{ this.tableDetailed.table.waiter }}</strong>
+        Garçom responsável: <strong>{{ this.tableDetailed.table.waiter}}</strong>
         <div class="avatar-container">
           <i class="fa-solid fa-user-tie"></i>
         </div>
@@ -20,7 +20,7 @@
       </div>
     </div>
   </div>
-  <div class="modal-body">
+  <div class="modal-body opa-modal-footer">
     <div class="detailed-table-order-info info-danger mb-2" *ngFor="let order of this.tableDetailed.orders">
       <div class="product-photo">
         <img src="../../../assets/images/default-food-image.jpg" alt="">
@@ -44,6 +44,16 @@
           <span *ngIf="order.status == 3" class="badge opa-badge opa-badge-danger">Cancelado</span>
         </div>
       </div>
+    </div>
+  </div>
+  <div class="modal-footer opa-modal-footer">
+    <div class="table-total-info">
+      <p>Total cobrado: </p>
+      <strong>R$ {{ this.tableTotalBill.toFixed(2).replace('.', ',') }}</strong>
+    </div>
+    <div class="table-total-info">
+      <p>Total de pedidos: </p>
+      <strong>{{ this.tableDetailed.orders.length }}</strong>
     </div>
   </div>
 </ng-template>
