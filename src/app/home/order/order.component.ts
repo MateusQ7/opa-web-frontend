@@ -10,6 +10,9 @@ import { OrderToBackend } from 'src/app/services/order/orderToBackend.interface'
 import { LauchOrder } from 'src/app/shared/launch-order-modal/lauchOrder.interface';
 import { Customer } from 'src/app/services/customer/customer.interface';
 import { DatePipe } from '@angular/common';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgSelectConfig } from '@ng-select/ng-select';
+
 
 @Component({
   selector: 'app-order',
@@ -23,6 +26,32 @@ export class OrderComponent implements OnInit{
 
   loading = false;
 
+  selectedClient!: number;
+
+  clients = [
+    { id: 0, name: 'Fulano' },
+    { id: 1, name: 'Cicrano' },
+    { id: 2, name: 'Beltrano' },
+  ];
+
+  products = [
+    { id: 0, name: 'Catinhas de paranguejo' },
+    { id: 1, name: 'Ovas de milho' },
+    { id: 2, name: 'Salgado do handfull' },
+  ];
+
+  tables = [
+    { id: 0, name: 'Mesa 1' },
+    { id: 1, name: 'Mesa 2' },
+    { id: 2, name: 'Mesa 3' },
+  ];
+
+  orderStatus = [
+    { id: 0, name: 'Em andamento' },
+    { id: 1, name: 'Entregue' },
+    { id: 2, name: 'Cancelado' },
+  ]
+
   tableToOrderModal!:InProgressTables;
 
   inProgressOrderList:Order[]=[]
@@ -31,11 +60,13 @@ export class OrderComponent implements OnInit{
 
   array:any[] =[1]
 
+  private modalService = inject(NgbModal);
+
   constructor(
     public auth:AuthService,
     private orderService:OrderService,
     private tableService:TableService,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
   ){}
 
   async ngOnInit(){
@@ -134,4 +165,17 @@ export class OrderComponent implements OnInit{
     return formattedDate ? formattedDate : date;
   }
 
+  // modalllll
+  launch(content: TemplateRef<any>) {
+    this.modalService.open(content, { size: 'xl' });
+  }
+
+  numberOnly(event: KeyboardEvent): boolean {
+    const key = event.key;
+
+    if (/^\d$/.test(key)) {
+      return true;
+    }
+    return false;
+  }
 }
