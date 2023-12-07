@@ -1,6 +1,6 @@
 import { Customer } from "../customer/customer.interface";
 
-export interface Table{
+export interface Table {
   token:string;
   id:number;
   openTime:string;
@@ -9,7 +9,7 @@ export interface Table{
   waiter:string;
 }
 
-export enum TableStatus{
+export enum TableStatus {
   Fechada = 0,
   Aberta = 1
 }

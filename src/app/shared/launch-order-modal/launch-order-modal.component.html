@@ -96,10 +96,14 @@
       </table>
     </div>
   </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-danger" (click)="this.removeOrderFromTable()">Remover
-      pedidos</button>
-    <button type="button" class="btn btn-secondary" (click)="this.closePopUp()">Fechar</button>
-    <button type="button" class="btn btn-primary" (click)="this.submitForm()">Salvar</button>
+  <div class="modal-footer opa-modal-footer">
+    <div *ngIf="isAnyCheckBoxChecked">
+      <button type="button" class="btn btn-danger" (click)="this.removeOrderFromTable()">Remover
+        pedidos</button>
+    </div>
+    <div class="modal-actions">
+      <button type="button" class="btn btn-secondary" (click)="this.closePopUp()">Fechar</button>
+      <button type="button" class="btn btn-primary" (click)="this.submitForm()">Salvar</button>
+    </div>
   </div>
 </ng-template>

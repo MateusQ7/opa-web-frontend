@@ -5,13 +5,12 @@ import { TableService } from 'src/app/services/table/table.service';
 import { WaiterService } from 'src/app/services/waiter/waiter.service';
 import { MenuService } from 'src/app/services/menu/menu.service';
 import { Menu } from 'src/app/services/menu/menu.interface';
-import { Order } from 'src/app/services/order/order.interface';
 import { Customer } from 'src/app/services/customer/customer.interface';
 import { firstValueFrom } from 'rxjs';
 import { InProgressTables } from 'src/app/home/order/InProgressTables.interface';
-import { OrderToBackend } from 'src/app/services/order/orderToBackend.interface';
 import { LauchOrder } from './lauchOrder.interface';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { OrderComponent } from 'src/app/home/order/order.component';
 
 @Component({
   selector: 'opa-launch-order-modal',
@@ -47,6 +46,8 @@ export class LaunchOrderModalComponent implements OnInit {
 
   allCheckboxChecked:boolean = false;
 
+  isAnyCheckBoxChecked:boolean = false;
+
   orderStatus = [
     { id: 1, name: 'Em andamento' },
     { id: 2, name: 'Entregue' },
@@ -59,7 +60,8 @@ export class LaunchOrderModalComponent implements OnInit {
     private formBuilder:FormBuilder,
     public waiterService:WaiterService,
     public tableService:TableService,
-    public menuService:MenuService
+    public menuService:MenuService,
+    public orderCompoenent:OrderComponent
   ){
 
     this.form = this.formBuilder.group({
@@ -117,32 +119,42 @@ export class LaunchOrderModalComponent implements OnInit {
   }
 
   allChecked() {
-    // console.log(`alow`)
-    if(this.allCheckboxChecked){
-      this.orderList.map((ingredient)=>{
+    if (this.allCheckboxChecked) {
+      this.orderList.map((ingredient) => {
         ingredient.checked = false;
+        this.isAnyCheckBoxChecked = false;
       })
     }
-    else{
-      this.orderList.map((ingredient)=>{
+    else {
+      this.orderList.map((ingredient) => {
         ingredient.checked = true;
+        this.isAnyCheckBoxChecked = true;
       })
     }
+
     this.allCheckboxChecked = !this.allCheckboxChecked
   }
 
   checkOrder(index:number) {
     this.allCheckboxChecked = false;
     this.orderList[index].checked = !this.orderList[index].checked;
-  }
 
-  deleteAll() {
-    this.orderList.length = 0;
-    this.allCheckboxChecked = false;
-  }
+    if (this.orderList[index].checked) {
+      this.isAnyCheckBoxChecked = true;
+    }
+    else {
+      let found = false;
+      this.orderList.map((ingredient) => {
+        if (ingredient.checked) {
+          this.isAnyCheckBoxChecked = true;
+          found = true;
+        }
+      });
 
-  deleteOrder(index:number) {
-    this.orderList.splice(index, 1);
+      if (!found) {
+        this.isAnyCheckBoxChecked = false;
+      }
+    }
   }
 
   addOrder() {
@@ -164,17 +176,22 @@ export class LaunchOrderModalComponent implements OnInit {
         quantity:this.form.value.qt,
         formattedNames:formattedNames,
       }
+
       this.orderList.push(order);
     }
   }
 
   closePopUp() {
     this.close.emit(false);
+    this.modalService.dismissAll()
+    this.orderList = [];
   }
 
-  submitForm() {
+  async submitForm() {
+    console.log(this.orderList);
     this.emitOrders.emit(this.orderList);
-    this.closePopUp();
+    this.modalService.dismissAll();
+    this.orderCompoenent.getData();
   }
 
   updateTable(event:any) {
@@ -230,13 +247,9 @@ export class LaunchOrderModalComponent implements OnInit {
       this.orderList = [];
       return
     };
-    this.orderList.map((orderInTable:LauchOrder) => {
-      if (orderInTable.checked) {
-        this.orderList.splice(this.orderList.indexOf(orderInTable), 1);
-      }
-    })
 
-    console.log(this.orderList)
+    this.orderList = this.orderList.filter(order => order.checked === false);
+    this.isAnyCheckBoxChecked = false;
   }
 
 }

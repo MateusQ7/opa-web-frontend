@@ -10,9 +10,6 @@ import { OrderToBackend } from 'src/app/services/order/orderToBackend.interface'
 import { LauchOrder } from 'src/app/shared/launch-order-modal/lauchOrder.interface';
 import { Customer } from 'src/app/services/customer/customer.interface';
 import { DatePipe } from '@angular/common';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { NgSelectConfig } from '@ng-select/ng-select';
-
 
 @Component({
   selector: 'app-order',
@@ -20,7 +17,7 @@ import { NgSelectConfig } from '@ng-select/ng-select';
   styleUrls: ['./order.component.css']
 })
 export class OrderComponent implements OnInit{
-  launchOrderModal = true;
+  launchOrderModal = false;
 
   orderModal = false;
 
@@ -43,18 +40,20 @@ export class OrderComponent implements OnInit{
     await this.getData();
   }
 
-  async getData(){
+  async getData() {
     this.loading = true;
     try{
       const ordersData = await firstValueFrom(this.orderService.getOrders());
-      this.inProgressOrderList.length=0;
-      this.inProgressTables.length = 0;
+      this.inProgressOrderList = [];
+      this.inProgressTables = [];
+
       ordersData.map((backendOrder: BackendOrder) => {
         let customers:string[] = []
 
         backendOrder.customers.map((customer:Customer)=>{
           customers.push(customer.name);
         });
+
         this.inProgressOrderList.push({
           id:backendOrder.id,
           menuItem:backendOrder.menuItem,
@@ -95,13 +94,16 @@ export class OrderComponent implements OnInit{
     const ordersToBack:OrderToBackend[]=[]
     orders.map((order:LauchOrder)=>{
       let customersToBackend:number[] = []
-      ordersToBack.push({
-        tableId: order.tableId,
-        status: order.status,
-        productId: order.menuItem.id,
-        totalValue: order.totalValue,
-        personIds: order.customersList,
-      })
+
+      for (let i = 0; i < order.quantity; i++) {
+        ordersToBack.push({
+          tableId: order.tableId,
+          status: order.status,
+          productId: order.menuItem.id,
+          totalValue: order.totalValue,
+          personIds: order.customersList,
+        });
+      }
     })
     try{
       this.loading = true;

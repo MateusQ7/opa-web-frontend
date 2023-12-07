@@ -35,6 +35,15 @@
   margin-top: 15px;
 }
 
+.opa-modal-footer {
+  justify-content: normal;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 10px;
+  margin-left: auto;
+}
 
 
 

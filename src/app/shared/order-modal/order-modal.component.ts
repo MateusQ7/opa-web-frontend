@@ -20,7 +20,7 @@ export class OrderModalComponent implements OnInit{
   table!:InProgressTables
 
   @Input()
-  tableDetailed!:TableDetailed
+  tableDetailed!:TableDetailed;
 
   @Output()
   close:EventEmitter<Boolean> = new EventEmitter<Boolean>
