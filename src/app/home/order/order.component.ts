@@ -20,37 +20,11 @@ import { NgSelectConfig } from '@ng-select/ng-select';
   styleUrls: ['./order.component.css']
 })
 export class OrderComponent implements OnInit{
-  launchOrderModal = false;
+  launchOrderModal = true;
 
   orderModal = false;
 
   loading = false;
-
-  selectedClient!: number;
-
-  clients = [
-    { id: 0, name: 'Fulano' },
-    { id: 1, name: 'Cicrano' },
-    { id: 2, name: 'Beltrano' },
-  ];
-
-  products = [
-    { id: 0, name: 'Catinhas de paranguejo' },
-    { id: 1, name: 'Ovas de milho' },
-    { id: 2, name: 'Salgado do handfull' },
-  ];
-
-  tables = [
-    { id: 0, name: 'Mesa 1' },
-    { id: 1, name: 'Mesa 2' },
-    { id: 2, name: 'Mesa 3' },
-  ];
-
-  orderStatus = [
-    { id: 0, name: 'Em andamento' },
-    { id: 1, name: 'Entregue' },
-    { id: 2, name: 'Cancelado' },
-  ]
 
   tableToOrderModal!:InProgressTables;
 
@@ -107,16 +81,6 @@ export class OrderComponent implements OnInit{
       console.log(error);
     }
   }
-  expandOrder(loopCell:HTMLElement,deepInfo:HTMLElement){
-    if(loopCell.style.minHeight === '7vh' || loopCell.style.minHeight === ""){
-      loopCell.style.minHeight = '22vh'
-      deepInfo.style.display = 'flex'
-    }
-    else{
-      loopCell.style.minHeight = '7vh'
-      deepInfo.style.display = 'none'
-    }
-  }
 
   showLaunchOrderModal(){
     this.launchOrderModal = !this.launchOrderModal
@@ -159,14 +123,5 @@ export class OrderComponent implements OnInit{
     const formattedDate = this.datePipe.transform(date, 'HH:mm');
 
     return formattedDate ? formattedDate : date;
-  }
-
-  numberOnly(event: KeyboardEvent): boolean {
-    const key = event.key;
-
-    if (/^\d$/.test(key)) {
-      return true;
-    }
-    return false;
   }
 }

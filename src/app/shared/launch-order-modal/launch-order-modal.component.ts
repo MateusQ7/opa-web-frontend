@@ -45,6 +45,32 @@ export class LaunchOrderModalComponent implements OnInit{
 
   allCheckboxChecked:boolean = false;
 
+  selectedClient!: number;
+
+  clients = [
+    { id: 0, name: 'Fulano' },
+    { id: 1, name: 'Cicrano' },
+    { id: 2, name: 'Beltrano' },
+  ];
+
+  products = [
+    { id: 0, name: 'Catinhas de paranguejo' },
+    { id: 1, name: 'Ovas de milho' },
+    { id: 2, name: 'Salgado do handfull' },
+  ];
+
+  tables = [
+    { id: 0, name: 'Mesa 1' },
+    { id: 1, name: 'Mesa 2' },
+    { id: 2, name: 'Mesa 3' },
+  ];
+
+  orderStatus = [
+    { id: 0, name: 'Em andamento' },
+    { id: 1, name: 'Entregue' },
+    { id: 2, name: 'Cancelado' },
+  ]
+
   private modalService = inject(NgbModal);
 
   constructor(
@@ -53,14 +79,15 @@ export class LaunchOrderModalComponent implements OnInit{
     public tableService:TableService,
     public menuService:MenuService
   ){
+
     this.form = this.formBuilder.group({
-      name:['',
+      productName:['',
         Validators.required
       ],
       table:['',
         Validators.required
       ],
-      customers:[0,
+      customersList:[[],
         Validators.required
       ],
       qt:['',
@@ -76,8 +103,8 @@ export class LaunchOrderModalComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.modalService.open(this.modalContent, { size: 'xl' });
     this.getData()
+    this.modalService.open(this.modalContent, { size: 'xl' });
   }
 
   async getData(){
@@ -186,6 +213,15 @@ export class LaunchOrderModalComponent implements OnInit{
         price:0.00
       }
     }
+  }
+
+  numberOnly(event: KeyboardEvent): boolean {
+    const key = event.key;
+
+    if (/^\d$/.test(key)) {
+      return true;
+    }
+    return false;
   }
 
 }

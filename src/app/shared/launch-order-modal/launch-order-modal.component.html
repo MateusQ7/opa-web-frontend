@@ -6,10 +6,10 @@
     </div>
   </div>
   <div class="modal-body">
-    <form>
+    <form [formGroup]="this.form">
       <div class="opa-input-group">
         <label>Produto</label>
-        <ng-select [items]="products" bindLabel="name" bindValue="id" [clearable]="false"
+        <ng-select formControlName="productName" [items]="this.menu" bindLabel="{{ this.menu.name }}" bindValue="{{this.menu.id}}" [clearable]="false"
           placeholder="-- Selecione o produto --" [clearSearchOnAdd]="true" class="opa-select-2">
         </ng-select>
       </div>
@@ -17,13 +17,13 @@
         <div class="orders-form-container">
           <div class="opa-input-group">
             <label>Mesa</label>
-            <ng-select [items]="tables" bindLabel="name" bindValue="id" [clearable]="false"
+            <ng-select [items]="tables" bindLabel="name" bindValue="id" [clearable]="false" formControlName="table"
               placeholder="-- Selecione a mesa --" [clearSearchOnAdd]="true" class="opa-select-2">
             </ng-select>
           </div>
           <div class="opa-input-group">
             <label>Status do pedido</label>
-            <ng-select [items]="orderStatus" bindLabel="name" bindValue="id" [clearable]="false"
+            <ng-select [items]="orderStatus" bindLabel="name" bindValue="id" [clearable]="false" formControlName="status"
               placeholder="-- Selecione o status --" [clearSearchOnAdd]="true" class="opa-select-2">
             </ng-select>
           </div>
@@ -31,7 +31,7 @@
         <div class="orders-form-container">
           <div class="opa-input-group">
             <label>Clientes</label>
-            <ng-select [items]="clients" bindLabel="name" bindValue="id" placeholder="-- Selecione os clientes --"
+            <ng-select [items]="clients" bindLabel="name" bindValue="id" placeholder="-- Selecione os clientes --" formControlName="customersList"
               [hideSelected]="true" [multiple]="true" [closeOnSelect]="false" [clearSearchOnAdd]="true"
               class="opa-select-2">
               <ng-template ng-label-tmp let-item="item" let-clear="clear">
@@ -44,7 +44,7 @@
           </div>
           <div class="opa-input-group">
             <label>Quantidade</label>
-            <input type="number" (keypress)="numberOnly($event)" min="1" max="9" class="input-item">
+            <input type="number" (keypress)="numberOnly($event)" min="1" max="9" class="input-item" formControlName="qt">
           </div>
         </div>
       </div>
