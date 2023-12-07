@@ -93,14 +93,12 @@ export class OrderComponent implements OnInit{
   async receiveOrdersFromModal(orders:LauchOrder[]){
     const ordersToBack:OrderToBackend[]=[]
     orders.map((order:LauchOrder)=>{
-      let customersToBackend:number[] = []
-
       for (let i = 0; i < order.quantity; i++) {
         ordersToBack.push({
           tableId: order.tableId,
           status: order.status,
           productId: order.menuItem.id,
-          totalValue: order.totalValue,
+          totalValue: order.totalValue / order.quantity,
           personIds: order.customersList,
         });
       }

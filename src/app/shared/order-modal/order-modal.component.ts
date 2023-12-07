@@ -11,7 +11,8 @@ import { DatePipe } from '@angular/common';
   templateUrl: './order-modal.component.html',
   styleUrls: ['./order-modal.component.css']
 })
-export class OrderModalComponent implements OnInit{
+export class OrderModalComponent implements OnInit {
+  tableTotalBill = 0;
 
   @ViewChild('content', { static: true })
   modalContent!: TemplateRef<any>;
@@ -37,24 +38,30 @@ export class OrderModalComponent implements OnInit{
   }
 
   async ngOnInit(): Promise<void> {
-    this.modalService.open(this.modalContent, { size: 'xl' });
+    this.modalService.open(this.modalContent, { size: 'xl', scrollable: true });
     await this.getData();
   }
 
-  async getData(){
+  async getData() {
     this.loading = true;
-    try{
+    try {
       const data = await firstValueFrom(this.tableService.getSingleTable(this.table.id));
       data.table.openTime = this.getDateFormattedTime(data.table.openTime);
-      data.orders.map((order:OrderToTableDetailed)=>{
+      data.orders.map((order:OrderToTableDetailed) => {
         order.orderedTime = this.getDateFormattedTime(order.orderedTime)
         order.deliveredTime = this.getDateFormattedTime(order.deliveredTime)
-      })
+
+        this.tableTotalBill += parseFloat(String(order.menuItem.price));
+      });
+
       this.tableDetailed = data;
       this.loading = false;
-    }catch(error: any){
+    }
+    catch (error: any) {
       console.log(error);
     }
+
+    console.log(this.tableDetailed)
   }
 
   closeModal(){
