@@ -18,7 +18,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   templateUrl: './launch-order-modal.component.html',
   styleUrls: ['./launch-order-modal.component.css']
 })
-export class LaunchOrderModalComponent implements OnInit{
+export class LaunchOrderModalComponent implements OnInit {
 
   @ViewChild('launchOrder', { static: true })
   modalContent!: TemplateRef<any>;
@@ -29,17 +29,19 @@ export class LaunchOrderModalComponent implements OnInit{
   @Output()
   close: EventEmitter<boolean> = new EventEmitter<boolean>
 
+  choosenPersonNames:string[] = [];
+
   loading = false;
 
   menu:Menu[] = []
 
-  tablesAvailables:InProgressTables[]=[]
+  tablesAvailables:InProgressTables[] = []
 
-  orderList:LauchOrder[]=[]
+  orderList:LauchOrder[] = []
 
   selectedTable!:Table;
 
-  selectedCustomers:Customer[]=[];
+  selectedCustomers:Customer[] = [];
 
   form!:FormGroup
 
@@ -67,7 +69,7 @@ export class LaunchOrderModalComponent implements OnInit{
       tableId:['',
         Validators.required
       ],
-      customersList:[[],
+      customersList:['',
         Validators.required
       ],
       qt:['',
@@ -87,7 +89,7 @@ export class LaunchOrderModalComponent implements OnInit{
     this.modalService.open(this.modalContent, { size: 'xl' });
   }
 
-  async getData(){
+  async getData() {
     this.loading = true;
     try{
       const menuData = await firstValueFrom(this.menuService.getMenu());
@@ -114,7 +116,7 @@ export class LaunchOrderModalComponent implements OnInit{
       }
   }
 
-  allChecked(){
+  allChecked() {
     // console.log(`alow`)
     if(this.allCheckboxChecked){
       this.orderList.map((ingredient)=>{
@@ -129,32 +131,38 @@ export class LaunchOrderModalComponent implements OnInit{
     this.allCheckboxChecked = !this.allCheckboxChecked
   }
 
-  checkOrder(index:number){
+  checkOrder(index:number) {
     this.allCheckboxChecked = false;
     this.orderList[index].checked = !this.orderList[index].checked;
   }
 
-  deleteAll(){
+  deleteAll() {
     this.orderList.length = 0;
     this.allCheckboxChecked = false;
   }
 
-  deleteOrder(index:number){
+  deleteOrder(index:number) {
     this.orderList.splice(index, 1);
   }
 
-  submitOrder(){
-    if(this.form.valid){
-      const menuItem = this.findOrderMenu(parseInt(this.form.value.name));
+  addOrder() {
+    if(this.form.valid) {
+      const menuItem = this.findOrderMenu(parseInt(this.form.value.productName));
 
-      const order:LauchOrder ={
+      let formattedNames = 'Não foi encontrado nenhum cliente.'
+      if (this.choosenPersonNames.length != 0) {
+        formattedNames = this.formatNames(this.choosenPersonNames);
+      }
+
+      const order:LauchOrder = {
         checked:false,
         menuItem: menuItem,
         status:this.form.value.status,
         tableId:this.form.value.tableId,
-        customerList: [this.form.value.customerList],
+        customersList: this.form.value.customersList,
         totalValue: (parseInt(this.form.value.qt) * parseInt(String(menuItem.price))),
-        quantity:this.form.value.qt
+        quantity:this.form.value.qt,
+        formattedNames:formattedNames,
       }
       this.orderList.push(order);
     }
@@ -164,7 +172,7 @@ export class LaunchOrderModalComponent implements OnInit{
     this.close.emit(false);
   }
 
-  submitForm(){
+  submitForm() {
     this.emitOrders.emit(this.orderList);
     this.closePopUp();
   }
@@ -175,15 +183,13 @@ export class LaunchOrderModalComponent implements OnInit{
     })
     if(table){
       this.selectedTable = table.table
-      console.log(this.selectedTable);
       this.selectedCustomers = this.selectedTable.customers
-      console.log(this.selectedTable.customers);
     }
   }
 
-  findOrderMenu(id:number):Menu{
+  findOrderMenu(id:number):Menu {
     const menuItem = this.menu.find((e:Menu)=>{
-      return e.id === parseInt(this.form.value.name);
+      return e.id === id;
     })
     if(menuItem){
       return menuItem;
@@ -207,4 +213,15 @@ export class LaunchOrderModalComponent implements OnInit{
     return false;
   }
 
+  addCustomerToOrderTable($event:any) {
+    this.choosenPersonNames.push($event.name);
+  }
+
+  removeCustomerToOrderTable($event:any) {
+    this.choosenPersonNames.splice(this.choosenPersonNames.indexOf($event.name), 1);
+  }
+
+  formatNames(names:string[]) {
+    return names.join(', ');
+  }
 }

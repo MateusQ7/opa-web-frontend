@@ -8,6 +8,7 @@ export interface LauchOrder{
   menuItem: Menu;
   totalValue: number;
   status: OrderStatus;
-  customerList: Customer[];
+  customersList: number[];
   quantity:number;
+  formattedNames?:string;
 }

@@ -36,9 +36,11 @@
         <div class="orders-form-container">
           <div class="opa-input-group">
             <label>Clientes</label>
-            <ng-select [items]="selectedCustomers" bindLabel="name" bindValue="item"
+            <ng-select [items]="selectedCustomers" bindLabel="name" bindValue="id"
               placeholder="-- Selecione os clientes --" formControlName="customersList" [hideSelected]="true"
-              [multiple]="true" [closeOnSelect]="false" [clearSearchOnAdd]="true" class="opa-select-2">
+              [multiple]="true" [closeOnSelect]="false" [clearSearchOnAdd]="true"
+              (add)="addCustomerToOrderTable($event)" (remove)="removeCustomerToOrderTable($event)"
+              class="opa-select-2">
               <ng-template ng-label-tmp let-item="item" let-clear="clear">
                 <div class="opa-value-container">
                   <span class="">{{item.name}}</span>
@@ -55,7 +57,7 @@
         </div>
       </div>
     </form>
-    <div (click)="submitOrder()" class="opa-add-button text-align-center">
+    <div (click)="addOrder()" class="opa-add-button text-align-center">
       <i class="fa-solid fa-square-plus"></i>
     </div>
     <div class="orders-table-container">
@@ -82,11 +84,11 @@
             <td>{{ order.menuItem.name }}</td>
             <td>{{ order.quantity }} x</td>
             <td>{{ order.tableId }}</td>
-            <td>CONSERTAR</td>
-            <td>R$ {{ order.totalValue }}</td>
+            <td>{{ order.formattedNames }}</td>
+            <td>R$ {{ order.totalValue.toFixed(2).replace('.', ',') }}</td>
             <td>
-              <span *ngIf="this.order.status == 1" class="badge opa-badge opa-badge-danger">Em andamento</span>
-              <span *ngIf="this.order.status == 2" class="badge opa-badge opa-badge-danger">Entregue</span>
+              <span *ngIf="this.order.status == 1" class="badge opa-badge opa-badge-warning">Em andamento</span>
+              <span *ngIf="this.order.status == 2" class="badge opa-badge opa-badge-success">Entregue</span>
               <span *ngIf="this.order.status == 3" class="badge opa-badge opa-badge-danger">Cancelado</span>
             </td>
           </tr>

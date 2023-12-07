@@ -95,15 +95,12 @@ export class OrderComponent implements OnInit{
     const ordersToBack:OrderToBackend[]=[]
     orders.map((order:LauchOrder)=>{
       let customersToBackend:number[] = []
-      order.customerList.map((customer:Customer)=>{
-        customersToBackend.push(customer.id);
-      })
       ordersToBack.push({
         tableId: order.tableId,
         status: order.status,
         productId: order.menuItem.id,
         totalValue: order.totalValue,
-        personIds:customersToBackend
+        personIds: order.customersList,
       })
     })
     try{
