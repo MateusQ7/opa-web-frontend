@@ -35,7 +35,23 @@ export class LaunchOrderModalComponent implements OnInit{
 
   tablesAvailables:InProgressTables[]=[]
 
-  orderList:LauchOrder[]=[]
+  orderList:LauchOrder[]=[{
+    checked:false,
+    customerList:[{
+      id:1,
+      name:`carlho pedro caio`
+    }],
+    menuItem:{
+      description:`asd`,
+      id:1,
+      name:`asdssssss`,
+      price:10.11
+    },
+    quantity:2,
+    status:2,
+    tableId:10,
+    totalValue:102
+  }]
 
   selectedTable!:Table;
 
@@ -76,7 +92,7 @@ export class LaunchOrderModalComponent implements OnInit{
       productName:['',
         Validators.required
       ],
-      table:['',
+      tableId:['',
         Validators.required
       ],
       customersList:[[],
@@ -127,6 +143,7 @@ export class LaunchOrderModalComponent implements OnInit{
   }
 
   allChecked(){
+    // console.log(`alow`)
     if(this.allCheckboxChecked){
       this.orderList.map((ingredient)=>{
         ingredient.checked = false;
@@ -162,8 +179,8 @@ export class LaunchOrderModalComponent implements OnInit{
         checked:false,
         menuItem: menuItem,
         status:this.form.value.status,
-        tableId:this.form.value.table,
-        personIds: [this.form.value.customers],
+        tableId:this.form.value.tableId,
+        customerList: [this.form.value.customerList],
         totalValue: (parseInt(this.form.value.qt) * parseInt(String(menuItem.price))),
         quantity:this.form.value.qt
       }

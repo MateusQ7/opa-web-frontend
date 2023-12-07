@@ -1,4 +1,5 @@
 import { OrderStatus } from "src/app/home/order/inProgressOrder.interface";
+import { Customer } from "src/app/services/customer/customer.interface";
 import { Menu } from "src/app/services/menu/menu.interface";
 
 export interface LauchOrder{
@@ -7,6 +8,6 @@ export interface LauchOrder{
   menuItem: Menu;
   totalValue: number;
   status: OrderStatus;
-  personIds: number[];
+  customerList: Customer[];
   quantity:number;
 }

@@ -17,7 +17,7 @@
         <div class="orders-form-container">
           <div class="opa-input-group">
             <label>Mesa</label>
-            <ng-select [items]="tablesAvailables" bindLabel="id" bindValue="id" [clearable]="false" formControlName="table" (change)="updateTable($event)"
+            <ng-select [items]="tablesAvailables" bindLabel="id" bindValue="id" [clearable]="false" formControlName="tableId" (change)="updateTable($event)"
               placeholder="-- Selecione a mesa --" [clearSearchOnAdd]="true" class="opa-select-2">
               <ng-template ng-option-tmp let-item="item">
                 <span class="">Mesa {{item.id}}</span>
@@ -34,7 +34,7 @@
         <div class="orders-form-container">
           <div class="opa-input-group">
             <label>Clientes</label>
-            <ng-select [items]="selectedCustomers" bindLabel="name" bindValue="id" placeholder="-- Selecione os clientes --" formControlName="customersList"
+            <ng-select [items]="selectedCustomers" bindLabel="name" bindValue="item" placeholder="-- Selecione os clientes --" formControlName="customersList"
               [hideSelected]="true" [multiple]="true" [closeOnSelect]="false" [clearSearchOnAdd]="true"
               class="opa-select-2">
               <ng-template ng-label-tmp let-item="item" let-clear="clear">
@@ -59,9 +59,8 @@
       <table class="opa-table-report opa-table opa-table-striped table-hover">
         <thead>
           <tr>
-            <th class="botside-header-checkbox">
-              <!-- <input type="checkbox" class="order-checkbox" [ngModel]="this.allCheckboxChecked" (click)="allChecked()"> -->
-              <input type="checkbox" class="order-checkbox">
+            <th >
+              <input type="checkbox" class="order-checkbox" [(ngModel)]="this.allCheckboxChecked" (click)="allChecked()">
             </th>
             <th scope="col">Pedido</th>
             <th scope="col">Quantidade</th>
@@ -72,45 +71,27 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <tr *ngFor="let order of this.orderList;let i = index">
             <th scope="order-cell-checkbox">
-              <input type="checkbox" class="order-checkbox">
+              <input type="checkbox" class="order-checkbox" [(ngModel)]="this.order.checked">
             </th>
-            <td>Catinha de paranguejo</td>
-            <td>2x</td>
-            <td>31</td>
-            <td>Fulano, Cicrano</td>
-            <td>R$ 100,00</td>
-            <td><span class="badge opa-badge opa-badge-danger">Cancelado</span></td>
-          </tr>
-          <tr>
-            <th scope="order-cell-checkbox">
-              <input type="checkbox" class="order-checkbox">
-            </th>
-            <td>Camarão nacional</td>
-            <td>1x</td>
-            <td>31</td>
-            <td>Fulano</td>
-            <td>R$ 50,00</td>
-            <td><span class="badge opa-badge opa-badge-warning">Em andamento</span></td>
-          </tr>
-          <tr>
-            <th scope="order-cell-checkbox">
-              <input type="checkbox" class="order-checkbox">
-            </th>
-            <td>Filé com fritas</td>
-            <td>1x</td>
-            <td>31</td>
-            <td>Fulano, Cicrano, Beltrano</td>
-            <td>R$ 20,00</td>
-            <td><span class="badge opa-badge opa-badge-success">Entregue</span></td>
+            <td>{{ order.menuItem.name }}</td>
+            <td>{{ order.quantity }} x</td>
+            <td>{{ order.tableId }}</td>
+            <td>CONSERTAR</td>
+            <td>R$ {{ order.totalValue }}</td>
+            <td>
+              <span *ngIf="this.order.status == 1" class="badge opa-badge opa-badge-danger">Em andamento</span>
+              <span *ngIf="this.order.status == 2" class="badge opa-badge opa-badge-danger">Entregue</span>
+              <span *ngIf="this.order.status == 3" class="badge opa-badge opa-badge-danger">Cancelado</span>
+            </td>
           </tr>
         </tbody>
       </table>
     </div>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" (click)="modal.close('Save click')">Fechar</button>
-    <button type="button" class="btn btn-primary" (click)="modal.close('Save click')">Salvar</button>
+    <button type="button" class="btn btn-secondary" (click)="this.closePopUp()">Fechar</button>
+    <button type="button" class="btn btn-primary" (click)="this.submitForm()">Salvar</button>
   </div>
 </ng-template>

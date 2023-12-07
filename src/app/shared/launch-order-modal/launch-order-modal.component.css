@@ -412,7 +412,7 @@
   align-items: center;
 }
 
-.botside-header-checkbox .order-checkbox{
+.order-checkbox{
   appearance: none;
   width: 25px;
   height: 25px;
@@ -421,7 +421,7 @@
   border-radius: 4px;
 }
 
-.botside-header-checkbox .order-checkbox:checked{
+.order-checkbox:checked{
   background-image: url('/assets/images/checkbox-marked.svg');
   background-position: center;
   background-repeat: no-repeat;
