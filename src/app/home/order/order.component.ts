@@ -58,10 +58,6 @@ export class OrderComponent implements OnInit{
 
   inProgressTables:InProgressTables[]=[];
 
-  array:any[] =[1]
-
-  private modalService = inject(NgbModal);
-
   constructor(
     public auth:AuthService,
     private orderService:OrderService,
@@ -163,11 +159,6 @@ export class OrderComponent implements OnInit{
     const formattedDate = this.datePipe.transform(date, 'HH:mm');
 
     return formattedDate ? formattedDate : date;
-  }
-
-  // modalllll
-  launch(content: TemplateRef<any>) {
-    this.modalService.open(content, { size: 'xl' });
   }
 
   numberOnly(event: KeyboardEvent): boolean {

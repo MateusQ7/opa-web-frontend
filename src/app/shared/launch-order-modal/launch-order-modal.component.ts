@@ -1,4 +1,4 @@
-import { Component,Output,EventEmitter, OnInit } from '@angular/core';
+import { Component,Output,EventEmitter, OnInit, inject, ViewChild, TemplateRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Table } from 'src/app/services/table/table.interface';
 import { TableService } from 'src/app/services/table/table.service';
@@ -11,6 +11,7 @@ import { firstValueFrom } from 'rxjs';
 import { InProgressTables } from 'src/app/home/order/InProgressTables.interface';
 import { OrderToBackend } from 'src/app/services/order/orderToBackend.interface';
 import { LauchOrder } from './lauchOrder.interface';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'opa-launch-order-modal',
@@ -18,6 +19,9 @@ import { LauchOrder } from './lauchOrder.interface';
   styleUrls: ['./launch-order-modal.component.css']
 })
 export class LaunchOrderModalComponent implements OnInit{
+
+  @ViewChild('launchOrder', { static: true })
+  modalContent!: TemplateRef<any>;
 
   @Output()
   emitOrders:EventEmitter<LauchOrder[]> = new EventEmitter<LauchOrder[]>
@@ -40,6 +44,8 @@ export class LaunchOrderModalComponent implements OnInit{
   form!:FormGroup
 
   allCheckboxChecked:boolean = false;
+
+  private modalService = inject(NgbModal);
 
   constructor(
     private formBuilder:FormBuilder,
@@ -70,6 +76,7 @@ export class LaunchOrderModalComponent implements OnInit{
   }
 
   ngOnInit(): void {
+    this.modalService.open(this.modalContent, { size: 'xl' });
     this.getData()
   }
 

@@ -1,154 +1,113 @@
-<div class="modal">
-  <div class="loading-modal" *ngIf="this.loading">
-    <opa-loading></opa-loading>
-  </div>
-  <div class="main-container">
-    <div class="main-container-header">
-      <p>Lançar pedidos </p>
+<ng-template #launchOrder>
+  <div class="modal-header opa-modal-header">
+    <div class="opa-modal-header-title">
+      <h4 class="modal-title opa-modal-title" id="modal-basic-title">Lançar pedidos
+      </h4>
     </div>
-    <div class="main-container-content">
-      <form class="topside-container" [formGroup]="this.form">
-        <div class="topside-container-form">
-          <div class="topside-container-left">
-            <div class="order-name">
-              <p>Pedido:</p>
-              <select name="" id="" formControlName="name">
-                <option selected disabled value=""> --Selecione o pedido --</option>
-                <option *ngFor="let item of this.menu" value="{{ item.id }}">
-                  {{ item.name }}
-                </option>
-              </select>
-            </div>
-            <div class="order-table">
-              <p>Mesa:</p>
-              <select name="" id="" (change)="updateTable($event)" formControlName="table">
-                <option selected disabled value=""> --Selecione a mesa --</option>
-                <option *ngFor="let table of this.tablesAvailables" value="{{ table.id }}">
-                  {{ table.id }}
-                </option>
-              </select>
-            </div>
-            <div class="order-clients">
-              <p>Clientes:</p>
-              <select name="" id="" formControlName="customers">
-                <option selected disabled> --Selecione o cliente --</option>
-                <option *ngFor="let customer of this.selectedCustomers" value="{{ customer.id }}">
-                  {{ customer.name }}
-                </option>
-              </select>
-            </div>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="opa-input-group">
+        <label>Produto</label>
+        <ng-select [items]="products" bindLabel="name" bindValue="id" [clearable]="false"
+          placeholder="-- Selecione o produto --" [clearSearchOnAdd]="true" class="opa-select-2">
+        </ng-select>
+      </div>
+      <div class="orders-form">
+        <div class="orders-form-container">
+          <div class="opa-input-group">
+            <label>Mesa</label>
+            <ng-select [items]="tables" bindLabel="name" bindValue="id" [clearable]="false"
+              placeholder="-- Selecione a mesa --" [clearSearchOnAdd]="true" class="opa-select-2">
+            </ng-select>
           </div>
-          <div class="topside-division"></div>
-          <div class="topside-container-right">
-            <div class="order-quantity">
-              <p>Quantidade:</p>
-              <input type="text" formControlName="qt">
-            </div>
-            <!-- <div class="order-responsable-waiter">
-              <p>Garçom responsável: </p>
-              <select name="" id="" formControlName="responsableWaiter">
-                <option selected disabled value="" > --Selecione o garçom --</option>
-                <option *ngFor="let waiter of this.selectedTable.responsableWaiter">
-                  {{ waiter }}
-                </option>
-              </select>
-            </div> -->
-            <div class="order-status">
-              <p>Status do pedido: </p>
-              <select name="" id="" formControlName="status">
-                <option selected disabled value=""> --Selecione o status --</option>
-                <option value="1">Em Andamento</option>
-                <option value="2">Entregue</option>
-                <option value="3">Cancelado</option>
-              </select>
-            </div>
+          <div class="opa-input-group">
+            <label>Status do pedido</label>
+            <ng-select [items]="orderStatus" bindLabel="name" bindValue="id" [clearable]="false"
+              placeholder="-- Selecione o status --" [clearSearchOnAdd]="true" class="opa-select-2">
+            </ng-select>
           </div>
         </div>
-        <div class="topside-container-bottom">
-          <button (click)="submitOrder()">
-            <img src="/assets/images/addbuttonmodal.svg" alt="">
-          </button>
-        </div>
-      </form>
-      <div class="container-division"></div>
-      <div class="botside-container">
-        <div class="botside-content">
-          <div class="botside-header">
-            <div class="botside-header-checkbox">
-              <input type="checkbox" class="order-checkbox" [ngModel]="this.allCheckboxChecked" (click)="allChecked()">
-            </div>
-            <div class="header-order-text">
-              <p>Pedido</p>
-            </div>
-            <div class="header-qt-text">
-              <p>Quantidade</p>
-            </div>
-            <div class="header-table-text">
-              <p>Mesa</p>
-            </div>
-            <div class="header-clients-text">
-              <p>Clientes</p>
-            </div>
-            <div class="header-value-text">
-              <p>Val. Total</p>
-            </div>
-            <div class="header-status">
-              <p>Status</p>
-            </div>
-            <div class="header-trashicon">
-              <button *ngIf="this.allCheckboxChecked" (click)="deleteAll()">
-                <img src="/assets/images/trash-fill.svg" alt="">
-              </button>
-            </div>
+        <div class="orders-form-container">
+          <div class="opa-input-group">
+            <label>Clientes</label>
+            <ng-select [items]="clients" bindLabel="name" bindValue="id" placeholder="-- Selecione os clientes --"
+              [hideSelected]="true" [multiple]="true" [closeOnSelect]="false" [clearSearchOnAdd]="true"
+              class="opa-select-2">
+              <ng-template ng-label-tmp let-item="item" let-clear="clear">
+                <div class="opa-value-container">
+                  <span class="">{{item.name}}</span>
+                  <span class="value-close-button" (click)="clear(item)" aria-hidden="true">x</span>
+                </div>
+              </ng-template>
+            </ng-select>
           </div>
-          <div class="loop-space-orders">
-            <div class="order-cell" *ngFor="let order of orderList;let i=index">
-              <div class="order-cell-checkbox">
-                <input type="checkbox" class="order-checkbox" [ngModel]="order.checked" (click)="checkOrder(i)">
-              </div>
-              <div class="order-cell-order-text">
-                <p>{{ order.menuItem.name }}</p>
-              </div>
-              <div class="order-cell-qt-text">
-                <p>{{ order.quantity }}</p>
-              </div>
-              <div class="order-cell-table-text">
-                <p>{{ order.tableId }}</p>
-              </div>
-              <div class="order-cell-clients-text">
-                <p>{{ order.personIds.length }}</p>
-              </div>
-              <div class="order-cell-value-text">
-                <p>{{ order.totalValue }}</p>
-              </div>
-              <div class="order-cell-status">
-                <p *ngIf="this.order.status == 1" class="status-inprogress">em andamento</p>
-                <p *ngIf="this.order.status == 2" class="status-delivered">entregue</p>
-                <p *ngIf="this.order.status == 3" class="status-canceled">cancelado</p>
-              </div>
-              <div class="order-cell-trashicon">
-                <button *ngIf="order.checked" (click)="deleteOrder(i)">
-                  <img src="/assets/images/trash-fill.svg" alt="">
-                </button>
-              </div>
-            </div>
+          <div class="opa-input-group">
+            <label>Quantidade</label>
+            <input type="number" (keypress)="numberOnly($event)" min="1" max="9" class="input-item">
           </div>
         </div>
       </div>
+    </form>
+    <div (click)="submitOrder()" class="opa-add-button text-align-center">
+      <i class="fa-solid fa-square-plus"></i>
     </div>
-    <div class="main-container-footer">
-      <div class="container-footer-buttons">
-        <div class="container-footer-close-button">
-          <button (click)="closePopUp()">
-            Fechar
-          </button>
-        </div>
-        <div class="container-footer-submit-button">
-          <button (click)="submitForm()">
-            Salvar
-          </button>
-        </div>
-      </div>
+    <div class="orders-table-container">
+      <table class="opa-table-report opa-table opa-table-striped table-hover">
+        <thead>
+          <tr>
+            <th class="botside-header-checkbox">
+              <!-- <input type="checkbox" class="order-checkbox" [ngModel]="this.allCheckboxChecked" (click)="allChecked()"> -->
+              <input type="checkbox" class="order-checkbox">
+            </th>
+            <th scope="col">Pedido</th>
+            <th scope="col">Quantidade</th>
+            <th scope="col">Mesa</th>
+            <th scope="col">Clientes</th>
+            <th scope="col">Valor Total</th>
+            <th scope="col">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="order-cell-checkbox">
+              <input type="checkbox" class="order-checkbox">
+            </th>
+            <td>Catinha de paranguejo</td>
+            <td>2x</td>
+            <td>31</td>
+            <td>Fulano, Cicrano</td>
+            <td>R$ 100,00</td>
+            <td><span class="badge opa-badge opa-badge-danger">Cancelado</span></td>
+          </tr>
+          <tr>
+            <th scope="order-cell-checkbox">
+              <input type="checkbox" class="order-checkbox">
+            </th>
+            <td>Camarão nacional</td>
+            <td>1x</td>
+            <td>31</td>
+            <td>Fulano</td>
+            <td>R$ 50,00</td>
+            <td><span class="badge opa-badge opa-badge-warning">Em andamento</span></td>
+          </tr>
+          <tr>
+            <th scope="order-cell-checkbox">
+              <input type="checkbox" class="order-checkbox">
+            </th>
+            <td>Filé com fritas</td>
+            <td>1x</td>
+            <td>31</td>
+            <td>Fulano, Cicrano, Beltrano</td>
+            <td>R$ 20,00</td>
+            <td><span class="badge opa-badge opa-badge-success">Entregue</span></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
-</div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="modal.close('Save click')">Fechar</button>
+    <button type="button" class="btn btn-primary" (click)="modal.close('Save click')">Salvar</button>
+  </div>
+</ng-template>

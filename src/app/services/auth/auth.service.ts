@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
 
-  userLogged: Boolean = false;
+  userLogged: Boolean = true;
   userToken?: string;
   userData = {
     name: "",
