@@ -271,7 +271,12 @@ export class DashboardComponent {
       this.createTopProducts(data);
 
       this.revenueValue = revenueValue.toFixed(2).replace('.', ',');
-      this.ticketValue = (revenueValue / bills).toFixed(2).replace('.', ',');
+      if (bills != 0) {
+        this.ticketValue = (revenueValue / bills).toFixed(2).replace('.', ',');
+      }
+      else {
+        this.ticketValue = '0,00';
+      }
     } catch(error: any){
       console.log(error);
     }
