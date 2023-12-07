@@ -53,11 +53,7 @@ export class LaunchOrderModalComponent implements OnInit{
     { id: 2, name: 'Beltrano' },
   ];
 
-  products = [
-    { id: 0, name: 'Catinhas de paranguejo' },
-    { id: 1, name: 'Ovas de milho' },
-    { id: 2, name: 'Salgado do handfull' },
-  ];
+  products = [];
 
   tables = [
     { id: 0, name: 'Mesa 1' },
@@ -102,8 +98,8 @@ export class LaunchOrderModalComponent implements OnInit{
     })
   }
 
-  ngOnInit(): void {
-    this.getData()
+  async ngOnInit(): Promise<void> {
+    await this.getData()
     this.modalService.open(this.modalContent, { size: 'xl' });
   }
 

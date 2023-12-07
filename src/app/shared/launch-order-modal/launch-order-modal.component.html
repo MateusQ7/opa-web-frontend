@@ -9,7 +9,7 @@
     <form [formGroup]="this.form">
       <div class="opa-input-group">
         <label>Produto</label>
-        <ng-select formControlName="productName" [items]="this.menu" bindLabel="{{ this.menu.name }}" bindValue="{{this.menu.id}}" [clearable]="false"
+        <ng-select formControlName="productName" [items]="menu" bindLabel="name" bindValue="id" [clearable]="false"
           placeholder="-- Selecione o produto --" [clearSearchOnAdd]="true" class="opa-select-2">
         </ng-select>
       </div>

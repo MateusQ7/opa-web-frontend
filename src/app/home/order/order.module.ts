@@ -22,6 +22,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
     OrderModalModule,
     LaunchOrderModalModule,
     LoadingModule,
+    NgbAccordionModule,
   ],
   providers: [
     DatePipe
