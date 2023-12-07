@@ -55,16 +55,12 @@ export class LaunchOrderModalComponent implements OnInit{
 
   products = [];
 
-  tables = [
-    { id: 0, name: 'Mesa 1' },
-    { id: 1, name: 'Mesa 2' },
-    { id: 2, name: 'Mesa 3' },
-  ];
+  tables = [];
 
   orderStatus = [
-    { id: 0, name: 'Em andamento' },
-    { id: 1, name: 'Entregue' },
-    { id: 2, name: 'Cancelado' },
+    { id: 1, name: 'Em andamento' },
+    { id: 2, name: 'Entregue' },
+    { id: 3, name: 'Cancelado' },
   ]
 
   private modalService = inject(NgbModal);
@@ -108,23 +104,23 @@ export class LaunchOrderModalComponent implements OnInit{
     try{
       const menuData = await firstValueFrom(this.menuService.getMenu());
       menuData.map((menu: Menu) => {
-          this.menu.push({
-            id:menu.id,
-            name:menu.name,
-            description:menu.description,
-            price:menu.price
-          });
-        })
+        this.menu.push({
+          id:menu.id,
+          name:menu.name,
+          description:menu.description,
+          price:menu.price
+        });
+      });
       const menuTable = await firstValueFrom(this.tableService.getInProgressTables());
-        menuTable.map((table:InProgressTables)=>{
-          this.tablesAvailables.push({
-            id:table.id,
-            table:table.table,
-            orders:table.orders,
-            orderQt:table.orderQt
-          })
+      menuTable.map((table:InProgressTables)=>{
+        this.tablesAvailables.push({
+          id:table.id,
+          table:table.table,
+          orders:table.orders,
+          orderQt:table.orderQt
         })
-        this.loading = false;
+      })
+      this.loading = false;
       }catch(error: any){
         console.log(error);
       }
