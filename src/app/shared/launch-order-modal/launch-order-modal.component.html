@@ -79,7 +79,7 @@
         <tbody>
           <tr *ngFor="let order of this.orderList;let i = index">
             <th scope="order-cell-checkbox">
-              <input type="checkbox" class="order-checkbox" [(ngModel)]="this.order.checked">
+              <input type="checkbox" class="order-checkbox" [(ngModel)]="this.order.checked" (click)="checkOrder(i)">
             </th>
             <td>{{ order.menuItem.name }}</td>
             <td>{{ order.quantity }} x</td>
@@ -97,6 +97,8 @@
     </div>
   </div>
   <div class="modal-footer">
+    <button type="button" class="btn btn-danger" (click)="this.removeOrderFromTable()">Remover
+      pedidos</button>
     <button type="button" class="btn btn-secondary" (click)="this.closePopUp()">Fechar</button>
     <button type="button" class="btn btn-primary" (click)="this.submitForm()">Salvar</button>
   </div>

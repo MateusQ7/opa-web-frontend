@@ -224,4 +224,19 @@ export class LaunchOrderModalComponent implements OnInit {
   formatNames(names:string[]) {
     return names.join(', ');
   }
+
+  removeOrderFromTable() {
+    if (this.allCheckboxChecked) {
+      this.orderList = [];
+      return
+    };
+    this.orderList.map((orderInTable:LauchOrder) => {
+      if (orderInTable.checked) {
+        this.orderList.splice(this.orderList.indexOf(orderInTable), 1);
+      }
+    })
+
+    console.log(this.orderList)
+  }
+
 }
