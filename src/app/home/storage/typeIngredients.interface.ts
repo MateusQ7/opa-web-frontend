@@ -10,4 +10,5 @@ export interface IngredientTable {
   amountInStock: number;
   portionSize: number;
   measurementUnit: string;
+  productsCount: number;
 }

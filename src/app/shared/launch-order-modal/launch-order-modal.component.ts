@@ -100,7 +100,8 @@ export class LaunchOrderModalComponent implements OnInit {
           id:menu.id,
           name:menu.name,
           description:menu.description,
-          price:menu.price
+          price:menu.price,
+          items: [],
         });
       });
       const menuTable = await firstValueFrom(this.tableService.getInProgressTables());
@@ -215,7 +216,8 @@ export class LaunchOrderModalComponent implements OnInit {
         id:0,
         name:'Item não encontrado no menu',
         description:'Item não encontrado no menu',
-        price:0.00
+        price:0.00,
+        items: [],
       }
     }
   }
