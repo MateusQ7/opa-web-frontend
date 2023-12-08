@@ -62,6 +62,7 @@ export class StorageComponent implements OnInit {
     try {
       const data = await firstValueFrom(this.storageService.getStorage());
       const ingredientProductsCount = this.getIngredientProductsCount();
+      this.typeIngredients = {};
       data.map((ingredient: StorageDTO) => {
         this.ingredientList.push({
           checked: false,
@@ -116,8 +117,12 @@ export class StorageComponent implements OnInit {
           }
         );
       });
-      this.storageService.submitStorage(ingredientsToBack).subscribe((e:any) => {
-        this.getData();
+      this.storageService.submitStorage(ingredientsToBack).subscribe(async (e:any) => {
+        this.products = await firstValueFrom(this.storageService.getProducts());
+        await this.getData();
+        this.buildProductMaxProductionGraph();
+        this.buildMostUsedIngredientsGraph();
+        this.buildMostTypePerIngredient();
       });
     } catch(error) {
       console.log(error);
@@ -140,6 +145,10 @@ export class StorageComponent implements OnInit {
     this.sortedProductMaxProduction = sorted.slice(0, 3);
     const graphPortedProductMaxProduction = sorted.slice(0, 7);
 
+    const chartExists = Chart.getChart('graph-product-max-production');
+    if(chartExists) {
+      chartExists.destroy();
+    }
     this.productMaxProductionChart = new Chart('graph-product-max-production', {
       type: 'bar',
       data: {
@@ -188,6 +197,10 @@ export class StorageComponent implements OnInit {
 
     this.sortedMostUsedIngredients = ingredients.slice(0, 3);
 
+    const chartExists = Chart.getChart('graph-most-used-ingredients');
+    if(chartExists) {
+      chartExists.destroy();
+    }
     this.mostUsedIngredientsChart = new Chart('graph-most-used-ingredients', {
       type: 'bar',
       data: {
@@ -234,8 +247,12 @@ export class StorageComponent implements OnInit {
     const formattedCountByTypeName:{name: string, count: number}[] = Object.entries(countByTypeName).map(([name, count]) => ({
       name,
       count,
-    })).slice(0, 5);
+    }));
 
+    const chartExists = Chart.getChart('graph-most-type-per-ingredient');
+    if(chartExists) {
+      chartExists.destroy();
+    }
     this.graphMostTypePerIngredientChart = new Chart('graph-most-type-per-ingredient', {
       type: 'doughnut',
       data: {
