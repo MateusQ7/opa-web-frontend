@@ -1,121 +1,104 @@
-<div class="popUp">
-  <div class="container">
-    <div class="container-header">
-      <p>Adicionar Ingredientes</p>
-      <button (click)="closePopUp()">
-        <img src="/assets/images/close-button.svg" alt="">
-      </button>
+
+<ng-template #launchItem>
+  <div class="modal-header opa-modal-header">
+    <div class="opa-modal-header-title">
+      <h4 class="modal-title opa-modal-title" id="modal-basic-title">Adicionar ingredientes no estoque
+      </h4>
     </div>
-    <div class="container-mid-content">
-      <div class="container-left">
-        <form class="container-content-left" [formGroup]="form">
-          <div class="container-content-cell">
-            <p>Insira o nome do ingrediente</p>
-            <input type="text" formControlName="name">
+  </div>
+  <div class="modal-body">
+    <div class="opa-storage-container">
+      <div class="opa-storage-form">
+        <form [formGroup]="this.form" class="opa-storage-form-container">
+          <div class="opa-ingredient-form-description">
+            <div class="opa-input-group">
+              <div class="opa-input-group">
+                <label>Nome do ingrediente</label>
+                <input type="text" class="input-item" formControlName="ingredientName">
+              </div>
+            </div>
+            <div class="opa-input-group">
+              <label>Tipo de ingrediente</label>
+              <ng-select [items]="itemTypes" bindLabel="name" bindValue="name" [clearable]="false"
+                formControlName="itemTypes" placeholder="-- Selecione um tipo --" [clearSearchOnAdd]="true"
+                class="opa-select-2">
+              </ng-select>
+            </div>
+            <div class="opa-input-group">
+              <div class="opa-label-with-input">
+                <input type="checkbox" class="round-checkbox" formControlName="typeToggle" (click)="toggleNewType()">
+                <label>Adicionar novo tipo</label>
+              </div>
+              <input type="text" formControlName="itemType" class="input-item" />
+            </div>
           </div>
-          <div class="container-content-select">
-            <p>Selecione a unidade</p>
-            <select class="select" formControlName="unitSelect">
-              <option selected disabled > --Selecione a unidade --</option>
-              <option value="G">G</option>
-              <option value="kG">kG</option>
-              <option value="mL">mL</option>
-              <option value="L">L</option>
-            </select>
-          </div>
-          <div class="container-content-toggle">
-              <input type="checkbox" class="round-checkbox" formControlName="portionToggle" (click)="togglePortionUnit()">
-              <p>Usar unidade de medida personalizada</p>
-          </div>
-          <div class="container-content-cell">
-            <p>Unidade personalizada</p>
-            <input type="text" formControlName="portionUnit">
-          </div>
-          <div class="container-content-cell">
-            <p>Insira a quantidade</p>
-            <input type="number" formControlName="qt">
-          </div>
-          <div class="container-content-addbutton">
-            <button (click)="submitIngredient()">
-              <img src="/assets/images/addbuttonmodal.svg" alt="">
-            </button>
+          <div class="opa-ingredient-form-units">
+            <div class="opa-input-group">
+              <label>Unidade de medida</label>
+              <ng-select [items]="measurementUnit" bindLabel="name" bindValue="name" [clearable]="false"
+                formControlName="measurementUnit" placeholder="-- Selecione a unidade --" [clearSearchOnAdd]="true"
+                class="opa-select-2">
+              </ng-select>
+            </div>
+            <div class="opa-input-group">
+              <div class="opa-label-with-info">
+                <label>Quantidade da porção</label>
+                <i class="fa-solid fa-circle-question" triggers="click" [autoClose]="'inside'"
+                  ngbTooltip="Valor unitário da porção na unidade de medida escolhida ex: 1 porção = 200G"
+                  tooltipClass="opa-tooltip"></i>
+              </div>
+              <input type="number" (keypress)="numberOnly($event)" min="1" max="99999" class="input-item"
+                formControlName="qtValue">
+            </div>
+            <div class="opa-input-group">
+              <label>Quantidade de porções</label>
+              <input type="number" (keypress)="numberOnly($event)" min="1" max="99999" class="input-item"
+                formControlName="qt">
+            </div>
           </div>
         </form>
       </div>
-      <div class="container-content-division"></div>
-      <div class="container-right">
-        <div class="container-content-right">
-          <div class="container-content-right-header">
-            <div class="header-checkbox">
-              <input type="checkbox" class="ingredient-checkbox" [ngModel]="this.allCheckboxChecked" (click)="allChecked()">
-            </div>
-            <div class="header-ingredient-text">
-              <p>Ingredientes</p>
-            </div>
-            <div class="header-un-text">
-              <p>Un</p>
-            </div>
-            <div class="header-qt-text">
-              <p>Qt</p>
-            </div>
-            <div class="header-trashicon">
-              <button *ngIf="this.allCheckboxChecked" (click)="deleteAll()">
-                <img src="/assets/images/trash-fill.svg" alt="">
-              </button>
-            </div>
-          </div>
-          <div class="container-content-right-loop-space">
-            	<div class="loop-cell" *ngFor="let ingredient of ingredientsToPaginate;let i=index">
-                <div class="loop-cell-checkbox">
-                  <input type="checkbox" class="loop-cell-ingredient-checkbox" [ngModel]="ingredient.checked" (click)="checkIngredient(i)">
-                </div>
-                <div class="loop-cell-ingredient-text">
-                 <p>
-                  {{  ingredient.name }}
-                 </p>
-                </div>
-                <div class="loop-cell-un-text">
-                  <p>
-                    {{  ingredient.un }}
-                  </p>
-                </div>
-                <div class="loop-cell-qt-text">
-                  <p>
-                    {{  ingredient.qt }}
-                  </p>
-                </div>
-                <div class="loop-cell-trashicon">
-                  <button *ngIf="ingredient.checked" (click)="deleteIngredient(i)">
-                    <img src="/assets/images/trash-fill.svg" alt="">
-                  </button>
-                </div>
-              </div>
-          </div>
-          <div class="container-content-right-pagination">
-            <button (click)="goToPreviousPage()">
-              <img src="/assets/images/arrow-left.svg" alt="">
-            </button>
-            <p> {{ this.actualPage }}</p>
-            <button (click)="goToNextPage()">
-              <img src="/assets/images/arrow-right.svg" alt="">
-            </button>
-          </div>
-        </div>
+      <div (click)=" addIngredient()" class="opa-btn opa-btn-primary text-align-center">
+        <i class="fa-solid fa-square-plus"></i>
       </div>
-    </div>
-    <div class="container-footer">
-      <div class="container-footer-buttons">
-        <div class="container-footer-close-button">
-          <button (click)="closePopUp()">
-            Fechar
-          </button>
-        </div>
-        <div class="container-footer-submit-button">
-          <button (click)="submitForm()">
-            Salvar
-          </button>
-        </div>
+      <div class="orders-table-container">
+        <table class="opa-table-report opa-table opa-table-striped table-hover">
+          <thead>
+            <tr>
+              <th>
+                <input type="checkbox" class="order-checkbox">
+              </th>
+              <th scope="col">Ingredientes</th>
+              <th scope="col">Tipo</th>
+              <th scope="col">Un.</th>
+              <th scope="col">Porções</th>
+              <th scope="col">Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of this.ingredientList; let i = index">
+              <th scope="order-cell-checkbox">
+                <input type="checkbox" class="order-checkbox">
+              </th>
+              <td>{{ item.name }}</td>
+              <td>{{ item.typeName }}</td>
+              <td>{{ item.un }}</td>
+              <td>{{ item.qt }}</td>
+              <td>{{ item.portionSum }} {{ item.un }}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
-</div>
+  <div class="modal-footer opa-modal-footer">
+    <div *ngIf="isAnyCheckBoxChecked">
+      <button type="button" class="opa-btn opa-btn-danger" (click)="this.removeOrderFromTable()">Remover
+        Ingredientes</button>
+    </div>
+    <div class="modal-actions">
+      <button type="button" class="opa-btn opa-btn-secondary" (click)="this.closePopUp()">Fechar</button>
+      <button type="button" class="opa-btn opa-btn-primary" (click)="this.submitForm()">Salvar</button>
+    </div>
+  </div>
+</ng-template>

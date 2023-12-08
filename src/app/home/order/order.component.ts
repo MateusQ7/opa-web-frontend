@@ -107,7 +107,8 @@ export class OrderComponent implements OnInit{
       this.loading = true;
       this.orderService.createOrder(ordersToBack).subscribe(
         (e:Order[])=>{
-          this.getData()
+          // AJEITAR ORDERS PEDRO CAIO
+          this.getData();
         }
       );
       this.loading = false;

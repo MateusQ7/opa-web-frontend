@@ -220,12 +220,12 @@
 .table-total-info p {
   font-family: 'Poppins', sans-serif;
   color: var(--gray-darker);
-  font-size: 32px;
+  font-size: 24px;
   margin: 0;
   font-weight: 400;
 }
 
 .table-total-info strong {
   color: var(--primary-color-light-darker);
-  font-size: 32px;
+  font-size: 24px;
 }
