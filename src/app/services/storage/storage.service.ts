@@ -4,7 +4,6 @@ import { HttpClient } from '@angular/common/http';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { StockDto } from '../../home/dtos/Stock.dtos';
 import { Observable } from 'rxjs';
-import { Ingredient } from 'src/app/shared/ingredient-popup/ingredient.interface';
 import { StorageDTO } from './storageDTO.interface';
 import { StorageToBack } from './storageToBack.interface';
 
@@ -29,6 +28,8 @@ export class StorageService {
   };
 
   submitStorage(ingredients:StorageToBack[]){
+    console.log('submitStorage');
+    console.log(ingredients);
     return this.httpClient.post(`${this.configService.apiUrl}/stock`,ingredients,
       {
         headers:{

@@ -1,56 +1,375 @@
 <div class="popUp" *ngIf="this.popUp">
-  <opa-ingredient-popup
-  (close)="this.showPopUp()"
-  (emitIngredient)="this.receiveIngredients($event)"
-  ></opa-ingredient-popup>
+  <opa-ingredient-popup (close)="this.showPopUp()"
+    (emitIngredient)="this.receiveIngredients($event)"></opa-ingredient-popup>
 </div>
-<div class="loading-modal" *ngIf="this.loading">
-  <opa-loading></opa-loading>
-</div>
-<div class="component">
-  <div class="yellow-line">
-    <opa-yline routeNameToBeUsed="Estoque" iconPath="/assets/images/storage.svg"></opa-yline>
-  </div>
-  <div class="storage">
-    <div class="storage-header">
-      <div class="storage-header-content">
-        <button (click)="this.showPopUp()">
-          Cadastrar Ingrediente
-        </button>
-      </div>
-    </div>
-    <div class="box-space">
-      <div class="left-box">
-
-      </div>
-      <div class="right-box">
-        <div class="right-box-header">
-          <p> Produtos </p>
+<div class="container-fluid gx-0">
+  <opa-yline routeNameToBeUsed="Estoque"></opa-yline>
+  <div class="main-content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-6 col-md-3 mb-4">
+          <div class="opa-graph-card">
+            <div>
+              <h3 class="text-center m-0 opa-graph-card-header">
+                <strong>Título do card</strong>
+                <i class="fa-solid fa-circle-question" data-bs-toggle="tooltip" data-bs-placement="top"
+                  data-bs-title="Informação sobre o card"></i>
+              </h3>
+              <p class="opa-graph-card-description">
+                Descrição sobre o card
+              </p>
+            </div>
+            <div class="opa-graph-card-legend">
+              <div>
+                <div class="opa-graph-card-label">
+                  <span class="opa-graph-card-border"></span>
+                  <span class="opa-graph-card-content">
+                    <span>Valor 1</span>
+                    <span>
+                      <strong>70,00</strong>%
+                    </span>
+                  </span>
+                </div>
+                <div class="opa-graph-card-label">
+                  <span class="opa-graph-card-border"></span>
+                  <span class="opa-graph-card-content">
+                    <span>Valor 2</span>
+                    <span><strong>20,00</strong>%</span>
+                  </span>
+                </div>
+                <div class="opa-graph-card-label">
+                  <span class="opa-graph-card-border"></span>
+                  <span class="opa-graph-card-content">
+                    <span>Valor 3</span>
+                    <span><strong>10,00</strong>%</span>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <canvas></canvas>
+          </div>
         </div>
-        <div class="right-box-content">
-          <div class="right-box-loop-space" *ngFor="let ingredient of ingredientList">
-            <div class="right-box-product-image" >
-              <img src="assets/images/ingredients.svg" alt="">
-            </div>
-            <div class="right-box-product-name">
-              <p>
-                {{ ingredient.name }}
+        <div class="col-sm-6 col-md-3 mb-4">
+          <div class="opa-graph-card">
+            <div>
+              <h3 class="text-center m-0 opa-graph-card-header">
+                <strong>Título do card</strong>
+                <i class="fa-solid fa-circle-question" data-bs-toggle="tooltip" data-bs-placement="top"
+                  data-bs-title="Informação sobre o card"></i>
+              </h3>
+              <p class="opa-graph-card-description">
+                Descrição sobre o card
               </p>
             </div>
-            <div class="right-box-product-quantity">
-              <p>
-                {{ ingredient.qt }}
+            <div class="opa-graph-card-legend">
+              <div>
+                <div class="opa-graph-card-label">
+                  <span class="opa-graph-card-border"></span>
+                  <span class="opa-graph-card-content">
+                    <span>Valor 1</span>
+                    <span>
+                      <strong>70,00</strong>%
+                    </span>
+                  </span>
+                </div>
+                <div class="opa-graph-card-label">
+                  <span class="opa-graph-card-border"></span>
+                  <span class="opa-graph-card-content">
+                    <span>Valor 2</span>
+                    <span><strong>20,00</strong>%</span>
+                  </span>
+                </div>
+                <div class="opa-graph-card-label">
+                  <span class="opa-graph-card-border"></span>
+                  <span class="opa-graph-card-content">
+                    <span>Valor 3</span>
+                    <span><strong>10,00</strong>%</span>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <canvas></canvas>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-3 mb-4">
+          <div class="opa-graph-card">
+            <div>
+              <h3 class="text-center m-0 opa-graph-card-header">
+                <strong>Título do card</strong>
+                <i class="fa-solid fa-circle-question" data-bs-toggle="tooltip" data-bs-placement="top"
+                  data-bs-title="Informação sobre o card"></i>
+              </h3>
+              <p class="opa-graph-card-description">
+                Descrição sobre o card
               </p>
             </div>
-            <div class="right-box-product-unit">
-              <p>
-                {{ ingredient.un }}
+            <div class="opa-graph-card-legend">
+              <div>
+                <div class="opa-graph-card-label">
+                  <span class="opa-graph-card-border"></span>
+                  <span class="opa-graph-card-content">
+                    <span>Valor 1</span>
+                    <span>
+                      <strong>70,00</strong>%
+                    </span>
+                  </span>
+                </div>
+                <div class="opa-graph-card-label">
+                  <span class="opa-graph-card-border"></span>
+                  <span class="opa-graph-card-content">
+                    <span>Valor 2</span>
+                    <span><strong>20,00</strong>%</span>
+                  </span>
+                </div>
+                <div class="opa-graph-card-label">
+                  <span class="opa-graph-card-border"></span>
+                  <span class="opa-graph-card-content">
+                    <span>Valor 3</span>
+                    <span><strong>10,00</strong>%</span>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <canvas></canvas>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-3 mb-4">
+          <div class="opa-graph-card">
+            <div>
+              <h3 class="text-center m-0 opa-graph-card-header">
+                <strong>Título do card</strong>
+                <i class="fa-solid fa-circle-question" data-bs-toggle="tooltip" data-bs-placement="top"
+                  data-bs-title="Informação sobre o card"></i>
+              </h3>
+              <p class="opa-graph-card-description">
+                Descrição sobre o card
               </p>
             </div>
+            <div class="opa-graph-card-legend">
+              <div>
+                <div class="opa-graph-card-label">
+                  <span class="opa-graph-card-border"></span>
+                  <span class="opa-graph-card-content">
+                    <span>Valor 1</span>
+                    <span>
+                      <strong>70,00</strong>%
+                    </span>
+                  </span>
+                </div>
+                <div class="opa-graph-card-label">
+                  <span class="opa-graph-card-border"></span>
+                  <span class="opa-graph-card-content">
+                    <span>Valor 2</span>
+                    <span><strong>20,00</strong>%</span>
+                  </span>
+                </div>
+                <div class="opa-graph-card-label">
+                  <span class="opa-graph-card-border"></span>
+                  <span class="opa-graph-card-content">
+                    <span>Valor 3</span>
+                    <span><strong>10,00</strong>%</span>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <canvas></canvas>
           </div>
         </div>
       </div>
-
+    </div>
+    <div class="container-fluid">
+      <div class="opa-storage-list">
+        <div class="opa-storage-list-header mb-0">
+          <p>Controle de ingredientes no estoque</p>
+          <button type="button" class="opa-btn opa-btn-primary" (click)="open(launchItem)">Adicionar item</button>
+        </div>
+        <div class="opa-storage-table">
+          <div class="table-responsive">
+            <table class="opa-table-report opa-table opa-table-striped table-hover">
+              <thead>
+                <tr>
+                  <th>
+                    <input type="checkbox" class="order-checkbox">
+                  </th>
+                  <th scope="col">ID</th>
+                  <th scope="col">Nome</th>
+                  <th scope="col">Quantidade</th>
+                  <th scope="col">Quantos produtos usam</th>
+                  <th scope="col">Quantidade da unidade</th>
+                  <th scope="col">Unidade de medida</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="storage-type">
+                  <td colspan="7">Cereais</td>
+                </tr>
+                <tr>
+                  <th scope="order-cell-checkbox">
+                    <input type="checkbox" class="order-checkbox">
+                  </th>
+                  <td>1</td>
+                  <td>Arroz parbolizado</td>
+                  <td>10</td>
+                  <td>4</td>
+                  <td>200</td>
+                  <td>G</td>
+                </tr>
+                <tr>
+                  <th scope="order-cell-checkbox">
+                    <input type="checkbox" class="order-checkbox">
+                  </th>
+                  <td>1</td>
+                  <td>Arroz parbolizado</td>
+                  <td>10</td>
+                  <td>4</td>
+                  <td>200</td>
+                  <td>G</td>
+                </tr>
+                <tr>
+                  <th scope="order-cell-checkbox">
+                    <input type="checkbox" class="order-checkbox">
+                  </th>
+                  <td>1</td>
+                  <td>Arroz parbolizado</td>
+                  <td>10</td>
+                  <td>4</td>
+                  <td>200</td>
+                  <td>G</td>
+                </tr>
+                <tr class="storage-type">
+                  <td colspan="7">Carnes</td>
+                </tr>
+                <tr>
+                  <th scope="order-cell-checkbox">
+                    <input type="checkbox" class="order-checkbox">
+                  </th>
+                  <td>1</td>
+                  <td>Frango</td>
+                  <td>10</td>
+                  <td>7</td>
+                  <td>1</td>
+                  <td>KG</td>
+                </tr>
+                <tr>
+                  <th scope="order-cell-checkbox">
+                    <input type="checkbox" class="order-checkbox">
+                  </th>
+                  <td>1</td>
+                  <td>Boi</td>
+                  <td>10</td>
+                  <td>7</td>
+                  <td>1</td>
+                  <td>KG</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
+
+<ng-template #launchItem>
+  <div class="modal-header opa-modal-header">
+    <div class="opa-modal-header-title">
+      <h4 class="modal-title opa-modal-title" id="modal-basic-title">Adicionar ingredientes no estoque
+      </h4>
+    </div>
+  </div>
+  <div class="modal-body">
+    <div class="opa-storage-container">
+      <div class="opa-storage-form">
+        <form [formGroup]="this.form" class="opa-storage-form-container">
+          <div class="opa-ingredient-form-description">
+            <div class="opa-input-group">
+              <div class="opa-input-group">
+                <label>Nome do ingrediente</label>
+                <input type="text" class="input-item" formControlName="ingredientName">
+              </div>
+            </div>
+            <div class="opa-input-group">
+              <label>Tipo de ingrediente</label>
+              <ng-select [items]="itemTypes" bindLabel="name" bindValue="name" [clearable]="false"
+                formControlName="itemTypes" placeholder="-- Selecione um tipo --" [clearSearchOnAdd]="true"
+                class="opa-select-2">
+              </ng-select>
+            </div>
+            <div class="opa-input-group">
+              <div class="opa-label-with-input">
+                <input type="checkbox" class="round-checkbox" formControlName="typeToggle" (click)="toggleNewType()">
+                <label>Adicionar novo tipo</label>
+              </div>
+              <input type="text" formControlName="itemType" class="input-item" />
+            </div>
+          </div>
+          <div class="opa-ingredient-form-units">
+            <div class="opa-input-group">
+              <label>Unidade de medida</label>
+              <ng-select [items]="measurementUnit" bindLabel="name" bindValue="name" [clearable]="false"
+                formControlName="measurementUnit" placeholder="-- Selecione a unidade --" [clearSearchOnAdd]="true"
+                class="opa-select-2">
+              </ng-select>
+            </div>
+            <div class="opa-input-group">
+              <div class="opa-label-with-info">
+                <label>Quantidade da porção</label>
+                <i class="fa-solid fa-circle-question" triggers="click" [autoClose]="'inside'"
+                  ngbTooltip="Valor unitário da porção na unidade de medida escolhida ex: 1 porção = 200G"
+                  tooltipClass="opa-tooltip"></i>
+              </div>
+              <input type="number" (keypress)="numberOnly($event)" min="1" max="99999" class="input-item"
+                formControlName="qtValue">
+            </div>
+            <div class="opa-input-group">
+              <label>Quantidade de porções</label>
+              <input type="number" (keypress)="numberOnly($event)" min="1" max="99999" class="input-item"
+                formControlName="qt">
+            </div>
+          </div>
+        </form>
+      </div>
+      <div (click)=" addIngredient()" class="opa-btn opa-btn-primary text-align-center">
+        <i class="fa-solid fa-square-plus"></i>
+      </div>
+      <div class="orders-table-container">
+        <table class="opa-table-report opa-table opa-table-striped table-hover">
+          <thead>
+            <tr>
+              <th>
+                <input type="checkbox" class="order-checkbox">
+              </th>
+              <th scope="col">Ingredientes</th>
+              <th scope="col">Tipo</th>
+              <th scope="col">Un.</th>
+              <th scope="col">Porções</th>
+              <th scope="col">Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of this.ingredientList; let i = index">
+              <th scope="order-cell-checkbox">
+                <input type="checkbox" class="order-checkbox">
+              </th>
+              <td>{{ item.name }}</td>
+              <td>{{ item.typeName }}</td>
+              <td>{{ item.un }}</td>
+              <td>{{ item.qt }}</td>
+              <td>{{ item.portionSum }} {{ item.un }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer opa-modal-footer">
+    <div *ngIf="isAnyCheckBoxChecked">
+      <button type="button" class="opa-btn opa-btn-danger" (click)="this.removeOrderFromTable()">Remover
+        Ingredientes</button>
+    </div>
+    <div class="modal-actions">
+      <button type="button" class="opa-btn opa-btn-secondary" (click)="this.closePopUp()">Fechar</button>
+      <button type="button" class="opa-btn opa-btn-primary" (click)="this.submitForm()">Salvar</button>
+    </div>
+  </div>
+</ng-template>

@@ -4,9 +4,8 @@ import { StorageComponent } from './storage.component';
 import { YellowlineModule } from 'src/app/shared/yellowline/yellowline.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
-import { IngredientPopupModule } from 'src/app/shared/ingredient-popup/ingredient-popup.module';
 import { StorageService } from 'src/app/services/storage/storage.service';
-import { LoadingModule } from 'src/app/shared/loading/loading.module';
+import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -19,11 +18,9 @@ import { LoadingModule } from 'src/app/shared/loading/loading.module';
     CommonModule,
     YellowlineModule,
     ReactiveFormsModule,
-    NgSelectModule,
     FormsModule,
     NgSelectModule,
-    IngredientPopupModule,
-    LoadingModule
+    NgbTooltipModule
   ],
   providers: [StorageService]
 })

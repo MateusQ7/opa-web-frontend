@@ -1,0 +1,115 @@
+<div class="popUp">
+  <div class="container">
+    <div class="container-header">
+      <p>Adicionar Ingredientes</p>
+      <button (click)="closePopUp()">
+        <img src="/assets/images/close-button.svg" alt="">
+      </button>
+    </div>
+    <div class="container-mid-content">
+      <div class="container-left">
+        <form class="container-content-left" [formGroup]="form">
+          <div class="container-content-cell">
+            <p>Nome do ingrediente</p>
+            <input type="text" formControlName="name">
+          </div>
+          <div class="container-content-select">
+            <p>Unidade de medida</p>
+            <select class="select" formControlName="unitSelect">
+              <option selected disabled> --Selecione a unidade --</option>
+              <option value="G">G</option>
+              <option value="kG">kG</option>
+              <option value="mL">mL</option>
+              <option value="L">L</option>
+            </select>
+          </div>
+          <div class="container-content-cell">
+            <p>Quantidade em estoque</p>
+            <input type="number" formControlName="qt">
+          </div>
+          <div class="container-content-addbutton">
+            <button (click)="submitIngredient()">
+              <img src="/assets/images/addbuttonmodal.svg" alt="">
+            </button>
+          </div>
+        </form>
+      </div>
+      <div class="container-content-division"></div>
+      <div class="container-right">
+        <div class="container-content-right">
+          <div class="container-content-right-header">
+            <div class="header-checkbox">
+              <input type="checkbox" class="ingredient-checkbox" [ngModel]="this.allCheckboxChecked"
+                (click)="allChecked()">
+            </div>
+            <div class="header-ingredient-text">
+              <p>Ingredientes</p>
+            </div>
+            <div class="header-un-text">
+              <p>Un</p>
+            </div>
+            <div class="header-qt-text">
+              <p>Qt</p>
+            </div>
+            <div class="header-trashicon">
+              <button *ngIf="this.allCheckboxChecked" (click)="deleteAll()">
+                <img src="/assets/images/trash-fill.svg" alt="">
+              </button>
+            </div>
+          </div>
+          <div class="container-content-right-loop-space">
+            <div class="loop-cell" *ngFor="let ingredient of ingredientsToPaginate;let i=index">
+              <div class="loop-cell-checkbox">
+                <input type="checkbox" class="loop-cell-ingredient-checkbox" [ngModel]="ingredient.checked"
+                  (click)="checkIngredient(i)">
+              </div>
+              <div class="loop-cell-ingredient-text">
+                <p>
+                  {{ ingredient.name }}
+                </p>
+              </div>
+              <div class="loop-cell-un-text">
+                <p>
+                  {{ ingredient.un }}
+                </p>
+              </div>
+              <div class="loop-cell-qt-text">
+                <p>
+                  {{ ingredient.qt }}
+                </p>
+              </div>
+              <div class="loop-cell-trashicon">
+                <button *ngIf="ingredient.checked" (click)="deleteIngredient(i)">
+                  <img src="/assets/images/trash-fill.svg" alt="">
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="container-content-right-pagination">
+            <button (click)="goToPreviousPage()">
+              <img src="/assets/images/arrow-left.svg" alt="">
+            </button>
+            <p> {{ this.actualPage }}</p>
+            <button (click)="goToNextPage()">
+              <img src="/assets/images/arrow-right.svg" alt="">
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container-footer">
+      <div class="container-footer-buttons">
+        <div class="container-footer-close-button">
+          <button (click)="closePopUp()">
+            Fechar
+          </button>
+        </div>
+        <div class="container-footer-submit-button">
+          <button (click)="submitForm()">
+            Salvar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

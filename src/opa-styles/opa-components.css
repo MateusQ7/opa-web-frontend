@@ -1,5 +1,5 @@
 /* Buttons */
-.btn {
+.opa-btn {
 	display: inline-block;
 	margin-bottom: 0;
 	font-weight: normal;
@@ -21,60 +21,60 @@
   font-family: 'Poppins', sans-serif;
 }
 
-.btn:focus {
+.opa-btn:focus {
   outline-offset: -2px;
   text-decoration: none;
 }
 
-.btn:active {
+.opa-btn:active {
   outline: 0;
   box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
 }
 
-.btn-primary {
+.opa-btn-primary {
   color: var(--white);
   background-color: var(--primary-color);
   border-color: var(--secondary-color);
 }
 
-.btn-primary:hover {
+.opa-btn-primary:hover {
   color: var(--white);
   background-color: var(--primary-color-light-darker);
   border-color: var(--secondary-color-light-darker);
 }
 
-.btn-primary:focus {
+.opa-btn-primary:focus {
   color: var(--white);
   background-color: var(--primary-color-light-darker);
   border-color: var(--secondary-color-light-darker);
 }
 
-.btn-primary:active {
+.opa-btn-primary:active {
   color: var(--white);
   background-color: var(--primary-color-light-darker);
   border-color: var(--secondary-color-light-darker);
   background-image: none;
 }
 
-.btn-secondary {
+.opa-btn-secondary {
   color: var(--secondary-color-light-darker);
   background-color: var(--white);
   border-color: var(--secondary-color-light-darker);
 }
 
-.btn-secondary:hover {
+.opa-btn-secondary:hover {
   color: var(--secondary-color-light-darker);
   background-color: var(--gray-medium);
   border-color: var(--secondary-color-light-darker);
 }
 
-.btn-secondary:focus {
+.opa-btn-secondary:focus {
   color: var(--secondary-color-light-darker);
   background-color: var(--gray-medium);
   border-color: var(--secondary-color-light-darker);
 }
 
-.btn-secondary:active {
+.opa-btn-secondary:active {
   color: var(--secondary-color-light-darker);
   background-color: var(--gray-medium);
   border-color: var(--secondary-color-light-darker);
@@ -193,6 +193,10 @@
   margin-bottom: 15px;
 }
 
+.input-item:disabled {
+  background: var(--gray-lighter);
+}
+
 .input-item-medium {
   height: 45px;
 }
@@ -245,7 +249,7 @@ label {
   font-family: 'Poppins', sans-serif;
 }
 
-.ng-select.opa-select-2 ::ng-deep .ng-select-container {
+.ng-select.opa-select-2 .ng-select-container {
   box-shadow: inset 0 1px 1px rgba(0,0,0,.15);
   margin-bottom: 15px;
   height: 39px;
@@ -256,15 +260,15 @@ label {
   border-radius: 5px;
 }
 
-.ng-select.opa-select-2 ::ng-deep .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-marked {
+.ng-select.opa-select-2 .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-marked {
   background-color: var(--primary-color);
 }
 
-.ng-select.opa-select-2 ::ng-deep .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-selected, .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-selected.ng-option-marked {
+.ng-select.opa-select-2 .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-selected, .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-selected.ng-option-marked {
   background-color: var(--primary-color-lighter);
 }
 
-::ng-deep .ng-select.ng-select-focused:not(.ng-select-closed) > .ng-select-container {
+.ng-select.ng-select-focused:not(.ng-select-closed) > .ng-select-container {
   border-color: var(--primary-color);
   outline: 0;
   box-shadow: inset 0 1px 1px rgba(0,0,0,.15),0 0 8px rgba(149,96,4,.2);
@@ -283,6 +287,27 @@ label {
   cursor: pointer;
 }
 
+.opa-label-with-info {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.opa-label-with-info i {
+  color: var(--gray);
+  cursor: pointer;
+  margin: 0 0 5px 0;
+}
+
+.opa-label-with-input {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.opa-label-with-input input {
+  margin: 0 0 5px 0;
+}
 
 /* Tabelas */
 .opa-table {
@@ -380,4 +405,30 @@ th {
 
 .opa-badge.opa-badge-danger {
   background-color: var(--danger-dark);
+}
+
+/* Tooltips */
+.opa-tooltip .tooltip-inner {
+  background: var(--secondary-color);
+  margin-bottom: 5px;
+}
+
+.opa-tooltip .tooltip-arrow {
+  margin-bottom: 5px;
+}
+
+.opa-tooltip.bs-tooltip-end .tooltip-arrow::before {
+  border-right-color: var(--secondary-color);
+}
+
+.opa-tooltip.bs-tooltip-start .tooltip-arrow::before {
+  border-left-color: var(--secondary-color);
+}
+
+.opa-tooltip.bs-tooltip-top .tooltip-arrow::before {
+  border-top-color: var(--secondary-color);
+}
+
+.opa-tooltip.bs-tooltip-bottom .tooltip-arrow::before {
+  border-bottom-color: var(--secondary-color);
 }

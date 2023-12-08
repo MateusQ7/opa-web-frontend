@@ -1,7 +1,10 @@
-export interface Ingredient{
-  checked:boolean;
-  id:number;
-  name:string
-  un:string
-  qt:number
+export interface Ingredient {
+  checked: boolean;
+  id: number;
+  name: string;
+  un: string;
+  qt: number;
+  portionSize: number;
+  portionSum: number;
+  typeName: string;
 }

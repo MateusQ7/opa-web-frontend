@@ -1,0 +1,54 @@
+<div class="popUp" *ngIf="this.popUp">
+  <opa-ingredient-popup (close)="this.showPopUp()"
+    (emitIngredient)="this.receiveIngredients($event)"></opa-ingredient-popup>
+</div>
+<div class="loading-modal" *ngIf="this.loading">
+  <opa-loading></opa-loading>
+</div>
+<div class="component">
+  <div class="yellow-line">
+    <opa-yline routeNameToBeUsed="Estoque" iconPath="/assets/images/storage.svg"></opa-yline>
+  </div>
+  <div class="storage">
+    <div class="storage-header">
+      <div class="storage-header-content">
+        <button (click)="this.showPopUp()">
+          Cadastrar Ingrediente
+        </button>
+      </div>
+    </div>
+    <div class="box-space">
+      <div class="left-box">
+
+      </div>
+      <div class="right-box">
+        <div class="right-box-header">
+          <p> Produtos </p>
+        </div>
+        <div class="right-box-content">
+          <div class="right-box-loop-space" *ngFor="let ingredient of ingredientList">
+            <div class="right-box-product-image">
+              <img src="assets/images/ingredients.svg" alt="">
+            </div>
+            <div class="right-box-product-name">
+              <p>
+                {{ ingredient.name }}
+              </p>
+            </div>
+            <div class="right-box-product-quantity">
+              <p>
+                {{ ingredient.qt }}
+              </p>
+            </div>
+            <div class="right-box-product-unit">
+              <p>
+                {{ ingredient.un }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

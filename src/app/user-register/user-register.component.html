@@ -243,7 +243,7 @@
           </div>
         </div>
         <div class="button-submit">
-          <button type="button" class="btn btn-primary" (click)="submit()" data-bs-toggle="modal"
+          <button type="button" class="opa-btn opa-btn-primary" (click)="submit()" data-bs-toggle="modal"
             data-bs-target="#formModal">Cadastrar</button>
         </div>
         <div class="modal fade" id="formModal" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
@@ -258,10 +258,10 @@
                 {{ modalContent }}
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                <button type="button" class="opa-btn opa-btn-secondary" data-bs-dismiss="modal"
                   (click)="goToLogin()">Close</button>
                 <button *ngIf="okButton != 200" type="button" data-bs-dismiss="modal"
-                  class="btn btn-primary">Entendi!</button>
+                  class="opa-btn opa-btn-primary">Entendi!</button>
               </div>
             </div>
           </div>

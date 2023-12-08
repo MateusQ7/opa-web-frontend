@@ -74,14 +74,17 @@ export class IngredientPopupComponent {
     }
   }
 
-  submitIngredient(){
+  submitIngredient() {
     if(this.form.valid){
-      const ingredientToList:Ingredient={
-        checked:false,
-        id:0,
-        name:this.form.value.name,
-        qt:this.form.value.qt,
-        un:''
+      const ingredientToList:Ingredient = {
+        checked: false,
+        id: 0,
+        name: this.form.value.name,
+        qt: this.form.value.qt,
+        un: '',
+        portionSize: 0,
+        portionSum: 0,
+        typeName: '',
       }
 
       if(this.form.value.portionToggle){
@@ -96,7 +99,7 @@ export class IngredientPopupComponent {
     }
   }
 
-  submitForm(){
+  submitForm() {
     this.emitIngredient.emit(this.ingredientList);
     this.closePopUp();
   }

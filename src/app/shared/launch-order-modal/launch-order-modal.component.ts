@@ -1,4 +1,4 @@
-import { Component,Output,EventEmitter, OnInit, inject, ViewChild, TemplateRef } from '@angular/core';
+import { Component,Output,EventEmitter, OnInit, inject, ViewChild, TemplateRef, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Table } from 'src/app/services/table/table.interface';
 import { TableService } from 'src/app/services/table/table.service';
@@ -15,7 +15,8 @@ import { OrderComponent } from 'src/app/home/order/order.component';
 @Component({
   selector: 'opa-launch-order-modal',
   templateUrl: './launch-order-modal.component.html',
-  styleUrls: ['./launch-order-modal.component.css']
+  styleUrls: ['./launch-order-modal.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class LaunchOrderModalComponent implements OnInit {
 
@@ -62,28 +63,27 @@ export class LaunchOrderModalComponent implements OnInit {
     public tableService:TableService,
     public menuService:MenuService,
     public orderCompoenent:OrderComponent
-  ){
-
+  ) {
     this.form = this.formBuilder.group({
       productName:['',
-        Validators.required
+        Validators.required,
       ],
       tableId:['',
-        Validators.required
+        Validators.required,
       ],
       customersList:['',
-        Validators.required
+        Validators.required,
       ],
       qt:['',
-      [
-        Validators.required,
-        Validators.maxLength(4)
-      ]
+        [
+          Validators.required,
+          Validators.maxLength(4),
+        ],
       ],
       status:['',
-        Validators.required
-      ]
-    })
+        Validators.required,
+      ],
+    });
   }
 
   async ngOnInit(): Promise<void> {
@@ -188,7 +188,6 @@ export class LaunchOrderModalComponent implements OnInit {
   }
 
   async submitForm() {
-    console.log(this.orderList);
     this.emitOrders.emit(this.orderList);
     this.modalService.dismissAll();
     this.orderCompoenent.getData();
