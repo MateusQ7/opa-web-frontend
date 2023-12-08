@@ -1,7 +1,10 @@
-<div class="popUp" *ngIf="this.popUp">
-  <opa-ingredient-popup (close)="this.showPopUp()"
-    (emitIngredient)="this.receiveIngredients($event)"></opa-ingredient-popup>
-</div>
+
+<opa-ingredient-popup
+(close)="this.showModal()"
+*ngIf="this.ingredientModal"
+(emitIngredient)="this.receiveIngredients($event)"
+></opa-ingredient-popup>
+
 <div class="container-fluid gx-0">
   <opa-yline routeNameToBeUsed="Estoque"></opa-yline>
   <div class="main-content">
@@ -181,7 +184,7 @@
       <div class="opa-storage-list">
         <div class="opa-storage-list-header mb-0">
           <p>Controle de ingredientes no estoque</p>
-          <button type="button" class="opa-btn opa-btn-primary" (click)="open(launchItem)">Adicionar item</button>
+          <button type="button" class="opa-btn opa-btn-primary" (click)="this.showModal()">Adicionar item</button>
         </div>
         <div class="opa-storage-table">
           <div class="table-responsive">
@@ -269,107 +272,3 @@
     </div>
   </div>
 </div>
-
-<ng-template #launchItem>
-  <div class="modal-header opa-modal-header">
-    <div class="opa-modal-header-title">
-      <h4 class="modal-title opa-modal-title" id="modal-basic-title">Adicionar ingredientes no estoque
-      </h4>
-    </div>
-  </div>
-  <div class="modal-body">
-    <div class="opa-storage-container">
-      <div class="opa-storage-form">
-        <form [formGroup]="this.form" class="opa-storage-form-container">
-          <div class="opa-ingredient-form-description">
-            <div class="opa-input-group">
-              <div class="opa-input-group">
-                <label>Nome do ingrediente</label>
-                <input type="text" class="input-item" formControlName="ingredientName">
-              </div>
-            </div>
-            <div class="opa-input-group">
-              <label>Tipo de ingrediente</label>
-              <ng-select [items]="itemTypes" bindLabel="name" bindValue="name" [clearable]="false"
-                formControlName="itemTypes" placeholder="-- Selecione um tipo --" [clearSearchOnAdd]="true"
-                class="opa-select-2">
-              </ng-select>
-            </div>
-            <div class="opa-input-group">
-              <div class="opa-label-with-input">
-                <input type="checkbox" class="round-checkbox" formControlName="typeToggle" (click)="toggleNewType()">
-                <label>Adicionar novo tipo</label>
-              </div>
-              <input type="text" formControlName="itemType" class="input-item" />
-            </div>
-          </div>
-          <div class="opa-ingredient-form-units">
-            <div class="opa-input-group">
-              <label>Unidade de medida</label>
-              <ng-select [items]="measurementUnit" bindLabel="name" bindValue="name" [clearable]="false"
-                formControlName="measurementUnit" placeholder="-- Selecione a unidade --" [clearSearchOnAdd]="true"
-                class="opa-select-2">
-              </ng-select>
-            </div>
-            <div class="opa-input-group">
-              <div class="opa-label-with-info">
-                <label>Quantidade da porção</label>
-                <i class="fa-solid fa-circle-question" triggers="click" [autoClose]="'inside'"
-                  ngbTooltip="Valor unitário da porção na unidade de medida escolhida ex: 1 porção = 200G"
-                  tooltipClass="opa-tooltip"></i>
-              </div>
-              <input type="number" (keypress)="numberOnly($event)" min="1" max="99999" class="input-item"
-                formControlName="qtValue">
-            </div>
-            <div class="opa-input-group">
-              <label>Quantidade de porções</label>
-              <input type="number" (keypress)="numberOnly($event)" min="1" max="99999" class="input-item"
-                formControlName="qt">
-            </div>
-          </div>
-        </form>
-      </div>
-      <div (click)=" addIngredient()" class="opa-btn opa-btn-primary text-align-center">
-        <i class="fa-solid fa-square-plus"></i>
-      </div>
-      <div class="orders-table-container">
-        <table class="opa-table-report opa-table opa-table-striped table-hover">
-          <thead>
-            <tr>
-              <th>
-                <input type="checkbox" class="order-checkbox">
-              </th>
-              <th scope="col">Ingredientes</th>
-              <th scope="col">Tipo</th>
-              <th scope="col">Un.</th>
-              <th scope="col">Porções</th>
-              <th scope="col">Total</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let item of this.ingredientList; let i = index">
-              <th scope="order-cell-checkbox">
-                <input type="checkbox" class="order-checkbox">
-              </th>
-              <td>{{ item.name }}</td>
-              <td>{{ item.typeName }}</td>
-              <td>{{ item.un }}</td>
-              <td>{{ item.qt }}</td>
-              <td>{{ item.portionSum }} {{ item.un }}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-  <div class="modal-footer opa-modal-footer">
-    <div *ngIf="isAnyCheckBoxChecked">
-      <button type="button" class="opa-btn opa-btn-danger" (click)="this.removeOrderFromTable()">Remover
-        Ingredientes</button>
-    </div>
-    <div class="modal-actions">
-      <button type="button" class="opa-btn opa-btn-secondary" (click)="this.closePopUp()">Fechar</button>
-      <button type="button" class="opa-btn opa-btn-primary" (click)="this.submitForm()">Salvar</button>
-    </div>
-  </div>
-</ng-template>
