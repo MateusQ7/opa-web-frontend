@@ -1,6 +1,5 @@
 import { Component, EventEmitter, OnInit, Output, TemplateRef, ViewEncapsulation, inject } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { firstValueFrom } from 'rxjs';
 import { StorageService } from 'src/app/services/storage/storage.service';
 import { StorageDTO } from 'src/app/services/storage/storageDTO.interface';
@@ -8,6 +7,7 @@ import { StorageToBack } from 'src/app/services/storage/storageToBack.interface'
 import { Ingredient } from 'src/app/shared/ingredient-popup/ingredient.interface';
 import { TypeIngredients } from './typeIngredients.interface';
 import { Chart } from 'chart.js';
+import { Menu } from 'src/app/services/menu/menu.interface';
 
 @Component({
   selector: 'app-storage',
@@ -31,21 +31,37 @@ export class StorageComponent implements OnInit {
 
   typeIngredients: TypeIngredients = {};
 
+  products:Menu[] = [];
+
   public productMaxProductionChart: any;
 
+  public mostUsedIngredientsChart: any;
+
+  public graphMostTypePerIngredientChart: any;
+
+  public sortedProductMaxProduction: {product: string, maxProduction: number}[] = [];
+
+  public sortedMostUsedIngredients: {name: string, productsCount: number}[] = [];
+
+  public graphMostTypePerIngredient: {name: string, ingredientsCount: number}[] = [];
+
   constructor(
-    private formBuilder:FormBuilder,
-    private storageService:StorageService
+    private storageService: StorageService,
   ) {}
 
   async ngOnInit(): Promise<void> {
+    this.products = await firstValueFrom(this.storageService.getProducts());
     await this.getData();
+    this.buildProductMaxProductionGraph();
+    this.buildMostUsedIngredientsGraph();
+    this.buildMostTypePerIngredient();
   }
 
   async getData() {
     this.loading = true;
     try {
       const data = await firstValueFrom(this.storageService.getStorage());
+      const ingredientProductsCount = this.getIngredientProductsCount();
       data.map((ingredient: StorageDTO) => {
         this.ingredientList.push({
           checked: false,
@@ -65,6 +81,7 @@ export class StorageComponent implements OnInit {
             amountInStock: ingredient.qt,
             portionSize: ingredient.portionSize,
             measurementUnit: ingredient.un,
+            productsCount: ingredientProductsCount[ingredient.id] ?? 0,
           });
         } else {
           this.typeIngredients[ingredient.typeName] = [{
@@ -73,6 +90,7 @@ export class StorageComponent implements OnInit {
             amountInStock: ingredient.qt,
             portionSize: ingredient.portionSize,
             measurementUnit: ingredient.un,
+            productsCount: ingredientProductsCount[ingredient.id] ?? 0,
           }];
         }
       });
@@ -85,7 +103,8 @@ export class StorageComponent implements OnInit {
 
   async receiveIngredients(ingredients:Ingredient[]) {
     try {
-      let ingredientsToBack:StorageToBack[] = [];
+      let ingredientsToBack:StorageToBack[] = []
+      const ingredientProductsCount = this.getIngredientProductsCount();
       ingredients.map((e:Ingredient) => {
         ingredientsToBack.push(
           {
@@ -97,10 +116,8 @@ export class StorageComponent implements OnInit {
           }
         );
       });
-      this.storageService.submitStorage(ingredientsToBack).subscribe(e => {
-        ingredients.map((ingredient:Ingredient) => {
-          this.ingredientList.push(ingredient);
-        });
+      this.storageService.submitStorage(ingredientsToBack).subscribe((e:any) => {
+        this.getData();
       });
     } catch(error) {
       console.log(error);
@@ -112,19 +129,150 @@ export class StorageComponent implements OnInit {
   };
 
   buildProductMaxProductionGraph() {
-    const ingredientAmountInStock = this.ingredientList.map((ingredient:Ingredient) => { ingredient.id; ingredient.qt });
-    console.log(ingredientAmountInStock);
+    const productMaxProduction:{product: string, maxProduction: number}[] = [];
+    this.products.map((product) => productMaxProduction.push({
+      product: product.name,
+      maxProduction: Math.min(...product.items.map((item) => Math.floor(item.stockQuantity / item.portionSize))),
+    }));
 
-    this.productMaxProductionChart = new Chart('graph-target-revenue', {
+    const sorted = productMaxProduction.sort((a, b) => a.maxProduction - b.maxProduction);
+
+    this.sortedProductMaxProduction = sorted.slice(0, 3);
+    const graphPortedProductMaxProduction = sorted.slice(0, 7);
+
+    this.productMaxProductionChart = new Chart('graph-product-max-production', {
       type: 'bar',
       data: {
-        labels: [],
-        datasets: [],
+        labels: graphPortedProductMaxProduction.map(row => row.product),
+        datasets: [
+          {
+            label: 'Produção máxima',
+            data: graphPortedProductMaxProduction.map(row => row.maxProduction),
+            backgroundColor: '#eec222',
+          },
+        ],
       },
       options: {
-
+        responsive: true,
+        plugins: {
+          legend: {
+            display: false,
+          }
+        },
+        scales: {
+          y: {
+            grid: {
+              display: false,
+            }
+          }
+        }
       }
     });
+  }
+
+  buildMostUsedIngredientsGraph() {
+    const ingredientProductsCount = this.getIngredientProductsCount();
+
+    const ingredientNameMap:{[key: number]: string} = {};
+
+    for (const ingredient of this.ingredientList) {
+      ingredientNameMap[ingredient.id] = ingredient.name;
+    }
+
+    const ingredients = [];
+    for (const [ingredientId, productsCount] of Object.entries(ingredientProductsCount)) {
+      ingredients.push({ name: ingredientNameMap[parseInt(ingredientId)], productsCount: productsCount });
+    }
+
+    ingredients.sort((a, b) => b.productsCount - a.productsCount).slice(0, 7);
+
+    this.sortedMostUsedIngredients = ingredients.slice(0, 3);
+
+    this.mostUsedIngredientsChart = new Chart('graph-most-used-ingredients', {
+      type: 'bar',
+      data: {
+        labels: ingredients.map((row) => row.name),
+        datasets: [
+          {
+            label: 'Produtos',
+            data: ingredients.map((row) => row.productsCount),
+            backgroundColor: '#eec222',
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            display: false,
+          }
+        },
+        scales: {
+          y: {
+            grid: {
+              display: false,
+            }
+          }
+        }
+      }
+    });
+  }
+
+  buildMostTypePerIngredient() {
+    const countByTypeName: Record<string, number> = {};
+
+    this.ingredientList.forEach((item) => {
+      const typeName = item.typeName.toLowerCase();
+
+      if (countByTypeName[typeName]) {
+        countByTypeName[typeName]++;
+      } else {
+        countByTypeName[typeName] = 1;
+      }
+    });
+
+    const formattedCountByTypeName:{name: string, count: number}[] = Object.entries(countByTypeName).map(([name, count]) => ({
+      name,
+      count,
+    })).slice(0, 5);
+
+    this.graphMostTypePerIngredientChart = new Chart('graph-most-type-per-ingredient', {
+      type: 'doughnut',
+      data: {
+        labels: formattedCountByTypeName.map((row) => row.name),
+        datasets: [
+          {
+            label: 'Ingredientes',
+            data: formattedCountByTypeName.map((row) => row.count),
+            backgroundColor: ['#f1aeb5', '#9ec5fe', '#fff3cd', '#c3e6cb', '#dfd2f7'],
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        radius: '100%',
+        aspectRatio: 1.6,
+        layout: {
+          padding: 0,
+        }
+      }
+    });
+  }
+
+  getIngredientProductsCount(): {[ingredientId: number]: number} {
+    const ingredientProductsCount:{[ingredientId: number]: number} = {};
+
+    for (const product of this.products) {
+      for (const item of product.items) {
+        if (ingredientProductsCount[item.ingredientId]) {
+          ingredientProductsCount[item.ingredientId] += 1;
+        } else {
+          ingredientProductsCount[item.ingredientId] = 1;
+        }
+      }
+    }
+
+    return ingredientProductsCount;
   }
 
 }

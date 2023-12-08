@@ -6,7 +6,7 @@
   <div class="main-content">
     <div class="container-fluid">
       <div class="row">
-        <div class="col-sm-6 col-md-3 mb-4">
+        <div class="col-sm-12 col-md-4 mb-4">
           <div class="opa-graph-card">
             <div>
               <h3 class="text-center m-0 opa-graph-card-header">
@@ -21,27 +21,13 @@
             </div>
             <div class="opa-graph-card-legend">
               <div>
-                <div class="opa-graph-card-label">
+                <div class="opa-graph-card-label" *ngFor="let product of sortedProductMaxProduction">
                   <span class="opa-graph-card-border"></span>
                   <span class="opa-graph-card-content">
-                    <span>Valor 1</span>
+                    <span>{{ product.product }}</span>
                     <span>
-                      <strong>70,00</strong>%
+                      <strong>{{ product.maxProduction }}</strong>
                     </span>
-                  </span>
-                </div>
-                <div class="opa-graph-card-label">
-                  <span class="opa-graph-card-border"></span>
-                  <span class="opa-graph-card-content">
-                    <span>Valor 2</span>
-                    <span><strong>20,00</strong>%</span>
-                  </span>
-                </div>
-                <div class="opa-graph-card-label">
-                  <span class="opa-graph-card-border"></span>
-                  <span class="opa-graph-card-content">
-                    <span>Valor 3</span>
-                    <span><strong>10,00</strong>%</span>
                   </span>
                 </div>
               </div>
@@ -49,130 +35,52 @@
             <canvas id="graph-product-max-production"></canvas>
           </div>
         </div>
-        <div class="col-sm-6 col-md-3 mb-4">
+        <div class="col-sm-12 col-md-4 mb-4">
           <div class="opa-graph-card">
             <div>
               <h3 class="text-center m-0 opa-graph-card-header">
-                <strong>Título do card</strong>
-                <i class="fa-solid fa-circle-question" data-bs-toggle="tooltip" data-bs-placement="top"
-                  data-bs-title="Informação sobre o card"></i>
+                <strong>Tipos com mais ingredientes</strong>
+                <i class="fa-solid fa-circle-question" triggers="click" [autoClose]="'inside'"
+                  ngbTooltip="Indica quais tipos tem mais ingredientes inseridos." tooltipClass="opa-tooltip"></i>
               </h3>
               <p class="opa-graph-card-description">
-                Descrição sobre o card
+                Quais tipos seu restaurante mais usa para fazer produtos.
               </p>
             </div>
-            <div class="opa-graph-card-legend">
-              <div>
-                <div class="opa-graph-card-label">
-                  <span class="opa-graph-card-border"></span>
-                  <span class="opa-graph-card-content">
-                    <span>Valor 1</span>
-                    <span>
-                      <strong>70,00</strong>%
-                    </span>
-                  </span>
-                </div>
-                <div class="opa-graph-card-label">
-                  <span class="opa-graph-card-border"></span>
-                  <span class="opa-graph-card-content">
-                    <span>Valor 2</span>
-                    <span><strong>20,00</strong>%</span>
-                  </span>
-                </div>
-                <div class="opa-graph-card-label">
-                  <span class="opa-graph-card-border"></span>
-                  <span class="opa-graph-card-content">
-                    <span>Valor 3</span>
-                    <span><strong>10,00</strong>%</span>
-                  </span>
-                </div>
-              </div>
+            <div class="canvas-container">
+              <canvas id="graph-most-type-per-ingredient"></canvas>
             </div>
-            <canvas></canvas>
           </div>
         </div>
-        <div class="col-sm-6 col-md-3 mb-4">
+        <div class="col-sm-12 col-md-4 mb-4">
           <div class="opa-graph-card">
             <div>
               <h3 class="text-center m-0 opa-graph-card-header">
-                <strong>Título do card</strong>
-                <i class="fa-solid fa-circle-question" data-bs-toggle="tooltip" data-bs-placement="top"
-                  data-bs-title="Informação sobre o card"></i>
+                <strong>Ingredientes mais usados</strong>
+                <i class="fa-solid fa-circle-question" triggers="click" [autoClose]="'inside'"
+                  ngbTooltip="Quantidade de produtos que cada ingrediente é usado." tooltipClass="opa-tooltip"></i>
               </h3>
               <p class="opa-graph-card-description">
-                Descrição sobre o card
+                Quais ingredientes são mais necessários manter.
               </p>
             </div>
             <div class="opa-graph-card-legend">
               <div>
-                <div class="opa-graph-card-label">
+                <div class="opa-graph-card-label" *ngFor="let ingredient of sortedMostUsedIngredients">
                   <span class="opa-graph-card-border"></span>
                   <span class="opa-graph-card-content">
-                    <span>Valor 1</span>
+                    <span>{{ ingredient.name }}</span>
                     <span>
-                      <strong>70,00</strong>%
+                      <strong>{{ ingredient.productsCount }}</strong> ({{ ingredient.productsCount / products.length *
+                      100 |
+                      number: '1.1-1'
+                      }}%)
                     </span>
-                  </span>
-                </div>
-                <div class="opa-graph-card-label">
-                  <span class="opa-graph-card-border"></span>
-                  <span class="opa-graph-card-content">
-                    <span>Valor 2</span>
-                    <span><strong>20,00</strong>%</span>
-                  </span>
-                </div>
-                <div class="opa-graph-card-label">
-                  <span class="opa-graph-card-border"></span>
-                  <span class="opa-graph-card-content">
-                    <span>Valor 3</span>
-                    <span><strong>10,00</strong>%</span>
                   </span>
                 </div>
               </div>
             </div>
-            <canvas></canvas>
-          </div>
-        </div>
-        <div class="col-sm-6 col-md-3 mb-4">
-          <div class="opa-graph-card">
-            <div>
-              <h3 class="text-center m-0 opa-graph-card-header">
-                <strong>Título do card</strong>
-                <i class="fa-solid fa-circle-question" data-bs-toggle="tooltip" data-bs-placement="top"
-                  data-bs-title="Informação sobre o card"></i>
-              </h3>
-              <p class="opa-graph-card-description">
-                Descrição sobre o card
-              </p>
-            </div>
-            <div class="opa-graph-card-legend">
-              <div>
-                <div class="opa-graph-card-label">
-                  <span class="opa-graph-card-border"></span>
-                  <span class="opa-graph-card-content">
-                    <span>Valor 1</span>
-                    <span>
-                      <strong>70,00</strong>%
-                    </span>
-                  </span>
-                </div>
-                <div class="opa-graph-card-label">
-                  <span class="opa-graph-card-border"></span>
-                  <span class="opa-graph-card-content">
-                    <span>Valor 2</span>
-                    <span><strong>20,00</strong>%</span>
-                  </span>
-                </div>
-                <div class="opa-graph-card-label">
-                  <span class="opa-graph-card-border"></span>
-                  <span class="opa-graph-card-content">
-                    <span>Valor 3</span>
-                    <span><strong>10,00</strong>%</span>
-                  </span>
-                </div>
-              </div>
-            </div>
-            <canvas></canvas>
+            <canvas id="graph-most-used-ingredients"></canvas>
           </div>
         </div>
       </div>
@@ -211,7 +119,7 @@
                     <td>{{ ingredient.id }}</td>
                     <td>{{ ingredient.name }}</td>
                     <td>{{ ingredient.amountInStock }}</td>
-                    <td> ? </td>
+                    <td>{{ ingredient.productsCount }}</td>
                     <td>{{ ingredient.portionSize }} {{ ingredient.measurementUnit }}</td>
                     <td>{{ ingredient.amountInStock * ingredient.portionSize }} {{ ingredient.measurementUnit }}</td>
                   </tr>
