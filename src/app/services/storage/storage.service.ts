@@ -28,8 +28,6 @@ export class StorageService {
   };
 
   submitStorage(ingredients:StorageToBack[]){
-    console.log('submitStorage');
-    console.log(ingredients);
     return this.httpClient.post(`${this.configService.apiUrl}/stock`,ingredients,
       {
         headers:{

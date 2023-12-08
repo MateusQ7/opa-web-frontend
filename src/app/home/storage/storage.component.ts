@@ -6,6 +6,8 @@ import { StorageService } from 'src/app/services/storage/storage.service';
 import { StorageDTO } from 'src/app/services/storage/storageDTO.interface';
 import { StorageToBack } from 'src/app/services/storage/storageToBack.interface';
 import { Ingredient } from 'src/app/shared/ingredient-popup/ingredient.interface';
+import { TypeIngredients } from './typeIngredients.interface';
+import { Chart } from 'chart.js';
 
 @Component({
   selector: 'app-storage',
@@ -26,6 +28,10 @@ export class StorageComponent implements OnInit {
   typeCheckbox:boolean = false;
 
   ingredientList:Ingredient[] = [];
+
+  typeIngredients: TypeIngredients = {};
+
+  public productMaxProductionChart: any;
 
   constructor(
     private formBuilder:FormBuilder,
@@ -51,6 +57,24 @@ export class StorageComponent implements OnInit {
           portionSum: ingredient.qt * ingredient.portionSize,
           typeName: ingredient.typeName,
         });
+
+        if (this.typeIngredients.hasOwnProperty(ingredient.typeName)) {
+          this.typeIngredients[ingredient.typeName].push({
+            id: ingredient.id,
+            name: ingredient.name,
+            amountInStock: ingredient.qt,
+            portionSize: ingredient.portionSize,
+            measurementUnit: ingredient.un,
+          });
+        } else {
+          this.typeIngredients[ingredient.typeName] = [{
+            id: ingredient.id,
+            name: ingredient.name,
+            amountInStock: ingredient.qt,
+            portionSize: ingredient.portionSize,
+            measurementUnit: ingredient.un,
+          }];
+        }
       });
       this.loading = false;
     }
@@ -65,9 +89,11 @@ export class StorageComponent implements OnInit {
       ingredients.map((e:Ingredient) => {
         ingredientsToBack.push(
           {
-            productDescription:e.name,
-            stockQuantity:e.qt,
-            measurementUnit:e.un
+            productDescription: e.name,
+            stockQuantity: e.qt,
+            measurementUnit: e.un,
+            typeName: e.typeName,
+            portionSize: e.portionSize,
           }
         );
       });
@@ -76,8 +102,7 @@ export class StorageComponent implements OnInit {
           this.ingredientList.push(ingredient);
         });
       });
-    }
-    catch(error) {
+    } catch(error) {
       console.log(error);
     }
   }
@@ -86,6 +111,20 @@ export class StorageComponent implements OnInit {
     this.ingredientModal = !this.ingredientModal
   };
 
+  buildProductMaxProductionGraph() {
+    const ingredientAmountInStock = this.ingredientList.map((ingredient:Ingredient) => { ingredient.id; ingredient.qt });
+    console.log(ingredientAmountInStock);
 
+    this.productMaxProductionChart = new Chart('graph-target-revenue', {
+      type: 'bar',
+      data: {
+        labels: [],
+        datasets: [],
+      },
+      options: {
+
+      }
+    });
+  }
 
 }

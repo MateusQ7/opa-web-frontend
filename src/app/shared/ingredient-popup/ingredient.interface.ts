@@ -8,3 +8,7 @@ export interface Ingredient {
   portionSum: number;
   typeName: string;
 }
+
+export interface ItemType {
+  name: string;
+}

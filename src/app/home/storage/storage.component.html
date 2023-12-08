@@ -1,9 +1,5 @@
-
-<opa-ingredient-popup
-(close)="this.showModal()"
-*ngIf="this.ingredientModal"
-(emitIngredient)="this.receiveIngredients($event)"
-></opa-ingredient-popup>
+<opa-ingredient-popup (close)="this.showModal()" *ngIf="this.ingredientModal"
+  (emitIngredient)="this.receiveIngredients($event)"></opa-ingredient-popup>
 
 <div class="container-fluid gx-0">
   <opa-yline routeNameToBeUsed="Estoque"></opa-yline>
@@ -14,12 +10,13 @@
           <div class="opa-graph-card">
             <div>
               <h3 class="text-center m-0 opa-graph-card-header">
-                <strong>Título do card</strong>
-                <i class="fa-solid fa-circle-question" data-bs-toggle="tooltip" data-bs-placement="top"
-                  data-bs-title="Informação sobre o card"></i>
+                <strong>Produto x Produção máxima</strong>
+                <i class="fa-solid fa-circle-question" triggers="click" [autoClose]="'inside'"
+                  ngbTooltip="Quantidade máxima que pode ser produzida por produto com os ingredientes em estoque."
+                  tooltipClass="opa-tooltip"></i>
               </h3>
               <p class="opa-graph-card-description">
-                Descrição sobre o card
+                Quantos produtos podem ser produzidos com itens em estoque.
               </p>
             </div>
             <div class="opa-graph-card-legend">
@@ -49,7 +46,7 @@
                 </div>
               </div>
             </div>
-            <canvas></canvas>
+            <canvas id="graph-product-max-production"></canvas>
           </div>
         </div>
         <div class="col-sm-6 col-md-3 mb-4">
@@ -196,74 +193,29 @@
                   </th>
                   <th scope="col">ID</th>
                   <th scope="col">Nome</th>
-                  <th scope="col">Quantidade</th>
+                  <th scope="col">Porções no estoque</th>
                   <th scope="col">Quantos produtos usam</th>
-                  <th scope="col">Quantidade da unidade</th>
-                  <th scope="col">Unidade de medida</th>
+                  <th scope="col">Porção</th>
+                  <th scope="col">Total</th>
                 </tr>
               </thead>
               <tbody>
-                <tr class="storage-type">
-                  <td colspan="7">Cereais</td>
-                </tr>
-                <tr>
-                  <th scope="order-cell-checkbox">
-                    <input type="checkbox" class="order-checkbox">
-                  </th>
-                  <td>1</td>
-                  <td>Arroz parbolizado</td>
-                  <td>10</td>
-                  <td>4</td>
-                  <td>200</td>
-                  <td>G</td>
-                </tr>
-                <tr>
-                  <th scope="order-cell-checkbox">
-                    <input type="checkbox" class="order-checkbox">
-                  </th>
-                  <td>1</td>
-                  <td>Arroz parbolizado</td>
-                  <td>10</td>
-                  <td>4</td>
-                  <td>200</td>
-                  <td>G</td>
-                </tr>
-                <tr>
-                  <th scope="order-cell-checkbox">
-                    <input type="checkbox" class="order-checkbox">
-                  </th>
-                  <td>1</td>
-                  <td>Arroz parbolizado</td>
-                  <td>10</td>
-                  <td>4</td>
-                  <td>200</td>
-                  <td>G</td>
-                </tr>
-                <tr class="storage-type">
-                  <td colspan="7">Carnes</td>
-                </tr>
-                <tr>
-                  <th scope="order-cell-checkbox">
-                    <input type="checkbox" class="order-checkbox">
-                  </th>
-                  <td>1</td>
-                  <td>Frango</td>
-                  <td>10</td>
-                  <td>7</td>
-                  <td>1</td>
-                  <td>KG</td>
-                </tr>
-                <tr>
-                  <th scope="order-cell-checkbox">
-                    <input type="checkbox" class="order-checkbox">
-                  </th>
-                  <td>1</td>
-                  <td>Boi</td>
-                  <td>10</td>
-                  <td>7</td>
-                  <td>1</td>
-                  <td>KG</td>
-                </tr>
+                <ng-container *ngFor="let item of typeIngredients | keyvalue">
+                  <tr class="storage-type">
+                    <td colspan="7">{{ item.key }}</td>
+                  </tr>
+                  <tr *ngFor="let ingredient of item.value">
+                    <th scope="order-cell-checkbox">
+                      <input type="checkbox" class="order-checkbox">
+                    </th>
+                    <td>{{ ingredient.id }}</td>
+                    <td>{{ ingredient.name }}</td>
+                    <td>{{ ingredient.amountInStock }}</td>
+                    <td> ? </td>
+                    <td>{{ ingredient.portionSize }} {{ ingredient.measurementUnit }}</td>
+                    <td>{{ ingredient.amountInStock * ingredient.portionSize }} {{ ingredient.measurementUnit }}</td>
+                  </tr>
+                </ng-container>
               </tbody>
             </table>
           </div>

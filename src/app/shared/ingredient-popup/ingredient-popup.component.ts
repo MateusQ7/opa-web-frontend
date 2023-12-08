@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output, inject, ViewChild, TemplateRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { Ingredient } from './ingredient.interface';
+import { Ingredient, ItemType } from './ingredient.interface';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { firstValueFrom } from 'rxjs';
 import { StorageService } from 'src/app/services/storage/storage.service';
@@ -49,7 +49,7 @@ export class IngredientPopupComponent implements OnInit{
       { name: 'L' },
     ];
 
-    itemTypes:object[] = [];
+    itemTypes: ItemType[] = [];
 
   constructor(
     public formBuilder:FormBuilder,
@@ -92,8 +92,9 @@ export class IngredientPopupComponent implements OnInit{
     try {
       const data = await firstValueFrom(this.storageService.getStorage());
       data.map((ingredient: StorageDTO) => {
-
-        this.itemTypes.push({ name: ingredient.typeName });
+        if (!this.itemTypes.some(item => item.name == ingredient.typeName)) {
+          this.itemTypes.push({ name: ingredient.typeName });
+        };
       });
       this.loading = false;
     }
@@ -102,102 +103,11 @@ export class IngredientPopupComponent implements OnInit{
     }
   }
 
-  setPagination(){
-    this.pageMaxQnt = Math.ceil(this.ingredientList.length/this.numberPerPage)
-    const trimStart = (this.actualPage - 1) * this.numberPerPage
-    const trimEnd = trimStart + this.numberPerPage
-    this.ingredientsToPaginate.length = 0;
-    this.ingredientsToPaginate = this.ingredientList.slice(trimStart, trimEnd)
-  }
-
-  togglePortionUnit(){
-    if(!this.form.get('portionUnit')?.disabled){
-      this.form.get('portionUnit')?.disable();
-      this.form.get('portionUnit')?.setValue('');
-      this.form.get('unitSelect')?.enable();
-    }
-    else{
-      this.form.get('portionUnit')?.enable();
-      this.form.get('unitSelect')?.disable();
-    }
-  }
-
-  submitIngredient() {
-    if(this.form.valid){
-      const ingredientToList:Ingredient = {
-        checked: false,
-        id: 0,
-        name: this.form.value.name,
-        qt: this.form.value.qt,
-        un: '',
-        portionSize: 0,
-        portionSum: 0,
-        typeName: '',
-      }
-
-      if(this.form.value.portionToggle){
-        ingredientToList.un = this.form.value.portionUnit
-      }
-      else{
-        ingredientToList.un = this.form.value.unitSelect
-      }
-
-      this.ingredientList.push(ingredientToList);
-      this.setPagination();
-    }
-  }
-
   submitForm() {
     this.emitIngredient.emit(this.ingredientList);
     this.closePopUp();
   }
 
-  goToPreviousPage():void {
-    if (this.actualPage > 1) {
-      this.actualPage--;
-      this.setPagination();
-    }
-  }
-
-  goToNextPage(){
-    if (this.actualPage < this.pageMaxQnt) {
-      this.actualPage++;;
-      this.setPagination();
-    }
-  }
-
-  allChecked(){
-    if(this.allCheckboxChecked){
-      this.ingredientsToPaginate.map((ingredient)=>{
-        ingredient.checked = false;
-      })
-    }
-    else{
-      this.ingredientsToPaginate.map((ingredient)=>{
-        ingredient.checked = true;
-      })
-    }
-    this.allCheckboxChecked = !this.allCheckboxChecked
-
-  }
-
-  checkIngredient(index:number){
-    this.allCheckboxChecked = false;
-    this.ingredientsToPaginate[index].checked = !this.ingredientsToPaginate[index].checked;
-  }
-
-  deleteAll(){
-    this.ingredientsToPaginate.length = 0;
-    this.ingredientList.length = 0;
-    this.allCheckboxChecked = false;
-  }
-
-  deleteIngredient(index:number){
-    this.ingredientsToPaginate.splice(index, 1);
-    const indexOnWholeList = ((this.actualPage - 1)*this.numberPerPage) + index
-    this.ingredientList.splice( indexOnWholeList,1);
-    this.setPagination();
-  }
 
   closePopUp() {
     this.close.emit(false);
