@@ -191,7 +191,6 @@ export class LaunchOrderModalComponent implements OnInit {
   async submitForm() {
     this.emitOrders.emit(this.orderList);
     this.modalService.dismissAll();
-    this.orderCompoenent.getData();
   }
 
   updateTable(event:any) {

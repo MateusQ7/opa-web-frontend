@@ -247,7 +247,7 @@ export class StorageComponent implements OnInit {
     const formattedCountByTypeName:{name: string, count: number}[] = Object.entries(countByTypeName).map(([name, count]) => ({
       name,
       count,
-    }));
+    })).slice(0, 5);
 
     const chartExists = Chart.getChart('graph-most-type-per-ingredient');
     if(chartExists) {

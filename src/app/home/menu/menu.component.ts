@@ -28,9 +28,9 @@ export class MenuComponent implements OnInit{
   }
 
   async getData(){
-    // this.loading = true;
     try{
       const data = await firstValueFrom(this.menuService.getMenu());
+      this.menuList = [];
       data.map((menu: Menu) => {
           this.menuList.push({
             id:menu.id,
@@ -52,6 +52,7 @@ export class MenuComponent implements OnInit{
 
   closeModal() {
     this.showModal = false;
+    this.getData();
   }
 
   public handleShowModal() {

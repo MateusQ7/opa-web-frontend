@@ -152,7 +152,6 @@ export class UserRegisterComponent implements OnInit, PopUp {
   }
 
   async submit() {
-    // if (this.form.valid) {
       const formattedForm: FormattedForm = {
         name: this.form.value.name,
         birthDate: this.form.value.birthDate,

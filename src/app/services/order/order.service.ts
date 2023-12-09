@@ -33,15 +33,6 @@ export class OrderService {
   }
 
   getOrders():Observable<BackendOrder[]>{
-    if(this.backendOrdersInCache.length === 0 ){
-      return this.updateOrdersInCache();
-    }
-    else{
-      return of(this.backendOrdersInCache);
-    }
-  };
-
-  updateOrdersInCache(){
     return this.httpClient.get<BackendOrder[]>(`${this.configService.apiUrl}/order`,{
       headers:{
         authorization:`Bearer ${this.authService.getToken()}`
