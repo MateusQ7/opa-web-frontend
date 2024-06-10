@@ -1,0 +1,142 @@
+<div class="main container-fluid" style="background-image: url('../../assets/images/Opa!-Web.svg')">
+  <form class="form col-md-12" [formGroup]="form" #formDir="ngForm">
+    <div class="register-div">
+      <div class="logo">
+        <p> Opa! </p>
+      </div>
+      <div class="form-content">
+        <div class="panel-container">
+          <div class="panel panel-default">
+            <div class="panel-heading panel-heading-default">
+              Restaurante
+            </div>
+            <div class="panel-body">
+              <div class="col-sm-12">
+                <div class="row">
+                  <div class="capsule">
+                    <div class="label-component">
+                      <label>Nome</label>
+                    </div>
+                    <input type="text" formControlName="name" class="input-item"
+                      placeholder="Insira o nome do restaurante" font-family="Poppins" />
+                  </div>
+                  <div class="capsule">
+                    <div class="label-component">
+                      <label>CNPJ</label>
+                    </div>
+                    <input type="text" formControlName="cnpj" class="input-item"
+                      placeholder="Digite o CNPJ do restaurante" />
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="capsule">
+                      <div clas="label-component">
+                        <label>Segmento</label>
+                      </div>
+                      <select class="input-item" name="gender" id="segment-select" formControlName="segment">
+                        <option value="0" disabled selected>Segmento:</option>
+                        <option value="1">Bar</option>
+                        <option value="2">Doces & Bolos</option>
+                        <option value="3">Comida tradicional</option>
+                        <option value="4">Mamitaria</option>
+                        <option value="5">Padaria</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="capsule">
+                      <div class="label-component">
+                        <label>Telefone</label>
+                      </div>
+                      <input type="tel" formControlName="phoneNumber" class="input-item" placeholder="Insira o telefone"
+                        font-family="Poppins" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel-container">
+          <div class="panel panel-default">
+            <div class="panel-heading panel-heading-default">
+              Endereço
+            </div>
+            <div class="panel-body address-container">
+              <div class="col-sm-6 address-item">
+                <div class="row">
+                  <div class="capsule">
+                    <div class="label-component">
+                      <label>CEP</label>
+                    </div>
+                    <input type="text" [(ngModel)]="cep" (input)="searchForCep()" formControlName="cep"
+                      class="input-item" placeholder="Insira o cep" font-family="Poppins" ngModel required
+                      pattern="[0-9]{5}\-?[0-9]{3}" />
+                  </div>
+                  <div class="capsule">
+                    <div class="label-component">
+                      <label>Bairro</label>
+                    </div>
+                    <input type="text" [(ngModel)]="neighborhood" formControlName="neighborhood"
+                      placeholder="Insira o bairro" font-family="Poppins" [readonly]="form.controls['cep'].valid"
+                      [ngClass]="{'zip-complete': completedZipCode, 'input-item':!completedZipCode}" />
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="capsule">
+                      <div class="label-component">
+                        <label>Estado</label>
+                      </div>
+                      <input type="text" [(ngModel)]="state" formControlName="state" class="input-item"
+                        placeholder="Insira o estado" font-family="Poppins" [readonly]="form.controls['cep'].valid"
+                        [ngClass]="{'zip-complete': completedZipCode, 'input-item':!completedZipCode}" />
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="capsule">
+                      <div class="label-component">
+                        <label>Cidade</label>
+                      </div>
+                      <input type="text" [(ngModel)]="city" formControlName="city" class="input-item"
+                        placeholder="Insira a cidade" font-family="Poppins" [readonly]="form.controls['cep'].valid"
+                        [ngClass]="{'zip-complete': completedZipCode, 'input-item':!completedZipCode}" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6 address-item">
+                <div class="capsule">
+                  <div class="label-component">
+                    <label>Rua</label>
+                  </div>
+                  <input type="text" [(ngModel)]="street" formControlName="street" class="input-item"
+                    placeholder="Insira o sua rua" [readonly]="form.controls['cep'].valid"
+                    [ngClass]="{'zip-complete': completedZipCode, 'input-item':!completedZipCode}" />
+                </div>
+                <div class="capsule">
+                  <div class="label-component">
+                    <label>Número</label>
+                  </div>
+                  <input type="text" formControlName="streetNumber" class="input-item" placeholder="Insira o número" />
+                </div>
+                <div class="capsule">
+                  <div class="label-component">
+                    <label>Complemento</label>
+                  </div>
+                  <input type="text" formControlName="complement" class="input-item" placeholder="Insira o complemento"
+                    font-family="Poppins" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="button-submit">
+          <button type="button" class="opa-btn opa-btn-primary" (click)="submit()"
+            data-bs-target="#formModal">Cadastrar</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

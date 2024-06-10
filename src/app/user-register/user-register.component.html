@@ -144,7 +144,7 @@
         <div class="panel-container">
           <div class="panel panel-default">
             <div class="panel-heading panel-heading-default">
-              Endereço
+              Seu endereço pessoal
             </div>
             <div class="panel-body address-container">
               <div class="col-sm-6 address-item">
@@ -242,29 +242,26 @@
             </div>
           </div>
         </div>
-        <div class="button-submit">
-          <button type="button" class="opa-btn opa-btn-primary" (click)="submit()" data-bs-toggle="modal"
-            data-bs-target="#formModal">Cadastrar</button>
-        </div>
-        <div class="modal fade" id="formModal" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h1 class="modal-title fs-5" id="formModalLabel">{{ modalTitle }}</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-                  (click)="goToLogin()"></button>
-              </div>
-              <div class="modal-body">
-                {{ modalContent }}
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="opa-btn opa-btn-secondary" data-bs-dismiss="modal"
-                  (click)="goToLogin()">Close</button>
-                <button *ngIf="okButton != 200" type="button" data-bs-dismiss="modal"
-                  class="opa-btn opa-btn-primary">Entendi!</button>
+        <div *ngIf="!owner" class="panel panel-default">
+          <div class="panel-heading panel-heading-default">
+            Restaurante
+          </div>
+          <div class="panel-body">
+            <div class="col-sm-12">
+              <div class="capsule">
+                <div class="message-error">
+                  <label>CNPJ</label>
+                </div>
+                <input type="text" formControlName="cnpj" class="input-item"
+                  placeholder="Insira o CNPJ do restaurante que vai trabalhar" font-family="Poppins" required
+                  minlength="2" />
               </div>
             </div>
           </div>
+        </div>
+        <div class="button-submit">
+          <button type="button" class="opa-btn opa-btn-primary" (click)="submit()"
+            data-bs-target="#formModal">Cadastrar</button>
         </div>
       </div>
     </div>

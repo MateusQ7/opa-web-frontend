@@ -1,12 +1,8 @@
-export interface FormattedForm {
+export interface RestaurantForm {
   name:string;
-  gender:number;
-  cpf:string;
+  segment:number;
+  cnpj:string;
   phoneNumber:string;
-  email:string;
-  username:string;
-  password:string;
-  birthDate:string;
   cep:string;
   city:string;
   complement:string;
@@ -14,5 +10,5 @@ export interface FormattedForm {
   state:string;
   street:string;
   streetNumber:string;
-  restaurantCnpj:string|null;
+  ownerId:number;
 }

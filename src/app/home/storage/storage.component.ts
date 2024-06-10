@@ -46,6 +46,7 @@ export class StorageComponent implements OnInit {
     this.loading = true;
     try {
       const data = await firstValueFrom(this.storageService.getStorage());
+      console.log(data);
       data.map((ingredient: StorageDTO) => {
         this.ingredientList.push({
           checked: false,

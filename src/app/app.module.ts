@@ -11,10 +11,14 @@ import { TopbarModule } from './shared/topbar/topbar.module';
 import { HttpClientModule } from '@angular/common/http';
 import { AppInitializationService } from './services/initialization/initialization.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RegisterChooserComponent } from './register-chooser/register-chooser.component';
+import { RestarauntRegisterComponent } from './restaraunt-register/restaraunt-register.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    RegisterChooserComponent,
+    RestarauntRegisterComponent,
   ],
   imports: [
     BrowserModule,
