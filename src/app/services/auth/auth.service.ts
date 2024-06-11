@@ -6,8 +6,7 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class AuthService {
-
-  userLogged: Boolean = true;
+  userLogged: Boolean = false;
   userToken?: string;
   userData = {
     name: "",
@@ -32,11 +31,23 @@ export class AuthService {
     this.userData.name = loggedUserProfile?.name || "Usuário Teste";
     this.userData.role = loggedUserProfile?.role || "Manager";
     this.userData.restaurantName = loggedUserProfile?.restaurantName || "Restaurante Teste";
-    localStorage.setItem("token", token)
+
+    localStorage.setItem("token", token);
+    localStorage.setItem("userName",  this.userData.name);
+    localStorage.setItem("userRole", this.userData.role);
+    localStorage.setItem("userRestaurantName", this.userData.restaurantName);
   }
 
   getToken(): string | null {
     return localStorage.getItem("token")
+  }
+
+  getLoggedUserInfo(): LoggedUserDto {
+    return {
+      name: localStorage.getItem("userName") ?? '',
+      role: localStorage.getItem("userRole") ?? '',
+      restaurantName: localStorage.getItem("userRestaurantName") ?? '',
+    }
   }
 
   loggout():void{

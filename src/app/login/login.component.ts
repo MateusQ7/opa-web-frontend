@@ -6,6 +6,7 @@ import { AuthService } from "../services/auth/auth.service";
 import { firstValueFrom } from 'rxjs';
 import * as bootstrap from 'bootstrap';
 import { LoggedUserDto } from '../services/auth/loggedUserDto.interface';
+import { RestaurantRegisterService } from '../restaraunt-register/restaurant-register.service';
 
 @Component({
   selector: 'app-login',
@@ -23,7 +24,8 @@ export class LoginComponent implements OnInit {
     private formBuilder:FormBuilder,
     private loginService:LoginService,
     private router:Router,
-    private auth:AuthService
+    private auth:AuthService,
+    private restaurantService:RestaurantRegisterService
   ){}
 
   ngOnInit(): void {
@@ -49,10 +51,13 @@ export class LoginComponent implements OnInit {
       try {
         const res = await firstValueFrom(this.loginService.submitForm(this.form.value));
         if (res.data) {
+          const role = res.data.ownerRestaurantId == res.data.restaurantId ? 'CEO' : 'Manager';
+          const restaurantInfo = await firstValueFrom(this.restaurantService.getRestaraunt(res.data.restaurantId))
+
           const loggedUserProfile:LoggedUserDto = {
             name: this.form.value.username,
-            role: 'Manager',
-            restaurantName: 'Restaurante Teste'
+            role: role,
+            restaurantName: restaurantInfo.name
           };
 
           this.auth.logUser(res.data.token, loggedUserProfile);

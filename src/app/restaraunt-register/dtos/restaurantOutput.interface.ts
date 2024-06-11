@@ -1,7 +1,7 @@
 export interface RestaurantOutput {
   status:number,
   message:string,
-  data?: RestaurantOutputData
+  data: RestaurantOutputData
 }
 
 export interface RestaurantOutputData {
