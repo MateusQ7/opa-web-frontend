@@ -1,6 +1,7 @@
 export interface CreateProductDto {
   productName: string;
   productPrice: number;
+  productDescription: string;
   productItems: ProductItemsDto[];
 }
 

@@ -32,8 +32,9 @@ export class OrderService {
     })
   }
 
-  getOrders():Observable<BackendOrder[]>{
-    return this.httpClient.get<BackendOrder[]>(`${this.configService.apiUrl}/order`,{
+  getOrders(restaurantId: number):Observable<BackendOrder[]>{
+    console.log(restaurantId);
+    return this.httpClient.get<BackendOrder[]>(`${this.configService.apiUrl}/order/${restaurantId}`,{
       headers:{
         authorization:`Bearer ${this.authService.getToken()}`
       }

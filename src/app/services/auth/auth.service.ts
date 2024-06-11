@@ -11,7 +11,8 @@ export class AuthService {
   userData = {
     name: "",
     role: ``,
-    restaurantName: 'Restaurante ABC'
+    restaurantName: 'Restaurante ABC',
+    restaurantId: 0,
   }
 
   constructor(
@@ -31,11 +32,13 @@ export class AuthService {
     this.userData.name = loggedUserProfile?.name || "Usuário Teste";
     this.userData.role = loggedUserProfile?.role || "Manager";
     this.userData.restaurantName = loggedUserProfile?.restaurantName || "Restaurante Teste";
+    this.userData.restaurantId = loggedUserProfile?.restaurantId || 0;
 
     localStorage.setItem("token", token);
     localStorage.setItem("userName",  this.userData.name);
     localStorage.setItem("userRole", this.userData.role);
     localStorage.setItem("userRestaurantName", this.userData.restaurantName);
+    localStorage.setItem("userRestaurantId", String(this.userData.restaurantId));
   }
 
   getToken(): string | null {
@@ -47,6 +50,7 @@ export class AuthService {
       name: localStorage.getItem("userName") ?? '',
       role: localStorage.getItem("userRole") ?? '',
       restaurantName: localStorage.getItem("userRestaurantName") ?? '',
+      restaurantId: Number(localStorage.getItem("userRestaurantId")) ?? 0,
     }
   }
 
@@ -56,6 +60,7 @@ export class AuthService {
     this.userData.name = "Unlogged User";
     this.userData.role = "Unlogged Role";
     this.userData.restaurantName = "Unlogged Restaurant";
+    this.userData.restaurantId = 0;
     localStorage.removeItem("token")
     this.router.navigate(["/login"]);
   }

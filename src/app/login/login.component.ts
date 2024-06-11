@@ -57,7 +57,8 @@ export class LoginComponent implements OnInit {
           const loggedUserProfile:LoggedUserDto = {
             name: this.form.value.username,
             role: role,
-            restaurantName: restaurantInfo.name
+            restaurantName: restaurantInfo.name,
+            restaurantId: res.data.restaurantId
           };
 
           this.auth.logUser(res.data.token, loggedUserProfile);

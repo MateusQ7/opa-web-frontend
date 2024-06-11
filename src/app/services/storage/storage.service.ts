@@ -48,7 +48,11 @@ export class StorageService {
   }
 
   searchStockItem(text: string): Observable<StockDto[]> {
-    return this.httpClient.get<StockDto[]>(`${this.configService.apiUrl}/stock?name=${text}`)
+    return this.httpClient.get<StockDto[]>(`${this.configService.apiUrl}/stock?name=${text}`, {
+      headers:{
+        authorization:`Bearer ${this.authService.getToken()}`
+      }
+    })
   }
 
   getToken(): string | null {

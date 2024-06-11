@@ -29,6 +29,8 @@ export class OrderComponent implements OnInit{
 
   inProgressTables:InProgressTables[]=[];
 
+  restaurantId: number = Number(localStorage.getItem('userRestaurantId'));
+
   constructor(
     public auth:AuthService,
     private orderService:OrderService,
@@ -43,12 +45,12 @@ export class OrderComponent implements OnInit{
   async getData() {
     this.loading = true;
     try{
-      const ordersData = await firstValueFrom(this.orderService.getOrders());
-      console.log(ordersData);
+      const ordersData = await firstValueFrom(this.orderService.getOrders(this.restaurantId));
       this.inProgressOrderList = [];
       this.inProgressTables = [];
 
       ordersData.map((backendOrder: BackendOrder) => {
+        console.log(backendOrder);
         let customers:string[] = []
 
         backendOrder.customers.map((customer:Customer)=>{
