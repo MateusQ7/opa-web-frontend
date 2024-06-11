@@ -28,15 +28,16 @@ export class MenuComponent implements OnInit{
   }
 
   async getData(){
-    this.loading = true;
     try{
       const data = await firstValueFrom(this.menuService.getMenu());
+      this.menuList = [];
       data.map((menu: Menu) => {
           this.menuList.push({
             id:menu.id,
             name:menu.name,
             description:menu.description,
-            price:menu.price
+            price:menu.price,
+            items: [],
           });
         })
       this.loading = false;
@@ -51,6 +52,7 @@ export class MenuComponent implements OnInit{
 
   closeModal() {
     this.showModal = false;
+    this.getData();
   }
 
   public handleShowModal() {

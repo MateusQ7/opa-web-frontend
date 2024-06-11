@@ -40,22 +40,20 @@ export class IngredientPopupComponent implements OnInit{
 
   loading = false;
 
-    //modal
-    measurementUnit = [
-      { name: 'un' },
-      { name: 'g' },
-      { name: 'kg' },
-      { name: 'mL' },
-      { name: 'L' },
-    ];
+  measurementUnit = [
+    { name: 'un' },
+    { name: 'g' },
+    { name: 'kg' },
+    { name: 'mL' },
+    { name: 'L' },
+  ];
 
-    itemTypes: ItemType[] = [];
+  itemTypes: ItemType[] = [];
 
   constructor(
     public formBuilder:FormBuilder,
     private storageService:StorageService
   ){
-    // Modallllzim
     this.form = this.formBuilder.group({
       ingredientName: ['',
         Validators.required

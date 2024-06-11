@@ -21,7 +21,7 @@ export class CreateProductModalComponent {
   public stockProducts: any[] = []
   public selectedItems: any[] = []
   public measurementUnits = [
-    'KG', 'UN', 'G'
+    'KG', 'UN', 'G','L','ML'
   ]
 
   public modalForm!: FormGroup;
@@ -37,6 +37,9 @@ export class CreateProductModalComponent {
   ngOnInit(): void {
     this.modalForm = this.formBuilder.group({
       productName:['',
+        Validators.required
+      ],
+      type:['',
         Validators.required
       ],
       productPrice:[0,
@@ -109,6 +112,7 @@ export class CreateProductModalComponent {
       productName: this.modalForm.get("productName")?.value,
       productPrice: this.modalForm.get("productPrice")?.value,
       productItems: this.stockProductsForm.getRawValue(),
+      type:this.modalForm.get("type")?.value
     } as CreateProductDto
 
     this.productService.createProduct([product]).subscribe(value => {

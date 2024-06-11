@@ -198,6 +198,9 @@ export class UserRegisterComponent implements OnInit, PopUp {
         this.route.queryParams.subscribe(params => {
           if (params['owner'] == 'true') {
             if (res.data) {
+              this.modalTitle = 'Sucesso';
+              this.modalContent = 'Usuário cadastrado com sucesso, feche essa mensagem para ser redirecionado para o login.';
+              this.okButton = 200;
               const queryParams = { userId: res.data.id };
               this.router.navigate(['/restaurant-register'], { queryParams: queryParams });
             }

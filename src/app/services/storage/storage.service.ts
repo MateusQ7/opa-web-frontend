@@ -6,6 +6,7 @@ import { StockDto } from '../../home/dtos/Stock.dtos';
 import { Observable } from 'rxjs';
 import { StorageDTO } from './storageDTO.interface';
 import { StorageToBack } from './storageToBack.interface';
+import { Menu } from '../menu/menu.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +21,15 @@ export class StorageService {
 
   getStorage():Observable<StorageDTO[]>{
     return this.httpClient.get<StorageDTO[]>(`${this.configService.apiUrl}/stock`,
+    {
+      headers:{
+        authorization:`Bearer ${this.authService.getToken()}`
+      }
+    })
+  };
+
+  getProducts():Observable<Menu[]>{
+    return this.httpClient.get<Menu[]>(`${this.configService.apiUrl}/product`,
     {
       headers:{
         authorization:`Bearer ${this.authService.getToken()}`

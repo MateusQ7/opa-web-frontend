@@ -6,12 +6,17 @@
     <div class="form-input-cells">
       <p>Nome do Produto</p>
       <input formControlName="productName" type="string" class="box-info" placeholder="Insira o nome"
-      font-family="Poppins">
+        font-family="Poppins">
+    </div>
+    <div class="form-input-cells">
+      <p>Tipo do produto</p>
+      <input formControlName="type" type="string" class="box-info" placeholder="Insira o tipo"
+        font-family="Poppins">
     </div>
     <div class="form-input-cells">
       <p>Valor do Produto</p>
       <input formControlName="productPrice" type="number" class="box-info" placeholder="Insira o preço"
-      font-family="Poppins">
+        font-family="Poppins">
     </div>
     <div class="product-list">
       <div class="product-list-header">
@@ -19,7 +24,7 @@
         <select (change)="addProduct($event)">
           <option *ngFor="let product of stockProducts" [value]="stringify(product)">
             {{ product.name }}
-            </option>
+          </option>
         </select>
       </div>
       <table class="selected-products-table">
@@ -41,7 +46,7 @@
                 </select>
               </td>
               <td>
-                <input formControlName="isPortion" (change)="handleItemIsPortion(itemForm)" type="checkbox">
+                <input formControlName="isPortion" type="checkbox">
               </td>
               <td>
                 <input formControlName="quantity" type="number">
@@ -53,12 +58,12 @@
     </div>
     <div class="container-footer">
       <div class="container-footer-buttons">
-        <div class="container-footer-close-button" >
+        <div class="container-footer-close-button">
           <button (click)="handleCloseModal()">
             Fechar
           </button>
         </div>
-        <div class="container-footer-submit-button" >
+        <div class="container-footer-submit-button">
           <button (click)="saveProduct()">
             Salvar
           </button>

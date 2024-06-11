@@ -17,6 +17,12 @@
   line-height: 1.6;
 }
 
+.canvas-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
 .opa-graph-card h3 {
   font-size: 20px;
   line-height: 1.1;
@@ -25,6 +31,7 @@
 
 .opa-graph-card i {
   font-size: 16px;
+  cursor: pointer;
 }
 
 .opa-graph-card-header {
@@ -52,7 +59,7 @@
 }
 
 .opa-graph-card-border {
-  background-color: var(--gray-darker);
+  background-color: var(--primary-color);
   border-radius: 3px;
   height: 21px;
   margin-right: 5px;
@@ -70,10 +77,16 @@
   font-size: 18px;
 }
 
+.table-responsive {
+  padding: 10px;
+  max-height: 750px;
+}
+
 .opa-storage-list {
   border-radius: 6px;
   box-shadow: 0 0 8px rgba(0,0,0,.25);
   padding: 15px;
+  min-height: 192px;
   margin-bottom: 25px;
 }
 

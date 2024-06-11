@@ -44,6 +44,7 @@ export class OrderComponent implements OnInit{
     this.loading = true;
     try{
       const ordersData = await firstValueFrom(this.orderService.getOrders());
+      console.log(ordersData);
       this.inProgressOrderList = [];
       this.inProgressTables = [];
 
@@ -67,6 +68,7 @@ export class OrderComponent implements OnInit{
       })
 
       const ordersTable = await firstValueFrom(this.tableService.getInProgressTables());
+      this.inProgressTables = [];
       ordersTable.map((inProgressTable:InProgressTables) => {
           this.inProgressTables.push({
             id:inProgressTable.id,
@@ -106,9 +108,8 @@ export class OrderComponent implements OnInit{
     try{
       this.loading = true;
       this.orderService.createOrder(ordersToBack).subscribe(
-        (e:Order[])=>{
-          // AJEITAR ORDERS PEDRO CAIO
-          this.getData();
+        async (e:Order[])=>{
+          await this.getData();
         }
       );
       this.loading = false;
