@@ -111,6 +111,7 @@ export class CreateProductModalComponent {
     const product = {
       productName: this.modalForm.get("productName")?.value,
       productPrice: this.modalForm.get("productPrice")?.value,
+      productDescription: 'Comida',
       productItems: this.stockProductsForm.getRawValue(),
       type:this.modalForm.get("type")?.value
     } as CreateProductDto

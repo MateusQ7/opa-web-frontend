@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators, AbstractControl, ValidatorFn, ValidationErrors } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormError } from '../shared/types/formError';
 import { UserRegisterService } from './user-register.service';
 import { FormattedForm } from './formatted-form';
 import { CepService } from '../services/cep/cep.service';
 import { BackReponse } from './backReponse.interface';
 import { PopUp } from '../shared/popup/popUp.interface';
-
 
 @Component({
   selector: 'app-user-register',
@@ -24,6 +23,7 @@ export class UserRegisterComponent implements OnInit, PopUp {
   city: string = '';
   state: string = '';
   neighborhood: string = '';
+  owner: boolean = false;
 
   public form!: FormGroup;
   public second_form!: FormGroup;
@@ -36,11 +36,18 @@ export class UserRegisterComponent implements OnInit, PopUp {
     private router: Router,
     private fb: FormBuilder,
     private cepService: CepService,
+    private route: ActivatedRoute,
     public userRegisterService: UserRegisterService
   ) { }
 
 
   ngOnInit(): void {
+    this.route.queryParams.subscribe(params => {
+      if (params['owner'] == 'true') {
+        this.owner = true;
+      }
+    })
+
     this.form = this.fb.group({
       name: [{
         value: '',
@@ -87,6 +94,12 @@ export class UserRegisterComponent implements OnInit, PopUp {
       ]],
       cpf: [{
         value: '',
+        disabled: false,
+      }, [
+        Validators.required,
+      ]],
+      cnpj: [{
+        value: null,
         disabled: false,
       }, [
         Validators.required,
@@ -152,57 +165,73 @@ export class UserRegisterComponent implements OnInit, PopUp {
   }
 
   async submit() {
-      const formattedForm: FormattedForm = {
-        name: this.form.value.name,
-        birthDate: this.form.value.birthDate,
-        cep: this.form.value.cep,
-        city: this.form.value.city,
-        complement: this.form.value.complement,
-        cpf: this.form.value.cpf,
-        email: this.form.value.email,
-        gender: this.form.value.gender,
-        neighborhood: this.form.value.neighborhood,
-        password: this.form.value.password,
-        phoneNumber: this.form.value.phoneNumber,
-        state: this.form.value.state,
-        street: this.form.value.street,
-        streetNumber: this.form.value.streetNumber,
-        username: this.form.value.username
-      };
-      this.userRegisterService.submitForm(formattedForm).subscribe(
-        (res) => {
-          const backResponse: BackReponse = {
-            status: res.status,
-            message: res.message,
-            data: res.data
-          }
-          this.modalTitle = 'Sucesso';
-          this.modalContent = 'Usuário cadastrado com sucesso, feche essa mensagem para ser redirecionado para o login.';
-          this.okButton = 200;
-        },
-        (error) => {
-          const backResponse: BackReponse = {
-            status: error.status,
-            message: error.error.message
-          }
-          this.modalTitle = 'Opa! Parece que algo deu errado';
-          this.okButton = error.status;
+    let restaurantCnpj = null;
+    if (this.form.value.cnpj) {
+      restaurantCnpj = this.form.value.cnpj
+    }
+    const formattedForm: FormattedForm = {
+      name: this.form.value.name,
+      birthDate: this.form.value.birthDate,
+      cep: this.form.value.cep,
+      city: this.form.value.city,
+      complement: this.form.value.complement,
+      cpf: this.form.value.cpf,
+      email: this.form.value.email,
+      gender: this.form.value.gender,
+      neighborhood: this.form.value.neighborhood,
+      password: this.form.value.password,
+      phoneNumber: this.form.value.phoneNumber,
+      state: this.form.value.state,
+      street: this.form.value.street,
+      streetNumber: this.form.value.streetNumber,
+      username: this.form.value.username,
+      restaurantCnpj: restaurantCnpj
+    };
 
-          switch (backResponse.status) {
-            case 400:
-              this.modalContent = backResponse.message;
-              break;
-            case 500:
-              this.modalContent = 'Ocorreu um erro interno, tente novamente mais tarde.';
-              break;
-            case 403:
-              this.modalContent = 'Você não tem permissão para cadastrar, wtf?';
-              break;
-          }
+    this.userRegisterService.submitForm(formattedForm).subscribe(
+      (res) => {
+        const backResponse: BackReponse = {
+          status: res.status,
+          message: res.message,
+          data: res.data
         }
-      )
-      this.showPopUp()
-      return;
+        this.route.queryParams.subscribe(params => {
+          if (params['owner'] == 'true') {
+            if (res.data) {
+              this.modalTitle = 'Sucesso';
+              this.modalContent = 'Usuário cadastrado com sucesso, feche essa mensagem para ser redirecionado para o login.';
+              this.okButton = 200;
+              const queryParams = { userId: res.data.id };
+              this.router.navigate(['/restaurant-register'], { queryParams: queryParams });
+            }
+          }
+          else {
+            this.router.navigate(['/login']);
+          }
+        })
+      },
+      (error) => {
+        const backResponse: BackReponse = {
+          status: error.status,
+          message: error.error.message
+        }
+        this.modalTitle = 'Opa! Parece que algo deu errado';
+        this.okButton = error.status;
+
+        switch (backResponse.status) {
+          case 400:
+            this.modalContent = backResponse.message;
+            break;
+          case 500:
+            this.modalContent = 'Ocorreu um erro interno, tente novamente mais tarde.';
+            break;
+          case 403:
+            this.modalContent = 'Você não tem permissão para cadastrar, wtf?';
+            break;
+        }
+      }
+    )
+    return;
   }
 
   onScroll(event: Event) {

@@ -16,8 +16,8 @@ export class DashboardService {
   ){}
 
 
-  getPayedBills():Observable<PayedBills[]>{
-    return this.httpClient.get<PayedBills[]>(`${this.configService.apiUrl}/bill`,{
+  getPayedBills(restaurantId: number):Observable<PayedBills[]>{
+    return this.httpClient.get<PayedBills[]>(`${this.configService.apiUrl}/bill/${restaurantId}`,{
       headers:{
         authorization:`Bearer ${this.authService.getToken()}`
       }

@@ -7,9 +7,11 @@ export class AppInitializationService {
 
   initializeApp(): void {
     const token = this.authService.getToken();
+    const userInfo = this.authService.getLoggedUserInfo();
     if (!token) {
       return
     }
-    this.authService.logUser(token)
+
+    this.authService.logUser(token, userInfo);
   }
 }

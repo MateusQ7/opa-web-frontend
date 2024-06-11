@@ -19,6 +19,7 @@ export class DashboardComponent {
   public revenueValue!: string;
   public ticketValue!: string;
   public productList: any[] = [];
+  public restaurantId: number = Number(localStorage.getItem('userRestaurantId'));
 
   string = 'Dashboard';
 
@@ -257,7 +258,7 @@ export class DashboardComponent {
 
   async getData() {
     try {
-      const data = await firstValueFrom(this.dashboardService.getPayedBills());
+      const data = await firstValueFrom(this.dashboardService.getPayedBills(this.restaurantId));
       let revenueValue = 0;
       let bills = 0;
       for (const bill of data) {

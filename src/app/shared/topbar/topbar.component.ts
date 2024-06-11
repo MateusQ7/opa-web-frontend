@@ -44,7 +44,8 @@ export class TopbarComponent {
     this.currentRoute = this.route.snapshot.firstChild?.routeConfig?.path || '';
   }
 
-  logout(){
+  logout() {
+    console.log('oieee');
     this.authService.loggout();
   }
 

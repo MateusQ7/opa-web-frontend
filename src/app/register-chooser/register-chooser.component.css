@@ -1,0 +1,9 @@
+@import '../login/login.component.css';
+
+.login-div {
+  height: 365px;
+}
+
+.operations-container {
+  margin-bottom: 0px;
+}
