@@ -4,9 +4,7 @@ import { MenuComponent } from './menu.component';
 import { YellowlineModule } from 'src/app/shared/yellowline/yellowline.module';
 import { LoadingModule } from 'src/app/shared/loading/loading.module';
 import { CreateProductModalModule } from 'src/app/shared/create-product-modal/create-product-modal.module';
-
-
-
+import { NgSelectModule } from '@ng-select/ng-select';
 @NgModule({
   declarations: [
     MenuComponent,
@@ -18,7 +16,8 @@ import { CreateProductModalModule } from 'src/app/shared/create-product-modal/cr
     CommonModule,
     YellowlineModule,
     LoadingModule,
-    CreateProductModalModule
+    CreateProductModalModule,
+    NgSelectModule
   ]
 })
 export class MenuModule { }

@@ -3,7 +3,6 @@ import { firstValueFrom } from 'rxjs'
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { Menu } from 'src/app/services/menu/menu.interface';
 import { MenuService } from 'src/app/services/menu/menu.service';
-import { StorageService } from 'src/app/services/storage/storage.service';
 
 @Component({
   selector: 'app-menu',
