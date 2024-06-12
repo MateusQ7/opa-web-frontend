@@ -64,7 +64,6 @@
   flex-direction: column;
   height: 620px;
   overflow-y: scroll;
-  justify-content: space-between;
   border-radius: 6px;
   box-shadow: 0 0 8px rgba(0,0,0,.25);
   padding: 15px;
@@ -127,10 +126,10 @@
   gap: 10px;
 }
 
-.line {
+/* .line {
   border-bottom: 1px solid var(--gray-medium);
   width: 60%;
-}
+} */
 
 /* Parte do CSS dedicada a sobrescrever o CSS da base. */
 .panel.panel-default {

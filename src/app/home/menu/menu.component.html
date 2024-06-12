@@ -1,11 +1,6 @@
-<!-- <opa-create-product-modal
-[showModal]="showModal"
-(openModal)="openModal()"
-(closeModal)="closeModal()"
-></opa-create-product-modal> -->
-<div class="loading-modal" *ngIf="this.loading">
-  <opa-loading></opa-loading>
-</div>
+<opa-create-product-modal *ngIf="this.createProductModal"
+  (close)="this.showCreateProductModal()"></opa-create-product-modal>
+
 <div class="whole">
   <div class="yellow-line">
     <opa-yline routeNameToBeUsed="Cardápio" iconPath="/assets/images/order.svg"></opa-yline>
@@ -19,7 +14,7 @@
             </div>
             <div class="panel-body panel-body-fix-height">
               <div class="product-actions-container">
-                <div class="opa-btn opa-btn-secondary">
+                <div class="opa-btn opa-btn-secondary" (click)="showCreateProductModal()">
                   Adicionar produto
                 </div>
                 <div class=" opa-input-group">
@@ -127,178 +122,25 @@
         </div>
         <div class="col-sm-9">
           <div class="opa-menu">
-            <div class="for-aqui">
+            <div class="for-aqui" *ngFor="let item of menuList | keyvalue">
               <div class="opa-menu-product-title">
                 <h3 class="text-center m-0">
-                  <strong>Frutos do mar</strong>
+                  <strong>{{ item.key }}</strong>
                 </h3>
               </div>
-              <div class="opa-menu-product">
+              <div class="opa-menu-product" *ngFor="let product of item.value">
                 <div class="opa-product-label">
                   <span class="opa-product-border"></span>
                   <span class="opa-product-content">
                     <div class="opa-product-name-container">
-                      <span>Catinhas de paranguejo</span>
+                      <span>{{ product.name }}</span>
                       <span class="opa-graph-card-description">
-                        Com a gente desde sempre e nunca falha.
+                        {{ product.description }}
                       </span>
                     </div>
                     <span class="line"></span>
                     <span>
-                      <strong>R$ 50,00</strong>
-                    </span>
-                  </span>
-                </div>
-                <div class="opa-product-label">
-                  <span class="opa-product-border"></span>
-                  <span class="opa-product-content">
-                    <div class="opa-product-name-container">
-                      <span>Lagosta bronzeada</span>
-                      <span class="opa-graph-card-description">
-                        Black CD's, Black CD's, quem pegou a referência?
-                      </span>
-                    </div>
-                    <span class="line"></span>
-                    <span>
-                      <strong>R$ 100,00</strong>
-                    </span>
-                  </span>
-                </div>
-                <div class="opa-product-label">
-                  <span class="opa-product-border"></span>
-                  <span class="opa-product-content">
-                    <div class="opa-product-name-container">
-                      <span>Siri cascudo</span>
-                      <span class="opa-graph-card-description">
-                        Um delicioso siri cascudo fritado pelo nosso chef Bob Esponja.
-                      </span>
-                    </div>
-                    <span class="line"></span>
-                    <span>
-                      <strong>R$ 20,00</strong>
-                    </span>
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div class="for-aqui">
-              <div class="opa-menu-product-title">
-                <h3 class="text-center m-0">
-                  <strong>Carnes</strong>
-                </h3>
-              </div>
-              <div class="opa-menu-product">
-                <div class="opa-product-label">
-                  <span class="opa-product-border"></span>
-                  <span class="opa-product-content">
-                    <div class="opa-product-name-container">
-                      <span>Carneiro frito</span>
-                      <span class="opa-graph-card-description">
-                        Eu to com preguiça de pensar na descrição meu mano.
-                      </span>
-                    </div>
-                    <span class="line"></span>
-                    <span>
-                      <strong>R$ 20,00</strong>
-                    </span>
-                  </span>
-                </div>
-                <div class="opa-product-label">
-                  <span class="opa-product-border"></span>
-                  <span class="opa-product-content">
-                    <div class="opa-product-name-container">
-                      <span>O primo do carneiro assado</span>
-                      <span class="opa-graph-card-description">
-                        Ainda to com preguiça
-                      </span>
-                    </div>
-                    <span class="line"></span>
-                    <span>
-                      <strong>R$ 100,00</strong>
-                    </span>
-                  </span>
-                </div>
-                <div class="opa-product-label">
-                  <span class="opa-product-border"></span>
-                  <span class="opa-product-content">
-                    <div class="opa-product-name-container">
-                      <span>Picanha claramente falsificada</span>
-                      <span class="opa-graph-card-description">
-                        Vai tentar a sorte ?
-                      </span>
-                    </div>
-                    <span class="line"></span>
-                    <span>
-                      <strong>R$ 25,00</strong>
-                    </span>
-                  </span>
-                </div>
-                <div class="opa-product-label">
-                  <span class="opa-product-border"></span>
-                  <span class="opa-product-content">
-                    <div class="opa-product-name-container">
-                      <span>Espetinho do alexandre</span>
-                      <span class="opa-graph-card-description">
-                        Mas namoral quem diabos é o tal desse alexandre?
-                      </span>
-                    </div>
-                    <span class="line"></span>
-                    <span>
-                      <strong>R$ 1500,00</strong>
-                    </span>
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div class="for-aqui">
-              <div class="opa-menu-product-title">
-                <h3 class="text-center m-0">
-                  <strong>Sobremesas</strong>
-                </h3>
-              </div>
-              <div class="opa-menu-product">
-                <div class="opa-product-label">
-                  <span class="opa-product-border"></span>
-                  <span class="opa-product-content">
-                    <div class="opa-product-name-container">
-                      <span>Romeu e julieta</span>
-                      <span class="opa-graph-card-description">
-                        Sorvete de queijo com pedaços de goiaba.
-                      </span>
-                    </div>
-                    <span class="line"></span>
-                    <span>
-                      <strong>R$ 20,00</strong>
-                    </span>
-                  </span>
-                </div>
-                <div class="opa-product-label">
-                  <span class="opa-product-border"></span>
-                  <span class="opa-product-content">
-                    <div class="opa-product-name-container">
-                      <span>Mangueirinha</span>
-                      <span class="opa-graph-card-description">
-                        Sorvete de chiclete com menta flocada.
-                      </span>
-                    </div>
-                    <span class="line"></span>
-                    <span>
-                      <strong>R$ 10,00</strong>
-                    </span>
-                  </span>
-                </div>
-                <div class="opa-product-label">
-                  <span class="opa-product-border"></span>
-                  <span class="opa-product-content">
-                    <div class="opa-product-name-container">
-                      <span>Tiramisu</span>
-                      <span class="opa-graph-card-description">
-                        Essa porra é muito ruim.
-                      </span>
-                    </div>
-                    <span class="line"></span>
-                    <span>
-                      <strong>R$ 20,00</strong>
+                      <strong>R$ {{ product.price }}</strong>
                     </span>
                   </span>
                 </div>
@@ -310,7 +152,6 @@
     </div>
   </div>
 </div>
-
 
 <!-- <div class="component">
   <div class="button-header">

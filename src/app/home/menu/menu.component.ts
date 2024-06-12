@@ -9,13 +9,15 @@ import { MenuService } from 'src/app/services/menu/menu.service';
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css']
 })
-export class MenuComponent implements OnInit{
+export class MenuComponent implements OnInit {
 
-  showModal = false;
+  createProductModal = false;
 
   loading = false;
 
-  menuList:Menu[]=[]
+  // menuList: {[menuType: string]: Menu[]} = {};
+
+  menuList: any = {};
 
   constructor(
     public auth:AuthService,
@@ -26,35 +28,35 @@ export class MenuComponent implements OnInit{
     await this.getData()
   }
 
-  async getData(){
+  async getData() {
     try{
       const data = await firstValueFrom(this.menuService.getMenu());
-      this.menuList = [];
-      data.map((menu: Menu) => {
-          this.menuList.push({
-            id:menu.id,
-            name:menu.name,
-            description:menu.description,
-            price:menu.price,
-            items: [],
-          });
-        })
+
+      for (const product of data) {
+        const currentProductItem = {
+          id: product.id,
+          name: product.name,
+          price: product.price,
+          description: product.description,
+          type: product.type,
+          items: product.items
+        };
+
+        if (this.menuList[product.type]) {
+          this.menuList[product.type].push(currentProductItem);
+        }
+        else {
+          this.menuList[product.type] = [currentProductItem];
+        }
+      }
+
       this.loading = false;
     }catch(error: any){
       console.log(error);
     }
   }
 
-  openModal() {
-    this.showModal = true;
-  }
-
-  closeModal() {
-    this.showModal = false;
-    this.getData();
-  }
-
-  public handleShowModal() {
-    this.showModal = !this.showModal
+  showCreateProductModal() {
+    this.createProductModal = !this.createProductModal
   }
 }
