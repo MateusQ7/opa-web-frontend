@@ -17,102 +17,19 @@
                 <div class="opa-btn opa-btn-secondary" (click)="showCreateProductModal()">
                   Adicionar produto
                 </div>
-                <div class=" opa-input-group">
-                  <label>Filtrar produto</label>
-                  <ng-select bindLabel="name" bindValue="name" [clearable]="false" [clearSearchOnAdd]="true"
-                    class="opa-select-2">
-                  </ng-select>
-                </div>
               </div>
             </div>
             <div class="model-tile">
-              <div class="filter-products-container">
+              <div class="filter-products-container" *ngFor="let item of menuList | keyvalue">
                 <h2 class="model-tile-title">
-                  Frutos do mar
+                  {{ item.key }}
                 </h2>
-                <div class="model-tile-body">
+                <div class="model-tile-body" *ngFor="let product of item.value">
                   <div class="model-tile-body-content">
-                    <span>Catinhas de paranguejo</span>
+                    <span>{{ product.name }}</span>
                     <div class="filter-actions">
                       <i class="fa-solid fa-pencil edit"></i>
-                      <i class="fa-solid fa-trash-can erase"></i>
-                    </div>
-                  </div>
-                  <div class="model-tile-body-content">
-                    <span>Lagosta bronzeada</span>
-                    <div class="filter-actions">
-                      <i class="fa-solid fa-pencil edit"></i>
-                      <i class="fa-solid fa-trash-can erase"></i>
-                    </div>
-                  </div>
-                  <div class="model-tile-body-content">
-                    <span>Siri cascudo</span>
-                    <div class="filter-actions">
-                      <i class="fa-solid fa-pencil edit"></i>
-                      <i class="fa-solid fa-trash-can erase"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="filter-products-container">
-                <h2 class="model-tile-title">
-                  Carnes
-                </h2>
-                <div class="model-tile-body">
-                  <div class="model-tile-body-content">
-                    <span>Carneiro frito</span>
-                    <div class="filter-actions">
-                      <i class="fa-solid fa-pencil edit"></i>
-                      <i class="fa-solid fa-trash-can erase"></i>
-                    </div>
-                  </div>
-                  <div class="model-tile-body-content">
-                    <span>O primo do carneiro assado</span>
-                    <div class="filter-actions">
-                      <i class="fa-solid fa-pencil edit"></i>
-                      <i class="fa-solid fa-trash-can erase"></i>
-                    </div>
-                  </div>
-                  <div class="model-tile-body-content">
-                    <span>Picanha claramente falsificada</span>
-                    <div class="filter-actions">
-                      <i class="fa-solid fa-pencil edit"></i>
-                      <i class="fa-solid fa-trash-can erase"></i>
-                    </div>
-                  </div>
-                  <div class="model-tile-body-content">
-                    <span>Espetinho do alexandre</span>
-                    <div class="filter-actions">
-                      <i class="fa-solid fa-pencil edit"></i>
-                      <i class="fa-solid fa-trash-can erase"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="filter-products-container">
-                <h2 class="model-tile-title">
-                  Sobremesas
-                </h2>
-                <div class="model-tile-body">
-                  <div class="model-tile-body-content">
-                    <span>Romeu e julieta</span>
-                    <div class="filter-actions">
-                      <i class="fa-solid fa-pencil edit"></i>
-                      <i class="fa-solid fa-trash-can erase"></i>
-                    </div>
-                  </div>
-                  <div class="model-tile-body-content">
-                    <span>Mangueirinha</span>
-                    <div class="filter-actions">
-                      <i class="fa-solid fa-pencil edit"></i>
-                      <i class="fa-solid fa-trash-can erase"></i>
-                    </div>
-                  </div>
-                  <div class="model-tile-body-content">
-                    <span>Tiramisu</span>
-                    <div class="filter-actions">
-                      <i class="fa-solid fa-pencil edit"></i>
-                      <i class="fa-solid fa-trash-can erase"></i>
+                      <i class="fa-solid fa-trash-can erase" (click)="removeProductFromMenu(product.id)"></i>
                     </div>
                   </div>
                 </div>
@@ -152,33 +69,3 @@
     </div>
   </div>
 </div>
-
-<!-- <div class="component">
-  <div class="button-header">
-    <button (click)="openModal()" class="add-product">
-      <p>
-        Adicionar Produto
-      </p>
-    </button>
-  </div>
-  <div class="menu-loop-space">
-    <div class="menu-loop-cell" *ngFor="let menuItem of this.menuList">
-      <div class="menu-img">
-        <img src="/assets/images/opa-logo-white.svg" alt="">
-      </div>
-      <div class="menu-info">
-        <div class="menu-name">
-          <p>{{ menuItem.name }}</p>
-        </div>
-        <div class="menu-description">
-          <div class="descript-text">
-            <p>{{ menuItem.description }}</p>
-          </div>
-          <div class="menu-value">
-            <p>R$ {{ menuItem.price }}</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div> -->

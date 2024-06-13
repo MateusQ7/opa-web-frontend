@@ -1,75 +1,53 @@
-<div *ngIf="showModal" class="container">
-  <form class="form" [formGroup]="modalForm">
-    <div class="form-header">
-      <p>Criar Produtos</p>
+<ng-template #createProduct>
+  <div class="modal-header opa-modal-header">
+    <div class="opa-modal-header-title">
+      <h4 class="modal-title opa-modal-title" id="modal-basic-title">Criar produto
+      </h4>
     </div>
-    <div class="form-input-cells">
-      <p>Nome do Produto</p>
-      <input formControlName="productName" type="string" class="box-info" placeholder="Insira o nome"
-        font-family="Poppins">
-    </div>
-    <div class="form-input-cells">
-      <p>Tipo do produto</p>
-      <input formControlName="type" type="string" class="box-info" placeholder="Insira o tipo"
-        font-family="Poppins">
-    </div>
-    <div class="form-input-cells">
-      <p>Valor do Produto</p>
-      <input formControlName="productPrice" type="number" class="box-info" placeholder="Insira o preço"
-        font-family="Poppins">
-    </div>
-    <div class="product-list">
-      <div class="product-list-header">
-        <p>Ingredientes do estoque</p>
-        <select (change)="addProduct($event)">
-          <option *ngFor="let product of stockProducts" [value]="stringify(product)">
-            {{ product.name }}
-          </option>
-        </select>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="this.modalForm" class="opa-product-form-container">
+      <div class="opa-input-group">
+        <label>Nome do produto</label>
+        <input formControlName="productName" type="string" name="productName" class="input-item"
+          placeholder="Insira o nome do produto" font-family="Poppins" />
       </div>
-      <table class="selected-products-table">
-        <thead class="table-head">
-          <tr>
-            <th>Descrição</th>
-            <th>Unidade de Medida</th>
-            <th>Porção</th>
-            <th>Quantidade</th>
-          </tr>
-        </thead>
-        <tbody class="table-body" formArrayName="stockProductsForm">
-          <div *ngFor="let itemForm of stockProductsForm.controls; let i=index;">
-            <tr [formGroup]="itemForm">
-              <td>{{ itemForm.get("stockProductName").value }}</td>
-              <td>
-                <select formControlName="measurementUnit" (disable)="itemForm.get('isPortion').value">
-                  <option *ngFor="let unit of measurementUnits" [ngValue]="unit">{{ unit }}</option>
-                </select>
-              </td>
-              <td>
-                <input formControlName="isPortion" type="checkbox">
-              </td>
-              <td>
-                <input formControlName="quantity" type="number">
-              </td>
-            </tr>
+      <div class="row2">
+        <div class="opa-product-form-description">
+          <div class="opa-input-group">
+            <label>Descrição do produto</label>
+            <input formControlName="productDescription" type="string" name="productDescription" class="input-item"
+              placeholder="Insira a descrição do produto" font-family="Poppins" />
           </div>
-        </tbody>
-      </table>
-    </div>
-    <div class="container-footer">
-      <div class="container-footer-buttons">
-        <div class="container-footer-close-button">
-          <button (click)="handleCloseModal()">
-            Fechar
-          </button>
+          <div class="opa-input-group">
+            <label>Preço do produto</label>
+            <input type="number" (keypress)="numberOnly($event)" min="1" max="99999" class="input-item"
+              formControlName="productPrice">
+          </div>
         </div>
-        <div class="container-footer-submit-button">
-          <button (click)="saveProduct()">
-            Salvar
-          </button>
+        <div class="opa-product-form-type">
+          <div class="opa-input-group">
+            <label>Tipo do produto</label>
+            <ng-select [items]="productTypes" bindLabel="name" bindValue="name" [clearable]="false"
+              formControlName="productTypes" placeholder="-- Selecione um tipo --" [clearSearchOnAdd]="true"
+              class="opa-select-2">
+            </ng-select>
+          </div>
+          <div class="opa-input-group">
+            <div class="opa-label-with-input">
+              <input type="checkbox" class="round-checkbox" formControlName="typeToggle" (click)="toggleNewType()">
+              <label>Adicionar novo tipo</label>
+            </div>
+            <input type="text" formControlName="productType" class="input-item" />
+          </div>
         </div>
       </div>
+    </form>
+  </div>
+  <div class="modal-footer opa-modal-footer">
+    <div class="modal-actions">
+      <button type="button" class="opa-btn opa-btn-secondary" (click)="this.closePopUp()">Fechar</button>
+      <button type="button" class="opa-btn opa-btn-primary" (click)="this.submitForm()">Salvar</button>
     </div>
-
-  </form>
-</div>
+  </div>
+</ng-template>

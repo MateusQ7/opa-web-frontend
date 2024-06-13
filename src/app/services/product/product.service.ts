@@ -25,6 +25,14 @@ export class ProductService {
     })
   }
 
+  removeProduct(productId: number): Observable<any> {
+    return this.httpClient.delete(`${this.configService.apiUrl}/product/${productId}`, {
+      headers:{
+        authorization:`Bearer ${this.authService.getToken()}`
+      }
+    })
+  }
+
   getToken(): string | null {
     return localStorage.getItem("token")
   }

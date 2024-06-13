@@ -1,8 +1,10 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component,OnInit } from '@angular/core';
 import { firstValueFrom } from 'rxjs'
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { Menu } from 'src/app/services/menu/menu.interface';
 import { MenuService } from 'src/app/services/menu/menu.service';
+import { ProductService } from 'src/app/services/product/product.service';
 
 @Component({
   selector: 'app-menu',
@@ -15,13 +17,13 @@ export class MenuComponent implements OnInit {
 
   loading = false;
 
-  // menuList: {[menuType: string]: Menu[]} = {};
 
   menuList: any = {};
 
   constructor(
-    public auth:AuthService,
-    private menuService:MenuService
+    public auth: AuthService,
+    private menuService: MenuService,
+    private productService: ProductService
   ){}
 
   async ngOnInit(): Promise<void> {
@@ -58,5 +60,17 @@ export class MenuComponent implements OnInit {
 
   showCreateProductModal() {
     this.createProductModal = !this.createProductModal
+  }
+
+  removeProductFromMenu(productId: number) {
+    this.productService.removeProduct(productId).subscribe(
+      (res) => {
+        console.log(res)
+        location.reload();
+      },
+      (error) => {
+        console.log(error)
+      }
+    )
   }
 }

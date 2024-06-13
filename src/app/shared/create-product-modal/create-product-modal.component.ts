@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, TemplateRef, ViewChild, inject } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { ListItem } from 'ng-multiselect-dropdown/multiselect.model';
@@ -6,6 +6,10 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { StorageService } from 'src/app/services/storage/storage.service';
 import { ProductService } from 'src/app/services/product/product.service';
 import { CreateProductDto } from 'src/app/home/dtos/CreateProductDto';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ProductType } from './createProduct.interface';
+import { MenuService } from 'src/app/services/menu/menu.service';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'opa-create-product-modal',
@@ -13,7 +17,8 @@ import { CreateProductDto } from 'src/app/home/dtos/CreateProductDto';
   styleUrls: ['./create-product-modal.component.css']
 })
 export class CreateProductModalComponent {
-
+  @ViewChild('createProduct', { static: true })
+  modalContent!: TemplateRef<any>;
 
   @Input() showModal: boolean = false;
   @Output() openModal = new EventEmitter<void>();
@@ -26,101 +31,107 @@ export class CreateProductModalComponent {
 
   public modalForm!: FormGroup;
 
+  public productTypes: ProductType[] = [];
+
+  private modalService = inject(NgbModal);
+
   constructor(
     private formBuilder: FormBuilder,
     public auth: AuthService,
     public storageService: StorageService,
     public productService: ProductService,
+    public menuService: MenuService,
   ) {
-  }
-
-  ngOnInit(): void {
     this.modalForm = this.formBuilder.group({
-      productName:['',
+      productName: ['',
         Validators.required
       ],
-      type:['',
+      typeToggle: [false,
         Validators.required
       ],
-      productPrice:[0,
-      Validators.required
-    ],
-      stockProductsForm: this.formBuilder.array([ ]),
+      productType: {
+        value:'',
+        disabled:true
+      },
+      productTypes: ['',
+        Validators.required
+      ],
+      productPrice: ['',
+        Validators.required,
+      ],
+      productDescription: ['',
+        Validators.required,
+      ],
     });
-
-    this.storageService.searchStockItem("").subscribe(stockDtos => {
-      this.stockProducts = stockDtos
-    });
-
-    // this.form.get('stockProductName')?.valueChanges.subscribe(value => {
-    // this.stockService.searchStockItem(value).subscribe(stockDtos => {
-    //   this.stockProducts = stockDtos
-    // })
-    // })
   }
 
-  get stockProductsForm() {
-    return this.modalForm.controls["stockProductsForm"] as FormArray;
+  async ngOnInit(): Promise<void> {
+    await this.getData();
+    this.modalService.open(this.modalContent, { size: 'xl' });
   }
 
-  private newItemForm(item: any): FormGroup {
-    const newForm = this.formBuilder.group({
-      stockProductId: new FormControl({ disabled: true, value: item.id }),
-      measurementUnit: new FormControl({ disabled: false, value: item.measurementUnit }),
-      stockProductName: new FormControl({ disabled: false, value: item.name }),
-      isPortion: new FormControl({ disabled: false, value: false }),
-      quantity: new FormControl({ disabled: false, value: item.quantity })
-    })
-
-    newForm.get("isPortion")?.valueChanges.subscribe((isPortion) => {
-      if (isPortion) {
-        newForm.get("measurementUnit")?.disable()
-        newForm.get("measurementUnit")?.setValue("")
-      } else {
-        newForm.get("measurementUnit")?.enable()
+  async getData() {
+    try {
+      const data = await firstValueFrom(this.menuService.getMenu());
+      for (const product of data) {
+        if (this.productTypes.every(item => item.name !== product.type)) {
+          this.productTypes.push({ name: product.type });
+        }
       }
-    })
-    return newForm
+    }
+    catch(error: any) {
+      console.log(error);
+    }
   }
 
-  public addProduct(event: any) {
-    var item = JSON.parse(event.target.value);
-    this.stockProductsForm.push(this.newItemForm(item))
-    this.selectedItems.push(item)
+  public toggleNewType() {
+    if (this.modalForm.get('typeToggle')?.value) {
+      this.modalForm.get('productType')?.disable();
+      this.modalForm.get('productTypes')?.enable();
+    }
+    else {
+      this.modalForm.get('productType')?.enable();
+      this.modalForm.get('productTypes')?.disable();
+    }
   }
 
-  public onItemSelect(item: ListItem) {
-    this.selectedItems.push(item)
+  public numberOnly(event: KeyboardEvent): boolean {
+    const key = event.key;
+
+    if (/^\d$/.test(key)) {
+      return true;
+    }
+    return false;
   }
 
-  public stringify(object: any) {
-    return JSON.stringify(object)
+  public closePopUp() {
+    this.modalService.dismissAll()
   }
 
-  public search(text: string, item: any) {
-    text = text.toLocaleLowerCase();
-    return item.code.toLocaleLowerCase().indexOf(text) > -1 || item.countryName.toLocaleLowerCase() === text;
-  }
+  public submitForm() {
+    const productType = this.modalForm.get("productType")?.value ?
+      this.modalForm.get("productType")?.value :
+      this.modalForm.get("productTypes")?.value;
 
-  public handleCloseModal() {
-    this.selectedItems = []
-    this.closeModal.emit()
-  }
-
-  public saveProduct() {
     const product = {
       productName: this.modalForm.get("productName")?.value,
       productPrice: this.modalForm.get("productPrice")?.value,
-      productDescription: 'Comida',
-      productItems: this.stockProductsForm.getRawValue(),
-      type:this.modalForm.get("type")?.value
+      productDescription: this.modalForm.get("productDescription")?.value,
+      productItems: [],
+      type: productType,
     } as CreateProductDto
 
-    this.productService.createProduct([product]).subscribe(value => {
-    }, (err: HttpErrorResponse) => {
-      console.log(err)
-    })
-    this.closeModal.emit();
+    this.productService.createProduct([product]).subscribe(
+      (res) => {
+        console.log(res)
+        location.reload();
+      },
+      (err: HttpErrorResponse) => {
+        console.log(err)
+      }
+    )
+
+    this.closePopUp();
   }
 
 }
