@@ -252,3 +252,35 @@ select {
     width: 90%;
   }
 }
+
+.opa-product-form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.opa-product-form-description {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+}
+
+.opa-product-form-type {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+}
+
+.row2 {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 10px;
+  margin-left: auto;
+}

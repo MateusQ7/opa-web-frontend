@@ -5,8 +5,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoadingModule } from '../loading/loading.module';
 import { NgSelectModule } from '@ng-select/ng-select';
 
-
-
 @NgModule({
   declarations: [
     LaunchOrderModalComponent

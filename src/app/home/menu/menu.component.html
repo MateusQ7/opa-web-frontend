@@ -1,38 +1,67 @@
-<opa-create-product-modal
-[showModal]="showModal"
-(openModal)="openModal()"
-(closeModal)="closeModal()"
-></opa-create-product-modal>
-<div class="loading-modal" *ngIf="this.loading">
-  <opa-loading ></opa-loading>
-</div>
+<opa-create-product-modal *ngIf="this.createProductModal"
+  (close)="this.showCreateProductModal()"></opa-create-product-modal>
+
 <div class="whole">
   <div class="yellow-line">
     <opa-yline routeNameToBeUsed="Cardápio" iconPath="/assets/images/order.svg"></opa-yline>
-  </div>
-  <div class="component">
-    <div class="button-header">
-      <button (click)="openModal()" class="add-product">
-        <p>
-          Adicionar Produto
-        </p>
-      </button>
-    </div>
-    <div class="menu-loop-space">
-      <div class="menu-loop-cell" *ngFor="let menuItem of this.menuList">
-        <div class="menu-img">
-          <img src="/assets/images/opa-logo-white.svg" alt="">
-        </div>
-        <div class="menu-info">
-          <div class="menu-name">
-            <p>{{ menuItem.name }}</p>
-          </div>
-          <div class="menu-description">
-            <div class="descript-text">
-              <p>{{ menuItem.description }}</p>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="panel panel-default mb-4">
+            <div class="panel-heading panel-heading-default">
+              Produtos
             </div>
-            <div class="menu-value">
-              <p>R$ {{ menuItem.price }}</p>
+            <div class="panel-body panel-body-fix-height">
+              <div class="product-actions-container">
+                <div class="opa-btn opa-btn-secondary" (click)="showCreateProductModal()">
+                  Adicionar produto
+                </div>
+              </div>
+            </div>
+            <div class="model-tile">
+              <div class="filter-products-container" *ngFor="let item of menuList | keyvalue">
+                <h2 class="model-tile-title">
+                  {{ item.key }}
+                </h2>
+                <div class="model-tile-body" *ngFor="let product of item.value">
+                  <div class="model-tile-body-content">
+                    <span>{{ product.name }}</span>
+                    <div class="filter-actions">
+                      <i class="fa-solid fa-pencil edit"></i>
+                      <i class="fa-solid fa-trash-can erase" (click)="removeProductFromMenu(product.id)"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-9">
+          <div class="opa-menu">
+            <div class="for-aqui" *ngFor="let item of menuList | keyvalue">
+              <div class="opa-menu-product-title">
+                <h3 class="text-center m-0">
+                  <strong>{{ item.key }}</strong>
+                </h3>
+              </div>
+              <div class="opa-menu-product" *ngFor="let product of item.value">
+                <div class="opa-product-label">
+                  <span class="opa-product-border"></span>
+                  <span class="opa-product-content">
+                    <div class="opa-product-name-container">
+                      <span>{{ product.name }}</span>
+                      <span class="opa-graph-card-description">
+                        {{ product.description }}
+                      </span>
+                    </div>
+                    <span class="line"></span>
+                    <span>
+                      <strong>R$ {{ product.price }}</strong>
+                    </span>
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
         </div>

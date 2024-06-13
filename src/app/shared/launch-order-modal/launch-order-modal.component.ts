@@ -101,6 +101,7 @@ export class LaunchOrderModalComponent implements OnInit {
           name:menu.name,
           description:menu.description,
           price:menu.price,
+          type:menu.type,
           items: [],
         });
       });
@@ -216,6 +217,7 @@ export class LaunchOrderModalComponent implements OnInit {
         name:'Item não encontrado no menu',
         description:'Item não encontrado no menu',
         price:0.00,
+        type:'oloco',
         items: [],
       }
     }
